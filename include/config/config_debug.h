@@ -12,7 +12,7 @@
 /**
  * Disables all debug options (except PUPPYPRINT).
  */
-#define DISABLE_ALL
+// #define DISABLE_ALL
 
 /**
  * Enables a comprehensive standalone profiler. Automatically enabled by PUPPYPRINT_DEBUG.
@@ -41,7 +41,7 @@
 /**
  * Enables a custom, enhanced performance profiler. (Enables PUPPYPRINT by default in config_safeguards).
  */
-// #define PUPPYPRINT_DEBUG 1
+#define PUPPYPRINT_DEBUG
 
 /**
  * Uses cycles instead of microseconds in Puppyprint debug output.

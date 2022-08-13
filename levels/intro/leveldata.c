@@ -3318,16 +3318,19 @@ const Gfx intro_seg7_dl_main_logo[] = {
 };
 
 // 0x0700B420 - 0x0700B460
-static const Vtx intro_seg7_vertex_copyright[] = {
+static const Vtx intro_seg7_vertex_team_cornersoft[] = {
 #ifdef INTRO_CREDIT
-    {{{    80,     60,     -1}, 0, {     0,      0}, {0x00, 0xff, 0xf7, 0xff}}}, // 0
-    {{{   240,     60,     -1}, 0, {256<<5,      0}, {0x00, 0xff, 0xf7, 0xff}}}, // 1
+    {{{    80,     58,     -1}, 0, {     0,      0}, {0xff, 0x7f, 0x5f, 0xff}}}, // 0
+    {{{   102,     58,     -1}, 0, { 35<<5,      0}, {0xdf, 0x5f, 0x4f, 0xff}}}, // 1
 
-    {{{    80,     48,     -1}, 0, {     0,  16<<5}, {0x00, 0xff, 0xff, 0xff}}}, // 2
-    {{{   240,     48,     -1}, 0, {256<<5,  16<<5}, {0x00, 0xff, 0xff, 0xff}}}, // 3
+    {{{    80,     38,     -1}, 0, {     0,  32<<5}, {0xdf, 0x5f, 0x4f, 0xff}}}, // 2
+    {{{   102,     38,     -1}, 0, { 35<<5,  32<<5}, {0xbf, 0x3f, 0x3f, 0xff}}}, // 3
 
-    {{{    80,     36,     -1}, 0, {     0,  32<<5}, {0x00, 0x7f, 0xff, 0xff}}}, // 4
-    {{{   240,     36,     -1}, 0, {256<<5,  32<<5}, {0x00, 0x7f, 0xff, 0xff}}}, // 5
+    {{{   104,     58,     -1}, 0, { 38<<5,      0}, {0xff, 0xff, 0xff, 0xff}}}, // 4
+    {{{   240,     58,     -1}, 0, {256<<5,      0}, {0x5f, 0xaf, 0xff, 0xff}}}, // 5
+
+    {{{   104,     38,     -1}, 0, { 38<<5,  32<<5}, {0xdf, 0xdf, 0xdf, 0xff}}}, // 6
+    {{{   240,     38,     -1}, 0, {256<<5,  32<<5}, {0x3f, 0x8f, 0xdf, 0xff}}}, // 7
 #else
     {{{    96,     58,     -1}, 0, {     0,      0}, {0xff, 0xff, 0xff, 0xff}}}, // 0
     {{{   224,     58,     -1}, 0, {128<<5,      0}, {0xff, 0xff, 0xff, 0xff}}}, // 1
@@ -3335,6 +3338,24 @@ static const Vtx intro_seg7_vertex_copyright[] = {
     {{{   224,     42,     -1}, 0, {128<<5,  16<<5}, {0xff, 0xff, 0xff, 0xff}}}, // 3
 #endif
 };
+
+// static const Vtx intro_seg7_vertex_copyright[] = {
+// #ifdef INTRO_CREDIT
+//     {{{    80,     60,     -1}, 0, {     0,      0}, {0x00, 0xff, 0xf7, 0xff}}}, // 0
+//     {{{   240,     60,     -1}, 0, {256<<5,      0}, {0x00, 0xff, 0xf7, 0xff}}}, // 1
+
+//     {{{    80,     48,     -1}, 0, {     0,  16<<5}, {0x00, 0xff, 0xff, 0xff}}}, // 2
+//     {{{   240,     48,     -1}, 0, {256<<5,  16<<5}, {0x00, 0xff, 0xff, 0xff}}}, // 3
+
+//     {{{    80,     36,     -1}, 0, {     0,  32<<5}, {0x00, 0x7f, 0xff, 0xff}}}, // 4
+//     {{{   240,     36,     -1}, 0, {256<<5,  32<<5}, {0x00, 0x7f, 0xff, 0xff}}}, // 5
+// #else
+//     {{{    96,     58,     -1}, 0, {     0,      0}, {0xff, 0xff, 0xff, 0xff}}}, // 0
+//     {{{   224,     58,     -1}, 0, {128<<5,      0}, {0xff, 0xff, 0xff, 0xff}}}, // 1
+//     {{{    96,     42,     -1}, 0, {     0,  16<<5}, {0xff, 0xff, 0xff, 0xff}}}, // 2
+//     {{{   224,     42,     -1}, 0, {128<<5,  16<<5}, {0xff, 0xff, 0xff, 0xff}}}, // 3
+// #endif
+// };
 
 // 0x0700B460 - 0x0700B4A0
 static const Vtx intro_seg7_vertex_trademark[] = {
@@ -3357,9 +3378,12 @@ static const Vtx intro_seg7_vertex_trademark[] = {
 
 #ifdef INTRO_CREDIT
 // 0x0700B4A0 - 0x0700B4A2
-ALIGNED8 static const Texture intro_seg7_texture_copyright[] = {
-#include "levels/intro/made_with_hackersm64.custom.i4.inc.c"
+ALIGNED8 static const Texture intro_seg7_texture_team_cornersoft[] = {
+#include "levels/intro/team_cornersoft.custom.i4.inc.c"
 };
+// ALIGNED8 static const Texture intro_seg7_texture_copyright[] = {
+// #include "levels/intro/made_with_hackersm64.custom.i4.inc.c"
+// };
 // 0x0700C4A0 - 0x0700D4A0
 ALIGNED8 static const Texture intro_seg7_texture_trademark[] = {
 #include "levels/intro/tm.custom.i4.inc.c"
@@ -3373,9 +3397,12 @@ ALIGNED8 static const Texture intro_seg7_texture_copyright[] = {
 };
 #else
 // 0x0700B4A0 - 0x0700B4A2
-ALIGNED8 static const Texture intro_seg7_texture_copyright[] = {
-#include "levels/intro/2_copyright.rgba16.inc.c"
+ALIGNED8 static const Texture intro_seg7_texture_team_cornersoft[] = {
+#include "levels/intro/team_cornersoft.custom.rgba16.inc.c"
 };
+// ALIGNED8 static const Texture intro_seg7_texture_copyright[] = {
+// #include "levels/intro/2_copyright.rgba16.inc.c"
+// };
 #endif
 
 #if defined(VERSION_EU)
@@ -3396,6 +3423,10 @@ ALIGNED8 static const Texture intro_seg7_texture_trademark[] = {
 
 #endif
 
+ALIGNED8 const Texture scam_warning[] = {
+#include "levels/intro/scam_warning.custom.rgba16.inc.c"
+};
+
 // 0x0700C6A0 - 0x0700C790
 const Gfx intro_seg7_dl_copyright_trademark[] = {
     gsDPPipeSync(),
@@ -3408,19 +3439,28 @@ const Gfx intro_seg7_dl_copyright_trademark[] = {
     gsSPTexture(0xFFFF, 0xFFFF, 0, G_TX_RENDERTILE, G_ON),
 
 #ifdef INTRO_CREDIT
-    gsDPLoadTextureBlock_4b(intro_seg7_texture_copyright, G_IM_FMT_I, 256, 32, (G_TX_NOMIRROR | G_TX_CLAMP), (G_TX_NOMIRROR | G_TX_CLAMP), 0, 8, 5, G_TX_NOLOD, G_TX_NOLOD),
-    gsSPVertex(intro_seg7_vertex_copyright, 6, 0),
+    gsDPLoadTextureBlock_4b(intro_seg7_texture_team_cornersoft, G_IM_FMT_I, 256, 32, (G_TX_NOMIRROR | G_TX_CLAMP), (G_TX_NOMIRROR | G_TX_CLAMP), 0, 8, 5, G_TX_NOLOD, G_TX_NOLOD),
+    gsSPVertex(intro_seg7_vertex_team_cornersoft, 8, 0),
     gsSP2Triangles( 0,  3,  1, 0x0,  0,  2,  3, 0x0),
-    gsSP2Triangles( 2,  5,  3, 0x0,  2,  4,  5, 0x0),
+    gsSP2Triangles( 4,  7,  5, 0x0,  4,  6,  7, 0x0),
+
+    // gsDPLoadTextureBlock_4b(intro_seg7_texture_copyright, G_IM_FMT_I, 256, 32, (G_TX_NOMIRROR | G_TX_CLAMP), (G_TX_NOMIRROR | G_TX_CLAMP), 0, 8, 5, G_TX_NOLOD, G_TX_NOLOD),
+    // gsSPVertex(intro_seg7_vertex_copyright, 6, 0),
+    // gsSP2Triangles( 0,  3,  1, 0x0,  0,  2,  3, 0x0),
+    // gsSP2Triangles( 2,  5,  3, 0x0,  2,  4,  5, 0x0),
     
     gsDPLoadTextureBlock_4b(intro_seg7_texture_trademark, G_IM_FMT_I, 64, 64, (G_TX_NOMIRROR | G_TX_CLAMP), (G_TX_NOMIRROR | G_TX_CLAMP), 0, 6, 6, G_TX_NOLOD, G_TX_NOLOD),
     gsSPVertex(intro_seg7_vertex_trademark, 6, 0),
     gsSP2Triangles( 0,  3,  1, 0x0,  0,  2,  3, 0x0),
     gsSP2Triangles( 2,  5,  3, 0x0,  2,  4,  5, 0x0),
 #else
-    gsDPLoadTextureBlock(intro_seg7_texture_copyright, G_IM_FMT_RGBA, G_IM_SIZ_16b, 128, 16, 0, G_TX_CLAMP, G_TX_CLAMP, 7, 4, G_TX_NOLOD, G_TX_NOLOD),
-    gsSPVertex(intro_seg7_vertex_copyright, 4, 0),
+    gsDPLoadTextureBlock(intro_seg7_texture_team_cornersoft, G_IM_FMT_RGBA, G_IM_SIZ_16b, 128, 16, 0, G_TX_CLAMP, G_TX_CLAMP, 7, 4, G_TX_NOLOD, G_TX_NOLOD),
+    gsSPVertex(intro_seg7_vertex_team_cornersoft, 4, 0),
     gsSP2Triangles( 0,  3,  1, 0x0,  0,  2,  3, 0x0),
+
+    // gsDPLoadTextureBlock(intro_seg7_texture_copyright, G_IM_FMT_RGBA, G_IM_SIZ_16b, 128, 16, 0, G_TX_CLAMP, G_TX_CLAMP, 7, 4, G_TX_NOLOD, G_TX_NOLOD),
+    // gsSPVertex(intro_seg7_vertex_copyright, 4, 0),
+    // gsSP2Triangles( 0,  3,  1, 0x0,  0,  2,  3, 0x0),
     
     gsDPLoadTextureBlock(intro_seg7_texture_trademark, G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 16, 0, G_TX_CLAMP, G_TX_CLAMP, 4, 4, G_TX_NOLOD, G_TX_NOLOD),
     gsSPVertex(intro_seg7_vertex_trademark, 4, 0),

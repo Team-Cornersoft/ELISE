@@ -391,6 +391,44 @@ void render_hud_breath_meter(void) {
 #endif
 
 
+#define CYCLE_FRAMES 60
+
+static u16 get_press_button_alpha() {
+    f32 tmp;
+    s32 currentCycles = pressAFrames % CYCLE_FRAMES;
+    if (currentCycles > CYCLE_FRAMES / 2)
+        currentCycles = CYCLE_FRAMES - currentCycles;
+
+    if (pressAFrames < (CYCLE_FRAMES/2)) {
+        tmp = sins((f32) currentCycles / (f32) CYCLE_FRAMES * 32767.0f) * 255.0f;
+        return (u8) tmp;
+    }
+
+    tmp = 1.0f - sins(((f32) ((CYCLE_FRAMES/2) - currentCycles) / (f32) CYCLE_FRAMES + 0.5f) * 32767.0f);
+    return ((u8) ((1.0f - (tmp * 0.67f)) * 255.0f + 0.5f)) | (1 << 8);
+}
+
+static void render_credits_text() {
+    if (pressAFrames == 0 || gCurrLevelNum != LEVEL_ENDING)
+        return;
+
+    // Placeholder
+}
+
+static void render_press_button(void) {
+    u8 out[] = { GLYPH_A_BUTTON, GLYPH_SPACE };
+
+    u16 alpha = get_press_button_alpha();
+    u8 ppAlpha = 255;
+    if (alpha < ppAlpha)
+        ppAlpha = alpha;
+
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, (u8) alpha);
+    print_hud_lut_string(HUD_LUT_GLOBAL, 288, 216, out);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
+}
+
 /**
  * Renders the amount of lives Mario has.
  */
@@ -535,6 +573,20 @@ void render_hud(void) {
         sPowerMeterHUD.animation = POWER_METER_HIDDEN;
         sPowerMeterStoredHealth = 8;
         sPowerMeterVisibleTimer = 0;
+
+        if (renderPressA) {
+            create_dl_ortho_matrix();
+            render_press_button();
+            renderPressA = FALSE;
+        }
+        if (gCurrLevelNum == LEVEL_ENDING) {
+            create_dl_ortho_matrix();
+            render_credits_text();
+        }
+        else if (gCurrLevelNum == LEVEL_CASTLE_COURTYARD) {
+            create_dl_ortho_matrix();
+        }
+
 #ifdef BREATH_METER
         sBreathMeterHUD.animation = BREATH_METER_HIDDEN;
         sBreathMeterStoredValue = 8;
@@ -598,14 +650,16 @@ void render_hud(void) {
         if (hudDisplayFlags & HUD_DISPLAY_FLAG_TIMER) {
             render_hud_timer();
         }
+        if (renderPressA) {
+            render_press_button();
+            renderPressA = FALSE;
+        }
+        render_credits_text();
 
 #ifdef VANILLA_STYLE_CUSTOM_DEBUG
         if (gCustomDebugMode) {
             render_debug_mode();
         }
-#endif
-#ifdef PUPPYPRINT
-        print_set_envcolour(255, 255, 255, 255);
 #endif
     }
 }

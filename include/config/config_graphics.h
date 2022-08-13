@@ -17,7 +17,7 @@
 /**
  * Spawns floombas on the title screen.
  */
-#define INTRO_FLOOMBAS
+// #define INTRO_FLOOMBAS
 
 /**
  * Enables widescreen (16:9) support.
@@ -42,7 +42,7 @@
  * Enables Puppyprint, a display library for text and large images.
  * Automatically enabled when PUPPYPRINT_DEBUG is enabled.
  */
-// #define PUPPYPRINT
+#define PUPPYPRINT
 
 /**
  * Disables AA (Improves console performance but causes visible seams between unconnected geometry).
@@ -74,7 +74,7 @@
  * Also, this also disables anti-aliasing on Mario.
  * NOTE: Regarding performance, silhouette seems to lose 1-2 frames on console.
  */
-// #define SILHOUETTE 127
+#define SILHOUETTE 127
 
 /**
  * Use 64x64 quarter shadow textures (Vanilla are 16x16).
