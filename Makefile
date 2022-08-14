@@ -529,8 +529,8 @@ endif
 ENDIAN_BITWIDTH       := $(BUILD_DIR)/endian-and-bitwidth
 EMULATOR = mupen64plus
 EMU_FLAGS =
-LOADER = loader64
-LOADER_FLAGS = -vwf
+LOADER = UNFLoader.exe
+LOADER_FLAGS = -r
 SHA1SUM = sha1sum
 PRINT = printf
 

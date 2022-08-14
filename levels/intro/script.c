@@ -18,6 +18,7 @@
 
 #include "make_const_nonconst.h"
 #include "levels/intro/header.h"
+#include "levels/cutscene_0/header.h"
 #include "farcall.h"
 
 #include "config.h"
@@ -27,6 +28,7 @@
 
 const LevelScript level_scam_warning_screen[] = {
     INIT_LEVEL(),
+    SLEEP(/*frames*/ 15),
     FIXED_LOAD(/*loadAddr*/ _goddardSegmentStart, /*romStart*/ _goddardSegmentRomStart, /*romEnd*/ _goddardSegmentRomEnd),
     LOAD_RAW(/*seg*/ 0x13, _behaviorSegmentRomStart, _behaviorSegmentRomEnd),
     LOAD_YAY0(/*seg*/ 0x07, _intro_segment_7SegmentRomStart, _intro_segment_7SegmentRomEnd),
@@ -43,7 +45,7 @@ const LevelScript level_scam_warning_screen[] = {
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
     SLEEP(/*frames*/ 105),
-    CALL_LOOP(/*arg*/ 795, /*func*/ image_screen_press_button),
+    CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
     CALL_LOOP(/*arg*/ 16, /*func*/ image_screen_cannot_press_button),
     UNLOAD_AREA(/*area*/ 1),
@@ -106,6 +108,7 @@ const LevelScript level_intro_splash_screen[] = {
     CLEAR_LEVEL(),
     SLEEP(/*frames*/ 2),
     EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _introSegmentRomStart, _introSegmentRomEnd, level_intro_mario_head_regular, _introSegmentBssStart, _introSegmentBssEnd),
+    // EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _cutscene_0SegmentRomStart, _cutscene_0SegmentRomEnd, level_cutscene_scene_0_0, _cutscene_0SegmentBssStart, _cutscene_0SegmentBssEnd),
 };
 
 const LevelScript level_intro_mario_head_regular[] = {

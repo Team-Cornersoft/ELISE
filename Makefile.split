@@ -172,6 +172,14 @@ endif
 # --------------------------------------
 $(eval $(call level_rules,intro,generic)) # Intro (Super Mario 64 Logo)
 $(eval $(call level_rules,menu,generic)) # Menu (File Select)
+$(eval $(call level_rules,cutscene_0,generic)) # Cutscene_0
+$(eval $(call level_rules,cutscene_1,generic)) # Cutscene_1
+$(eval $(call level_rules,cutscene_2,generic)) # Cutscene_2
+$(eval $(call level_rules,cutscene_3,generic)) # Cutscene_3
+$(eval $(call level_rules,cutscene_4,generic)) # Cutscene_4
+$(eval $(call level_rules,cutscene_5,generic)) # Cutscene_5
+$(eval $(call level_rules,cutscene_6,generic)) # Cutscene_6
+$(eval $(call level_rules,cutscene_7,generic)) # Cutscene_7
 
 # --------------------------------------
 # Cake Texture Rules

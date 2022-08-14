@@ -515,6 +515,159 @@ SECTIONS
 #undef STUB_LEVEL
 #undef DEFINE_LEVEL
 
+   BEGIN_SEG(cutscene_0, 0x14000000)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_0/script.o(.*data));
+      KEEP(BUILD_DIR/levels/cutscene_0/script.o(.rodata*));
+      KEEP(BUILD_DIR/levels/cutscene_0/script.o(.text*));
+      KEEP(BUILD_DIR/levels/cutscene_0/geo.o(.data*));
+   }
+   END_SEG(cutscene_0)
+   BEGIN_NOLOAD(cutscene_0)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_0/script.o(.bss*));
+   }
+   END_NOLOAD(cutscene_0)
+   BEGIN_SEG(cutscene_0_segment_7, 0x07000000)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_0/leveldata.szp.o(.data*));
+      . = ALIGN(0x10);
+   }
+   END_SEG(cutscene_0_segment_7)
+   BEGIN_SEG(cutscene_1, 0x14000000)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_1/script.o(.*data));
+      KEEP(BUILD_DIR/levels/cutscene_1/script.o(.rodata*));
+      KEEP(BUILD_DIR/levels/cutscene_1/script.o(.text*));
+      KEEP(BUILD_DIR/levels/cutscene_1/geo.o(.data*));
+   }
+   END_SEG(cutscene_1)
+   BEGIN_NOLOAD(cutscene_1)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_1/script.o(.bss*));
+   }
+   END_NOLOAD(cutscene_1)
+   BEGIN_SEG(cutscene_1_segment_7, 0x07000000)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_1/leveldata.szp.o(.data*));
+      . = ALIGN(0x10);
+   }
+   END_SEG(cutscene_1_segment_7)
+   BEGIN_SEG(cutscene_2, 0x14000000)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_2/script.o(.*data));
+      KEEP(BUILD_DIR/levels/cutscene_2/script.o(.rodata*));
+      KEEP(BUILD_DIR/levels/cutscene_2/script.o(.text*));
+      KEEP(BUILD_DIR/levels/cutscene_2/geo.o(.data*));
+   }
+   END_SEG(cutscene_2)
+   BEGIN_NOLOAD(cutscene_2)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_2/script.o(.bss*));
+   }
+   END_NOLOAD(cutscene_2)
+   BEGIN_SEG(cutscene_2_segment_7, 0x07000000)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_2/leveldata.szp.o(.data*));
+      . = ALIGN(0x10);
+   }
+   END_SEG(cutscene_2_segment_7)
+   BEGIN_SEG(cutscene_3, 0x14000000)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_3/script.o(.*data));
+      KEEP(BUILD_DIR/levels/cutscene_3/script.o(.rodata*));
+      KEEP(BUILD_DIR/levels/cutscene_3/script.o(.text*));
+      KEEP(BUILD_DIR/levels/cutscene_3/geo.o(.data*));
+   }
+   END_SEG(cutscene_3)
+   BEGIN_NOLOAD(cutscene_3)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_3/script.o(.bss*));
+   }
+   END_NOLOAD(cutscene_3)
+   BEGIN_SEG(cutscene_3_segment_7, 0x07000000)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_3/leveldata.szp.o(.data*));
+      . = ALIGN(0x10);
+   }
+   END_SEG(cutscene_3_segment_7)
+   BEGIN_SEG(cutscene_4, 0x14000000)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_4/script.o(.*data));
+      KEEP(BUILD_DIR/levels/cutscene_4/script.o(.rodata*));
+      KEEP(BUILD_DIR/levels/cutscene_4/script.o(.text*));
+      KEEP(BUILD_DIR/levels/cutscene_4/geo.o(.data*));
+   }
+   END_SEG(cutscene_4)
+   BEGIN_NOLOAD(cutscene_4)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_4/script.o(.bss*));
+   }
+   END_NOLOAD(cutscene_4)
+   BEGIN_SEG(cutscene_4_segment_7, 0x07000000)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_4/leveldata.szp.o(.data*));
+      . = ALIGN(0x10);
+   }
+   END_SEG(cutscene_4_segment_7)
+   BEGIN_SEG(cutscene_5, 0x14000000)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_5/script.o(.*data));
+      KEEP(BUILD_DIR/levels/cutscene_5/script.o(.rodata*));
+      KEEP(BUILD_DIR/levels/cutscene_5/script.o(.text*));
+      KEEP(BUILD_DIR/levels/cutscene_5/geo.o(.data*));
+   }
+   END_SEG(cutscene_5)
+   BEGIN_NOLOAD(cutscene_5)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_5/script.o(.bss*));
+   }
+   END_NOLOAD(cutscene_5)
+   BEGIN_SEG(cutscene_5_segment_7, 0x07000000)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_5/leveldata.szp.o(.data*));
+      . = ALIGN(0x10);
+   }
+   END_SEG(cutscene_5_segment_7)
+   BEGIN_SEG(cutscene_6, 0x14000000)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_6/script.o(.*data));
+      KEEP(BUILD_DIR/levels/cutscene_6/script.o(.rodata*));
+      KEEP(BUILD_DIR/levels/cutscene_6/script.o(.text*));
+      KEEP(BUILD_DIR/levels/cutscene_6/geo.o(.data*));
+   }
+   END_SEG(cutscene_6)
+   BEGIN_NOLOAD(cutscene_6)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_6/script.o(.bss*));
+   }
+   END_NOLOAD(cutscene_6)
+   BEGIN_SEG(cutscene_6_segment_7, 0x07000000)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_6/leveldata.szp.o(.data*));
+      . = ALIGN(0x10);
+   }
+   END_SEG(cutscene_6_segment_7)
+   BEGIN_SEG(cutscene_7, 0x14000000)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_7/script.o(.*data));
+      KEEP(BUILD_DIR/levels/cutscene_7/script.o(.rodata*));
+      KEEP(BUILD_DIR/levels/cutscene_7/script.o(.text*));
+      KEEP(BUILD_DIR/levels/cutscene_7/geo.o(.data*));
+   }
+   END_SEG(cutscene_7)
+   BEGIN_NOLOAD(cutscene_7)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_7/script.o(.bss*));
+   }
+   END_NOLOAD(cutscene_7)
+   BEGIN_SEG(cutscene_7_segment_7, 0x07000000)
+   {
+      KEEP(BUILD_DIR/levels/cutscene_7/leveldata.szp.o(.data*));
+      . = ALIGN(0x10);
+   }
+   END_SEG(cutscene_7_segment_7)
+
    /* 4E9FA0-? [?] */
    BEGIN_SEG(assets, __romPos)
    {

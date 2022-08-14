@@ -31,4 +31,37 @@ extern f32 intro_seg7_table_scale_2[];
 
 extern Texture scam_warning[];
 
+extern Texture texture_cutscene_scene_0_0[];
+extern Texture texture_cutscene_scene_0_1[];
+extern Texture texture_cutscene_scene_0_2[];
+extern Texture texture_cutscene_scene_0_3[];
+extern Texture texture_cutscene_scene_1_0[];
+extern Texture texture_cutscene_scene_1_1[];
+extern Texture texture_cutscene_scene_1_2[];
+extern Texture texture_cutscene_scene_1_3[];
+extern Texture texture_cutscene_scene_2_0[];
+extern Texture texture_cutscene_scene_2_1[];
+extern Texture texture_cutscene_scene_2_2[];
+extern Texture texture_cutscene_scene_2_3[];
+extern Texture texture_cutscene_scene_3_0[];
+extern Texture texture_cutscene_scene_3_1[];
+extern Texture texture_cutscene_scene_3_2[];
+extern Texture texture_cutscene_scene_3_3[];
+extern Texture texture_cutscene_scene_4_0[];
+extern Texture texture_cutscene_scene_4_1[];
+extern Texture texture_cutscene_scene_4_2[];
+extern Texture texture_cutscene_scene_4_3[];
+extern Texture texture_cutscene_scene_5_0[];
+extern Texture texture_cutscene_scene_5_1[];
+extern Texture texture_cutscene_scene_5_2[];
+extern Texture texture_cutscene_scene_5_3[];
+extern Texture texture_cutscene_scene_6_0[];
+extern Texture texture_cutscene_scene_6_1[];
+extern Texture texture_cutscene_scene_6_2[];
+extern Texture texture_cutscene_scene_6_3[];
+extern Texture texture_cutscene_scene_7_0[];
+extern Texture texture_cutscene_scene_7_1[];
+extern Texture texture_cutscene_scene_7_2[];
+extern Texture texture_cutscene_scene_7_3[];
+
 #endif // SEGMENT7_H
