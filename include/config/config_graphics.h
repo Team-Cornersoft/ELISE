@@ -100,7 +100,7 @@
  * Uses the star object's model in the star dance cutscene.
  * This has a side effect of making the star dance star also transparent when Mario collects a transparent star.
  */
-// #define STAR_DANCE_USES_STARS_MODEL
+#define STAR_DANCE_USES_STARS_MODEL
 
 /**
  * Lightweight directional lighting engine by Fazana. Intended for giving proximity and positional pointlights to small objects.
