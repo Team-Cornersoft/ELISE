@@ -319,7 +319,7 @@ void check_cache_emulation() {
 }
 
 extern void crash_screen_init(void);
-
+extern OSViMode VI;
 void thread3_main(UNUSED void *arg) {
     setup_mesg_queues();
     alloc_pool();
@@ -347,6 +347,13 @@ void thread3_main(UNUSED void *arg) {
         gBorderHeight = BORDER_HEIGHT_EMULATOR;
         gIsVC = IS_VC();
         check_cache_emulation();
+#ifdef RCVI_HACK
+        VI.comRegs.vSync = 525*20;   
+        change_vi(&VI, SCREEN_WIDTH, SCREEN_HEIGHT);
+        osViSetMode(&VI);
+        osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON);
+        osViSetSpecialFeatures(OS_VI_GAMMA_OFF);
+#endif
     } else {
         gIsConsole = TRUE;
         gBorderHeight = BORDER_HEIGHT_CONSOLE;
@@ -435,7 +442,7 @@ void turn_off_audio(void) {
     }
 }
 
-void change_vi(OSViMode *mode, int width, int height){
+void change_vi(OSViMode *mode, int width, int height) {
     mode->comRegs.width  = width;
     mode->comRegs.xScale = ((width * 512) / 320);
     if (height > 240) {
