@@ -741,13 +741,22 @@ static void level_cmd_show_dialog(void) {
 static void level_cmd_set_music(void) {
     if (sCurrAreaIndex != -1) {
         gAreas[sCurrAreaIndex].musicParam = CMD_GET(s16, 2);
-        gAreas[sCurrAreaIndex].musicParam2 = CMD_GET(s16, 4);
+        if (gIsConsole)
+            gAreas[sCurrAreaIndex].reverbPreset = CMD_GET(u8, 4);
+        else
+            gAreas[sCurrAreaIndex].reverbPreset = CMD_GET(u8, 5);
+        gAreas[sCurrAreaIndex].musicParam2 = CMD_GET(s16, 6);
     }
     sCurrentCmd = CMD_NEXT;
 }
 
 static void level_cmd_set_menu_music(void) {
-    set_background_music(0, CMD_GET(s16, 2), 0);
+    u8 reverbPreset;
+    if (gIsConsole)
+        reverbPreset = CMD_GET(u8, 4);
+    else
+        reverbPreset = CMD_GET(u8, 5);
+    set_background_music(0, CMD_GET(s16, 2), 0, reverbPreset);
     sCurrentCmd = CMD_NEXT;
 }
 

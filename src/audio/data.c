@@ -41,6 +41,54 @@ struct AudioSessionSettingsEU gAudioSessionPresets[] = {
 };
 #endif
 
+#ifdef BETTER_REVERB
+s32 delaysBaselineArr[][NUM_ALLPASS] = {
+    {
+        4, 4, 4,
+        4, 4, 4,
+        4, 4, 4,
+        4, 4, 4
+    },
+    {
+        1080, 1352, 1200,
+        1200, 1232, 1432,
+        1384, 1048, 1352,
+        928, 1504, 1512
+    },
+    {
+        1384, 1352, 1048,
+        928, 1512, 1504,
+        1080, 1200, 1352,
+        1200, 1432, 1232
+    },
+};
+
+s32 reverbMultsArr[][NUM_ALLPASS / 3] = {
+    {0x00, 0x00, 0x00, 0x00},
+    {0xD7, 0x6F, 0x36, 0x22},
+    {0xCF, 0x73, 0x38, 0x1F},
+};
+
+/**
+ * downsampleRate, isMono, filterCount, windowSize, gain, gainIndex, reverbIndex
+ * delaysBaselineL, delaysBaselineR, reverbMultsL, reverbMultsR
+ */ 
+struct BetterReverbSettings gBetterReverbSettings[] = {
+    {
+        -1, FALSE, NUM_ALLPASS, -1, -1, 0x00, 0x00, // vanilla reverb
+        delaysBaselineArr[0], delaysBaselineArr[0], reverbMultsArr[0], reverbMultsArr[0]
+    },
+    {
+        2, FALSE, (NUM_ALLPASS - 9), 0x1000, 0x53FF, 0x30, 0xA0, // default console
+        delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
+    },
+    {
+        1, FALSE, NUM_ALLPASS, 0x1000, 0x31FF, 0x60, 0xA0, // default emulator
+        delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
+    },
+};
+#endif
+
 // Format:
 // - frequency
 // - max number of simultaneous notes

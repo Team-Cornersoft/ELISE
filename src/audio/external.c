@@ -408,7 +408,7 @@ void func_80320ED8(void);
  * Called from threads: thread5_game_loop
  */
 #if defined(VERSION_EU) || defined(VERSION_SH)
-void audio_reset_session_eu(s32 presetId) {
+void audio_reset_session_eu() {
     OSMesg mesg;
 #ifdef VERSION_SH
     osRecvMesg(D_SH_80350FA8, &mesg, OS_MESG_NOBLOCK);
@@ -2503,7 +2503,7 @@ void play_toads_jingle(void) {
 /**
  * Called from threads: thread5_game_loop
  */
-void sound_reset(u8 presetId) {
+void sound_reset(u8 presetId, u8 reverbPreset) {
     if (presetId >= 8) {
         presetId = 0;
     }
@@ -2514,9 +2514,9 @@ void sound_reset(u8 presetId) {
     func_802ad74c(0xF2000000, 0);
 #endif
 #if defined(VERSION_JP) || defined(VERSION_US)
-    audio_reset_session(&gAudioSessionPresets[0], presetId);
+    audio_reset_session(&gAudioSessionPresets[0], presetId, reverbPreset);
 #else
-    audio_reset_session_eu(presetId);
+    audio_reset_session_eu();
 #endif
     osWritebackDCacheAll();
     if (presetId != 7) {

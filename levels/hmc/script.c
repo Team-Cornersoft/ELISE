@@ -108,7 +108,7 @@ const LevelScript level_hmc_entry[] = {
         TERRAIN(/*terrainData*/ hmc_seg7_collision_level),
         MACRO_OBJECTS(/*objList*/ hmc_seg7_macro_objs),
         ROOMS(/*surfaceRooms*/ hmc_seg7_rooms),
-        SET_BACKGROUND_MUSIC(/*settingsPreset*/ 0x0004, /*seq*/ SEQ_LEVEL_UNDERGROUND),
+        SET_BACKGROUND_MUSIC_WITH_REVERB(/*settingsPreset*/ 0x0004, /*seq*/ SEQ_LEVEL_UNDERGROUND, 0x01, 0x02),
         TERRAIN_TYPE(/*terrainType*/ TERRAIN_STONE),
     END_AREA(),
 
