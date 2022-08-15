@@ -1056,7 +1056,7 @@ void init_reverb_eu(void) {
     }
 }
 #else
-void init_reverb_us(s32 presetId) {
+void init_reverb_us(s32 presetId, UNUSED u8 reverbPreset) {
     s16 *mem;
     s32 i;
 #ifdef BETTER_REVERB
@@ -1066,6 +1066,20 @@ void init_reverb_us(s32 presetId) {
     s32 reverbWindowSize = gReverbSettings[presetId].windowSize;
     gReverbDownsampleRate = gReverbSettings[presetId].downsampleRate;
 #ifdef BETTER_REVERB
+    struct BetterReverbSettings *betterReverbPreset = &gBetterReverbSettings[reverbPreset];
+
+    betterReverbDownsampleConsole = betterReverbPreset->downsampleRate;
+    betterReverbDownsampleEmulator = betterReverbPreset->downsampleRate;
+    monoReverbConsole = betterReverbPreset->isMono;
+    monoReverbEmulator = betterReverbPreset->isMono;
+    reverbFilterCountConsole = betterReverbPreset->filterCount;
+    reverbFilterCountEmulator = betterReverbPreset->filterCount;
+    betterReverbWindowsSize = betterReverbPreset->windowSize;
+    REVERB_REV_INDEX = betterReverbPreset->reverbIndex;
+    REVERB_GAIN_INDEX = betterReverbPreset->gainIndex;
+    gReverbMultsL = betterReverbPreset->reverbMultsL;
+    gReverbMultsR = betterReverbPreset->reverbMultsR;
+
     if (gIsConsole) {
         reverbConsole = betterReverbDownsampleConsole; // Console!
     } else {
@@ -1125,6 +1139,10 @@ void init_reverb_us(s32 presetId) {
         gSynthesisReverb.curFrame          = 0;
         gSynthesisReverb.bufSizePerChannel = reverbWindowSize;
         gSynthesisReverb.reverbGain = gReverbSettings[presetId].gain;
+#ifdef BETTER_REVERB
+        if (betterReverbPreset->gain > 0)
+            gSynthesisReverb.reverbGain = (u16) betterReverbPreset->gain;
+#endif
         gSynthesisReverb.framesLeftToIgnore = 2;
         if (gReverbDownsampleRate != 1) {
             gSynthesisReverb.resampleFlags = A_INIT;
@@ -1148,7 +1166,7 @@ void init_reverb_us(s32 presetId) {
                 clear_better_reverb_buffers();
             }
 
-            set_better_reverb_buffers();
+            set_better_reverb_buffers(betterReverbPreset->delaysBaselineL, betterReverbPreset->delaysBaselineR);
         }
 #endif
     }
@@ -1157,7 +1175,7 @@ void init_reverb_us(s32 presetId) {
 
 
 #if defined(VERSION_JP) || defined(VERSION_US)
-void audio_reset_session(struct AudioSessionSettings *preset, s32 presetId) {
+void audio_reset_session(struct AudioSessionSettings *preset, s32 presetId, u8 reverbPreset) {
     if (sAudioIsInitialized) {
         bzero(&gAiBuffers[0][0], (AIBUFFER_LEN * NUMAIBUFFERS));
         persistent_pool_clear(&gSeqLoadedPool.persistent);
@@ -1166,7 +1184,7 @@ void audio_reset_session(struct AudioSessionSettings *preset, s32 presetId) {
         temporary_pool_clear( &gBankLoadedPool.temporary);
         reset_bank_and_seq_load_status();
 
-        init_reverb_us(presetId);
+        init_reverb_us(presetId, reverbPreset);
         bzero(&gAiBuffers[0][0], (AIBUFFER_LEN * NUMAIBUFFERS));
         gAudioFrameCount = 0;
         if (!gIsVC) {
@@ -1409,7 +1427,7 @@ void audio_reset_session(void) {
 
     init_reverb_eu();
 #else
-    init_reverb_us(presetId);
+    init_reverb_us(presetId, reverbPreset);
 #endif
 
     init_sample_dma_buffers(gMaxSimultaneousNotes);

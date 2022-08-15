@@ -40,6 +40,9 @@
 #define SEQ_BANK_MEM (PERSISTENT_SEQ_MEM + PERSISTENT_BANK_MEM + TEMPORARY_SEQ_MEM + TEMPORARY_BANK_MEM)
 
 // constant .data
+#ifdef BETTER_REVERB
+extern struct BetterReverbSettings gBetterReverbSettings[];
+#endif
 #if defined(VERSION_EU) || defined(VERSION_SH)
 extern struct AudioSessionSettingsEU gAudioSessionPresets[];
 extern struct ReverbSettingsEU sReverbSettings[8];

@@ -723,6 +723,22 @@ struct NoteSynthesisBuffers {
 #endif
 };
 
+#ifdef BETTER_REVERB
+struct BetterReverbSettings {
+    s8 downsampleRate;
+    u8 isMono;
+    u8 filterCount;
+    u16 windowSize;
+    s16 gain;
+    s32 reverbIndex;
+    s32 gainIndex;
+    s32 *delaysBaselineL;
+    s32 *delaysBaselineR;
+    s32 *reverbMultsL;
+    s32 *reverbMultsR;
+};
+#endif
+
 #ifdef VERSION_EU
 struct ReverbSettingsEU {
     u8 downsampleRate;

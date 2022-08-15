@@ -229,12 +229,12 @@ void play_infinite_stairs_music(void) {
 /**
  * Called from threads: thread5_game_loop
  */
-void set_background_music(u16 a, u16 seqArgs, s16 fadeTimer) {
+void set_background_music(u16 a, u16 seqArgs, s16 fadeTimer, u8 reverbPreset) {
     if (gResetTimer == 0 && seqArgs != sCurrentMusic) {
         if (gCurrCreditsEntry != NULL) {
-            sound_reset(7);
+            sound_reset(7, 0);
         } else {
-            sound_reset(a);
+            sound_reset(a, reverbPreset);
         }
 
 #ifdef ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS

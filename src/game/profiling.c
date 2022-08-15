@@ -162,7 +162,12 @@ static void update_rdp_timers() {
 }
 
 float profiler_get_fps() {
-    return (1000000.0f * PROFILING_BUFFER_SIZE) / (OS_CYCLES_TO_USEC(all_profiling_data[PROFILER_TIME_FPS].total));
+    float ret = (1000000.0f * PROFILING_BUFFER_SIZE) / (OS_CYCLES_TO_USEC(all_profiling_data[PROFILER_TIME_FPS].total));
+#ifdef RCVI_HACK
+    if (!gIsConsole)
+        ret *= 20.0f;
+#endif
+    return ret;
 }
 
 u32 profiler_get_cpu_cycles() {
@@ -242,6 +247,13 @@ void profiler_print_times() {
         u32 total_rsp = microseconds[PROFILER_TIME_RSP_GFX] + microseconds[PROFILER_TIME_RSP_AUDIO];
         u32 max_rdp = MAX(MAX(microseconds[PROFILER_TIME_TMEM], microseconds[PROFILER_TIME_CMD]), microseconds[PROFILER_TIME_PIPE]);
 
+        f32 fps = 1000000.0f / microseconds[PROFILER_TIME_FPS];
+#ifdef RCVI_HACK
+        if (!gIsConsole) {
+            fps *= 20.0f;
+        }
+#endif
+
         sprintf(text_buffer,
             "FPS: %5.2f\n"
             "\n"
@@ -268,7 +280,7 @@ void profiler_print_times() {
             "RSP\t\t%d (%d%%)\n"
             " Gfx\t\t\t%d\n"
             " Audio\t\t\t%d\n",
-            1000000.0f / microseconds[PROFILER_TIME_FPS],
+            fps,
             total_cpu, total_cpu / 333, 
             microseconds[PROFILER_TIME_CONTROLLERS],
 #ifdef PUPPYPRINT_DEBUG
