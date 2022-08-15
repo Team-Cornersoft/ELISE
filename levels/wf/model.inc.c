@@ -4562,6 +4562,7 @@ Gfx mat_wf_dl_White[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
+	gsDPSetEnvColor(255, 255, 255, 255),
 	gsSPEndDisplayList(),
 };
 
