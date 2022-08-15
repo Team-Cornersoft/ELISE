@@ -92,7 +92,7 @@ const GeoLayout jrb_area_1_geo[] = {
 		GEO_OPEN_NODE(),
 			GEO_DISPLAY_LIST(LAYER_OPAQUE, jrb_dl_B_Lamp_013_mesh_layer_1),
 		GEO_CLOSE_NODE(),
-		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_TRANSPARENT, -8300, 4300, 12000, 0, 50, 0, jrb_dl_B_Lamp_014_mesh_layer_5),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_TRANSPARENT, -8300, 4310, 12000, 0, 50, 0, jrb_dl_B_Lamp_014_mesh_layer_5),
 		GEO_OPEN_NODE(),
 			GEO_DISPLAY_LIST(LAYER_OPAQUE, jrb_dl_B_Lamp_014_mesh_layer_1),
 		GEO_CLOSE_NODE(),
