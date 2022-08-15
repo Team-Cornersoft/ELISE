@@ -34,7 +34,7 @@ extern Vtx jrb_dl_A_Floor_C_mesh_layer_5_vtx_cull[8];
 extern Vtx jrb_dl_A_Floor_C_mesh_layer_5_vtx_0[202];
 extern Gfx jrb_dl_A_Floor_C_mesh_layer_5_tri_0[];
 extern Vtx jrb_dl_A_Floor_D_mesh_layer_1_vtx_cull[8];
-extern Vtx jrb_dl_A_Floor_D_mesh_layer_1_vtx_0[24];
+extern Vtx jrb_dl_A_Floor_D_mesh_layer_1_vtx_0[22];
 extern Gfx jrb_dl_A_Floor_D_mesh_layer_1_tri_0[];
 extern Vtx jrb_dl_A_Floor_D_mesh_layer_5_vtx_cull[8];
 extern Vtx jrb_dl_A_Floor_D_mesh_layer_5_vtx_0[46];
