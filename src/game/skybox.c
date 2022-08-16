@@ -11,6 +11,7 @@
 #include "sm64.h"
 #include "geo_commands.h"
 #include "color_presets.h"
+#include "game_init.h"
 
 /**
  * @file skybox.c
@@ -254,6 +255,9 @@ void draw_skybox_tile_grid(Gfx **dlist, s8 background, s8 player, s8 colorIndex)
                 Vtx *vertices = make_skybox_rect_static(tileIndex1, colorIndex);
 
                 // gDPSetTextureFilter((*dlist)++, G_TF_POINT)
+                if (gIsConsole) {
+                    gDPSetTextureFilter((*dlist)++, G_TF_POINT)
+                }
                 gLoadBlockTexture((*dlist)++, 32, 32, G_IM_FMT_RGBA, texture);
                 gSPVertex((*dlist)++, VIRTUAL_TO_PHYSICAL(vertices), 4, 0);
                 gSPDisplayList((*dlist)++, dl_draw_quad_verts_0123);
