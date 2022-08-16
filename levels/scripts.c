@@ -117,8 +117,8 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_SILVER_COIN_NO_SHADOW,   silver_coin_no_shadow_geo),
 #endif
 
-    //LOAD_MODEL_FROM_GEO(MODEL_CUSTOM_DOOR_A,           custom_door_a_geo),
-    //LOAD_MODEL_FROM_GEO(MODEL_CUSTOM_DOOR_B,           custom_door_b_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_CUSTOM_DOOR_A,           custom_door_a_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_CUSTOM_DOOR_B,           custom_door_b_geo),
 
     FREE_LEVEL_POOL(),
     CALL(/*arg*/ 0, /*func*/ lvl_init_from_save_file),

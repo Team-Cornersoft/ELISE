@@ -30,3 +30,6 @@
 #include "src/s2d_engine/config.h"
 #include FONT_C_FILE
 #endif
+
+#include "custom_door_a/model.inc.c"
+#include "custom_door_b/model.inc.c"

@@ -1,0 +1,13 @@
+extern const GeoLayout custom_door_b_geo[];
+extern u8 custom_door_b_Door_B_i8[];
+extern u8 custom_door_b_metal_dark_ci8[];
+extern u8 custom_door_b_metal_dark_ci8_pal_rgba16[];
+extern Vtx custom_door_b_door_mesh_layer_1_vtx_0[24];
+extern Gfx custom_door_b_door_mesh_layer_1_tri_0[];
+extern Vtx custom_door_b_door_mesh_layer_1_vtx_1[87];
+extern Gfx custom_door_b_door_mesh_layer_1_tri_1[];
+extern Gfx mat_custom_door_b_DoorB[];
+extern Gfx mat_custom_door_b_MetalDark[];
+extern Gfx mat_revert_custom_door_b_MetalDark[];
+extern Gfx custom_door_b_door_mesh_layer_1[];
+extern Gfx custom_door_b_material_revert_render_settings[];

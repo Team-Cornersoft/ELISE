@@ -331,4 +331,8 @@ extern const Gfx white_particle_small_dl_end[];
 extern const Gfx white_particle_small_dl[];
 extern const Gfx white_particle_small_unused_dl[];
 
+#include "custom_door_a/geo_header.h"
+
+#include "custom_door_b/geo_header.h"
+
 #endif
