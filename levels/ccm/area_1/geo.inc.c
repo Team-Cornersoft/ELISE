@@ -3,9 +3,9 @@
 const GeoLayout ccm_area_1_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_DISPLAY_LIST(LAYER_OPAQUE, ccm_dl_Apartment_A_mesh_layer_1),
-		GEO_DISPLAY_LIST(LAYER_ALPHA, ccm_dl_Apartment_A_mesh_layer_4),
-		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ccm_dl_Apartment_A_mesh_layer_5),
+		GEO_DISPLAY_LIST(LAYER_OPAQUE, ccm_dl_A_apartment_mesh_layer_1),
+		GEO_DISPLAY_LIST(LAYER_ALPHA, ccm_dl_A_apartment_mesh_layer_4),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ccm_dl_A_apartment_mesh_layer_5),
 		GEO_BILLBOARD_WITH_PARAMS(LAYER_OPAQUE, 16000, 11750, 15780),
 		GEO_OPEN_NODE(),
 			GEO_ROTATION_NODE(LAYER_OPAQUE, 90, 0, 0),
