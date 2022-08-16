@@ -545,6 +545,10 @@
 #define MODEL_WHITE_PUFF                  0xE0        // white_puff_geo
 #define MODEL_TRAJECTORY_MARKER_BALL      0xE1        // bowling_ball_track_geo - duplicate used in SSL Pyramid small sized and as a track ball
 
+// CUSTOM MODELS
+//#define MODEL_CUSTOM_DOOR_A               0xF0        // Door for apartments   
+//#define MODEL_CUSTOM_DOOR_B               0xF1        // Door for apartment building services
+
 #ifdef IA8_30FPS_COINS
 #define MODEL_SILVER_COIN                 0xE2        // silver_coin_geo
 #define MODEL_SILVER_COIN_NO_SHADOW       0xE3        // silver_coin_no_shadow_geo
