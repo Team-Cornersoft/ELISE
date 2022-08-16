@@ -253,7 +253,7 @@ void draw_skybox_tile_grid(Gfx **dlist, s8 background, s8 player, s8 colorIndex)
                     (*(SkyboxTexture *) segmented_to_virtual(sSkyboxTextures[background]))[tileIndex2];
                 Vtx *vertices = make_skybox_rect_static(tileIndex1, colorIndex);
 
-                gDPSetTextureFilter((*dlist)++, G_TF_POINT)
+                // gDPSetTextureFilter((*dlist)++, G_TF_POINT)
                 gLoadBlockTexture((*dlist)++, 32, 32, G_IM_FMT_RGBA, texture);
                 gSPVertex((*dlist)++, VIRTUAL_TO_PHYSICAL(vertices), 4, 0);
                 gSPDisplayList((*dlist)++, dl_draw_quad_verts_0123);
