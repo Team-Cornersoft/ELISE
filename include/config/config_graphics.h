@@ -113,7 +113,7 @@
  * It is sideways in vanilla, and since vanilla's environment map textures are sideways too, those will appear as sideways in-game if this is enabled.
  * Make sure your custom environment map textures are the correct orientation.
  */
-// #define FIX_REFLECT_MTX
+#define FIX_REFLECT_MTX
 
 /**
  * This improves performance a bit, and does not seem to break anything.
