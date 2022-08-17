@@ -494,6 +494,7 @@ enum SoundBank {
 #define SOUND_OBJ_SNUFIT_SKEETER_DEATH           /* 0x5072C080 */ SOUND_ARG_LOAD(SOUND_BANK_OBJ,      0x72, 0xC0, SOUND_DISCRETE)
 #define SOUND_OBJ_BUBBA_CHOMP                    /* 0x50734080 */ SOUND_ARG_LOAD(SOUND_BANK_OBJ,      0x73, 0x40, SOUND_DISCRETE)
 #define SOUND_OBJ_ENEMY_DEFEAT_SHRINK            /* 0x50744080 */ SOUND_ARG_LOAD(SOUND_BANK_OBJ,      0x74, 0x40, SOUND_DISCRETE)
+#define SOUND_OBJ_CUSTOM_DEATH                   /* 0x50388080 */ SOUND_ARG_LOAD(SOUND_BANK_OBJ,      0x75, 0xF0, SOUND_VIBRATO | SOUND_NO_VOLUME_LOSS | SOUND_DISCRETE)
 
 #define SOUND_AIR_BOWSER_SPIT_FIRE               /* 0x60000000 */ SOUND_ARG_LOAD(SOUND_BANK_AIR,      0x00, 0x00, 0)
 #define SOUND_AIR_UNK01                          /* 0x60010000 */ SOUND_ARG_LOAD(SOUND_BANK_AIR,      0x01, 0x00, 0) // ?, unused
@@ -554,6 +555,7 @@ enum SoundBank {
 // playing, producing the same sound with different pitch.
 #define SOUND_MENU_COLLECT_RED_COIN              /* 0x78289080 */ SOUND_ARG_LOAD(SOUND_BANK_MENU,     0x28, 0x90, SOUND_CONSTANT_FREQUENCY | SOUND_DISCRETE)
 #define SOUND_MENU_COLLECT_SECRET                /* 0x70302080 */ SOUND_ARG_LOAD(SOUND_BANK_MENU,     0x30, 0x20, SOUND_DISCRETE)
+#define SOUND_MENU_CUSTOM_DEATH                  /* 0x50388080 */ SOUND_ARG_LOAD(SOUND_BANK_MENU,     0x40, 0xF0, SOUND_VIBRATO | SOUND_NO_VOLUME_LOSS | SOUND_DISCRETE)
 
 // Channel 8 loads sounds from the same place as channel 3, making it possible
 // to play two channel 3 sounds at once (since just one sound from each channel

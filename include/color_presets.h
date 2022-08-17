@@ -233,7 +233,8 @@
 #define COLOR_RGB_PINK                      { 0xFF, 0x00, 0x7F } // 255   0 127
 
 // Elemental
-#define COLOR_RGB_JRB_SKY                   { 0x3F, 0x3F, 0x3F } //  80 100  90
+#define COLOR_RGB_JRB_SKY_CNS               { 0x6F, 0x6F, 0x6F } //  80 100  90
+#define COLOR_RGB_JRB_SKY_EMU               { 0x4F, 0x4F, 0x4F } //  80 100  90
 #define COLOR_RGB_WATER                     { 0x05, 0x50, 0x96 } //   5  80 150
 #define COLOR_RGB_ICE                       { 0x7D, 0x9A, 0xD0 } // 125 154 208
 #define COLOR_RGB_LAVA                      { 0x8F, 0x06, 0x00 } // 143   6   0

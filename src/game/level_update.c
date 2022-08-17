@@ -35,6 +35,8 @@
 
 #include "config.h"
 
+static s32 gameFreezeFrames = 0;
+
 // TODO: Make these ifdefs better
 const char *credits01[] = { "1GAME DIRECTOR", "SHIGERU MIYAMOTO" };
 const char *credits02[] = { "2ASSISTANT DIRECTORS", "YOSHIAKI KOIZUMI", "TAKASHI TEZUKA" };
@@ -134,7 +136,7 @@ struct HudDisplay gHudDisplay;
 s16 sCurrPlayMode;
 s16 sTransitionTimer;
 void (*sTransitionUpdate)(s16 *);
-struct WarpDest sWarpDest;
+struct WarpDest sWarpDest = { levelNum: EXIT_COURSE_LEVEL, areaIdx: EXIT_COURSE_AREA, nodeId: EXIT_COURSE_NODE };
 s16 sSpecialWarpDest;
 s16 sDelayedWarpOp;
 s16 sDelayedWarpTimer;
@@ -734,21 +736,6 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
                 play_transition(WARP_TRANSITION_FADE_INTO_MARIO, sDelayedWarpTimer, 0x00, 0x00, 0x00);
                 break;
 
-            case WARP_OP_DEATH:
-#ifndef DISABLE_LIVES
-                if (m->numLives == 0) {
-                    sDelayedWarpOp = WARP_OP_GAME_OVER;
-                }
-#endif
-                sDelayedWarpTimer = 48;
-                sSourceWarpNodeId = WARP_NODE_DEATH;
-                play_transition(WARP_TRANSITION_FADE_INTO_BOWSER, sDelayedWarpTimer, 0x00, 0x00, 0x00);
-                play_sound(SOUND_MENU_BOWSER_LAUGH, gGlobalSoundSource);
-#ifdef PREVENT_DEATH_LOOP
-                m->isDead = TRUE;
-#endif
-                break;
-
             case WARP_OP_WARP_FLOOR:
                 sSourceWarpNodeId = WARP_NODE_WARP_FLOOR;
                 if (area_get_warp_node(sSourceWarpNodeId) == NULL) {
@@ -761,10 +748,37 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
 #else
                     sSourceWarpNodeId = WARP_NODE_DEATH;
 #endif
+#ifdef PREVENT_DEATH_LOOP
+                    m->isDead = TRUE;
+#endif
+                } else { // intentional warp floors still warp floors, otherwise standard death warp
+                    sDelayedWarpTimer = 20;
+                    play_transition(WARP_TRANSITION_FADE_INTO_CIRCLE, sDelayedWarpTimer, 0x00, 0x00, 0x00);
+                    break;
                 }
+                FALL_THROUGH;
 
-                sDelayedWarpTimer = 20;
-                play_transition(WARP_TRANSITION_FADE_INTO_CIRCLE, sDelayedWarpTimer, 0x00, 0x00, 0x00);
+            case WARP_OP_DEATH:
+#ifndef DISABLE_LIVES
+                if (m->numLives == 0) {
+                    sDelayedWarpOp = WARP_OP_GAME_OVER;
+                }
+#endif
+                sDelayedWarpTimer = 32;
+                sDelayedWarpOp = WARP_OP_DEATH;
+                sSourceWarpNodeId = WARP_NODE_DEATH;
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
+                fadeMusic = FALSE;
+
+/*
+                sDelayedWarpTimer = 48;
+                sSourceWarpNodeId = WARP_NODE_DEATH;
+                play_transition(WARP_TRANSITION_FADE_INTO_BOWSER, sDelayedWarpTimer, 0x00, 0x00, 0x00);
+                play_sound(SOUND_MENU_BOWSER_LAUGH, gGlobalSoundSource);
+*/
+#ifdef PREVENT_DEATH_LOOP
+                m->isDead = TRUE;
+#endif
                 break;
 
             case WARP_OP_LOOK_UP: // enter totwc
@@ -885,6 +899,17 @@ void initiate_delayed_warp(void) {
                     }
 
                     initiate_warp(gCurrCreditsEntry->levelNum, gCurrCreditsEntry->areaIndex, destWarpNode, WARP_FLAGS_NONE);
+                    break;
+
+                case WARP_OP_DEATH:
+                    initiate_warp(sWarpDest.levelNum & 0x7F, sWarpDest.areaIdx,
+                                  sWarpDest.nodeId, sWarpDest.arg);
+
+                    if (sWarpDest.type != WARP_TYPE_CHANGE_LEVEL) {
+                        level_set_transition(2, NULL);
+                    }
+
+                    gameFreezeFrames = 60;
                     break;
 
                 default:
@@ -1163,6 +1188,11 @@ UNUSED static s32 play_mode_unused(void) {
 
 s32 update_level(void) {
     s32 changeLevel = FALSE;
+
+    if (gameFreezeFrames > 0) {
+        gameFreezeFrames--;
+        return FALSE;
+    }
 
     switch (sCurrPlayMode) {
         case PLAY_MODE_NORMAL:

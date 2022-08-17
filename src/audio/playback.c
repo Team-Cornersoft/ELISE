@@ -8,6 +8,7 @@
 #include "synthesis.h"
 #include "effects.h"
 #include "external.h"
+#include "sounds.h"
 
 void note_set_resampling_rate(struct Note *note, f32 resamplingRateInput);
 
@@ -602,8 +603,18 @@ void process_notes(void) {
             frequency = (frequency < cap ? frequency : cap);
             scale *= 4.3498e-5f; // ~1 / 23000
             velocity = velocity * scale * scale;
-            note_set_frequency(note, frequency);
-            note_set_vel_pan_reverb(note, velocity, pan, reverbVol);
+
+            reverbVol += reverbAdd;
+            if (reverbVol > 0x7F)
+                reverbVol = 0x7F;
+
+            if (note->bankId > SOUND_BANK_COUNT) { // This is technically incorrect but whatever
+                note_set_frequency(note, frequency * freqTempMult);
+                note_set_vel_pan_reverb(note, velocity * volumeMult, pan, reverbVol);
+            } else {
+                note_set_frequency(note, frequency);
+                note_set_vel_pan_reverb(note, velocity, pan, reverbVol);
+            }
             continue;
         }
 #endif

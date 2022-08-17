@@ -62,6 +62,12 @@ s32 gAudioErrorFlags = 0;
 #endif
 s32 sGameLoopTicked = 0;
 
+f32 freqTempMult = 1.0f;
+f32 volumeMult = 1.0f;
+s32 reverbAdd = 0;
+s32 reverbGainAdd = 0;
+s32 deathTransitionUpdates = 0;
+
 // Dialog sounds
 // The US difference is the sound for DIALOG_037 ("I win! You lose! Ha ha ha ha!
 // You're no slouch, but I'm a better sledder! Better luck next time!"), spoken

@@ -802,12 +802,18 @@ u64 *synthesis_do_one_audio_update(s16 *aiBuf, s32 bufLen, u64 *cmd, s32 updateI
     s16 t4;
     struct ReverbRingBufferItem *v1;
 
+    s32 reverbGain;
+
     v1 = &gSynthesisReverb.items[gSynthesisReverb.curFrame][updateIndex];
 
     if (gSynthesisReverb.useReverb == 0) {
         aClearBuffer(cmd++, DMEM_ADDR_LEFT_CH, DEFAULT_LEN_2CH);
         cmd = synthesis_process_notes(aiBuf, bufLen, cmd);
     } else {
+        reverbGain = gSynthesisReverb.reverbGain + reverbGainAdd;
+        if (reverbGain > 0x7FFF)
+            reverbGain = 0x7FFF;
+
         if (gReverbDownsampleRate == 1) {
             // Put the oldest samples in the ring buffer into the wet channels
             aSetLoadBufferPair(cmd++, 0, v1->startPos);
@@ -823,7 +829,7 @@ u64 *synthesis_do_one_audio_update(s16 *aiBuf, s32 bufLen, u64 *cmd, s32 updateI
             // these channels.
             aSetBuffer(cmd++, 0, 0, 0, DEFAULT_LEN_2CH);
             // 0x8000 here is -100%
-            aMix(cmd++, 0, /*gain*/ 0x8000 + gSynthesisReverb.reverbGain, /*in*/ DMEM_ADDR_WET_LEFT_CH,
+            aMix(cmd++, 0, /*gain*/ 0x8000 + reverbGain, /*in*/ DMEM_ADDR_WET_LEFT_CH,
                  /*out*/ DMEM_ADDR_WET_LEFT_CH);
         } else {
             // Same as above but upsample the previously downsampled samples used for reverb first
@@ -839,7 +845,7 @@ u64 *synthesis_do_one_audio_update(s16 *aiBuf, s32 bufLen, u64 *cmd, s32 updateI
             aSetBuffer(cmd++, 0, t4 + DMEM_ADDR_WET_RIGHT_CH, DMEM_ADDR_RIGHT_CH, bufLen << 1);
             aResample(cmd++, gSynthesisReverb.resampleFlags, (u16) gSynthesisReverb.resampleRate, VIRTUAL_TO_PHYSICAL2(gSynthesisReverb.resampleStateRight));
             aSetBuffer(cmd++, 0, 0, 0, DEFAULT_LEN_2CH);
-            aMix(cmd++, 0, /*gain*/ 0x8000 + gSynthesisReverb.reverbGain, /*in*/ DMEM_ADDR_LEFT_CH, /*out*/ DMEM_ADDR_LEFT_CH);
+            aMix(cmd++, 0, /*gain*/ 0x8000 + reverbGain, /*in*/ DMEM_ADDR_LEFT_CH, /*out*/ DMEM_ADDR_LEFT_CH);
             aDMEMMove(cmd++, DMEM_ADDR_LEFT_CH, DMEM_ADDR_WET_LEFT_CH, DEFAULT_LEN_2CH);
         }
         cmd = synthesis_process_notes(aiBuf, bufLen, cmd);

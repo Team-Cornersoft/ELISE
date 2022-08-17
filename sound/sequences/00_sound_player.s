@@ -4994,7 +4994,7 @@ sound_ref .sound_obj_wiggler_low_pitch
 sound_ref .sound_obj_snufit_skeeter_death
 sound_ref .sound_obj_bubba_chomp
 sound_ref .sound_obj_enemy_defeat_shrink
-sound_ref .sound_obj_bowser_tail_pickup
+sound_ref .sound_obj_custom_death
 sound_ref .sound_obj_bowser_defeated
 sound_ref .sound_obj_bowser_spinning
 sound_ref .sound_obj_klepto2
@@ -6914,6 +6914,19 @@ sound_ref .chan_2D18
 sound_ref .sound_menu_power_meter
 sound_ref .sound_menu_camera_buzz
 sound_ref .sound_menu_camera_turn
+sound_ref .sound_obj_custom_death
+
+.sound_obj_custom_death:
+chan_setbank 6
+chan_setinstr 3
+chan_setval 12
+chan_call .set_reverb
+chan_setlayer 0, .layer_custom_death
+chan_end
+
+.layer_custom_death:
+layer_note1 39, 0x1FB, 127
+layer_end
 
 .sound_menu_change_select:
 chan_setbank 9

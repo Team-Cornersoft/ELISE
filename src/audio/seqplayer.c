@@ -6,6 +6,7 @@
 #include "heap.h"
 #include "load.h"
 #include "seqplayer.h"
+#include "engine/math_util.h"
 
 #ifdef VERSION_SH
 void seq_channel_layer_process_script_part1(struct SequenceChannelLayer *layer);
@@ -2176,7 +2177,7 @@ void sequence_channel_process_script(struct SequenceChannel *seqChannel) {
     }
 }
 
-void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
+void sequence_player_process_sequence(struct SequencePlayer *seqPlayer, s32 playerId) {
     u8 cmd;
     u8 loBits;
     u8 temp;
@@ -2281,7 +2282,11 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
     }
 
     // Check if we surpass the number of ticks needed for a tatum, else stop.
-    seqPlayer->tempoAcc += seqPlayer->tempo;
+    if (playerId == SEQ_PLAYER_LEVEL) {
+        seqPlayer->tempoAcc += seqPlayer->tempo * freqTempMult;
+    } else {
+        seqPlayer->tempoAcc += seqPlayer->tempo;
+    }
 #ifdef VERSION_SH
     seqPlayer->tempoAcc += seqPlayer->tempoAdd;
 #endif
@@ -2682,13 +2687,39 @@ void sequence_player_process_sequence(struct SequencePlayer *seqPlayer) {
 // This runs 240 times per second.
 void process_sequences(UNUSED s32 iterationsRemaining) {
     s32 i;
+
+    if (deathTransitionUpdates > 0) {
+        deathTransitionUpdates--;
+
+        freqTempMult = sins((s16) ((MUS_DEATH_TRANSITION_TIME - deathTransitionUpdates) / (f32) MUS_DEATH_TRANSITION_TIME * 16384.0f) + 0x2000);
+        freqTempMult *= freqTempMult;
+        freqTempMult = (freqTempMult - 0.5f) * 2.0f;
+
+        if (toggleBetterReverb == TRUE) {
+            reverbAdd = freqTempMult * MUS_DEATH_BETTER_REVERB_PEAK;
+            reverbGainAdd = freqTempMult * MUS_DEATH_BETTER_REVERB_GAIN_PEAK;
+        } else {
+            reverbAdd = freqTempMult * MUS_DEATH_VANILLA_REVERB_PEAK;
+            reverbGainAdd = freqTempMult * MUS_DEATH_VANILLA_REVERB_GAIN_PEAK;
+        }
+
+        volumeMult = 1.0f - (freqTempMult * MUS_DEATH_VOLUME_PEAK);
+        freqTempMult = 1.0f - (freqTempMult * MUS_DEATH_TRANSITION_PEAK); // This must come last
+    }
+    else {
+        volumeMult = 1.0f;
+        freqTempMult = 1.0f;
+        reverbGainAdd = 0;
+        reverbAdd = 0;
+    }
+
     for (i = 0; i < SEQUENCE_PLAYERS; i++) {
         if (gSequencePlayers[i].enabled == TRUE) {
 #if defined(VERSION_EU) || defined(VERSION_SH)
-            sequence_player_process_sequence(&gSequencePlayers[i]);
+            sequence_player_process_sequence(&gSequencePlayers[i], i);
             sequence_player_process_sound(&gSequencePlayers[i]);
 #else
-            sequence_player_process_sequence(gSequencePlayers + i);
+            sequence_player_process_sequence(gSequencePlayers + i, i);
             sequence_player_process_sound(gSequencePlayers + i);
 #endif
         }

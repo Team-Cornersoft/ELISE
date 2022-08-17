@@ -95,8 +95,9 @@ SkyboxTexture *sSkyboxTextures[10] = {
  * The final color of each pixel is computed from the bitwise AND of the color and the texture.
  */
 ColorRGB sSkyboxColors[] = {
-    COLOR_RGB_JRB_SKY,
     COLOR_RGB_WHITE,
+    COLOR_RGB_JRB_SKY_CNS,
+    COLOR_RGB_JRB_SKY_EMU,
 };
 
 /**
@@ -236,7 +237,7 @@ void draw_skybox_tile_grid(Gfx **dlist, s8 background, s8 player, s8 colorIndex)
     s32 row;
     s32 col;
 
-    if (gCurrLevelNum == LEVEL_JRB && gCurrAreaIndex == 1) {
+    if (background == BACKGROUND_OCEAN_SKY) {
         while (TRUE) {
             s32 curRand = random_u16() % (SKYBOX_ROWS * SKYBOX_COLS);
             if (curRand == rand)
@@ -280,7 +281,7 @@ void draw_skybox_tile_grid(Gfx **dlist, s8 background, s8 player, s8 colorIndex)
     }
 }
 
-void *create_skybox_ortho_matrix(s8 player) {
+void *create_skybox_ortho_matrix(s8 player, s8 background) {
     f32 left = sSkyBoxInfo[player].scaledX;
     f32 right = sSkyBoxInfo[player].scaledX + SCREEN_WIDTH;
     f32 bottom = sSkyBoxInfo[player].scaledY - SCREEN_HEIGHT;
@@ -298,7 +299,7 @@ void *create_skybox_ortho_matrix(s8 player) {
 #endif
 
     if (mtx != NULL) {
-        if (gCurrLevelNum == LEVEL_JRB && gCurrAreaIndex == 1) {
+        if (background == BACKGROUND_OCEAN_SKY) {
             guOrtho(mtx, 0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, 0.0f, 3.0f, 1.0f);
         } else {
             guOrtho(mtx, left, right, bottom, top, 0.0f, 3.0f, 1.0f);
@@ -313,7 +314,7 @@ void *create_skybox_ortho_matrix(s8 player) {
  */
 Gfx *init_skybox_display_list(s8 player, s8 background, s8 colorIndex) {
     s32 dlCommandCount = 5 + (3 * 3) * 7; // 5 for the start and end, plus 9 skybox tiles
-    if (gCurrLevelNum == LEVEL_JRB && gCurrAreaIndex == 1) {
+    if (background == BACKGROUND_OCEAN_SKY) {
         dlCommandCount = 5 + (10*8) * 8;
     }
     void *skybox = alloc_display_list(dlCommandCount * sizeof(Gfx) * sqr(SKYBOX_SIZE));
@@ -322,7 +323,7 @@ Gfx *init_skybox_display_list(s8 player, s8 background, s8 colorIndex) {
     if (skybox == NULL) {
         return NULL;
     } else {
-        Mtx *ortho = create_skybox_ortho_matrix(player);
+        Mtx *ortho = create_skybox_ortho_matrix(player, background);
 
         gSPDisplayList(dlist++, dl_skybox_begin);
         gSPMatrix(dlist++, VIRTUAL_TO_PHYSICAL(ortho), G_MTX_PROJECTION | G_MTX_MUL | G_MTX_NOPUSH);
@@ -346,11 +347,13 @@ Gfx *init_skybox_display_list(s8 player, s8 background, s8 colorIndex) {
  * @param focX,focY,focZ The camera's focus.
  */
 Gfx *create_skybox_facing_camera(s8 player, s8 background, f32 fov, Vec3f pos, Vec3f focus) {
-    s8 colorIndex = 1;
+    s8 colorIndex = 0;
 
     // If the "Plunder in the Sunken Ship" star in JRB is collected, make the sky darker and slightly green
-    if (background == BACKGROUND_OCEAN_SKY && gCurrLevelNum == LEVEL_JRB) {
-        colorIndex = 0;
+    if (background == BACKGROUND_OCEAN_SKY) {
+        colorIndex = 1;
+        if (!gIsConsole)
+            colorIndex = 2;
     }
 
     //! fov is always set to 90.0f. If this line is removed, then the game crashes because fov is 0 on

@@ -10,6 +10,14 @@
 // bit which may be read by the sequence script.
 #define SEQUENCE_ARGS(priority, seqId) (((priority) << 8) | (seqId))
 
+#define MUS_DEATH_TRANSITION_TIME (105 * 4 * 2) // 240 updates per second, multipliers to convert to standard frames
+#define MUS_DEATH_TRANSITION_PEAK 0.45f
+#define MUS_DEATH_VOLUME_PEAK 0.30f
+#define MUS_DEATH_BETTER_REVERB_PEAK 0x58
+#define MUS_DEATH_VANILLA_REVERB_PEAK 0x10
+#define MUS_DEATH_BETTER_REVERB_GAIN_PEAK 0x1FFF
+#define MUS_DEATH_VANILLA_REVERB_GAIN_PEAK 0x0FFF
+
 enum SoundModes {
     SOUND_MODE_STEREO,
     SOUND_MODE_HEADSET,
@@ -33,6 +41,12 @@ extern f32 gGlobalSoundSource[3];
 
 // defined in data.c, used by the game
 extern u32 gAudioRandom;
+
+extern f32 freqTempMult;
+extern f32 volumeMult;
+extern s32 reverbAdd;
+extern s32 reverbGainAdd;
+extern s32 deathTransitionUpdates;
 
 struct SPTask *create_next_audio_frame_task(void);
 void play_sound(s32 soundBits, f32 *pos);
