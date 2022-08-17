@@ -80,6 +80,7 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT(MODEL_CUSTOM_DOOR_B, 2115, 0, 275, 0, -90, 0, 0x00D20000, bhvDoorWarp),
 		OBJECT(MODEL_CUSTOM_DOOR_B, -125, 0, 2515, 0, 180, 0, 0x00D30000, bhvDoorWarp),
 		TERRAIN(ccm_area_1_collision),
+		ROOMS(ccm_area_1_collision_rooms),
 		MACRO_OBJECTS(ccm_area_1_macro_objs),
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
