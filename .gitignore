@@ -2066,7 +2066,7 @@ textures/sky/rr_textures.08000.rgba16.png
 # textures/skyboxes/clouds.png
 # textures/skyboxes/ssl.png
 # textures/skyboxes/water.png
-textures/skyboxes/wdw.png
+# textures/skyboxes/wdw.png
 textures/snow/ccm_textures.00000.rgba16.png
 textures/snow/ccm_textures.00800.rgba16.png
 textures/snow/ccm_textures.01000.rgba16.png
