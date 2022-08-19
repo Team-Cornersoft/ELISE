@@ -810,7 +810,7 @@ u64 *synthesis_do_one_audio_update(s16 *aiBuf, s32 bufLen, u64 *cmd, s32 updateI
         aClearBuffer(cmd++, DMEM_ADDR_LEFT_CH, DEFAULT_LEN_2CH);
         cmd = synthesis_process_notes(aiBuf, bufLen, cmd);
     } else {
-        reverbGain = gSynthesisReverb.reverbGain + reverbGainAdd;
+        reverbGain = gSynthesisReverb.reverbGain + ((0x7FFF - gSynthesisReverb.reverbGain) * reverbGainAdd);
         if (reverbGain > 0x7FFF)
             reverbGain = 0x7FFF;
 

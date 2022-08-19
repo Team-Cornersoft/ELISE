@@ -6919,7 +6919,7 @@ sound_ref .sound_obj_custom_death
 .sound_obj_custom_death:
 chan_setbank 6
 chan_setinstr 3
-chan_setval 12
+chan_setval 25
 chan_call .set_reverb
 chan_setlayer 0, .layer_custom_death
 chan_end

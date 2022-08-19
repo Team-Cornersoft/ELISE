@@ -1849,16 +1849,8 @@ void mario_process_interactions(struct MarioState *m) {
 }
 
 void check_death_barrier(struct MarioState *m) {
-    s32 framesLeft;
-
     if (m->pos[1] < m->floorHeight + 4096.0f) {
-        framesLeft = level_trigger_warp(m, WARP_OP_WARP_FLOOR);
-        if (framesLeft == 10) {
-            deathTransitionUpdates = MUS_DEATH_TRANSITION_TIME;
-        }
-        else if (framesLeft == 20) {
-            play_sound(SOUND_MENU_CUSTOM_DEATH, gGlobalSoundSource);
-        }
+        level_trigger_warp(m, WARP_OP_WARP_FLOOR);
 
         if (!(m->flags & MARIO_FALL_SOUND_PLAYED)) {
             play_sound(SOUND_MARIO_WAAAOOOW, m->marioObj->header.gfx.cameraToObject);

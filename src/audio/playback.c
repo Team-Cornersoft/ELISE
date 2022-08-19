@@ -608,7 +608,7 @@ void process_notes(void) {
             if (reverbVol > 0x7F)
                 reverbVol = 0x7F;
 
-            if (note->bankId > SOUND_BANK_COUNT) { // This is technically incorrect but whatever
+            if (note->bankId > SOUND_BANK_COUNT + 1) { // This is technically incorrect but whatever, at least I'll probably make an extra bank for both types if I do
                 note_set_frequency(note, frequency * freqTempMult);
                 note_set_vel_pan_reverb(note, velocity * volumeMult, pan, reverbVol);
             } else {

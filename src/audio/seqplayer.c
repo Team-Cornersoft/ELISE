@@ -2709,7 +2709,7 @@ void process_sequences(UNUSED s32 iterationsRemaining) {
     else {
         volumeMult = 1.0f;
         freqTempMult = 1.0f;
-        reverbGainAdd = 0;
+        reverbGainAdd = 0.0f;
         reverbAdd = 0;
     }
 
