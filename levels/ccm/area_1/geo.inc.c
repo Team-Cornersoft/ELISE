@@ -54,6 +54,7 @@ const GeoLayout ccm_area_1_geo[] = {
 			GEO_OPEN_NODE(),
 				GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ccm_dl_B_Doors_012_mesh_layer_5),
 			GEO_CLOSE_NODE(),
+			GEO_DISPLAY_LIST(LAYER_OPAQUE, ccm_dl_C_blackspace_mesh_layer_1),
 			GEO_BILLBOARD_WITH_PARAMS(LAYER_OPAQUE, 16300, 11750, 15680),
 			GEO_OPEN_NODE(),
 				GEO_ROTATION_NODE(LAYER_OPAQUE, 90, 0, 0),
