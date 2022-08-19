@@ -64,8 +64,8 @@ s32 sGameLoopTicked = 0;
 
 f32 freqTempMult = 1.0f;
 f32 volumeMult = 1.0f;
+f32 reverbGainAdd = 0.0f;
 s32 reverbAdd = 0;
-s32 reverbGainAdd = 0;
 s32 deathTransitionUpdates = 0;
 
 // Dialog sounds

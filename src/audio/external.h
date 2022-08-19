@@ -15,8 +15,8 @@
 #define MUS_DEATH_VOLUME_PEAK 0.30f
 #define MUS_DEATH_BETTER_REVERB_PEAK 0x58
 #define MUS_DEATH_VANILLA_REVERB_PEAK 0x10
-#define MUS_DEATH_BETTER_REVERB_GAIN_PEAK 0x1FFF
-#define MUS_DEATH_VANILLA_REVERB_GAIN_PEAK 0x0FFF
+#define MUS_DEATH_BETTER_REVERB_GAIN_PEAK 0.625f
+#define MUS_DEATH_VANILLA_REVERB_GAIN_PEAK 0.5f
 
 enum SoundModes {
     SOUND_MODE_STEREO,
@@ -44,8 +44,8 @@ extern u32 gAudioRandom;
 
 extern f32 freqTempMult;
 extern f32 volumeMult;
+extern f32 reverbGainAdd;
 extern s32 reverbAdd;
-extern s32 reverbGainAdd;
 extern s32 deathTransitionUpdates;
 
 struct SPTask *create_next_audio_frame_task(void);
