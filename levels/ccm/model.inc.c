@@ -2506,20 +2506,20 @@ Gfx ccm_dl_A_apartment_floor_2_mesh_layer_5_tri_0[] = {
 };
 
 Vtx ccm_dl_A_apartment_floor_2_mesh_layer_5_vtx_1[14] = {
-	{{{400, -2100, 5900}, 0, {-198, 855}, {0x44, 0x43, 0x4F, 0xFF}}},
-	{{{400, -2200, 5900}, 0, {-16, 1008}, {0x44, 0x43, 0x4F, 0x78}}},
-	{{{400, -2200, 400}, 0, {6566, -6836}, {0x40, 0x3F, 0x4A, 0x78}}},
-	{{{400, -2100, 400}, 0, {6384, -6989}, {0x41, 0x3F, 0x4B, 0x8A}}},
-	{{{0, -2100, 0}, 0, {-7860, -5574}, {0x54, 0x52, 0x61, 0x8A}}},
-	{{{5900, -2100, 400}, 0, {-746, -12972}, {0x54, 0x52, 0x61, 0xFF}}},
-	{{{5900, -2100, 0}, 0, {-1278, -13418}, {0x61, 0x60, 0x5E, 0x8A}}},
-	{{{400, -2100, 400}, 0, {-6882, -5660}, {0x54, 0x52, 0x61, 0x8A}}},
-	{{{0, -2100, 5900}, 0, {-16, 1008}, {0x61, 0x60, 0x5E, 0x8A}}},
-	{{{400, -2100, 5900}, 0, {430, 476}, {0x57, 0x56, 0x60, 0xFF}}},
-	{{{5900, -2100, 400}, 0, {14881, -13423}, {0x44, 0x43, 0x4F, 0xFF}}},
-	{{{400, -2100, 400}, 0, {-1895, -1676}, {0x44, 0x43, 0x4F, 0x8A}}},
-	{{{400, -2200, 400}, 0, {-1661, -1341}, {0x44, 0x43, 0x4F, 0x78}}},
-	{{{5900, -2200, 400}, 0, {15116, -13088}, {0x44, 0x43, 0x4F, 0x78}}},
+	{{{400, -2100, 5900}, 0, {-198, 855}, {0x36, 0x34, 0x3E, 0xFF}}},
+	{{{400, -2200, 5900}, 0, {-16, 1008}, {0x36, 0x34, 0x3E, 0x78}}},
+	{{{400, -2200, 400}, 0, {6566, -6836}, {0x32, 0x31, 0x3A, 0x78}}},
+	{{{400, -2100, 400}, 0, {6384, -6989}, {0x32, 0x31, 0x3B, 0x8A}}},
+	{{{0, -2100, 0}, 0, {-7860, -5574}, {0x42, 0x41, 0x4D, 0x8A}}},
+	{{{5900, -2100, 400}, 0, {-746, -12972}, {0x42, 0x41, 0x4D, 0xFF}}},
+	{{{5900, -2100, 0}, 0, {-1278, -13418}, {0x4D, 0x4C, 0x4B, 0x8A}}},
+	{{{400, -2100, 400}, 0, {-6882, -5660}, {0x42, 0x41, 0x4D, 0x8A}}},
+	{{{0, -2100, 5900}, 0, {-16, 1008}, {0x4D, 0x4C, 0x4B, 0x8A}}},
+	{{{400, -2100, 5900}, 0, {430, 476}, {0x45, 0x44, 0x4C, 0xFF}}},
+	{{{5900, -2100, 400}, 0, {14881, -13423}, {0x36, 0x34, 0x3E, 0xFF}}},
+	{{{400, -2100, 400}, 0, {-1895, -1676}, {0x36, 0x34, 0x3E, 0x8A}}},
+	{{{400, -2200, 400}, 0, {-1661, -1341}, {0x36, 0x34, 0x3E, 0x78}}},
+	{{{5900, -2200, 400}, 0, {15116, -13088}, {0x36, 0x35, 0x3E, 0x78}}},
 };
 
 Gfx ccm_dl_A_apartment_floor_2_mesh_layer_5_tri_1[] = {
@@ -2611,33 +2611,6 @@ Gfx ccm_dl_A_apartment_floor_2_mesh_layer_5_tri_2[] = {
 	gsSP2Triangles(7, 14, 13, 0, 12, 15, 11, 0),
 	gsSP2Triangles(16, 17, 18, 0, 16, 18, 19, 0),
 	gsSP2Triangles(20, 21, 22, 0, 20, 22, 23, 0),
-	gsSPEndDisplayList(),
-};
-
-Vtx ccm_dl_A_apartment_floor_2_mesh_layer_1_vtx_cull[8] = {
-	{{{0, -2900, 7010}, 0, {-16, -16}, {0x0, 0x0, 0x0, 0x0}}},
-	{{{0, -1500, 7010}, 0, {-16, -16}, {0x0, 0x0, 0x0, 0x0}}},
-	{{{0, -1500, 0}, 0, {-16, -16}, {0x0, 0x0, 0x0, 0x0}}},
-	{{{0, -2900, 0}, 0, {-16, -16}, {0x0, 0x0, 0x0, 0x0}}},
-	{{{7020, -2900, 7010}, 0, {-16, -16}, {0x0, 0x0, 0x0, 0x0}}},
-	{{{7020, -1500, 7010}, 0, {-16, -16}, {0x0, 0x0, 0x0, 0x0}}},
-	{{{7020, -1500, 0}, 0, {-16, -16}, {0x0, 0x0, 0x0, 0x0}}},
-	{{{7020, -2900, 0}, 0, {-16, -16}, {0x0, 0x0, 0x0, 0x0}}},
-};
-
-Vtx ccm_dl_A_apartment_floor_2_mesh_layer_1_vtx_0[6] = {
-	{{{0, -2200, 0}, 0, {-7860, -5574}, {0x3, 0x3, 0x5, 0x8A}}},
-	{{{5900, -2200, 400}, 0, {-746, -12972}, {0x0, 0x0, 0x1, 0xFF}}},
-	{{{5900, -2200, 0}, 0, {-1278, -13418}, {0x15, 0x15, 0x14, 0x8A}}},
-	{{{400, -2200, 400}, 0, {-6882, -5660}, {0x0, 0x0, 0x0, 0x8A}}},
-	{{{0, -2200, 5900}, 0, {-16, 1008}, {0x7, 0x7, 0x6, 0x8A}}},
-	{{{400, -2200, 5900}, 0, {430, 476}, {0x12, 0x11, 0x15, 0xFF}}},
-};
-
-Gfx ccm_dl_A_apartment_floor_2_mesh_layer_1_tri_0[] = {
-	gsSPVertex(ccm_dl_A_apartment_floor_2_mesh_layer_1_vtx_0 + 0, 6, 0),
-	gsSP2Triangles(0, 1, 2, 0, 0, 3, 1, 0),
-	gsSP2Triangles(3, 0, 4, 0, 3, 4, 5, 0),
 	gsSPEndDisplayList(),
 };
 
@@ -4855,14 +4828,14 @@ Vtx ccm_dl_A_apartment_floor_7_mesh_layer_5_vtx_1[16] = {
 	{{{400, 1400, 400}, 0, {-10118, -13420}, {0x44, 0x43, 0x4F, 0xFF}}},
 	{{{400, 1300, 400}, 0, {-9883, -13084}, {0x44, 0x43, 0x4F, 0xFF}}},
 	{{{5900, 1300, 400}, 0, {6893, -24831}, {0x44, 0x43, 0x4F, 0xFF}}},
-	{{{5900, 2000, 400}, 0, {-746, -12972}, {0x54, 0x52, 0x61, 0x78}}},
-	{{{526, 2000, 0}, 0, {-7274, -6273}, {0x61, 0x60, 0x5E, 0x78}}},
-	{{{5900, 2000, 0}, 0, {-1278, -13418}, {0x61, 0x60, 0x5E, 0x78}}},
-	{{{400, 2000, 400}, 0, {-6882, -5660}, {0x54, 0x52, 0x61, 0x78}}},
-	{{{0, 2000, 0}, 0, {-7860, -5574}, {0x54, 0x52, 0x61, 0x78}}},
-	{{{0, 2000, 1046}, 0, {-6469, -4407}, {0x61, 0x60, 0x5E, 0x78}}},
-	{{{400, 2000, 5900}, 0, {430, 476}, {0x67, 0x66, 0x6F, 0x78}}},
-	{{{0, 2000, 5900}, 0, {-16, 1008}, {0x61, 0x60, 0x5E, 0x78}}},
+	{{{5900, 2000, 400}, 0, {-746, -12972}, {0x42, 0x41, 0x4D, 0x78}}},
+	{{{526, 2000, 0}, 0, {-7274, -6273}, {0x4D, 0x4C, 0x4B, 0x78}}},
+	{{{5900, 2000, 0}, 0, {-1278, -13418}, {0x4D, 0x4C, 0x4B, 0x78}}},
+	{{{400, 2000, 400}, 0, {-6882, -5660}, {0x42, 0x41, 0x4D, 0x78}}},
+	{{{0, 2000, 0}, 0, {-7860, -5574}, {0x42, 0x41, 0x4D, 0x78}}},
+	{{{0, 2000, 1046}, 0, {-6469, -4407}, {0x4D, 0x4C, 0x4B, 0x78}}},
+	{{{400, 2000, 5900}, 0, {430, 476}, {0x52, 0x51, 0x58, 0x78}}},
+	{{{0, 2000, 5900}, 0, {-16, 1008}, {0x4D, 0x4C, 0x4B, 0x78}}},
 };
 
 Gfx ccm_dl_A_apartment_floor_7_mesh_layer_5_tri_1[] = {
@@ -4986,22 +4959,6 @@ Gfx ccm_dl_A_apartment_floor_7_mesh_layer_1_tri_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx ccm_dl_A_apartment_floor_7_mesh_layer_1_vtx_1[6] = {
-	{{{400, 2100, 400}, 0, {-6882, -5660}, {0xD, 0xD, 0x11, 0x0}}},
-	{{{400, 2100, 5900}, 0, {430, 476}, {0x2, 0x2, 0x3, 0x78}}},
-	{{{0, 2100, 5900}, 0, {-16, 1008}, {0x1, 0x1, 0x1, 0x78}}},
-	{{{0, 2100, 0}, 0, {-7860, -5574}, {0x1C, 0x1B, 0x22, 0x78}}},
-	{{{5900, 2100, 0}, 0, {-1278, -13418}, {0x0, 0x0, 0x0, 0x78}}},
-	{{{5900, 2100, 400}, 0, {-746, -12972}, {0x14, 0x13, 0x19, 0x78}}},
-};
-
-Gfx ccm_dl_A_apartment_floor_7_mesh_layer_1_tri_1[] = {
-	gsSPVertex(ccm_dl_A_apartment_floor_7_mesh_layer_1_vtx_1 + 0, 6, 0),
-	gsSP2Triangles(0, 1, 2, 0, 0, 2, 3, 0),
-	gsSP2Triangles(0, 3, 4, 0, 0, 4, 5, 0),
-	gsSPEndDisplayList(),
-};
-
 Vtx ccm_dl_A_apartment_top_mesh_layer_5_vtx_cull[8] = {
 	{{{0, 2000, 5900}, 0, {-16, -16}, {0x0, 0x0, 0x0, 0x0}}},
 	{{{0, 2700, 5900}, 0, {-16, -16}, {0x0, 0x0, 0x0, 0x0}}},
@@ -5014,14 +4971,14 @@ Vtx ccm_dl_A_apartment_top_mesh_layer_5_vtx_cull[8] = {
 };
 
 Vtx ccm_dl_A_apartment_top_mesh_layer_5_vtx_0[8] = {
-	{{{400, 2100, 400}, 0, {-1278, -13418}, {0x41, 0x3F, 0x4B, 0x5C}}},
-	{{{400, 2100, 5900}, 0, {-7860, -5574}, {0x44, 0x43, 0x4F, 0x5C}}},
-	{{{400, 2000, 5900}, 0, {-7678, -5421}, {0x44, 0x43, 0x4F, 0x78}}},
-	{{{400, 2000, 400}, 0, {-1096, -13265}, {0x40, 0x3F, 0x4A, 0x78}}},
-	{{{5900, 2100, 400}, 0, {5013, -27515}, {0x44, 0x43, 0x4F, 0x5C}}},
-	{{{400, 2100, 400}, 0, {-11763, -15768}, {0x44, 0x43, 0x4F, 0x5C}}},
-	{{{400, 2000, 400}, 0, {-11528, -15433}, {0x44, 0x43, 0x4F, 0x78}}},
-	{{{5900, 2000, 400}, 0, {5248, -27180}, {0x44, 0x43, 0x4F, 0x78}}},
+	{{{400, 2100, 400}, 0, {-1278, -13418}, {0x32, 0x31, 0x3B, 0x5C}}},
+	{{{400, 2100, 5900}, 0, {-7860, -5574}, {0x36, 0x34, 0x3E, 0x5C}}},
+	{{{400, 2000, 5900}, 0, {-7678, -5421}, {0x36, 0x34, 0x3E, 0x78}}},
+	{{{400, 2000, 400}, 0, {-1096, -13265}, {0x32, 0x31, 0x3A, 0x78}}},
+	{{{5900, 2100, 400}, 0, {5013, -27515}, {0x36, 0x34, 0x3E, 0x5C}}},
+	{{{400, 2100, 400}, 0, {-11763, -15768}, {0x36, 0x34, 0x3E, 0x5C}}},
+	{{{400, 2000, 400}, 0, {-11528, -15433}, {0x36, 0x34, 0x3E, 0x78}}},
+	{{{5900, 2000, 400}, 0, {5248, -27180}, {0x36, 0x35, 0x3E, 0x78}}},
 };
 
 Gfx ccm_dl_A_apartment_top_mesh_layer_5_tri_0[] = {
@@ -7767,28 +7724,6 @@ Gfx mat_revert_ccm_dl_Bricks_TRANS[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_ccm_dl_Blank[] = {
-	gsDPPipeSync(),
-	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
-	gsSPGeometryMode(G_LIGHTING, 0),
-	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsDPTileSync(),
-	gsDPSetTextureImage(G_IM_FMT_I, G_IM_SIZ_8b_LOAD_BLOCK, 1, ccm_dl_blind_texture_i8),
-	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
-	gsDPLoadSync(),
-	gsDPLoadBlock(7, 0, 0, 511, 512),
-	gsDPPipeSync(),
-	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
-	gsDPSetTileSize(0, 0, 0, 124, 124),
-	gsSPEndDisplayList(),
-};
-
-Gfx mat_revert_ccm_dl_Blank[] = {
-	gsDPPipeSync(),
-	gsSPGeometryMode(0, G_LIGHTING),
-	gsSPEndDisplayList(),
-};
-
 Gfx mat_ccm_dl_Slate[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
@@ -7806,6 +7741,28 @@ Gfx mat_ccm_dl_Slate[] = {
 };
 
 Gfx mat_revert_ccm_dl_Slate[] = {
+	gsDPPipeSync(),
+	gsSPGeometryMode(0, G_LIGHTING),
+	gsSPEndDisplayList(),
+};
+
+Gfx mat_ccm_dl_Blank[] = {
+	gsDPPipeSync(),
+	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0, TEXEL0, 0, SHADE, 0, ENVIRONMENT, 0, SHADE, 0),
+	gsSPGeometryMode(G_LIGHTING, 0),
+	gsSPTexture(65535, 65535, 0, 0, 1),
+	gsDPTileSync(),
+	gsDPSetTextureImage(G_IM_FMT_I, G_IM_SIZ_8b_LOAD_BLOCK, 1, ccm_dl_blind_texture_i8),
+	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_8b_LOAD_BLOCK, 0, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPLoadSync(),
+	gsDPLoadBlock(7, 0, 0, 511, 512),
+	gsDPPipeSync(),
+	gsDPSetTile(G_IM_FMT_I, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0),
+	gsDPSetTileSize(0, 0, 0, 124, 124),
+	gsSPEndDisplayList(),
+};
+
+Gfx mat_revert_ccm_dl_Blank[] = {
 	gsDPPipeSync(),
 	gsSPGeometryMode(0, G_LIGHTING),
 	gsSPEndDisplayList(),
@@ -8108,17 +8065,6 @@ Gfx ccm_dl_A_apartment_floor_2_mesh_layer_5[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx ccm_dl_A_apartment_floor_2_mesh_layer_1[] = {
-	gsSPClearGeometryMode(G_LIGHTING),
-	gsSPVertex(ccm_dl_A_apartment_floor_2_mesh_layer_1_vtx_cull + 0, 8, 0),
-	gsSPSetGeometryMode(G_LIGHTING),
-	gsSPCullDisplayList(0, 7),
-	gsSPDisplayList(mat_ccm_dl_Blank),
-	gsSPDisplayList(ccm_dl_A_apartment_floor_2_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_ccm_dl_Blank),
-	gsSPEndDisplayList(),
-};
-
 Gfx ccm_dl_A_apartment_floor_3_mesh_layer_1[] = {
 	gsSPClearGeometryMode(G_LIGHTING),
 	gsSPVertex(ccm_dl_A_apartment_floor_3_mesh_layer_1_vtx_cull + 0, 8, 0),
@@ -8237,9 +8183,6 @@ Gfx ccm_dl_A_apartment_floor_7_mesh_layer_1[] = {
 	gsSPDisplayList(mat_ccm_dl_Slate),
 	gsSPDisplayList(ccm_dl_A_apartment_floor_7_mesh_layer_1_tri_0),
 	gsSPDisplayList(mat_revert_ccm_dl_Slate),
-	gsSPDisplayList(mat_ccm_dl_Blank),
-	gsSPDisplayList(ccm_dl_A_apartment_floor_7_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_ccm_dl_Blank),
 	gsSPEndDisplayList(),
 };
 
