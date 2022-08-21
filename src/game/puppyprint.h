@@ -80,6 +80,7 @@ enum PuppyFont {
     FONT_OUTLINE,
     FONT_PLAIN,
     FONT_VANILLA,
+    FONT_ELISE,
     FONT_NUM
 };
 

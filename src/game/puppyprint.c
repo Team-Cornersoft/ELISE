@@ -1357,7 +1357,7 @@ void get_char_from_byte(u8 letter, s32 *textX, u8 *spaceX, s8 *offsetY, u8 font)
         *textX = (let) * 4;
         *spaceX = textLen[let];
 
-        if (font != FONT_OUTLINE) {
+        if (font != FONT_OUTLINE && font != FONT_ELISE) {
             font_offsets(offsetY, font, letter);
         }
     } else {
