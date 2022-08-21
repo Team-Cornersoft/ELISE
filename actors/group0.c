@@ -33,3 +33,5 @@
 
 #include "custom_door_a/model.inc.c"
 #include "custom_door_b/model.inc.c"
+#include "custom_portal_w/model.inc.c"
+#include "custom_portal_w/collision.inc.c"

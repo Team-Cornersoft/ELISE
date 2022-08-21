@@ -600,7 +600,8 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags)
     } else if (destArea != gCurrentArea->index) {
         sWarpDest.type = WARP_TYPE_CHANGE_AREA;
     } else {
-        sWarpDest.type = WARP_TYPE_SAME_AREA;
+        // sWarpDest.type = WARP_TYPE_SAME_AREA;
+        sWarpDest.type = WARP_TYPE_CHANGE_AREA;
     }
 
     sWarpDest.levelNum = destLevel;
