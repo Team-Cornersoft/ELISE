@@ -246,11 +246,11 @@ void calc_new_obj_vel_and_pos_y(struct Surface *objFloor, f32 objFloorY, f32 obj
 
     o->oVelY -= (o->oGravity * gravityMult);
 
-    if (o->oVelY > TERM_VEL(75.0)) {
-        o->oVelY = TERM_VEL(75.0);
+    if (o->oVelY > TERM_VEL(75.0f)) {
+        o->oVelY = TERM_VEL(75.0f);
     }
-    if (o->oVelY < TERM_VEL(-75.0)) {
-        o->oVelY = TERM_VEL(-75.0);
+    if (o->oVelY < TERM_VEL(-75.0f)) {
+        o->oVelY = TERM_VEL(-75.0f);
     }
 
     o->oPosY += o->oVelY;
