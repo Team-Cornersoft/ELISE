@@ -16,7 +16,14 @@ enum ObjCollisionFlags {
     OBJ_COL_FLAGS_LANDED    = (OBJ_COL_FLAG_GROUNDED | OBJ_COL_FLAG_NO_Y_VEL)
 };
 
+#define TERM_VEL(x) (x * gravityMult)
+
+#ifndef TERM_VEL
+#define TERM_VEL(x) x
+#endif
+
 //! Lots of these are duplicates
+f32 get_gravity_mult(void);
 void set_yoshi_as_not_dead(void);
 s32 coin_step(s16 *collisionFlagsPtr);
 void moving_coin_flicker(void);
