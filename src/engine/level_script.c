@@ -761,7 +761,16 @@ static void level_cmd_set_menu_music(void) {
 }
 
 static void level_cmd_fadeout_music(void) {
-    fadeout_music(CMD_GET(s16, 2));
+    s16 dur = CMD_GET(s16, 2);
+    if (sCurrAreaIndex != -1 && dur == 0) {
+        gAreas[sCurrAreaIndex].musicParam = 0x00;
+        gAreas[sCurrAreaIndex].musicParam2 = 0x00;
+        gAreas[sCurrAreaIndex].reverbPreset = 0x00;
+    } else {
+        if (dur < 0)
+            dur = 0;
+        fadeout_music(CMD_GET(s16, 2));
+    }
     sCurrentCmd = CMD_NEXT;
 }
 
