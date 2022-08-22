@@ -18,49 +18,50 @@ const GeoLayout wf_area_2_geo[] = {
 const GeoLayout wf_dl_A2R0_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, -15202, 6124, -17120, 15, 45, 0, wf_dl_F_Pain_slide_A_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, -1628, -4814, -6155, 15, -180, 0, wf_dl_F_Pain_slide_A_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 0, 0, 300, 0, -180, 0, wf_dl_F_Pain_slide_A_001_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
 const GeoLayout wf_dl_A2R1_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, -9056, 3884, -11442, 15, 45, 0, wf_dl_E_Pain_slide_B_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, -2043, 2051, 14325, 15, -180, 0, wf_dl_E_Pain_slide_B_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
 const GeoLayout wf_dl_A2R2_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, -2755, 669, -773, 15, 45, 0, wf_dl_D_Pain_slide_C_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 3450, 2443, 10760, 15, -180, 0, wf_dl_D_Pain_slide_C_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
 const GeoLayout wf_dl_A2R3_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 4143, -1971, 6262, 15, 45, 0, wf_dl_C_Pain_slide_D_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, -1379, 3729, 10524, 15, -180, 0, wf_dl_C_Pain_slide_D_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
 const GeoLayout wf_dl_A2R4_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 11178, -4611, 13160, 15, 45, 0, wf_dl_B_Pain_slide_E_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 3436, 5122, 10734, 15, -180, 0, wf_dl_B_Pain_slide_E_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
 const GeoLayout wf_dl_A2R5_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 28691, -11089, 28354, 30, 45, 0, wf_dl_A_End_slide_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 734, -5364, -27330, 30, -180, 0, wf_dl_A_End_slide_mesh_layer_1),
 		GEO_OPEN_NODE(),
 			GEO_DISPLAY_LIST(LAYER_TRANSPARENT, wf_dl_A_End_slide_mesh_layer_5),
 			GEO_DISPLAY_LIST(LAYER_ALPHA, wf_dl_A_End_slide_mesh_layer_4),
 		GEO_CLOSE_NODE(),
-		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 16296, -6737, 19597, 15, 45, 0, wf_dl_A_Pain_slide_F_mesh_layer_1),
-		GEO_TRANSLATE_NODE_WITH_DL(LAYER_TRANSPARENT, 31400, -9710, 28800, wf_dl_C_Portal_002_mesh_layer_5),
-		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 29956, -7668, 29830, 0, 45, 0, wf_dl_G__Heart_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 5068, 1401, -3564, 15, -180, 0, wf_dl_A_Pain_slide_F_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_TRANSPARENT, -852, -4033, -29562, 0, 135, 0, wf_dl_C_Portal_002_mesh_layer_5),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 884, -1944, -29269, 0, -180, 0, wf_dl_G__Heart_mesh_layer_1),
 		GEO_OPEN_NODE(),
 			GEO_DISPLAY_LIST(LAYER_TRANSPARENT, wf_dl_G__Heart_mesh_layer_5),
 		GEO_CLOSE_NODE(),
