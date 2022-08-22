@@ -37,9 +37,9 @@ enum MenuButtonTypes {
     MENU_BUTTON_PLAY_FILE_B,
     MENU_BUTTON_PLAY_FILE_C,
     MENU_BUTTON_PLAY_FILE_D,
-    MENU_BUTTON_SCORE,
     MENU_BUTTON_COPY,
     MENU_BUTTON_ERASE,
+    MENU_BUTTON_SCORE,
     MENU_BUTTON_MAIN_MAX,
 
     // Score Menu (CHECK FILE)
@@ -138,6 +138,10 @@ void bhv_menu_button_init(void);
 void bhv_menu_button_loop(void);
 void bhv_menu_button_manager_init(void);
 void bhv_menu_button_manager_loop(void);
+
+void bhv_file_select_manager_init(void);
+void bhv_file_select_manager_loop(void);
+
 Gfx *geo_file_select_strings_and_menu_cursor(s32 callContext, UNUSED struct GraphNode *node, UNUSED Mat4 mtx);
 s32 lvl_init_menu_values_and_cursor_pos(UNUSED s32 arg, UNUSED s32 unused);
 s32 lvl_update_obj_and_load_file_selected(UNUSED s32 arg, UNUSED s32 unused);

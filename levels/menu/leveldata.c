@@ -1849,3 +1849,12 @@ const Collision main_menu_seg7_collision[] = {
 #undef COURSE_TABLE
 
 #endif
+
+
+#include "custom_background_green.inc.c"
+#include "custom_background_blue.inc.c"
+#include "custom_background_red.inc.c"
+
+#include "custom_menu_button.inc.c"
+#include "custom_blank_button.inc.c"
+#include "custom_existing_save.inc.c"

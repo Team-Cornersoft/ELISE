@@ -257,6 +257,10 @@ void bhv_menu_button_init(void);
 void bhv_menu_button_loop(void);
 void bhv_menu_button_manager_init(void);
 void bhv_menu_button_manager_loop(void);
+
+void bhv_file_select_manager_init(void);
+void bhv_file_select_manager_loop(void);
+
 void bhv_act_selector_star_type_loop(void);
 void bhv_act_selector_init(void);
 void bhv_act_selector_loop(void);
