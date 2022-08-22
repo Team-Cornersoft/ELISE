@@ -19,3 +19,4 @@
 
 #include "custom_door_a/geo.inc.c"
 #include "custom_door_b/geo.inc.c"
+#include "custom_portal_w/geo.inc.c"

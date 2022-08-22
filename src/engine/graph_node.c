@@ -820,9 +820,9 @@ s32 geo_update_animation_frame(struct AnimInfo *obj, s32 *accelAssist) {
 
     if (anim->flags & ANIM_FLAG_FORWARD) {
         if (obj->animAccel != 0) {
-            result = obj->animFrameAccelAssist - obj->animAccel;
+            result = (obj->animFrameAccelAssist - obj->animAccel * animTotalForward);
         } else {
-            result = (obj->animFrame - 1) << 16;
+            result = (obj->animFrame - 1) << 16; // looks bad if animTotalForward is applied here
         }
 
         if (GET_HIGH_S16_OF_32(result) < anim->loopStart) {
@@ -834,7 +834,7 @@ s32 geo_update_animation_frame(struct AnimInfo *obj, s32 *accelAssist) {
         }
     } else {
         if (obj->animAccel != 0) {
-            result = obj->animFrameAccelAssist + obj->animAccel;
+            result = (obj->animFrameAccelAssist + obj->animAccel * animTotalForward);
         } else {
             result = (obj->animFrame + 1) << 16;
         }

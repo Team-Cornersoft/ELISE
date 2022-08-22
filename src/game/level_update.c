@@ -144,6 +144,10 @@ s16 sSourceWarpNodeId;
 s32 sDelayedWarpArg;
 s8 sTimerRunning;
 s8 gNeverEnteredCastle;
+s32 shouldFadeMarioWarp = 0;
+f32 animSlowdownRate = 1.0f;
+f32 animTotalForward = 1.0f;
+u8 isDeathFloorWarp = FALSE;
 
 s32 loadFrames = 0;
 u32 pressAFrames = 0;
@@ -600,7 +604,8 @@ void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags)
     } else if (destArea != gCurrentArea->index) {
         sWarpDest.type = WARP_TYPE_CHANGE_AREA;
     } else {
-        sWarpDest.type = WARP_TYPE_SAME_AREA;
+        // sWarpDest.type = WARP_TYPE_SAME_AREA;
+        sWarpDest.type = WARP_TYPE_CHANGE_AREA;
     }
 
     sWarpDest.levelNum = destLevel;
@@ -700,7 +705,7 @@ void initiate_painting_warp(void) {
  * based on the warp operation and sometimes Mario's used object.
  * Return the time left until the delayed warp is initiated.
  */
-s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
+s16 level_trigger_warp(struct MarioState *m, s32 warpOp, u8 fadeMario) {
     s32 fadeMusic = TRUE;
 
     if (sDelayedWarpOp == WARP_OP_NONE) {
@@ -710,6 +715,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
         m->invincTimer = -1;
         sDelayedWarpArg = WARP_FLAGS_NONE;
         sDelayedWarpOp = warpOp;
+        isDeathFloorWarp = FALSE;
 
         switch (warpOp) {
             case WARP_OP_DEMO_NEXT:
@@ -738,6 +744,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
 
             case WARP_OP_WARP_FLOOR:
                 sSourceWarpNodeId = WARP_NODE_WARP_FLOOR;
+                isDeathFloorWarp = TRUE;
                 if (area_get_warp_node(sSourceWarpNodeId) == NULL) {
 #ifndef DISABLE_LIVES
                     if (m->numLives == 0) {
@@ -815,6 +822,13 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
                 play_transition(WARP_TRANSITION_FADE_INTO_STAR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
                 break;
 
+            case WARP_OP_PORTAL_WARP:
+                sDelayedWarpTimer = 50;
+                sSourceWarpNodeId = GET_BPARAM2(m->usedObj->oBehParams);
+                fadeMusic = !music_unchanged_through_warp(sSourceWarpNodeId);
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
+                break;
+
             case WARP_OP_CREDITS_START:
                 sDelayedWarpTimer = 30;
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
@@ -830,6 +844,12 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp) {
                 }
                 fadeMusic = FALSE;
                 break;
+        }
+        
+        if (fadeMario) {
+            shouldFadeMarioWarp = sDelayedWarpTimer;
+            animSlowdownRate = 1.0f;
+            animTotalForward = 1.0f;
         }
 
         if (fadeMusic && gCurrDemoInput == NULL) {
@@ -927,6 +947,12 @@ void initiate_delayed_warp(void) {
             }
         } else if (sDelayedWarpTimer > 0) {
             if (sDelayedWarpOp == WARP_OP_DEATH) {
+                if (sDelayedWarpTimer > 28) {
+                    shouldFadeMarioWarp = sDelayedWarpTimer;
+                    animSlowdownRate = 1.0f;
+                    animTotalForward = 1.0f;
+                }
+
                 if (sDelayedWarpTimer == 18) {
                     deathTransitionUpdates = MUS_DEATH_TRANSITION_TIME;
                 }
@@ -1027,10 +1053,10 @@ s32 play_mode_normal(void) {
     if (gCurrDemoInput != NULL) {
         print_intro_text();
         if (gPlayer1Controller->buttonPressed & END_DEMO) {
-            level_trigger_warp(gMarioState, gCurrLevelNum == LEVEL_PSS ? WARP_OP_DEMO_END : WARP_OP_DEMO_NEXT);
+            level_trigger_warp(gMarioState, gCurrLevelNum == LEVEL_PSS ? WARP_OP_DEMO_END : WARP_OP_DEMO_NEXT, FALSE);
         } else if (!gWarpTransition.isActive && sDelayedWarpOp == WARP_OP_NONE
                    && (gPlayer1Controller->buttonPressed & START_BUTTON)) {
-            level_trigger_warp(gMarioState, WARP_OP_DEMO_NEXT);
+            level_trigger_warp(gMarioState, WARP_OP_DEMO_NEXT, FALSE);
         }
     }
 #endif

@@ -546,9 +546,9 @@ static void level_cmd_create_instant_warp(void) {
         warp[0].id = 1;
         warp[0].area = CMD_GET(u8, 3);
 
-        vec3s_set(warp[0].displacement, CMD_GET(s16, 4),
-                                        CMD_GET(s16, 6),
-                                        CMD_GET(s16, 8));
+        warp[0].displacement[0] = CMD_GET(s32, 0x04);
+        warp[0].displacement[1] = CMD_GET(s32, 0x08);
+        warp[0].displacement[2] = CMD_GET(s32, 0x0C);
     }
 
     sCurrentCmd = CMD_NEXT;

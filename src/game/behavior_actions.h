@@ -22,6 +22,8 @@ void bhv_tiny_star_particles_init(void);
 void bhv_grindel_thwomp_loop(void);
 void bhv_door_init(void);
 void bhv_door_loop(void);
+void bhv_portal_warp_init(void);
+void bhv_portal_warp_loop(void);
 void bhv_star_door_loop(void);
 void bhv_mr_i_iris_loop(void);
 void bhv_mr_i_body_loop(void);
@@ -573,6 +575,9 @@ Gfx *geo_snufit_scale_body(s32 callContext, struct GraphNode *node, UNUSED Mat4 
 
 // Bowser key cutscene
 Gfx *geo_scale_bowser_key(s32 callContext, struct GraphNode *node, UNUSED Mat4 mtx);
+
+// Portal Warp
+Gfx *geo_portal_warp_color(s32 callContext, struct GraphNode *node, UNUSED s32 context);
 
 // Water splash
 extern struct WaterDropletParams gShallowWaterSplashDropletParams;

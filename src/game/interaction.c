@@ -893,6 +893,15 @@ u32 interact_warp(struct MarioState *m, UNUSED u32 interactType, struct Object *
             m->interactObj       = obj;
             m->usedObj           = obj;
 
+        if (obj->behavior == segmented_to_virtual(bhvPortalWarp)) {
+            play_sound(SOUND_MENU_CUSTOM_WARP, gGlobalSoundSource);
+
+            mario_stop_riding_object(m);
+            level_trigger_warp(m, WARP_OP_PORTAL_WARP, TRUE);
+            obj->oInteractType = INTERACT_NONE;
+            return FALSE;
+        }
+
 #if ENABLE_RUMBLE
             if (obj->collisionData == segmented_to_virtual(warp_pipe_seg3_collision_03009AC8)) {
                 play_sound(SOUND_MENU_ENTER_PIPE, m->marioObj->header.gfx.cameraToObject);
@@ -902,6 +911,7 @@ u32 interact_warp(struct MarioState *m, UNUSED u32 interactType, struct Object *
                 queue_rumble_data(12, 80);
             }
 #else
+
             play_sound(obj->collisionData == segmented_to_virtual(warp_pipe_seg3_collision_03009AC8)
                            ? SOUND_MENU_ENTER_PIPE
                            : SOUND_MENU_ENTER_HOLE,
@@ -1850,7 +1860,7 @@ void mario_process_interactions(struct MarioState *m) {
 
 void check_death_barrier(struct MarioState *m) {
     if (m->pos[1] < m->floorHeight + 4096.0f) {
-        level_trigger_warp(m, WARP_OP_WARP_FLOOR);
+        level_trigger_warp(m, WARP_OP_WARP_FLOOR, TRUE);
 
         if (!(m->flags & MARIO_FALL_SOUND_PLAYED)) {
             play_sound(SOUND_MARIO_WAAAOOOW, m->marioObj->header.gfx.cameraToObject);
@@ -1905,7 +1915,7 @@ void mario_handle_special_floors(struct MarioState *m) {
                 break;
 
             case SURFACE_WARP:
-                level_trigger_warp(m, WARP_OP_WARP_FLOOR);
+                level_trigger_warp(m, WARP_OP_WARP_FLOOR, FALSE);
                 break;
 
             case SURFACE_TIMER_START:

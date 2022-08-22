@@ -411,7 +411,7 @@ s32 act_disappeared(struct MarioState *m) {
     if (m->actionArg) {
         m->actionArg--;
         if ((m->actionArg & 0xFFFF) == 0) {
-            level_trigger_warp(m, m->actionArg >> 16);
+            level_trigger_warp(m, m->actionArg >> 16, TRUE);
         }
     }
     return FALSE;
@@ -616,7 +616,7 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
 
             case 80:
                 if (!(m->actionArg & 1)) {
-                    level_trigger_warp(m, WARP_OP_STAR_EXIT);
+                    level_trigger_warp(m, WARP_OP_STAR_EXIT, FALSE);
                 } else {
                     enable_time_stop();
                     create_dialog_box_with_response(gLastCompletedStarNum == 7 ? DIALOG_013 : DIALOG_014);
@@ -685,7 +685,7 @@ s32 act_fall_after_star_grab(struct MarioState *m) {
 s32 common_death_handler(struct MarioState *m, s32 animation, s32 frameToDeathWarp) {
     s32 animFrame = set_mario_animation(m, animation);
     if (animFrame == frameToDeathWarp) {
-        level_trigger_warp(m, WARP_OP_DEATH);
+        level_trigger_warp(m, WARP_OP_DEATH, FALSE);
     }
     m->marioBodyState->eyeState = MARIO_EYES_DEAD;
     stop_and_set_height_to_floor(m);
@@ -747,7 +747,7 @@ s32 act_quicksand_death(struct MarioState *m) {
             play_sound_if_no_flag(m, SOUND_MARIO_WAAAOOOW, MARIO_ACTION_SOUND_PLAYED);
         }
         if ((m->quicksandDepth += 5.0f) >= 180.0f) {
-            level_trigger_warp(m, WARP_OP_DEATH);
+            level_trigger_warp(m, WARP_OP_DEATH, FALSE);
             m->actionState = ACT_STATE_QUICKSAND_DEATH_DEAD;
         }
     }
@@ -765,7 +765,7 @@ s32 act_eaten_by_bubba(struct MarioState *m) {
 #endif
     m->health = 0xFF;
     if (m->actionTimer++ == 60) {
-        level_trigger_warp(m, WARP_OP_DEATH);
+        level_trigger_warp(m, WARP_OP_DEATH, FALSE);
     }
     return FALSE;
 }
@@ -946,7 +946,7 @@ s32 act_going_through_door(struct MarioState *m) {
 
     if (m->actionArg & WARP_FLAG_DOOR_IS_WARP) {
         if (m->actionTimer == 16) {
-            level_trigger_warp(m, WARP_OP_WARP_DOOR);
+            level_trigger_warp(m, WARP_OP_WARP_DOOR, FALSE);
         }
     } else if (is_anim_at_end(m)) {
         if (m->actionArg & WARP_FLAG_DOOR_FLIP_MARIO) {
@@ -1358,7 +1358,7 @@ s32 act_bbh_enter_spin(struct MarioState *m) {
             mario_set_forward_vel(m, forwardVel);
             m->flags &= ~MARIO_JUMPING;
             if (perform_air_step(m, 0) == AIR_STEP_LANDED) {
-                level_trigger_warp(m, WARP_OP_SPIN_SHRINK);
+                level_trigger_warp(m, WARP_OP_SPIN_SHRINK, FALSE);
 #if ENABLE_RUMBLE
                 queue_rumble_data(15, 80);
 #endif
@@ -1437,7 +1437,7 @@ s32 act_teleport_fade_out(struct MarioState *m) {
     }
 
     if (m->actionTimer++ == 20) {
-        level_trigger_warp(m, WARP_OP_TELEPORT);
+        level_trigger_warp(m, WARP_OP_TELEPORT, FALSE);
     }
 
     stop_and_set_height_to_floor(m);
@@ -1555,7 +1555,7 @@ s32 act_squished(struct MarioState *m) {
             if (m->actionTimer >= 15) {
                 // 1 unit of health
                 if (m->health < 0x100) {
-                    level_trigger_warp(m, WARP_OP_DEATH);
+                    level_trigger_warp(m, WARP_OP_DEATH, FALSE);
                     // woosh, he's gone!
                     set_mario_action(m, ACT_DISAPPEARED, 0);
                 } else if (m->hurtCounter == 0) {
@@ -1597,7 +1597,7 @@ s32 act_squished(struct MarioState *m) {
         // 0 units of health
         m->health = 0x00FF;
         m->hurtCounter = 0;
-        level_trigger_warp(m, WARP_OP_DEATH);
+        level_trigger_warp(m, WARP_OP_DEATH, FALSE);
         // woosh, he's gone!
         set_mario_action(m, ACT_DISAPPEARED, 0);
     }
@@ -1932,7 +1932,7 @@ static void jumbo_star_cutscene_flying(struct MarioState *m) {
     m->particleFlags |= PARTICLE_SPARKLES;
 
     if (m->actionTimer++ == 500) {
-        level_trigger_warp(m, WARP_OP_CREDITS_START);
+        level_trigger_warp(m, WARP_OP_CREDITS_START, FALSE);
     }
 }
 
@@ -2459,7 +2459,7 @@ static void end_peach_cutscene_run_to_castle(struct MarioState *m) {
 
 static void end_peach_cutscene_fade_out(struct MarioState *m) {
     if (m->actionState == ACT_STATE_END_PEACH_CUTSCENE_FADE_OUT_WARP) {
-        level_trigger_warp(m, WARP_OP_CREDITS_NEXT);
+        level_trigger_warp(m, WARP_OP_CREDITS_NEXT, FALSE);
         gPaintingMarioYEntry = 1500.0f; // ensure medium water level in WDW credits cutscene
         m->actionState = ACT_STATE_END_PEACH_CUTSCENE_FADE_OUT_END;
     }
@@ -2585,7 +2585,7 @@ static s32 act_credits_cutscene(struct MarioState *m) {
     }
 
     if (m->actionTimer++ == TIMER_CREDITS_WARP) {
-        level_trigger_warp(m, WARP_OP_CREDITS_NEXT);
+        level_trigger_warp(m, WARP_OP_CREDITS_NEXT, FALSE);
     }
 
     m->marioObj->header.gfx.angle[1] += (gCurrCreditsEntry->actNum & 0xC0) << 8;
@@ -2625,7 +2625,7 @@ static s32 act_end_waving_cutscene(struct MarioState *m) {
     m->marioBodyState->handState = MARIO_HAND_RIGHT_OPEN;
 
     if (m->actionTimer++ == 300) {
-        level_trigger_warp(m, WARP_OP_CREDITS_END);
+        level_trigger_warp(m, WARP_OP_CREDITS_END, FALSE);
     }
 
     return FALSE;

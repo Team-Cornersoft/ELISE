@@ -6,6 +6,7 @@
 #include "engine/surface_collision.h"
 #include "macros.h"
 #include "types.h"
+#include "level_update.h"
 
 enum ObjCollisionFlags {
     OBJ_COL_FLAGS_NONE      = (0 << 0),
@@ -16,14 +17,14 @@ enum ObjCollisionFlags {
     OBJ_COL_FLAGS_LANDED    = (OBJ_COL_FLAG_GROUNDED | OBJ_COL_FLAG_NO_Y_VEL)
 };
 
-#define TERM_VEL(x) (x * gravityMult)
+#define TERM_VEL(x) ((shouldFadeMarioWarp > 0) ? x : (x * gravityMult))
 
 #ifndef TERM_VEL
 #define TERM_VEL(x) x
 #endif
 
 //! Lots of these are duplicates
-f32 get_gravity_mult(void);
+f32 get_gravity_mult(u8 warpOverride);
 void set_yoshi_as_not_dead(void);
 s32 coin_step(s16 *collisionFlagsPtr);
 void moving_coin_flicker(void);

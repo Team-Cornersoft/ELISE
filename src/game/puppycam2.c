@@ -1099,7 +1099,7 @@ void puppycam_projection_behaviours(void) {
         && save_file_get_total_star_count(gCurrSaveFileNum - 1, COURSE_MIN - 1, COURSE_MAX - 1) >= 10) {
  #endif // !UNLOCK_ALL
         if (gPuppyCam.pitchTarget >= 0x7000) {
-            level_trigger_warp(gMarioState, WARP_OP_LOOK_UP);
+            level_trigger_warp(gMarioState, WARP_OP_LOOK_UP, FALSE);
         }
     }
 #endif // ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS

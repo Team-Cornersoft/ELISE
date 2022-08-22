@@ -255,9 +255,9 @@ void draw_skybox_tile_grid(Gfx **dlist, s8 background, s8 player, s8 colorIndex)
                     (*(SkyboxTexture *) segmented_to_virtual(sSkyboxTextures[background]))[tileIndex2];
                 Vtx *vertices = make_skybox_rect_static(tileIndex1, colorIndex);
 
-                // gDPSetTextureFilter((*dlist)++, G_TF_POINT)
+                // gDPSetTextureFilter((*dlist)++, G_TF_POINT);
                 if (gIsConsole) {
-                    gDPSetTextureFilter((*dlist)++, G_TF_POINT)
+                    gDPSetTextureFilter((*dlist)++, G_TF_POINT);
                 }
                 gLoadBlockTexture((*dlist)++, 32, 32, G_IM_FMT_RGBA, texture);
                 gSPVertex((*dlist)++, VIRTUAL_TO_PHYSICAL(vertices), 4, 0);
@@ -274,6 +274,9 @@ void draw_skybox_tile_grid(Gfx **dlist, s8 background, s8 player, s8 colorIndex)
                 (*(SkyboxTexture *) segmented_to_virtual(sSkyboxTextures[background]))[tileIndex];
             Vtx *vertices = make_skybox_rect(tileIndex, colorIndex);
 
+            if (background == BACKGROUND_HAUNTED) {
+                gDPSetTextureFilter((*dlist)++, G_TF_POINT);
+            }
             gLoadBlockTexture((*dlist)++, 32, 32, G_IM_FMT_RGBA, texture);
             gSPVertex((*dlist)++, VIRTUAL_TO_PHYSICAL(vertices), 4, 0);
             gSPDisplayList((*dlist)++, dl_draw_quad_verts_0123);
@@ -313,7 +316,7 @@ void *create_skybox_ortho_matrix(s8 player, s8 background) {
  * Creates the skybox's display list, then draws the 3x3 grid of tiles.
  */
 Gfx *init_skybox_display_list(s8 player, s8 background, s8 colorIndex) {
-    s32 dlCommandCount = 5 + (3 * 3) * 7; // 5 for the start and end, plus 9 skybox tiles
+    s32 dlCommandCount = 5 + (3 * 3) * 8; // 5 for the start and end, plus 9 skybox tiles
     if (background == BACKGROUND_OCEAN_SKY) {
         dlCommandCount = 5 + (10*8) * 8;
     }
