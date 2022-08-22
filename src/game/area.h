@@ -27,7 +27,7 @@ struct ObjectWarpNode {
 struct InstantWarp {
     /*0x00*/ u8 id; // 0 = 0x1B / 1 = 0x1C / 2 = 0x1D / 3 = 0x1E
     /*0x01*/ u8 area;
-    /*0x02*/ Vec3s displacement;
+    /*0x02*/ Vec3f displacement;
 };
 
 struct SpawnInfo {
