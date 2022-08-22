@@ -1310,7 +1310,7 @@ void update_mario_geometry_inputs(struct MarioState *m) {
         }
 
     } else {
-        level_trigger_warp(m, WARP_OP_DEATH);
+        level_trigger_warp(m, WARP_OP_DEATH, FALSE);
     }
 }
 
@@ -1612,6 +1612,31 @@ void mario_update_hitbox_and_cap_model(struct MarioState *m) {
     struct MarioBodyState *bodyState = m->marioBodyState;
     s32 flags = update_and_return_cap_flags(m);
 
+    if (shouldFadeMarioWarp > 0) {
+        animTotalForward -= (f32) ((s32) animTotalForward);
+        if (sDelayedWarpTimer > 0) {
+            m->fadeWarpOpacity = (u8) (((s32) sDelayedWarpTimer * 255) / shouldFadeMarioWarp);
+            m->fadeWarpOpacity = (u8) (sqr((s32) m->fadeWarpOpacity) / 255);
+            m->flags |= MARIO_TELEPORTING;
+            if (isDeathFloorWarp) {
+                m->forwardVel *= 0.95f;
+                m->vel[1] *= 0.95f;
+                animSlowdownRate *= 0.95f;
+            } else {
+                m->forwardVel *= 0.92f;
+                m->vel[1] *= 0.92f;
+                animSlowdownRate *= 0.92f;
+            }
+            animTotalForward += animSlowdownRate;
+        } else {
+            m->fadeWarpOpacity = 255;
+            m->flags &= ~MARIO_TELEPORTING;
+            shouldFadeMarioWarp = 0;
+            animSlowdownRate = 1.0f;
+            animTotalForward = 1.0f;
+        }
+    }
+
     if (flags & MARIO_VANISH_CAP) {
         bodyState->modelState = MODEL_STATE_NOISE_ALPHA;
     }
@@ -1712,7 +1737,7 @@ s32 execute_mario_action(UNUSED struct Object *obj) {
         static s32 startedBenchmark = FALSE;
         if (!startedBenchmark) {
             set_mario_action(gMarioState, ACT_IDLE, 0);
-            level_trigger_warp(gMarioState, WARP_OP_CREDITS_START);
+            level_trigger_warp(gMarioState, WARP_OP_CREDITS_START, FALSE);
             startedBenchmark = TRUE;
         }
 #endif

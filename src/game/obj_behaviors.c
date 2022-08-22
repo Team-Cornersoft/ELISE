@@ -224,14 +224,20 @@ void calc_obj_friction(f32 *objFriction, f32 floor_nY) {
     }
 }
 
-f32 get_gravity_mult(void) {
+f32 get_gravity_mult(u8 warpOverride) {
+    f32 res = 1.0f;
+
     switch (gCurrLevelNum) {
     case LEVEL_BBH:
-        return 0.5f;
+        res = 0.5f;
         break;
     }
 
-    return 1.0f;
+    if (shouldFadeMarioWarp > 0 && warpOverride) {
+        return (res * 0.4f);
+    }
+
+    return res;
 }
 
 /**
@@ -242,7 +248,7 @@ void calc_new_obj_vel_and_pos_y(struct Surface *objFloor, f32 objFloorY, f32 obj
     f32 floor_nY = objFloor->normal.y;
     f32 floor_nZ = objFloor->normal.z;
     f32 objFriction;
-    f32 gravityMult = get_gravity_mult();
+    f32 gravityMult = get_gravity_mult(FALSE);
 
     o->oVelY -= (o->oGravity * gravityMult);
 

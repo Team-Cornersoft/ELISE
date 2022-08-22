@@ -567,7 +567,7 @@ s32 perform_air_quarter_step(struct MarioState *m, Vec3f intendedPos, u32 stepAr
 }
 
 void apply_twirl_gravity(struct MarioState *m) {
-    f32 gravityMult = get_gravity_mult();
+    f32 gravityMult = get_gravity_mult(TRUE);
 
 #ifdef Z_TWIRL
     f32 Zmodifier = m->input & INPUT_Z_DOWN ? 4.0f : 1.0f;
@@ -608,7 +608,7 @@ u32 should_strengthen_gravity_for_jump_ascent(struct MarioState *m, f32 gravityM
 }
 
 void apply_gravity(struct MarioState *m) {
-    f32 gravityMult = get_gravity_mult();
+    f32 gravityMult = get_gravity_mult(TRUE);
 
     if (m->action == ACT_TWIRLING && m->vel[1] < 0.0f) {
         apply_twirl_gravity(m);

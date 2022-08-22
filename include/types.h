@@ -366,6 +366,9 @@ struct ObjectHitbox {
     /*0x0E*/ s16 hurtboxHeight;
 };
 
+extern f32 animSlowdownRate;
+extern f32 animTotalForward;
+
 struct Waypoint {
     s16 flags;
     Vec3s pos;
