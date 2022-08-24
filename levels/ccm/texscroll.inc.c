@@ -1,14 +1,3 @@
-void scroll_sts_mat_ccm_dl_animal_wall_C() {
-	static int intervalTex0 = 2;
-	static int curInterval0 = 2;
-	Gfx *mat = segmented_to_virtual(mat_ccm_dl_animal_wall_C);
-
-	if (--curInterval0 <= 0) {
-		shift_s(mat, 18, PACK_TILESIZE(0, 64));
-		curInterval0 = intervalTex0;
-	}
-};
-
 void scroll_sts_mat_ccm_dl_bird3() {
 	static int intervalTex0 = 2;
 	static int curInterval0 = 2;
@@ -53,17 +42,6 @@ void scroll_sts_mat_ccm_dl_bird1() {
 	}
 };
 
-void scroll_sts_mat_ccm_dl_animal_wall_B() {
-	static int intervalTex0 = 2;
-	static int curInterval0 = 2;
-	Gfx *mat = segmented_to_virtual(mat_ccm_dl_animal_wall_B);
-
-	if (--curInterval0 <= 0) {
-		shift_s(mat, 18, PACK_TILESIZE(0, 64));
-		curInterval0 = intervalTex0;
-	}
-};
-
 void scroll_sts_mat_ccm_dl_cat3() {
 	static int intervalTex0 = 2;
 	static int curInterval0 = 2;
@@ -104,17 +82,6 @@ void scroll_sts_mat_ccm_dl_cat1() {
 
 	if (--curInterval0 <= 0) {
 		shift_s(mat, 12, PACK_TILESIZE(0, 128));
-		curInterval0 = intervalTex0;
-	}
-};
-
-void scroll_sts_mat_ccm_dl_animal_wall_A() {
-	static int intervalTex0 = 2;
-	static int curInterval0 = 2;
-	Gfx *mat = segmented_to_virtual(mat_ccm_dl_animal_wall_A);
-
-	if (--curInterval0 <= 0) {
-		shift_s(mat, 19, PACK_TILESIZE(0, 64));
 		curInterval0 = intervalTex0;
 	}
 };
@@ -186,17 +153,14 @@ void scroll_ccm_dl_B_bone_and_poo_mesh_layer_4_vtx_0() {
 }
 
 void scroll_ccm() {
-	scroll_sts_mat_ccm_dl_animal_wall_C();
 	scroll_sts_mat_ccm_dl_bird3();
 	scroll_sts_mat_ccm_dl_bird4();
 	scroll_sts_mat_ccm_dl_bird2();
 	scroll_sts_mat_ccm_dl_bird1();
-	scroll_sts_mat_ccm_dl_animal_wall_B();
 	scroll_sts_mat_ccm_dl_cat3();
 	scroll_sts_mat_ccm_dl_cat4();
 	scroll_sts_mat_ccm_dl_cat2();
 	scroll_sts_mat_ccm_dl_cat1();
-	scroll_sts_mat_ccm_dl_animal_wall_A();
 	scroll_sts_mat_ccm_dl_dog3();
 	scroll_sts_mat_ccm_dl_dog4();
 	scroll_sts_mat_ccm_dl_dog2();
