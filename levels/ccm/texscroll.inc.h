@@ -1,0 +1,17 @@
+extern void scroll_sts_mat_ccm_dl_animal_wall_C();
+extern void scroll_sts_mat_ccm_dl_bird3();
+extern void scroll_sts_mat_ccm_dl_bird4();
+extern void scroll_sts_mat_ccm_dl_bird2();
+extern void scroll_sts_mat_ccm_dl_bird1();
+extern void scroll_sts_mat_ccm_dl_animal_wall_B();
+extern void scroll_sts_mat_ccm_dl_cat3();
+extern void scroll_sts_mat_ccm_dl_cat4();
+extern void scroll_sts_mat_ccm_dl_cat2();
+extern void scroll_sts_mat_ccm_dl_cat1();
+extern void scroll_sts_mat_ccm_dl_animal_wall_A();
+extern void scroll_sts_mat_ccm_dl_dog3();
+extern void scroll_sts_mat_ccm_dl_dog4();
+extern void scroll_sts_mat_ccm_dl_dog2();
+extern void scroll_sts_mat_ccm_dl_dog1();
+extern void scroll_ccm_dl_B_bone_and_poo_mesh_layer_4_vtx_0();
+extern void scroll_ccm();
