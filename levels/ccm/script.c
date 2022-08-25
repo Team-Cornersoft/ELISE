@@ -134,7 +134,7 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT(MODEL_STAR, 6100, 280, 5020, 0, 0, 0, 0x02000000, bhvStar),
 		OBJECT(MODEL_NONE, 6100, 80, 5020, 0, 0, 0, 0x00BA0000, bhvFadingWarp),
 		OBJECT(MODEL_PORTAL_WARP, -8000, -10, 9600, 0, -180, 0, 0x00CA0000, bhvPortalWarp),
-		OBJECT(MODEL_CUSTOM_DOOR_A, 6960, -300, 5450, 0, 90, 0, 0x00DA0000, bhvDoorWarp),
+		OBJECT(MODEL_CUSTOM_DOOR_A, 6960, -300, 5450, 0, -90, 0, 0x00DA0000, bhvDoorWarp),
 		OBJECT(MODEL_CUSTOM_DOOR_A, 1200, -300, 6310, 0, 0, 0, 0x00DB0000, bhvDoorWarp),
 		OBJECT(MODEL_CUSTOM_DOOR_B, -8000, 0, -2760, 0, -180, 0, 0x00DC0000, bhvDoorWarp),
 		TERRAIN(ccm_area_4_collision),
