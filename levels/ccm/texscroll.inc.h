@@ -11,4 +11,6 @@ extern void scroll_sts_mat_ccm_dl_dog4();
 extern void scroll_sts_mat_ccm_dl_dog2();
 extern void scroll_sts_mat_ccm_dl_dog1();
 extern void scroll_ccm_dl_B_bone_and_poo_mesh_layer_4_vtx_0();
+extern void scroll_ccm_dl_poopsdlide_001_mesh_layer_4_vtx_0();
+extern void scroll_ccm_dl_poopsdlide_002_mesh_layer_4_vtx_0();
 extern void scroll_ccm();

@@ -152,6 +152,50 @@ void scroll_ccm_dl_B_bone_and_poo_mesh_layer_4_vtx_0() {
 	currentX += deltaX;
 }
 
+void scroll_ccm_dl_poopsdlide_001_mesh_layer_4_vtx_0() {
+	int i = 0;
+	int count = 82;
+	int width = 128 * 0x20;
+	int height = 16 * 0x20;
+
+	static int currentX = 0;
+	int deltaX;
+	Vtx *vertices = segmented_to_virtual(ccm_dl_poopsdlide_001_mesh_layer_4_vtx_0);
+
+	deltaX = (int)(1.0 * 0x20) % width;
+
+	if (absi(currentX) > width) {
+		deltaX -= (int)(absi(currentX) / width) * width * signum_positive(deltaX);
+	}
+
+	for (i = 0; i < count; i++) {
+		vertices[i].n.tc[0] += deltaX;
+	}
+	currentX += deltaX;
+}
+
+void scroll_ccm_dl_poopsdlide_002_mesh_layer_4_vtx_0() {
+	int i = 0;
+	int count = 82;
+	int width = 128 * 0x20;
+	int height = 16 * 0x20;
+
+	static int currentX = 0;
+	int deltaX;
+	Vtx *vertices = segmented_to_virtual(ccm_dl_poopsdlide_002_mesh_layer_4_vtx_0);
+
+	deltaX = (int)(1.0 * 0x20) % width;
+
+	if (absi(currentX) > width) {
+		deltaX -= (int)(absi(currentX) / width) * width * signum_positive(deltaX);
+	}
+
+	for (i = 0; i < count; i++) {
+		vertices[i].n.tc[0] += deltaX;
+	}
+	currentX += deltaX;
+}
+
 void scroll_ccm() {
 	scroll_sts_mat_ccm_dl_bird3();
 	scroll_sts_mat_ccm_dl_bird4();
@@ -166,4 +210,6 @@ void scroll_ccm() {
 	scroll_sts_mat_ccm_dl_dog2();
 	scroll_sts_mat_ccm_dl_dog1();
 	scroll_ccm_dl_B_bone_and_poo_mesh_layer_4_vtx_0();
+	scroll_ccm_dl_poopsdlide_001_mesh_layer_4_vtx_0();
+	scroll_ccm_dl_poopsdlide_002_mesh_layer_4_vtx_0();
 }
