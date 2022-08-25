@@ -910,7 +910,7 @@ void check_sound_mode_menu_clicked_buttons(struct Object *soundModeButton) {
  * Loads a save file selected after it goes into a full screen state
  * retuning sSelectedFileNum to a save value defined in fileNum.
  */
-void load_main_menu_save_file(struct Object *fileButton, s32 fileNum) {
+void load_main_menu_save_file(UNUSED struct Object *fileButton, s32 fileNum) {
     sSelectedFileNum = fileNum;
 }
 

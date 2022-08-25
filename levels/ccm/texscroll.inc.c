@@ -134,7 +134,6 @@ void scroll_ccm_dl_B_bone_and_poo_mesh_layer_4_vtx_0() {
 	int i = 0;
 	int count = 82;
 	int width = 128 * 0x20;
-	int height = 16 * 0x20;
 
 	static int currentX = 0;
 	int deltaX;
@@ -156,7 +155,6 @@ void scroll_ccm_dl_poopsdlide_001_mesh_layer_4_vtx_0() {
 	int i = 0;
 	int count = 82;
 	int width = 128 * 0x20;
-	int height = 16 * 0x20;
 
 	static int currentX = 0;
 	int deltaX;
@@ -178,7 +176,6 @@ void scroll_ccm_dl_poopsdlide_002_mesh_layer_4_vtx_0() {
 	int i = 0;
 	int count = 82;
 	int width = 128 * 0x20;
-	int height = 16 * 0x20;
 
 	static int currentX = 0;
 	int deltaX;
