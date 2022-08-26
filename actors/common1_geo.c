@@ -25,3 +25,6 @@
 #include "white_particle/geo.inc.c"
 #include "wooden_signpost/geo.inc.c"
 #include "tree/geo.inc.c"
+
+#include "custom_dream_drop_red/geo.inc.c"
+#include "custom_dream_drop_blue/geo.inc.c"

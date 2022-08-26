@@ -17,7 +17,7 @@ extern Vtx bob_dl_A_Leaves_mesh_layer_1_vtx_cull[8];
 extern Vtx bob_dl_A_Leaves_mesh_layer_1_vtx_0[59];
 extern Gfx bob_dl_A_Leaves_mesh_layer_1_tri_0[];
 extern Vtx bob_dl_A_Tree_A_mesh_layer_1_vtx_cull[8];
-extern Vtx bob_dl_A_Tree_A_mesh_layer_1_vtx_0[314];
+extern Vtx bob_dl_A_Tree_A_mesh_layer_1_vtx_0[328];
 extern Gfx bob_dl_A_Tree_A_mesh_layer_1_tri_0[];
 extern Vtx bob_dl_A_Tree_A_mesh_layer_4_vtx_cull[8];
 extern Vtx bob_dl_A_Tree_A_mesh_layer_4_vtx_0[104];

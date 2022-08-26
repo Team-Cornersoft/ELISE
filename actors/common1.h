@@ -294,4 +294,10 @@ extern const Gfx wooden_signpost_seg3_dl_0302DCD0[];
 extern const Gfx wooden_signpost_seg3_dl_0302DD08[];
 extern const Collision wooden_signpost_seg3_collision_0302DD80[];
 
+#include "custom_dream_drop_red/geo_header.h"
+
+#include "custom_dream_drop_blue/geo_header.h"
+
+#include "transparent_star/geo_header.h"
+
 #endif

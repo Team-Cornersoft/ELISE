@@ -393,7 +393,7 @@ extern Vtx ccm_dl_B_bone_and_poo_mesh_layer_4_vtx_cull[8];
 extern Vtx ccm_dl_B_bone_and_poo_mesh_layer_4_vtx_0[82];
 extern Gfx ccm_dl_B_bone_and_poo_mesh_layer_4_tri_0[];
 extern Vtx ccm_dl_poopsdlide_mesh_layer_1_vtx_cull[8];
-extern Vtx ccm_dl_poopsdlide_mesh_layer_1_vtx_0[157];
+extern Vtx ccm_dl_poopsdlide_mesh_layer_1_vtx_0[145];
 extern Gfx ccm_dl_poopsdlide_mesh_layer_1_tri_0[];
 extern Vtx ccm_dl_poopsdlide_001_mesh_layer_1_vtx_cull[8];
 extern Vtx ccm_dl_poopsdlide_001_mesh_layer_1_vtx_0[116];

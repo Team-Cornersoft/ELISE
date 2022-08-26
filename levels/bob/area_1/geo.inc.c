@@ -3,7 +3,7 @@
 const GeoLayout bob_area_1_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_ALPHA, 0, -3300, 0, 0, 0, -180, bob_dl_A_Leaves_mesh_layer_4),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_ALPHA, 0, -3300, 0, bob_dl_A_Leaves_mesh_layer_4),
 		GEO_OPEN_NODE(),
 			GEO_DISPLAY_LIST(LAYER_OPAQUE, bob_dl_A_Leaves_mesh_layer_1),
 		GEO_CLOSE_NODE(),
