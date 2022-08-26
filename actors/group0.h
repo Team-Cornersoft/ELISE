@@ -339,4 +339,20 @@ extern const Gfx white_particle_small_unused_dl[];
 
 #include "custom_portal_w/collision_header.h"
 
+#include "animated_wall_catA/geo_header.h"
+
+#include "animated_wall_catB/geo_header.h"
+
+#include "animated_wall_birdA/geo_header.h"
+
+#include "animated_wall_birdB/geo_header.h"
+
+#include "animated_wall_dinoA/geo_header.h"
+
+#include "animated_wall_dinoB/geo_header.h"
+
+#include "animated_wall_dogA/geo_header.h"
+
+#include "animated_wall_dogB/geo_header.h"
+
 #endif

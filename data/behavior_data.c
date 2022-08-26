@@ -6091,4 +6091,11 @@ const BehaviorScript bhvIntroScene[] = {
     END_LOOP(),
 };
 
-
+const BehaviorScript bhvAnimatedWall[] = {
+    BEGIN(OBJ_LIST_DEFAULT),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    CALL_NATIVE(bhv_animated_wall_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_animated_wall_loop),
+    END_LOOP(),
+};

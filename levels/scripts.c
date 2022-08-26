@@ -121,6 +121,15 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_CUSTOM_DOOR_B,           custom_door_b_geo),
     LOAD_MODEL_FROM_GEO(MODEL_PORTAL_WARP,             custom_portal_w_geo),
 
+    LOAD_MODEL_FROM_GEO(MODEL_ANIMATED_WALL_CAT_A,     animated_wall_catA_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_ANIMATED_WALL_CAT_B,     animated_wall_catB_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_ANIMATED_WALL_DOG_A,     animated_wall_dogA_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_ANIMATED_WALL_DOG_B,     animated_wall_dogB_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_ANIMATED_WALL_DINO_A,     animated_wall_dinoA_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_ANIMATED_WALL_DINO_B,     animated_wall_dinoB_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_ANIMATED_WALL_BIRD_A,     animated_wall_birdA_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_ANIMATED_WALL_BIRD_B,     animated_wall_birdB_geo),
+
     FREE_LEVEL_POOL(),
     CALL(/*arg*/ 0, /*func*/ lvl_init_from_save_file),
     LOOP_BEGIN(),

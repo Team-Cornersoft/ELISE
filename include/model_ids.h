@@ -549,6 +549,14 @@
 #define MODEL_CUSTOM_DOOR_A               0xF0        // Door for apartments   
 #define MODEL_CUSTOM_DOOR_B               0xF1        // Door for apartment building services
 #define MODEL_PORTAL_WARP                 0xF2        // Generic warp portal
+#define MODEL_ANIMATED_WALL_CAT_A         0xF3
+#define MODEL_ANIMATED_WALL_CAT_B         0xF4
+#define MODEL_ANIMATED_WALL_DOG_A         0xF5
+#define MODEL_ANIMATED_WALL_DOG_B         0xF6
+#define MODEL_ANIMATED_WALL_DINO_A        0xF7
+#define MODEL_ANIMATED_WALL_DINO_B        0xF8
+#define MODEL_ANIMATED_WALL_BIRD_A        0xF9
+#define MODEL_ANIMATED_WALL_BIRD_B        0xFA
 
 #ifdef IA8_30FPS_COINS
 #define MODEL_SILVER_COIN                 0xE2        // silver_coin_geo

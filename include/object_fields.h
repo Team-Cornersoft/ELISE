@@ -739,6 +739,8 @@
 #define oMenuManagerButton1 OBJECT_FIELD_S32(O_HOME_X_INDEX)
 #define oMenuManagerButton2 OBJECT_FIELD_S32(O_HOME_Y_INDEX)
 
+#define           oAnimatedWallState     OBJECT_FIELD_S32(0x1B)
+
 /* Manta Ray */
 #define /*0x0F4*/ O_MANTA_TARGET_ANGLE_INDEX 0x1B
 #define /*0x0F4*/ O_MANTA_TARGET_PITCH_INDEX (O_MANTA_TARGET_ANGLE_INDEX + 0) // 0x1B
