@@ -20,7 +20,7 @@ extern Vtx bitdw_dl_A_Arena_mesh_layer_5_vtx_cull[8];
 extern Vtx bitdw_dl_A_Arena_mesh_layer_5_vtx_0[96];
 extern Gfx bitdw_dl_A_Arena_mesh_layer_5_tri_0[];
 extern Vtx bitdw_dl_B_Elise_mesh_layer_5_vtx_cull[8];
-extern Vtx bitdw_dl_B_Elise_mesh_layer_5_vtx_0[42];
+extern Vtx bitdw_dl_B_Elise_mesh_layer_5_vtx_0[44];
 extern Gfx bitdw_dl_B_Elise_mesh_layer_5_tri_0[];
 extern Vtx bitdw_dl_B_Elise_mesh_layer_1_vtx_cull[8];
 extern Vtx bitdw_dl_B_Elise_mesh_layer_1_vtx_0[720];

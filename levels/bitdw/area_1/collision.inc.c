@@ -317,7 +317,7 @@ const Collision bitdw_area_1_collision[] = {
 	COL_TRI(83, 78, 77),
 	COL_TRI(74, 71, 83),
 	COL_TRI(83, 77, 74),
-	COL_TRI_INIT(SURFACE_DEFAULT, 8),
+	COL_TRI_INIT(SURFACE_DEATH_PLANE, 8),
 	COL_TRI(110, 111, 112),
 	COL_TRI(110, 112, 113),
 	COL_TRI(114, 110, 113),
