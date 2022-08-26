@@ -3,6 +3,7 @@
 const GeoLayout ccm_area_4_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 1065, -50, 5005, ccm_dl_B_NosePerson_A_mesh_layer_1),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 1200, 400, 5450, ccm_dl_bathroom_mesh_layer_1),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 6100, 400, 5450, 0, 90, 0, ccm_dl_bathroom_2_mesh_layer_1),
 		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_TRANSPARENT, -8000, 687, 2005, 0, -180, 0, ccm_dl_portal_room_mesh_layer_5),
