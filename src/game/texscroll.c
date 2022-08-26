@@ -6,6 +6,9 @@
 #include "tile_scroll.h"
 #include "texscroll.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-variable"
+
 #ifdef TARGET_N64
 #define SCROLL_CONDITION(condition) condition
 #else
@@ -35,3 +38,5 @@ void scroll_textures() {
 	}
 
 }
+
+#pragma GCC diagnostic pop
