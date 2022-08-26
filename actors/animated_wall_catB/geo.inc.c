@@ -3,7 +3,7 @@
 const GeoLayout animated_wall_catB_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, animated_wall_catB_wall_animated_mesh_layer_5),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, animated_wall_catB_wall_animated_001_mesh_layer_5),
 		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, animated_wall_catB_material_revert_render_settings),
 	GEO_CLOSE_NODE(),
 	GEO_END(),

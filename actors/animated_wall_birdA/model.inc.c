@@ -581,6 +581,7 @@ Gfx animated_wall_birdA_wall_animated_002_mesh_layer_5_tri_1[] = {
 Gfx mat_animated_wall_birdA_animal_wall_animated_2_002[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0),
+	gsSPClearGeometryMode(G_SHADE),
 	gsDPSetTextureFilter(G_TF_POINT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureLUT(G_TT_RGBA16),
@@ -605,6 +606,7 @@ Gfx mat_animated_wall_birdA_animal_wall_animated_2_002[] = {
 
 Gfx mat_revert_animated_wall_birdA_animal_wall_animated_2_002[] = {
 	gsDPPipeSync(),
+	gsSPSetGeometryMode(G_SHADE),
 	gsDPSetTextureFilter(G_TF_BILERP),
 	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
@@ -613,6 +615,7 @@ Gfx mat_revert_animated_wall_birdA_animal_wall_animated_2_002[] = {
 Gfx mat_animated_wall_birdA_animal_wall_animated_002[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0),
+	gsSPClearGeometryMode(G_SHADE),
 	gsDPSetTextureFilter(G_TF_POINT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureLUT(G_TT_RGBA16),
@@ -637,6 +640,7 @@ Gfx mat_animated_wall_birdA_animal_wall_animated_002[] = {
 
 Gfx mat_revert_animated_wall_birdA_animal_wall_animated_002[] = {
 	gsDPPipeSync(),
+	gsSPSetGeometryMode(G_SHADE),
 	gsDPSetTextureFilter(G_TF_BILERP),
 	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
