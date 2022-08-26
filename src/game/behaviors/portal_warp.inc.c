@@ -20,7 +20,7 @@ void bhv_portal_warp_loop(void) {
     }
 
     if (gMarioState->floor != NULL) {
-        if (gMarioState->floor->type == SURFACE_PORTAL_WARP) {
+        if (gMarioState->floor->type == SURFACE_PORTAL_WARP && gMarioState->floor->object == o) {
             o->hitboxRadius = 200000.0f;
             o->hitboxHeight = 200000.0f;
         }
