@@ -23,7 +23,9 @@ void bhv_collect_star_init(void) {
 #endif
         o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_TRANSPARENT_STAR];
     } else {
-        o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_STAR];
+        if (obj_has_model(o, MODEL_NONE)) {
+            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_STAR];
+        }
     }
 
     obj_set_hitbox(o, &sCollectStarHitbox);
@@ -123,7 +125,8 @@ void bhv_star_spawn_loop(void) {
 }
 
 struct Object *spawn_star(struct Object *starObj, f32 x, f32 y, f32 z) {
-    starObj = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStarSpawnCoordinates, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+    // starObj = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStarSpawnCoordinates, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+    starObj = spawn_object_abs_with_rot(o, 0, MODEL_DREAM_DROP_BLUE, bhvStarSpawnCoordinates, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
     starObj->oBehParams = o->oBehParams;
     vec3f_set(&starObj->oHomeVec, x, y, z);
     starObj->oFaceAnglePitch = 0;
@@ -159,7 +162,8 @@ void bhv_hidden_red_coin_star_init(void) {
 
     s16 numRedCoinsRemaining = count_objects_with_behavior(bhvRedCoin);
     if (numRedCoinsRemaining == 0) {
-        starObj = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+        // starObj = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+        starObj = spawn_object_abs_with_rot(o, 0, MODEL_DREAM_DROP_BLUE, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
         starObj->oBehParams = o->oBehParams;
         o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
     }

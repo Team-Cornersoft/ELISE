@@ -94,15 +94,24 @@ void render_100_coin_star(u8 stars) {
     if (stars & STAR_FLAG_ACT_100_COINS) {
         // If the 100 coin star has been collected, create a new star selector next to the coin score.
     #ifdef WIDE
+        // if (gConfig.widescreen) {
+        //     sStarSelectorModels[6] = spawn_object_abs_with_rot(o, 0, MODEL_STAR,
+        //                                                     bhvActSelectorStarType, (370 * 4.0f) / 3, 24, -300, 0, 0, 0);
+        // } else {
+        //     sStarSelectorModels[6] = spawn_object_abs_with_rot(o, 0, MODEL_STAR,
+        //                                                     bhvActSelectorStarType, 370, 24, -300, 0, 0, 0);
+        // }
         if (gConfig.widescreen) {
-            sStarSelectorModels[6] = spawn_object_abs_with_rot(o, 0, MODEL_STAR,
+            sStarSelectorModels[6] = spawn_object_abs_with_rot(o, 0, MODEL_DREAM_DROP_BLUE,
                                                             bhvActSelectorStarType, (370 * 4.0f) / 3, 24, -300, 0, 0, 0);
         } else {
-            sStarSelectorModels[6] = spawn_object_abs_with_rot(o, 0, MODEL_STAR,
+            sStarSelectorModels[6] = spawn_object_abs_with_rot(o, 0, MODEL_DREAM_DROP_BLUE,
                                                             bhvActSelectorStarType, 370, 24, -300, 0, 0, 0);
         }
     #else
-        sStarSelectorModels[6] = spawn_object_abs_with_rot(o, 0, MODEL_STAR,
+        // sStarSelectorModels[6] = spawn_object_abs_with_rot(o, 0, MODEL_STAR,
+        //                                                 bhvActSelectorStarType, 370, 24, -300, 0, 0, 0);
+        sStarSelectorModels[6] = spawn_object_abs_with_rot(o, 0, MODEL_DREAM_DROP_BLUE,
                                                         bhvActSelectorStarType, 370, 24, -300, 0, 0, 0);
     #endif
 
@@ -125,7 +134,8 @@ void bhv_act_selector_init(void) {
     sVisibleStars = 0;
     while (i != sObtainedStars) {
         if (stars & (1 << sVisibleStars)) { // Star has been collected
-            selectorModelIDs[sVisibleStars] = MODEL_STAR;
+            // selectorModelIDs[sVisibleStars] = MODEL_STAR;
+            selectorModelIDs[sVisibleStars] = MODEL_DREAM_DROP_BLUE;
             i++;
         } else { // Star has not been collected
             selectorModelIDs[sVisibleStars] = MODEL_TRANSPARENT_STAR;

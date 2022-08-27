@@ -618,9 +618,10 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
                 if (!(m->actionArg & 1)) {
                     level_trigger_warp(m, WARP_OP_STAR_EXIT, FALSE);
                 } else {
-                    enable_time_stop();
-                    create_dialog_box_with_response(gLastCompletedStarNum == 7 ? DIALOG_013 : DIALOG_014);
-                    m->actionState = ACT_STATE_STAR_DANCE_DO_SAVE;
+                    // enable_time_stop();
+                    // create_dialog_box_with_response(gLastCompletedStarNum == 7 ? DIALOG_013 : DIALOG_014);
+                    // m->actionState = ACT_STATE_STAR_DANCE_DO_SAVE;
+                    m->actionState = ACT_STATE_STAR_DANCE_RETURN;
                 }
                 break;
         }
@@ -839,7 +840,8 @@ s32 act_unlocking_star_door(struct MarioState *m) {
             break;
         case ACT_STATE_UNLOCKING_STAR_DOOR_SUMMON_STAR:
             if (is_anim_at_end(m)) {
-                spawn_object(m->marioObj, MODEL_STAR, bhvUnlockDoorStar);
+                // spawn_object(m->marioObj, MODEL_STAR, bhvUnlockDoorStar);
+                spawn_object(m->marioObj, MODEL_DREAM_DROP_BLUE, bhvUnlockDoorStar);
                 m->actionState = ACT_STATE_UNLOCKING_STAR_DOOR_APPROACH_DOOR;
             }
             break;
@@ -2020,7 +2022,9 @@ static void end_peach_cutscene_mario_landing(struct MarioState *m) {
         // make wing cap run out
         m->capTimer = 60;
 
-        sEndJumboStarObj = spawn_object_abs_with_rot(gCurrentObject, 0, MODEL_STAR, bhvStaticObject, 0,
+        // sEndJumboStarObj = spawn_object_abs_with_rot(gCurrentObject, 0, MODEL_STAR, bhvStaticObject, 0,
+        //                                              2528, -1800, 0, 0, 0);
+        sEndJumboStarObj = spawn_object_abs_with_rot(gCurrentObject, 0, MODEL_DREAM_DROP_BLUE, bhvStaticObject, 0,
                                                      2528, -1800, 0, 0, 0);
         obj_scale(sEndJumboStarObj, 3.0f);
         advance_cutscene_step(m);

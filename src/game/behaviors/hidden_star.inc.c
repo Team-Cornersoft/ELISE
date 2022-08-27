@@ -3,7 +3,8 @@
 void bhv_hidden_star_init(void) {
     s16 remainingTriggers = count_objects_with_behavior(bhvHiddenStarTrigger);
     if (remainingTriggers == 0) {
-        struct Object *starObj = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+        // struct Object *starObj = spawn_object_abs_with_rot(o, 0, MODEL_STAR, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
+        struct Object *starObj = spawn_object_abs_with_rot(o, 0, MODEL_DREAM_DROP_BLUE, bhvStar, o->oPosX, o->oPosY, o->oPosZ, 0, 0, 0);
         starObj->oBehParams = o->oBehParams;
         o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
     }
