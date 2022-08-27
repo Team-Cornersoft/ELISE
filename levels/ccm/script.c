@@ -31,8 +31,7 @@ const LevelScript level_ccm_entry[] = {
 	LOAD_YAY0(0x08, _common0_yay0SegmentRomStart, _common0_yay0SegmentRomEnd), 
 	LOAD_RAW(0x0F, _common0_geoSegmentRomStart, _common0_geoSegmentRomEnd), 
 	ALLOC_LEVEL_POOL(),
-	MARIO(MODEL_MARIO, 0x00000001, bhvMario), 
-	JUMP_LINK(script_func_global_1), 
+	MARIO(MODEL_MARIO, 0x00000001, bhvMario),
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
