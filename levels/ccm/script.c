@@ -81,6 +81,7 @@ const LevelScript level_ccm_entry[] = {
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_UNDERGROUND, 0x01, 0x02),
+		SET_ECHO(0x00, 0x00),
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
 
@@ -160,6 +161,8 @@ const LevelScript level_ccm_entry[] = {
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
+		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_SOUND_PLAYER, 0x01, 0x02),
+		SET_ECHO(0x80, 0x80), // No reverb
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
 

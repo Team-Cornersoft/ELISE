@@ -6933,22 +6933,22 @@ layer_end
 chan_setbank 6
 chan_setinstr 13
 chan_setpanmix 127
-chan_setval 32
+chan_setval 48
 chan_call .set_reverb
 chan_setlayer 0, .layer_custom_warp
 chan_setlayer 1, .layer_custom_warp_2
 chan_end
 
 .layer_custom_warp:
-layer_setpan 0x18
-layer_portamento 0x1, 24, 0x180
-layer_note1 0, 0x74, 127
+layer_setpan 0x10
+layer_portamento 0x1, 24, 0x1C0
+layer_note1 0, 0x90, 127
 layer_end
 
 .layer_custom_warp_2:
-layer_setpan 0x67
-layer_portamento 0x1, 23, 0x180
-layer_note1 0, 0x74, 127
+layer_setpan 0x6F
+layer_portamento 0x1, 23, 0x1C0
+layer_note1 0, 0x90, 127
 layer_end
 
 .sound_menu_change_select:

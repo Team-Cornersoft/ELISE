@@ -903,6 +903,17 @@ static void level_cmd_puppylight_node(void) {
     sCurrentCmd = CMD_NEXT;
 }
 
+
+static void level_cmd_set_echo(void) {
+    if (sCurrAreaIndex >= 0 && sCurrAreaIndex < AREA_COUNT) {
+        if (gIsConsole)
+            gAreaData[sCurrAreaIndex].echoOverride = CMD_GET(s8, 2);
+        else
+            gAreaData[sCurrAreaIndex].echoOverride = CMD_GET(s8, 3);
+    }
+    sCurrentCmd = CMD_NEXT;
+}
+
 static void (*LevelScriptJumpTable[])(void) = {
     /*LEVEL_CMD_LOAD_AND_EXECUTE            */ level_cmd_load_and_execute,
     /*LEVEL_CMD_EXIT_AND_EXECUTE            */ level_cmd_exit_and_execute,
@@ -969,6 +980,7 @@ static void (*LevelScriptJumpTable[])(void) = {
     /*LEVEL_CMD_CHANGE_AREA_SKYBOX          */ level_cmd_change_area_skybox,
     /*LEVEL_CMD_PUPPYLIGHT_ENVIRONMENT      */ level_cmd_puppylight_environment,
     /*LEVEL_CMD_PUPPYLIGHT_NODE             */ level_cmd_puppylight_node,
+    /*LEVEL_CMD_SET_ECHO                    */ level_cmd_set_echo,
 };
 
 struct LevelCommand *level_script_execute(struct LevelCommand *cmd) {

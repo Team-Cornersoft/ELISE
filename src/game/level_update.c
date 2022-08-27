@@ -566,9 +566,10 @@ s16 music_unchanged_through_warp(s16 arg) {
 
     s16 destArea = warpNode->node.destArea;
     s16 unchanged = TRUE;
-    s16 currBgMusic;
 
-#ifndef DISABLE_LEVEL_SPECIFIC_CHECKS
+#ifdef ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS
+    s16 levelNum = warpNode->node.destLevel & 0x7F;
+    s16 currBgMusic;
     if (levelNum == LEVEL_BOB && levelNum == gCurrLevelNum && destArea == gCurrAreaIndex) {
         currBgMusic = get_current_background_music();
         if (currBgMusic == SEQUENCE_ARGS(4, SEQ_EVENT_POWERUP | SEQ_VARIATION)
@@ -587,7 +588,7 @@ s16 music_unchanged_through_warp(s16 arg) {
         if (get_current_background_music() != destParam2) {
             unchanged = FALSE;
         }
-#ifndef DISABLE_LEVEL_SPECIFIC_CHECKS
+#ifdef ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS
     }
 #endif
     return unchanged;
@@ -944,6 +945,11 @@ void initiate_delayed_warp(void) {
                         if (sWarpDest.type != WARP_TYPE_CHANGE_LEVEL) {
                             level_set_transition(2, NULL);
                         }
+
+                        if (sDelayedWarpOp == WARP_OP_PORTAL_WARP) {
+                            gameFreezeFrames = 20;
+                        }
+
                         break;
                 }
             }

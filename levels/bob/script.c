@@ -66,6 +66,7 @@ const LevelScript level_bob_entry[] = {
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_LOSS, 0x01, 0x02),
+		SET_ECHO(0x16, 0x18),
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
 

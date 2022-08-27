@@ -1,3 +1,5 @@
+// NOTE: BitDW is what is actually being used for the boss!
+
 #include <ultra64.h>
 #include "sm64.h"
 #include "behavior_data.h"

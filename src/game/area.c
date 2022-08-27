@@ -205,6 +205,7 @@ void clear_areas(void) {
         gAreaData[i].musicParam = 0;
         gAreaData[i].musicParam2 = 0;
         gAreaData[i].reverbPreset = 0;
+        gAreaData[i].echoOverride = 0x100; // Disabled
     }
 }
 
