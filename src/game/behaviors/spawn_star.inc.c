@@ -23,8 +23,15 @@ void bhv_collect_star_init(void) {
 #endif
         o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_TRANSPARENT_STAR];
     } else {
-        if (obj_has_model(o, MODEL_NONE)) {
-            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_STAR];
+        
+#ifdef GLOBAL_STAR_IDS
+        if (starId >= 100) {
+#else
+        if (starId >= 4) {
+#endif
+            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_DREAM_DROP_RED];
+        } else {
+            o->header.gfx.sharedChild = gLoadedGraphNodes[MODEL_DREAM_DROP_BLUE];
         }
     }
 
