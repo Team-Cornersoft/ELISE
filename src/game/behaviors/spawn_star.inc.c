@@ -15,8 +15,8 @@ static struct ObjectHitbox sCollectStarHitbox = {
 void bhv_collect_star_init(void) {
     s8 starId = GET_BPARAM1(o->oBehParams);
 #ifdef GLOBAL_STAR_IDS
-    u8 currentLevelStarFlags = save_file_get_star_flags((gCurrSaveFileNum - 1), COURSE_NUM_TO_INDEX(starId / 7));
-    if (currentLevelStarFlags & (1 << (starId % 7))) {
+    u8 currentLevelStarFlags = save_file_get_star_flags((gCurrSaveFileNum - 1), COURSE_NUM_TO_INDEX((u8) starId / 7));
+    if (currentLevelStarFlags & (1 << ((u8) starId % 7))) {
 #else
     u8 currentLevelStarFlags = save_file_get_star_flags((gCurrSaveFileNum - 1), COURSE_NUM_TO_INDEX(gCurrCourseNum));
     if (currentLevelStarFlags & (1 << starId)) {
@@ -25,7 +25,7 @@ void bhv_collect_star_init(void) {
     } else {
         
 #ifdef GLOBAL_STAR_IDS
-        if (starId >= 100) {
+        if ((u8) starId >= 100) {
 #else
         if (starId >= 4) {
 #endif
