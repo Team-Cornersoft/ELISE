@@ -1143,6 +1143,12 @@ s16 snap_to_22_5_degrees(u16 angle) {
 }
 #undef DEG_22_5
 
+void set_camera_8_dir_angle(void) {
+    if (gCurrLevelNum == LEVEL_CCM && gCurrAreaIndex == 1 && gPlayerSpawnInfos[0].startPos[2] >= -2500) {
+        s8DirModeBaseYaw = DEGREES(90);
+    }
+}
+
 /**
  * A mode that only has 8 camera angles, 45 degrees apart
  */

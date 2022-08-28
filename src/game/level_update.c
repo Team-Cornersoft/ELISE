@@ -378,6 +378,7 @@ void init_mario_after_warp(void) {
     reset_camera(gCurrentArea->camera);
     sWarpDest.type = WARP_TYPE_NOT_WARPING;
     sDelayedWarpOp = WARP_OP_NONE;
+    set_camera_8_dir_angle();
 
     switch (marioSpawnType) {
         case MARIO_SPAWN_PIPE:

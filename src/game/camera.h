@@ -737,7 +737,7 @@ extern s32 parallelLakituCamSpeeds[NUM_CAMERA_SPEED_OPTIONS];
 extern s8 curPLSpeed;
 
 // TODO: sort all of this extremely messy shit out after the split
-
+void set_camera_8_dir_angle(void);
 void set_camera_shake_from_hit(s16 shake);
 void set_environmental_camera_shake(s16 shake);
 void set_camera_shake_from_point(s16 shake, f32 posX, f32 posY, f32 posZ);
