@@ -50,40 +50,38 @@
 			"sound_hi": {"sample": "custom_xylophone_hi", "tuning": 0.108521}
         },
         "pizzicato": {
-            "release_rate": 50,
+            "release_rate": 35,
 			"normal_range_lo": 28,
             "normal_range_hi": 33,
             "envelope": "normal",
-            "sound_lo": {"sample": "custom_pizzicatoBass_lo", "tuning": 1.378125},
-			"sound": {"sample": "custom_pizzicatoBass_mid", "tuning": 0.974482},
-			"sound_hi": {"sample": "custom_pizzicatoBass_hi", "tuning": 0.689063}
+            "sound_lo": {"sample": "custom_pizzicato_lo", "tuning": 0.459894},
+			"sound": {"sample": "custom_pizzicato_mid", "tuning": 0.344531},
+			"sound_hi": {"sample": "custom_pizzicato_hi", "tuning": 0.172266}
         },
 		"harps": {
-            "release_rate": 10,
+            "release_rate": 35,
             "normal_range_lo": 35,
             "normal_range_hi": 46,
-            "envelope": "longerFadeOut",
-            "sound_lo": {"sample": "custom_harp_lo", "tuning": 2},
-			"sound": {"sample": "custom_harp_mid", "tuning": 1},
-			"sound_hi": {"sample": "custom_harp_hi", "tuning": 0.5}
+            "envelope": "normal",
+            "sound_lo": {"sample": "custom_harp_lo", "tuning": 0.546909},
+			"sound": {"sample": "custom_harp_mid", "tuning": 0.434082},
+			"sound_hi": {"sample": "custom_harp_hi", "tuning": 0.325194}
         },
 		"hiHats": {
             "release_rate": 10,
-            "normal_range_lo": 23,
-            "normal_range_hi": 23,
+            "normal_range_lo": 24,
             "envelope": "normal",
-            "sound_lo": {"sample": "custom_closedHiHat", "tuning": 1.948963},
-            "sound": {"sample": "custom_middleHiHat", "tuning": 1.736329},
-            "sound_hi": {"sample": "custom_openHiHat", "tuning": 1.546893}
+            "sound_lo": {"sample": "custom_closedHiHat", "tuning": 2.828427},
+            "sound": {"sample": "custom_openHiHat", "tuning": 2.244924}
         },
         "crashCymbal": {
             "release_rate": 10,
             "normal_range_lo": 28,
             "normal_range_hi": 28,
             "envelope": "normal",
-            "sound_lo": {"sample": "custom_rideCymbal", "tuning": 1.448549},
-            "sound": {"sample": "custom_crashCymbal", "tuning": 1.625941},
-            "sound_hi": {"sample": "custom_rideCymbal", "tuning": 1.448549}
+            "sound_lo": "custom_rideCymbal",
+            "sound": "custom_crashCymbal",
+            "sound_hi": "custom_rideCymbal"
         },
         "percussion": [
             {"release_rate": 10, "pan": 62, "envelope": "normal", "sound": {"sample": "custom_perc_honk_lo", "tuning": 0.210224}},
@@ -102,7 +100,7 @@
             {"release_rate": 10, "pan": 62, "envelope": "normal", "sound": {"sample": "custom_perc_honk_lo", "tuning": 0.4454495}},
             {"release_rate": 10, "pan": 62, "envelope": "normal", "sound": {"sample": "custom_perc_honk_lo", "tuning": 0.4719375}},
             {"release_rate": 10, "pan": 62, "envelope": "normal", "sound": {"sample": "custom_perc_kickDrum", "tuning": 1}, "comment": "Note 36 (Starting Point)"},
-            {"release_rate": 10, "pan": 57, "envelope": "normal", "sound": {"sample": "custom_perc_blockAfterKick", "tuning": 0.689063}},
+            {"release_rate": 10, "pan": 57, "envelope": "normal", "sound": "custom_perc_honk_lo"},
             {"release_rate": 10, "pan": 65, "envelope": "normal", "sound": {"sample": "custom_perc_snareDrum", "tuning": 1}},
             {"release_rate": 10, "pan": 66, "envelope": "normal", "sound": {"sample": "custom_perc_ClapT", "tuning": 0.689063}},
             {"release_rate": 10, "pan": 66, "envelope": "normal", "sound": {"sample": "custom_perc_snareDrum", "tuning": 1}},
