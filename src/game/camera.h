@@ -90,6 +90,9 @@
 #define CAM_MODE_LAKITU_WAS_ZOOMED_OUT  0x02
 #define CAM_MODE_MARIO_SELECTED         0x04
 
+#define LAST_STATIONARY_ANGLE_NONE 0x01000000
+#define NUM_CAMERA_SPEED_OPTIONS 5
+
 enum CameraSelection {
     CAM_SELECTION_NONE,
     CAM_SELECTION_MARIO,
@@ -100,6 +103,22 @@ enum CameraAngle {
     CAM_ANGLE_NONE,
     CAM_ANGLE_MARIO,
     CAM_ANGLE_LAKITU,
+};
+
+enum UserCameraModes {
+    USERCAM_FREECAM,
+    USERCAM_VANILLA,
+    USERCAM_COUNT,
+};
+
+enum CameraDirections {
+    CAMERA_ROTATE_NONE,
+    CAMERA_ROTATE_LEFT,
+    CAMERA_ROTATE_RIGHT,
+    CAMERA_ROTATE_SLOWRES_LEFT,
+    CAMERA_ROTATE_SLOWRES_RIGHT,
+    CAMERA_ROTATE_UP,
+    CAMERA_ROTATE_DOWN,
 };
 
 enum CameraModes {
@@ -713,6 +732,9 @@ extern struct Camera *gCamera;
 extern struct Object *gCutsceneFocus;
 extern struct Object *gSecondCameraFocus;
 extern u8 gRecentCutscene;
+extern s8 userCameraMode;
+extern s32 parallelLakituCamSpeeds[NUM_CAMERA_SPEED_OPTIONS];
+extern s8 curPLSpeed;
 
 // TODO: sort all of this extremely messy shit out after the split
 

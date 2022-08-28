@@ -534,7 +534,8 @@ s32 act_debug_free_move(struct MarioState *m) {
         vec3_zero(m->vel);
         m->forwardVel = 0.0f;
 
-        set_camera_mode(m->area->camera, m->area->camera->defMode, 1);
+        if (m->area->camera->mode != m->area->camera->defMode)
+            set_camera_mode(m->area->camera, m->area->camera->defMode, 1);
         m->input &= ~INPUT_A_PRESSED;
         if (m->pos[1] <= (m->waterLevel - 100)) {
             return set_mario_action(m, ACT_WATER_IDLE, 0);

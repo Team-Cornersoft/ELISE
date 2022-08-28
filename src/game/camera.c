@@ -29,7 +29,7 @@
 #include "puppyprint.h"
 #include "profiling.h"
 
-#define CBUTTON_MASK (U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS)
+#define CBUTTON_MASK (U_CBUTTONS | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS | L_JPAD | R_JPAD)
 
 /**
  * @file camera.c
@@ -106,6 +106,17 @@ s16 sCreditsPlayer2Yaw;
  */
 u8 sFramesPaused;
 
+s8 userCameraMode; // Initialized elsewhere
+
+u16 usercamSmoothL = L_CBUTTONS;
+u16 usercamSmoothR = R_CBUTTONS;
+u16 usercamHardR = L_JPAD;
+u16 usercamHardL = R_JPAD;
+
+u16 lastMovedPL = CAMERA_ROTATE_NONE;
+
+s32 lastStationaryAngle = LAST_STATIONARY_ANGLE_NONE;
+
 extern struct CameraFOVStatus sFOVState;
 extern struct TransitionInfo sModeTransition;
 extern struct PlayerGeometry sMarioGeometry;
@@ -158,6 +169,9 @@ extern struct CutsceneVariable sCutsceneVars[10];
 extern s32 gObjCutsceneDone;
 extern u32 gCutsceneObjSpawn;
 extern struct Camera *gCamera;
+
+s32 parallelLakituCamSpeeds[NUM_CAMERA_SPEED_OPTIONS] = {1, 3, 5, 7, 9};
+s8 curPLSpeed; // Initialized elsewhere
 
 /**
  * Lakitu's position and focus.
@@ -1101,20 +1115,33 @@ void mode_radial_camera(struct Camera *c) {
     pan_ahead_of_player(c);
 }
 
-s32 snap_to_45_degrees(s16 angle) {
-    if (angle % DEGREES(45)) {
-        s16 d1 = ABS(angle) % DEGREES(45);
-        s16 d2 = DEGREES(45) - d1;
-        if (angle > 0) {
-            if (d1 < d2) return angle - d1;
-            else return angle + d2;
-        } else {
-            if (d1 < d2) return angle + d1;
-            else return angle - d2;
-        }
+#define DEG_45 DEGREES(45)
+s16 snap_to_45_degrees(u16 angle) {
+    u16 mod = angle % DEG_45;
+    if (mod) {
+        u16 section = angle / DEG_45;
+        if (mod >= DEG_45 / 2)
+            return DEG_45 * (section + 1);
+        
+        return DEG_45 * section;
     }
     return angle;
 }
+#undef DEG_45
+
+#define DEG_22_5 (DEGREES(45) / 2)
+s16 snap_to_22_5_degrees(u16 angle) {
+    u16 mod = angle % DEG_22_5;
+    if (mod) {
+        u16 section = angle / DEG_22_5;
+        if (mod >= DEG_22_5 / 2)
+            return DEG_22_5 * (section + 1);
+        
+        return DEG_22_5 * section;
+    }
+    return angle;
+}
+#undef DEG_22_5
 
 /**
  * A mode that only has 8 camera angles, 45 degrees apart
@@ -1125,30 +1152,120 @@ void mode_8_directions_camera(struct Camera *c) {
 
     radial_camera_input(c);
 
-    if (gPlayer1Controller->buttonPressed & R_CBUTTONS) {
-        s8DirModeYawOffset += DEGREES(45);
+    if (gPlayer1Controller->buttonPressed & usercamHardR) {
+        s8DirModeYawOffset = snap_to_45_degrees(s8DirModeYawOffset + DEGREES(45));
+        lastStationaryAngle = s8DirModeYawOffset;
+        lastMovedPL = CAMERA_ROTATE_NONE;
         play_sound_cbutton_side();
     }
-    if (gPlayer1Controller->buttonPressed & L_CBUTTONS) {
-        s8DirModeYawOffset -= DEGREES(45);
+    else if (gPlayer1Controller->buttonPressed & usercamHardL) {
+        s8DirModeYawOffset = snap_to_45_degrees(s8DirModeYawOffset - DEGREES(45));
+        lastStationaryAngle = s8DirModeYawOffset;
+        lastMovedPL = CAMERA_ROTATE_NONE;
         play_sound_cbutton_side();
     }
-#ifdef PARALLEL_LAKITU_CAM
+
     // extra functionality
+#if !defined(ENABLE_DEBUG_FREE_MOVE) && !defined(PUPPYPRINT_DEBUG)
     else if (gPlayer1Controller->buttonPressed & U_JPAD) {
-        s8DirModeYawOffset = 0;
-        s8DirModeYawOffset = gMarioState->faceAngle[1] - 0x8000;
+        s8DirModeYawOffset = snap_to_22_5_degrees(gMarioState->faceAngle[1] - 0x8000);
+        lastStationaryAngle = s8DirModeYawOffset;
+        lastMovedPL = CAMERA_ROTATE_NONE;
     }
-    else if (gPlayer1Controller->buttonDown & L_JPAD) {
-        s8DirModeYawOffset -= DEGREES(2);
+#endif
+    else if (gPlayer1Controller->buttonDown & usercamSmoothL) {
+        s16 lastPos = s8DirModeYawOffset;
+        s8DirModeYawOffset -= DEGREES(parallelLakituCamSpeeds[curPLSpeed]);
+        if (lastStationaryAngle != snap_to_22_5_degrees(s8DirModeYawOffset)
+          || (lastMovedPL == CAMERA_ROTATE_NONE && lastPos - (s16) snap_to_22_5_degrees(lastPos) > 0)
+          || lastMovedPL == CAMERA_ROTATE_RIGHT)
+            lastStationaryAngle = LAST_STATIONARY_ANGLE_NONE;
+        lastMovedPL = CAMERA_ROTATE_LEFT;
     }
-    else if (gPlayer1Controller->buttonDown & R_JPAD) {
-        s8DirModeYawOffset += DEGREES(2);
+    else if (gPlayer1Controller->buttonDown & usercamSmoothR) {
+        s16 lastPos = s8DirModeYawOffset;
+        s8DirModeYawOffset += DEGREES(parallelLakituCamSpeeds[curPLSpeed]);
+        if (lastStationaryAngle != snap_to_22_5_degrees(s8DirModeYawOffset)
+          || (lastMovedPL == CAMERA_ROTATE_NONE && lastPos - (s16) snap_to_22_5_degrees(lastPos) < 0)
+          || lastMovedPL == CAMERA_ROTATE_LEFT)
+            lastStationaryAngle = LAST_STATIONARY_ANGLE_NONE;
+        lastMovedPL = CAMERA_ROTATE_RIGHT;
     }
     else if (gPlayer1Controller->buttonPressed & D_JPAD) {
         s8DirModeYawOffset = snap_to_45_degrees(s8DirModeYawOffset);
+        lastStationaryAngle = s8DirModeYawOffset;
+        lastMovedPL = CAMERA_ROTATE_NONE;
     }
-#endif
+    else {
+        s32 maxRot = 0x380 + (0x80 * parallelLakituCamSpeeds[curPLSpeed]);
+        s16 tmp;
+
+        if (lastMovedPL == CAMERA_ROTATE_LEFT) {
+            tmp = s8DirModeYawOffset - snap_to_22_5_degrees(s8DirModeYawOffset);
+            if ((s32) ABS(tmp) > maxRot) {
+                lastStationaryAngle = LAST_STATIONARY_ANGLE_NONE;
+                lastMovedPL = CAMERA_ROTATE_NONE;
+            } else if (tmp <= 0) {
+                if (lastStationaryAngle != s8DirModeYawOffset - tmp) {
+                    lastStationaryAngle = LAST_STATIONARY_ANGLE_NONE;
+                    lastMovedPL = CAMERA_ROTATE_SLOWRES_RIGHT;
+                } else {
+                    lastMovedPL = CAMERA_ROTATE_NONE;
+                }
+            } else {
+                s8DirModeYawOffset -= DEGREES(parallelLakituCamSpeeds[curPLSpeed]);
+                tmp = s8DirModeYawOffset - snap_to_22_5_degrees(s8DirModeYawOffset);
+                if (tmp <= 0) {
+                    s8DirModeYawOffset -= tmp; // Snap to 22.5 degrees
+                    lastStationaryAngle = s8DirModeYawOffset;
+                    lastMovedPL = CAMERA_ROTATE_NONE;
+                }
+            }
+        } else if (lastMovedPL == CAMERA_ROTATE_RIGHT) {
+            tmp = s8DirModeYawOffset - snap_to_22_5_degrees(s8DirModeYawOffset);
+            if ((s32) ABS(tmp) > maxRot) {
+                lastStationaryAngle = LAST_STATIONARY_ANGLE_NONE;
+                lastMovedPL = CAMERA_ROTATE_NONE;
+            } else if (tmp >= 0) {
+                if (lastStationaryAngle != s8DirModeYawOffset - tmp) {
+                    lastStationaryAngle = LAST_STATIONARY_ANGLE_NONE;
+                    lastMovedPL = CAMERA_ROTATE_SLOWRES_LEFT;
+                } else {
+                    lastMovedPL = CAMERA_ROTATE_NONE;
+                }
+            } else {
+                s8DirModeYawOffset += DEGREES(parallelLakituCamSpeeds[curPLSpeed]);
+                tmp = s8DirModeYawOffset - snap_to_22_5_degrees(s8DirModeYawOffset);
+                if (tmp >= 0) {
+                    s8DirModeYawOffset -= tmp; // Snap to 22.5 degrees
+                    lastStationaryAngle = s8DirModeYawOffset;
+                    lastMovedPL = CAMERA_ROTATE_NONE;
+                }
+            }
+        }
+
+        if (lastMovedPL == CAMERA_ROTATE_SLOWRES_LEFT) {
+            tmp = snap_to_22_5_degrees(s8DirModeYawOffset);
+            s8DirModeYawOffset = (s16) approach_s16_asymptotic(s8DirModeYawOffset, tmp, 10) - (s16) 0x1;
+            if (s8DirModeYawOffset <= tmp) {
+                s8DirModeYawOffset = tmp; // Snap to 22.5 degrees
+                lastStationaryAngle = tmp;
+                lastMovedPL = CAMERA_ROTATE_NONE;
+            } else if (s8DirModeYawOffset - tmp < 0x40) {
+                lastStationaryAngle = tmp;
+            }
+        } else if (lastMovedPL == CAMERA_ROTATE_SLOWRES_RIGHT) {
+            tmp = snap_to_22_5_degrees(s8DirModeYawOffset);
+            s8DirModeYawOffset = (s16) approach_s16_asymptotic(s8DirModeYawOffset, tmp, 10) + (s16) 0x1;
+            if (s8DirModeYawOffset >= tmp) {
+                s8DirModeYawOffset = tmp; // Snap to 22.5 degrees
+                lastStationaryAngle = tmp;
+                lastMovedPL = CAMERA_ROTATE_NONE;
+            } else if (tmp - s8DirModeYawOffset < 0x40) {
+                lastStationaryAngle = tmp;
+            }
+        }
+    }
 
     lakitu_zoom(400.f, 0x900);
     c->nextYaw = update_8_directions_camera(c, c->focus, pos);
@@ -1709,14 +1826,16 @@ s32 update_behind_mario_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
         pitchInc = 0x800;
     }
 
-    if (sBehindMarioSoundTimer == 28) {
-        if (sCSideButtonYaw < 5 || sCSideButtonYaw > 28) {
-            play_sound_cbutton_up();
+    if (userCameraMode == USERCAM_VANILLA) {
+        if (sBehindMarioSoundTimer == 28) {
+            if (sCSideButtonYaw < 5 || sCSideButtonYaw > 28) {
+                play_sound_cbutton_up();
+            }
         }
-    }
-    if (sCSideButtonYaw == 28) {
-        if (sBehindMarioSoundTimer < 5 || sBehindMarioSoundTimer > 28) {
-            play_sound_cbutton_up();
+        if (sCSideButtonYaw == 28) {
+            if (sBehindMarioSoundTimer < 5 || sBehindMarioSoundTimer > 28) {
+                play_sound_cbutton_up();
+            }
         }
     }
 
@@ -1724,8 +1843,16 @@ s32 update_behind_mario_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
     //! @bug C-Right and C-Up take precedence due to the way input is handled here
 
     // Rotate right
-    if (sCButtonsPressed & L_CBUTTONS) {
-        if (gPlayer1Controller->buttonPressed & L_CBUTTONS) {
+    if (sCButtonsPressed & usercamSmoothL) {
+        if (dist < maxDist) {
+            camera_approach_f32_symmetric_bool(&dist, maxDist, 5.f);
+        }
+        goalYawOff = -0x3FF8;
+        sCSideButtonYaw = 30;
+        yawSpeed = 2;
+    }
+    if (sCButtonsPressed & usercamHardL) {
+        if (gPlayer1Controller->buttonPressed & usercamHardL) {
             play_sound_cbutton_side();
         }
         if (dist < maxDist) {
@@ -1736,8 +1863,16 @@ s32 update_behind_mario_camera(struct Camera *c, Vec3f focus, Vec3f pos) {
         yawSpeed = 2;
     }
     // Rotate left
-    if (sCButtonsPressed & R_CBUTTONS) {
-        if (gPlayer1Controller->buttonPressed & R_CBUTTONS) {
+    if (sCButtonsPressed & usercamSmoothR) {
+        if (dist < maxDist) {
+            camera_approach_f32_symmetric_bool(&dist, maxDist, 5.f);
+        }
+        goalYawOff = 0x3FF8;
+        sCSideButtonYaw = 30;
+        yawSpeed = 2;
+    }
+    if (sCButtonsPressed & usercamHardR) {
+        if (gPlayer1Controller->buttonPressed & usercamHardR) {
             play_sound_cbutton_side();
         }
         if (dist < maxDist) {
@@ -2628,7 +2763,7 @@ void mode_c_up_camera(struct Camera *c) {
     sPanDistance = 0.f;
 
     // Exit C-Up mode
-    if (gPlayer1Controller->buttonPressed & (A_BUTTON | B_BUTTON | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS)) {
+    if (gPlayer1Controller->buttonPressed & (A_BUTTON | B_BUTTON | D_CBUTTONS | L_CBUTTONS | R_CBUTTONS | L_JPAD | R_JPAD)) {
         exit_c_up(c);
     }
 }
@@ -2752,6 +2887,7 @@ void set_camera_mode(struct Camera *c, s16 mode, s16 frames) {
         if (mode == CAMERA_MODE_8_DIRECTIONS) {
             // Helps transition from any camera mode to 8dir
             s8DirModeYawOffset = snap_to_45_degrees(c->yaw);
+            lastStationaryAngle = s8DirModeYawOffset;
         }
 #endif
 
@@ -2874,20 +3010,44 @@ void update_camera(struct Camera *c) {
     u32 first = profiler_get_delta(PROFILER_DELTA_COLLISION);
     gCamera = c;
     update_camera_hud_status(c);
+
+    if (userCameraMode == USERCAM_FREECAM) {
+        usercamSmoothL = L_CBUTTONS;
+        usercamSmoothR = R_CBUTTONS;
+        usercamHardL = L_JPAD;
+        usercamHardR = R_JPAD;
+    } else /*if (userCameraMode == USERCAM_VANILLA)*/ {
+        usercamSmoothL = L_JPAD;
+        usercamSmoothR = R_JPAD;
+        usercamHardL = L_CBUTTONS;
+        usercamHardR = R_CBUTTONS;
+    }
+
+    if (curPLSpeed < 0)
+        curPLSpeed = 0;
+    else if ((u32) curPLSpeed >= sizeof(parallelLakituCamSpeeds))
+        curPLSpeed = sizeof(parallelLakituCamSpeeds) - 1;
+
     if (c->cutscene == CUTSCENE_NONE
 #ifdef PUPPYCAM
         && !gPuppyCam.enabled
 #endif
         && gCurrentArea->camera->mode != CAMERA_MODE_INSIDE_CANNON) {
         // Only process R_TRIG if 'fixed' is not selected in the menu
-        if (cam_select_alt_mode(CAM_SELECTION_NONE) == CAM_SELECTION_MARIO) {
-            if (gPlayer1Controller->buttonPressed & R_TRIG) {
-                if (set_cam_angle(0) == CAM_ANGLE_LAKITU) {
-                    set_cam_angle(CAM_ANGLE_MARIO);
-                } else {
-                    set_cam_angle(CAM_ANGLE_LAKITU);
+        if (userCameraMode == USERCAM_VANILLA) {
+            if (cam_select_alt_mode(CAM_SELECTION_NONE) == CAM_SELECTION_MARIO) {
+                if (gPlayer1Controller->buttonPressed & R_TRIG) {
+                    if (set_cam_angle(0) == CAM_ANGLE_LAKITU) {
+                        set_cam_angle(CAM_ANGLE_MARIO);
+                    } else {
+                        set_cam_angle(CAM_ANGLE_LAKITU);
+                    }
                 }
             }
+        } else {
+            // Disable Mario Cam
+            if (set_cam_angle(0) == CAM_ANGLE_MARIO)
+                set_cam_angle(CAM_ANGLE_LAKITU);
         }
         play_sound_if_cam_switched_to_lakitu_or_mario();
     }
@@ -3151,6 +3311,7 @@ void reset_camera(struct Camera *c) {
     sCSideButtonYaw = 0;
     s8DirModeBaseYaw = 0;
     s8DirModeYawOffset = 0;
+    lastStationaryAngle = s8DirModeYawOffset;
     c->doorStatus = DOOR_DEFAULT;
     sMarioCamState->headRotation[0] = 0;
     sMarioCamState->headRotation[1] = 0;
@@ -3393,10 +3554,10 @@ void select_mario_cam_mode(void) {
  * Allocate the GraphNodeCamera's config.camera, and copy `c`'s focus to the Camera's area center point.
  */
 void create_camera(struct GraphNodeCamera *gc, struct AllocOnlyPool *pool) {
-#ifdef FORCED_CAMERA_MODE
-    gc->config.mode = FORCED_CAMERA_MODE;
-#endif
     s16 mode = gc->config.mode;
+#ifdef FORCED_CAMERA_MODE
+    mode = FORCED_CAMERA_MODE;
+#endif
     struct Camera *c = alloc_only_pool_alloc(pool, sizeof(struct Camera));
 
     gc->config.camera = c;
@@ -3706,21 +3867,37 @@ void shake_camera_handheld(Vec3f pos, Vec3f focus) {
 s32 find_c_buttons_pressed(u16 currentState, u16 buttonsPressed, u16 buttonsDown) {
     buttonsPressed &= CBUTTON_MASK;
     buttonsDown &= CBUTTON_MASK;
+    
+    if (buttonsDown & usercamSmoothL) {
+        currentState |= usercamSmoothL;
+        currentState &= ~(usercamSmoothR | usercamHardL | usercamHardR);
+    }
+    else {
+        currentState &= ~usercamSmoothL;
+    }
 
-    if (buttonsPressed & L_CBUTTONS) {
-        currentState |= L_CBUTTONS;
-        currentState &= ~R_CBUTTONS;
+    if (buttonsDown & usercamSmoothR) {
+        currentState |= usercamSmoothR;
+        currentState &= ~(usercamSmoothL | usercamHardL | usercamHardR);
     }
-    if (!(buttonsDown & L_CBUTTONS)) {
-        currentState &= ~L_CBUTTONS;
+    else {
+        currentState &= ~usercamSmoothR;
     }
 
-    if (buttonsPressed & R_CBUTTONS) {
-        currentState |= R_CBUTTONS;
-        currentState &= ~L_CBUTTONS;
+    if (buttonsPressed & usercamHardL) {
+        currentState |= usercamHardL;
+        currentState &= ~(usercamHardR | usercamSmoothL | usercamSmoothR);
     }
-    if (!(buttonsDown & R_CBUTTONS)) {
-        currentState &= ~R_CBUTTONS;
+    if (!(buttonsDown & usercamHardL)) {
+        currentState &= ~usercamHardL;
+    }
+
+    if (buttonsPressed & usercamHardR) {
+        currentState |= usercamHardR;
+        currentState &= ~(usercamHardL | usercamSmoothL | usercamSmoothR);
+    }
+    if (!(buttonsDown & usercamHardR)) {
+        currentState &= ~usercamHardR;
     }
 
     if (buttonsPressed & U_CBUTTONS) {
@@ -4533,13 +4710,13 @@ void play_camera_buzz_if_cdown(void) {
 }
 
 void play_camera_buzz_if_cbutton(void) {
-    if (gPlayer1Controller->buttonPressed & CBUTTON_MASK) {
+    if (gPlayer1Controller->buttonPressed & (CBUTTON_MASK & ~(usercamSmoothL | usercamSmoothR))) {
         play_sound_button_change_blocked();
     }
 }
 
 void play_camera_buzz_if_c_sideways(void) {
-    if (gPlayer1Controller->buttonPressed & (L_CBUTTONS | R_CBUTTONS)) {
+    if (gPlayer1Controller->buttonPressed & (usercamHardL | usercamHardR)) {
         play_sound_button_change_blocked();
     }
 }
@@ -4557,7 +4734,8 @@ void play_sound_cbutton_side(void) {
 }
 
 void play_sound_button_change_blocked(void) {
-    play_sound(SOUND_MENU_CAMERA_BUZZ, gGlobalSoundSource);
+    if (userCameraMode == USERCAM_VANILLA)
+        play_sound(SOUND_MENU_CAMERA_BUZZ, gGlobalSoundSource);
 }
 
 void play_sound_rbutton_changed(void) {
@@ -4581,7 +4759,7 @@ void radial_camera_input(struct Camera *c) {
     if ((gCameraMovementFlags & CAM_MOVE_ENTERED_ROTATE_SURFACE) || !(gCameraMovementFlags & CAM_MOVE_ROTATE)) {
 
         // If C-L or C-R are pressed, the camera is rotating
-        if (gPlayer1Controller->buttonPressed & (L_CBUTTONS | R_CBUTTONS)) {
+        if (gPlayer1Controller->buttonPressed & (usercamHardL | usercamHardR)) {
             gCameraMovementFlags &= ~CAM_MOVE_ENTERED_ROTATE_SURFACE;
             //  @bug this does not clear the rotation flags set by the surface. It's possible to set
             //       both ROTATE_LEFT and ROTATE_RIGHT, locking the camera.
@@ -4590,7 +4768,7 @@ void radial_camera_input(struct Camera *c) {
         }
 
         // Rotate Right and left
-        if (gPlayer1Controller->buttonPressed & R_CBUTTONS) {
+        if (gPlayer1Controller->buttonPressed & usercamHardR) {
             if (sModeOffsetYaw > -0x800) {
                 // The camera is now rotating right
                 if (!(gCameraMovementFlags & CAM_MOVE_ROTATE_RIGHT)) {
@@ -4617,10 +4795,11 @@ void radial_camera_input(struct Camera *c) {
                 }
             } else {
                 gCameraMovementFlags |= CAM_MOVE_RETURN_TO_MIDDLE;
-                play_sound_cbutton_up();
+                if (userCameraMode == USERCAM_VANILLA)
+                    play_sound_cbutton_up();
             }
         }
-        if (gPlayer1Controller->buttonPressed & L_CBUTTONS) {
+        if (gPlayer1Controller->buttonPressed & usercamHardL) {
             if (sModeOffsetYaw < 0x800) {
                 if (!(gCameraMovementFlags & CAM_MOVE_ROTATE_LEFT)) {
                     gCameraMovementFlags |= CAM_MOVE_ROTATE_LEFT;
@@ -4646,7 +4825,8 @@ void radial_camera_input(struct Camera *c) {
                 }
             } else {
                 gCameraMovementFlags |= CAM_MOVE_RETURN_TO_MIDDLE;
-                play_sound_cbutton_up();
+                if (userCameraMode == USERCAM_VANILLA)
+                    play_sound_cbutton_up();
             }
         }
     }
@@ -4655,7 +4835,8 @@ void radial_camera_input(struct Camera *c) {
     if (gPlayer1Controller->buttonPressed & U_CBUTTONS) {
         if (gCameraMovementFlags & CAM_MOVE_ZOOMED_OUT) {
             gCameraMovementFlags &= ~CAM_MOVE_ZOOMED_OUT;
-            play_sound_cbutton_up();
+            if (userCameraMode == USERCAM_VANILLA)
+                play_sound_cbutton_up();
         } else {
             set_mode_c_up(c);
         }
@@ -4668,7 +4849,8 @@ void radial_camera_input(struct Camera *c) {
             play_camera_buzz_if_cdown();
         } else {
             gCameraMovementFlags |= CAM_MOVE_ZOOMED_OUT;
-            play_sound_cbutton_down();
+            if (userCameraMode == USERCAM_VANILLA)
+                play_sound_cbutton_down();
         }
     }
 }
@@ -4690,7 +4872,8 @@ void handle_c_button_movement(struct Camera *c) {
     if (gPlayer1Controller->buttonPressed & U_CBUTTONS) {
         if (c->mode != CAMERA_MODE_FIXED && (gCameraMovementFlags & CAM_MOVE_ZOOMED_OUT)) {
             gCameraMovementFlags &= ~CAM_MOVE_ZOOMED_OUT;
-            play_sound_cbutton_up();
+            if (userCameraMode == USERCAM_VANILLA)
+                play_sound_cbutton_up();
         } else {
             set_mode_c_up(c);
             if (sZeroZoomDist > gCameraZoomDist) {
@@ -4710,13 +4893,14 @@ void handle_c_button_movement(struct Camera *c) {
             } else {
                 gCameraMovementFlags |= CAM_MOVE_ZOOMED_OUT;
                 sZoomAmount = gCameraZoomDist + 400.f;
-                play_sound_cbutton_down();
+                if (userCameraMode == USERCAM_VANILLA)
+                    play_sound_cbutton_down();
             }
         }
 
         // Rotate left or right
         cSideYaw = 0x1000;
-        if (gPlayer1Controller->buttonPressed & R_CBUTTONS) {
+        if (gPlayer1Controller->buttonPressed & usercamHardR) {
             if (gCameraMovementFlags & CAM_MOVE_ROTATE_LEFT) {
                 gCameraMovementFlags &= ~CAM_MOVE_ROTATE_LEFT;
             } else {
@@ -4727,7 +4911,7 @@ void handle_c_button_movement(struct Camera *c) {
                 sCSideButtonYaw = -cSideYaw;
             }
         }
-        if (gPlayer1Controller->buttonPressed & L_CBUTTONS) {
+        if (gPlayer1Controller->buttonPressed & usercamHardL) {
             if (gCameraMovementFlags & CAM_MOVE_ROTATE_RIGHT) {
                 gCameraMovementFlags &= ~CAM_MOVE_ROTATE_RIGHT;
             } else {
@@ -5208,6 +5392,7 @@ void set_camera_mode_8_directions(struct Camera *c) {
         sStatusFlags &= ~CAM_FLAG_SMOOTH_MOVEMENT;
         s8DirModeBaseYaw = 0;
         s8DirModeYawOffset = 0;
+        lastStationaryAngle = s8DirModeYawOffset;
     }
 }
 

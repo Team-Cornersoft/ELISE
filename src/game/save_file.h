@@ -34,9 +34,9 @@ struct SaveFile {
     s8 numLives;
     u8 filler[5];
 #else
-    // Note: the coordinates get set, but are never actually used, since the
-    // cap can always be found in a fixed spot within the course
-    Vec3s capPos; // 48 bits
+    s8 cameraType;
+    s8 cameraSpeed;
+    u8 filler[4];
 #endif
 
     u32 flags;
@@ -190,6 +190,9 @@ s32 save_file_is_cannon_unlocked(void);
 void save_file_set_cannon_unlocked(void);
 void save_file_set_cap_pos(s16 x, s16 y, s16 z);
 s32 save_file_get_cap_pos(Vec3s capPos);
+void save_file_set_camera_fields(s8 cameraType, s8 cameraSpeed);
+s8 save_file_get_camera_type(void);
+s8 save_file_get_camera_speed(void);
 #ifdef SAVE_NUM_LIVES
 s32 save_file_get_num_lives(void);
 void save_file_set_num_lives(s8 numLives);

@@ -256,6 +256,15 @@
 #define TEXT_MYSCORE _("MYSCORE")
 #define TEXT_CONTINUE _("CONTINUE")
 #define TEXT_EXIT_COURSE _("EXIT COURSE")
+#define TEXT_USERCAMERA_TYPE _("@FFFF3FFFCAMERA TYPE@--------")
+#define TEXT_USERCAMERA_FREECAM _("@BFBFFFFFFREE CAMERA@-------- >")
+#define TEXT_USERCAMERA_VANILLACAM _("< @BFBFFFFFVANILLA CAMERA@--------")
+#define TEXT_CAMERA_SPEED _("@FFFF3FFFADJUST CAMERA SPEED@--------")
+#define TEXT_VERY_SLOW _("@BFBFFFFFVERY SLOW@-------- >")
+#define TEXT_SLOW _("< @BFBFFFFFSLOW@-------- >")
+#define TEXT_NORMAL _("< @BFBFFFFFNORMAL@-------- >")
+#define TEXT_FAST _("< @BFBFFFFFFAST@-------- >")
+#define TEXT_VERY_FAST _("< @BFBFFFFFVERY FAST@--------")
 #ifndef VERSION_EU // "R" text is different in EU
 #define TEXT_CAMERA_ANGLE_R _("SET CAMERA ANGLE WITH R")
 #endif

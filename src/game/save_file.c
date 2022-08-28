@@ -658,11 +658,7 @@ void save_file_set_cap_pos(s16 x, s16 y, s16 z) {
 
     saveFile->capLevel = gCurrLevelNum;
     saveFile->capArea = gCurrAreaIndex;
-#ifndef SAVE_NUM_LIVES
-    vec3s_set(saveFile->capPos, x, y, z);
-#else
     (void) x; (void) y; (void) z; // Address compiler warnings for unused variables
-#endif
     save_file_set_flags(SAVE_FLAG_CAP_ON_GROUND);
 }
 
@@ -672,14 +668,28 @@ s32 save_file_get_cap_pos(Vec3s capPos) {
 
     if (saveFile->capLevel == gCurrLevelNum && saveFile->capArea == gCurrAreaIndex
         && (flags & SAVE_FLAG_CAP_ON_GROUND)) {
-#ifdef SAVE_NUM_LIVES
         vec3_zero(capPos);
-#else
-        vec3s_copy(capPos, saveFile->capPos);
-#endif
         return TRUE;
     }
     return FALSE;
+}
+
+void save_file_set_camera_fields(s8 cameraType, s8 cameraSpeed) {
+    struct SaveFile *saveFile = &gSaveBuffer.files[gCurrSaveFileNum - 1][0];
+    saveFile->cameraType = cameraType;
+    saveFile->cameraSpeed = cameraSpeed;
+    saveFile->flags |= SAVE_FLAG_FILE_EXISTS;
+    gSaveFileModified = TRUE;
+}
+
+s8 save_file_get_camera_type(void) {
+    struct SaveFile *saveFile = &gSaveBuffer.files[gCurrSaveFileNum - 1][0];
+    return saveFile->cameraType;
+}
+
+s8 save_file_get_camera_speed(void) {
+    struct SaveFile *saveFile = &gSaveBuffer.files[gCurrSaveFileNum - 1][0];
+    return saveFile->cameraSpeed;
 }
 
 #ifdef SAVE_NUM_LIVES

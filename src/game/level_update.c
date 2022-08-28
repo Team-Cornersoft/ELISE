@@ -1403,6 +1403,13 @@ s32 lvl_init_from_save_file(UNUSED s16 initOrUpdate, s32 levelNum) {
     select_mario_cam_mode();
     set_yoshi_as_not_dead();
 
+    if (save_file_exists(gCurrSaveFileNum - 1)) {
+        userCameraMode = save_file_get_camera_type();
+        curPLSpeed = save_file_get_camera_speed();
+    } else {
+        save_file_set_camera_fields(USERCAM_FREECAM, 2);
+    }
+
     return levelNum;
 }
 

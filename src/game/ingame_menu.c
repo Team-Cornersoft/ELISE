@@ -129,7 +129,7 @@ s16 gDialogTextPos = 0;
 s8 gDialogLineNum = 1;
 s8 gLastDialogResponse = 0;
 u8 gMenuHoldKeyIndex = 0;
-u8 gMenuHoldKeyTimer = 0;
+u16 gMenuHoldKeyTimer = 0;
 s32 gDialogResponse = DIALOG_RESPONSE_NONE;
 
 
@@ -359,7 +359,7 @@ void render_multi_text_string(s8 multiTextID) {
  * Prints a generic white string.
  * In JP/EU a IA1 texture is used but in US a IA4 texture is used.
  */
-void print_generic_string(s16 x, s16 y, const u8 *str) {
+void print_generic_string_alpha(s16 x, s16 y, const u8 *str, s16 alpha) {
     s8 mark = DIALOG_MARK_NONE; // unused in EU
     s32 strPos = 0;
     u8 lineNum = 1;
@@ -400,6 +400,10 @@ void print_generic_string(s16 x, s16 y, const u8 *str) {
                         rgbaColors[(8 - (colorLoop - strPos)) / 2] += ((str[strPos] - diffTmp) & 0x0F);
                     }
                 }
+
+                if (alpha >= 0 && alpha < 256)
+                    rgbaColors[3] = (Color) alpha;
+
                 strPos--;
                 if (customColor == 1) {
                     gDPSetEnvColor(gDisplayListHead++, rgbaColors[0],
@@ -407,7 +411,12 @@ void print_generic_string(s16 x, s16 y, const u8 *str) {
                                                     rgbaColors[2],
                                                     rgbaColors[3]);
                 } else if (customColor == 2) {
-                    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255); // TODO: Is it possible to retrieve the original color that was set before print_generic_string was called?
+                    // TODO: Is it possible to retrieve the original color that was set before print_generic_string was called?
+                    if (alpha >= 0 && alpha < 256) {
+                        gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, alpha);
+                    } else {
+                        gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
+                    }
                     customColor = 0;
                 }
                 break;
@@ -457,6 +466,10 @@ void print_generic_string(s16 x, s16 y, const u8 *str) {
     }
 
     gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
+}
+
+void print_generic_string(s16 x, s16 y, const u8 *str) {
+    print_generic_string_alpha(x, y, str, -1);
 }
 
 
@@ -579,39 +592,58 @@ void print_credits_string(s16 x, s16 y, const u8 *str) {
 
 void handle_menu_scrolling(s8 scrollDirection, s8 *currentIndex, s8 minIndex, s8 maxIndex) {
     u8 index = 0;
+    u8 cmpIndex;
 
     if (scrollDirection == MENU_SCROLL_VERTICAL) {
         if ((gPlayer3Controller->rawStickY >  60) || (gPlayer3Controller->buttonDown & (U_CBUTTONS | U_JPAD))) index++;
         if ((gPlayer3Controller->rawStickY < -60) || (gPlayer3Controller->buttonDown & (D_CBUTTONS | D_JPAD))) index += 2;
+        cmpIndex = (gMenuHoldKeyIndex >> 2);
     } else if (scrollDirection == MENU_SCROLL_HORIZONTAL) {
         if ((gPlayer3Controller->rawStickX >  60) || (gPlayer3Controller->buttonDown & (R_CBUTTONS | R_JPAD))) index += 2;
         if ((gPlayer3Controller->rawStickX < -60) || (gPlayer3Controller->buttonDown & (L_CBUTTONS | L_JPAD))) index++;
+        cmpIndex = gMenuHoldKeyIndex;
     }
 
-    if (((index ^ gMenuHoldKeyIndex) & index) == 2) {
+    if (((index ^ cmpIndex) & index) == 2) {
         if (*currentIndex != maxIndex) {
             play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
             (*currentIndex)++;
         }
     }
 
-    if (((index ^ gMenuHoldKeyIndex) & index) == 1) {
+    if (((index ^ cmpIndex) & index) == 1) {
         if (*currentIndex != minIndex) {
             play_sound(SOUND_MENU_CHANGE_SELECT, gGlobalSoundSource);
             (*currentIndex)--;
         }
     }
 
-    if (gMenuHoldKeyTimer == 10) {
-        gMenuHoldKeyTimer = 8;
-        gMenuHoldKeyIndex = 0;
+    if (scrollDirection == MENU_SCROLL_VERTICAL) {
+        if ((gMenuHoldKeyTimer >> 8) == 10) {
+            gMenuHoldKeyTimer &= 0x00FF;
+            if (gMenuHoldKeyIndex & 0x0C)
+                gMenuHoldKeyTimer |= 0x0800;
+            gMenuHoldKeyIndex &= 0x03;
+        } else {
+            gMenuHoldKeyTimer += 0x0100;
+            gMenuHoldKeyIndex &= 0x03;
+            gMenuHoldKeyIndex |= (index << 2);
+            if (!(gMenuHoldKeyIndex & 0x0C))
+                gMenuHoldKeyTimer &= 0x00FF;
+        }
     } else {
-        gMenuHoldKeyTimer++;
-        gMenuHoldKeyIndex = index;
-    }
-
-    if ((index & 3) == 0) {
-        gMenuHoldKeyTimer = 0;
+        if ((gMenuHoldKeyTimer & 0xFF) == 10) {
+            gMenuHoldKeyTimer &= 0xFF00;
+            if (gMenuHoldKeyIndex & 0x03)
+                gMenuHoldKeyTimer |= 0x0008;
+            gMenuHoldKeyIndex &= 0x0C;
+        } else {
+            gMenuHoldKeyTimer++;
+            gMenuHoldKeyIndex &= 0x0C;
+            gMenuHoldKeyIndex |= index;
+            if (!(gMenuHoldKeyIndex & 0x03))
+                gMenuHoldKeyTimer &= 0xFF00;
+        }
     }
 }
 
@@ -1530,11 +1562,12 @@ void render_widescreen_setting(void) {
     gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
     if (!gConfig.widescreen) {
-        print_generic_string(10, 20, textCurrRatio43);
-        print_generic_string(10,  7, textPressL);
-    } else {
-        print_generic_string(10, 20, textCurrRatio169);
-        print_generic_string(10,  7, textPressL);
+        print_generic_string(10, 220, textCurrRatio43);
+        print_generic_string(10, 203, textPressL);
+    }
+    else {
+        print_generic_string(10, 220, textCurrRatio169);
+        print_generic_string(10, 203, textPressL);
     }
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
     if (gPlayer1Controller->buttonPressed & L_TRIG){
@@ -1661,34 +1694,79 @@ void render_pause_camera_options(s16 x, s16 y, s8 *index, s16 xIndex) {
 }
 
 #define X_VAL8 4
+#define X_VAL_ARROW 13
 #define Y_VAL8 2
+#define PAUSE_COURSE_OPTIONS_MAX 5
 
 void render_pause_course_options(s16 x, s16 y, s8 *index, s16 yIndex) {
     u8 textContinue[] = { TEXT_CONTINUE };
     u8 textExitCourse[] = { TEXT_EXIT_COURSE };
+    u8 textAdjustCameraSpeed[] = { TEXT_CAMERA_SPEED };
+    u8 textCameraSpeeds[NUM_CAMERA_SPEED_OPTIONS][32] = { { TEXT_VERY_SLOW }, { TEXT_SLOW }, { TEXT_NORMAL }, { TEXT_FAST }, { TEXT_VERY_FAST } };
+    u8 textAdjustUsercameraType[] = { TEXT_USERCAMERA_TYPE };
+    u8 textUsercameraTypes[USERCAM_COUNT][40] = { { TEXT_USERCAMERA_FREECAM }, { TEXT_USERCAMERA_VANILLACAM } };
     u8 textCameraAngleR[] = { TEXT_CAMERA_ANGLE_R };
+    u8 showTriangle = TRUE;
+    u8 x_offset = 0;
 
-    handle_menu_scrolling(MENU_SCROLL_VERTICAL, index, 1, 3);
+    s8 pauseOptions = PAUSE_COURSE_OPTIONS_MAX;
+    if (userCameraMode == USERCAM_FREECAM) {
+        pauseOptions = PAUSE_COURSE_OPTIONS_MAX - 1;
+    }
+
+    handle_menu_scrolling(MENU_SCROLL_VERTICAL, index, 1, pauseOptions);
 
     gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
 
-    print_generic_string(x + 10, y - 2, LANGUAGE_ARRAY(textContinue));
-    print_generic_string(x + 10, y - 17, LANGUAGE_ARRAY(textExitCourse));
+    print_generic_string_alpha(x + 10, y + (13 - 15 * MENU_OPT_CONTINUE), LANGUAGE_ARRAY(textContinue), gDialogTextAlpha);
+    print_generic_string_alpha(x + 10, y + (13 - 15 * MENU_OPT_EXIT_COURSE), LANGUAGE_ARRAY(textExitCourse), gDialogTextAlpha);
 
-    if (*index != MENU_OPT_CAMERA_ANGLE_R) {
-        print_generic_string(x + 10, y - 33, LANGUAGE_ARRAY(textCameraAngleR));
+    if (MENU_OPT_USERCAM_TYPE <= pauseOptions) {
+        if (*index == MENU_OPT_USERCAM_TYPE) {
+            handle_menu_scrolling(MENU_SCROLL_HORIZONTAL, &userCameraMode, 0, USERCAM_COUNT-1);
+
+            if (userCameraMode > 0)
+                x_offset = X_VAL_ARROW;
+
+            print_generic_string_alpha(x + 10 - x_offset, y + (13 - 15 * MENU_OPT_USERCAM_TYPE), textUsercameraTypes[userCameraMode], gDialogTextAlpha);
+            save_file_set_camera_fields(userCameraMode, curPLSpeed);
+        }
+        else {
+            print_generic_string_alpha(x + 10, y + (13 - 15 * MENU_OPT_USERCAM_TYPE), textAdjustUsercameraType, gDialogTextAlpha);
+        }
+    }
+
+    if (MENU_OPT_CAMERA_SPEED <= pauseOptions) {
+        if (*index == MENU_OPT_CAMERA_SPEED) {
+            handle_menu_scrolling(MENU_SCROLL_HORIZONTAL, &curPLSpeed, 0, NUM_CAMERA_SPEED_OPTIONS-1);
+
+            if (curPLSpeed > 0)
+                x_offset = X_VAL_ARROW;
+
+            print_generic_string_alpha(x + 10 - x_offset, y + (13 - 15 * MENU_OPT_CAMERA_SPEED), textCameraSpeeds[curPLSpeed], gDialogTextAlpha);
+            save_file_set_camera_fields(userCameraMode, curPLSpeed);
+        }
+        else {
+            print_generic_string_alpha(x + 10, y + (13 - 15 * MENU_OPT_CAMERA_SPEED), textAdjustCameraSpeed, gDialogTextAlpha);
+        }
+    }
+
+    if (MENU_OPT_CAMERA_ANGLE_R <= pauseOptions) {
+        if (*index == MENU_OPT_CAMERA_ANGLE_R) {
+            render_pause_camera_options(x - 42, y + (4 - 15 * MENU_OPT_CAMERA_ANGLE_R), &gDialogCameraAngleIndex, 110);
+            showTriangle = FALSE;
+        } else {
+            print_generic_string_alpha(x + 10, y + (13 - 15 * MENU_OPT_CAMERA_ANGLE_R), LANGUAGE_ARRAY(textCameraAngleR), gDialogTextAlpha);
+        }
+    }
+
+    if (showTriangle) {
         gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
-
-        create_dl_translation_matrix(MENU_MTX_PUSH, x - X_VAL8, (y - ((*index - 1) * yIndex)) - Y_VAL8, 0);
-
+        create_dl_translation_matrix(MENU_MTX_PUSH, x - X_VAL8 - x_offset, (y - ((*index - 1) * yIndex)) - Y_VAL8, 0);
         gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
         gSPDisplayList(gDisplayListHead++, dl_draw_triangle);
         gSPPopMatrix(gDisplayListHead++, G_MTX_MODELVIEW);
-    }
-
-    if (*index == MENU_OPT_CAMERA_ANGLE_R) {
-        render_pause_camera_options(x - 42, y - 42, &gDialogCameraAngleIndex, 110);
     }
 }
 

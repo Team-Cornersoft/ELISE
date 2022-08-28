@@ -641,7 +641,9 @@ void render_hud(void) {
 #ifdef PUPPYCAM
             if (!gPuppyCam.enabled) {
 #endif
-            render_hud_camera_status();
+                if (userCameraMode == USERCAM_VANILLA) {
+                    render_hud_camera_status();
+                }
 #ifdef PUPPYCAM
             }
 #endif
