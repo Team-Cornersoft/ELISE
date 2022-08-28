@@ -31,7 +31,7 @@ const LevelScript level_ccm_entry[] = {
 	LOAD_YAY0(0x08, _common0_yay0SegmentRomStart, _common0_yay0SegmentRomEnd), 
 	LOAD_RAW(0x0F, _common0_geoSegmentRomStart, _common0_geoSegmentRomEnd), 
 	ALLOC_LEVEL_POOL(),
-	MARIO(MODEL_MARIO, 0x00000001, bhvMario),
+	MARIO(MODEL_MARIO, 0x00000001, bhvMario), 
 
 	/* Fast64 begin persistent block [level commands] */
 	/* Fast64 end persistent block [level commands] */
@@ -76,7 +76,7 @@ const LevelScript level_ccm_entry[] = {
 		TERRAIN(ccm_area_1_collision),
 		ROOMS(ccm_area_1_collision_rooms),
 		MACRO_OBJECTS(ccm_area_1_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_HOME_TOGETHER),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_UNDERGROUND, 0x01, 0x02),
@@ -96,7 +96,7 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT(MODEL_NONE, -5104, 500, -2893, 0, 0, 0, 0x00010000, bhvAnimatedWall),
 		OBJECT(MODEL_NONE, 0, 0, -1000, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, 5510, 545, -1271, 0, -150, 0, 0x00CB0000, bhvWarp),
-		OBJECT(MODEL_NONE, -4655, 385, -1200, 0, 0, 0, 0x00CA0000, bhvBooCage),
+		OBJECT(MODEL_NONE, -4655, 285, -1200, 0, 0, 0, 0x00CA0000, bhvBooCage),
 		OBJECT(MODEL_CUSTOM_DOOR_A, 5200, 0, -700, 0, 0, 0, 0x00DC0000, bhvDoorWarp),
 		OBJECT(MODEL_DREAM_DROP_BLUE, -556, 1000, -1052, 0, 0, 0, 0x01000000, bhvStar),
 		OBJECT(MODEL_CUSTOM_DOOR_A, 0, 0, -700, 0, 0, 0, 0x00DB0000, bhvDoorWarp),
@@ -104,7 +104,7 @@ const LevelScript level_ccm_entry[] = {
 		TERRAIN(ccm_area_2_collision),
 		ROOMS(ccm_area_2_collision_rooms),
 		MACRO_OBJECTS(ccm_area_2_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_GRASS),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_HOME_TOGETHER),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
