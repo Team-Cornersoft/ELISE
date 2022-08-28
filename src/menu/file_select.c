@@ -1153,7 +1153,7 @@ void bhv_file_select_manager_init(void) {
     sMainMenuButtons[MENU_BUTTON_PLAY_FILE_D]->oMenuButtonScale = SAVE_FILE_BUTTON_SCALE;
     sMainMenuButtons[MENU_BUTTON_COPY] =
         spawn_object_rel_with_rot(o, MODEL_MAIN_MENU_BLUE_COPY_BUTTON,
-                                  bhvMenuButton, 4000, -6000, 0, 0x0, 0x0, 0x0);
+                                  bhvMenuButton, 3600, -6000, 0, 0x0, 0x0, 0x0);
     sMainMenuButtons[MENU_BUTTON_ERASE] =
         spawn_object_rel_with_rot(o, MODEL_MAIN_MENU_BLUE_COPY_BUTTON,
                                   bhvMenuButton, 7000, -6000, 0, 0x0, 0x0, 0x0);
@@ -1552,27 +1552,32 @@ void print_save_file_star_count(s8 fileIndex, s16 x, s16 y) {
 #define MARIOTEXT_OFFSET_X 3
 
 void print_copy_button_label(s8 isReturn) {
-    textSize = 0.8f;
+    // textSize = 0.8f;
+
+
+    obj_scale(sMainMenuButtons[MENU_BUTTON_COPY], 1.1);
 
     if (isReturn) {
-        print_small_text(218, 202, "Back", PRINT_TEXT_ALIGN_CENTER, -1, PRINT_TEXT_FONT);
+        print_small_text(213, 200, /*"<COL_FFFFFFFF>Back<COL_-------->"*/ "Back", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT);
     } else {
-        print_small_text(218, 202, "Copy", PRINT_TEXT_ALIGN_CENTER, -1, PRINT_TEXT_FONT);
+        print_small_text(213, 200, /*"<COL_FFFFFFFF>Copy<COL_-------->"*/ "Copy", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT);
     }
     
-    textSize = 1.0f;
+    // textSize = 1.0f;
 }
 
 void print_erase_button_label(s8 isReturn) {
-    textSize = 0.8f;
+    // textSize = 0.8f;
+
+    obj_scale(sMainMenuButtons[MENU_BUTTON_ERASE], 1.1);
 
     if (isReturn) {
-        print_small_text(260.5f, 202, "Back", PRINT_TEXT_ALIGN_CENTER, -1, PRINT_TEXT_FONT);
+        print_small_text(262, 200, /*"<COL_FFFFFFFF>Back<COL_-------->"*/ "Back", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT);
     } else {
-        print_small_text(260.5f, 202, "Erase", PRINT_TEXT_ALIGN_CENTER, -1, PRINT_TEXT_FONT);
+        print_small_text(262, 200, /*"<COL_FFFFFFFF>Erase<COL_-------->"*/ "Erase", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT);
     }
     
-    textSize = 1.0f;
+    // textSize = 1.0f;
 }
 
 /**
@@ -1587,7 +1592,7 @@ void print_main_menu_strings(void) {
     print_copy_button_label(FALSE);
     print_erase_button_label(FALSE);
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
-    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
     print_save_file_star_count(SAVE_FILE_A, SAVEFILE_X, SAVEFILE_TOP_Y);
     print_save_file_star_count(SAVE_FILE_B, SAVEFILE_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING);
@@ -1595,7 +1600,7 @@ void print_main_menu_strings(void) {
     print_save_file_star_count(SAVE_FILE_D, SAVEFILE_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING*3);
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
     gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_begin);
-    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
     print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y - MARIOTEXT_OFFSET_Y, "FILE A", 0, -1, PRINT_TEXT_FONT);
     print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING - MARIOTEXT_OFFSET_Y, "FILE B", 0, -1, PRINT_TEXT_FONT);

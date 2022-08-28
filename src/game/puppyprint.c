@@ -1241,7 +1241,7 @@ s32 text_iterate_command(const char *str, s32 i, s32 runCMD) {
     } else if (len == 14 && strncmp((newStr), "<COL_xxxxxxxx>", 5) == 0) { // Simple text colour effect. goes up to FF for each, so FF0000FF is red.
         // Each value is taken from the string. The first is shifted left 4 bits, because it's a larger significant value, then it adds the next digit onto it.
         // Reverting to envcoluor can be achieved by passing something like <COL_-------->, or it could be combined with real colors for just partial reversion like <COL_FF00FF--> for instance.
-        //if (!runCMD)
+        if (!runCMD)
             return len;
 
         s32 rgba[4];
