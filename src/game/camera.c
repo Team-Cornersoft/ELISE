@@ -3400,6 +3400,7 @@ void init_camera(struct Camera *c) {
         // Calls the initial cutscene when you enter Bowser battle levels
         // Note: This replaced an "old" way to call these cutscenes using
         // a camEvent value: CAM_EVENT_BOWSER_INIT
+/*
         case LEVEL_BOWSER_1:
             // Since Bowser 1 has a demo entry, check for it
             // If it is, then set CamAct to the end to directly activate Bowser
@@ -3416,6 +3417,7 @@ void init_camera(struct Camera *c) {
         case LEVEL_BOWSER_3:
             start_cutscene(c, CUTSCENE_ENTER_BOWSER_ARENA);
             break;
+*/
 
 #ifdef ENABLE_VANILLA_CAM_PROCESSING
         //! Hardcoded position checks determine which cutscene to play when Mario enters castle grounds.
@@ -5058,20 +5060,24 @@ u8 get_cutscene_from_mario_status(struct Camera *c) {
                 cutscene = CUTSCENE_EXIT_PAINTING_SUCC;
                 break;
             case ACT_SPECIAL_EXIT_AIRBORNE:
+/*
                 if (gPrevLevel == LEVEL_BOWSER_1 || gPrevLevel == LEVEL_BOWSER_2
                     || gPrevLevel == LEVEL_BOWSER_3) {
                     cutscene = CUTSCENE_EXIT_BOWSER_SUCC;
                 } else {
                     cutscene = CUTSCENE_EXIT_SPECIAL_SUCC;
                 }
+*/
                 break;
             case ACT_SPECIAL_DEATH_EXIT:
+/*
                 if (gPrevLevel == LEVEL_BOWSER_1 || gPrevLevel == LEVEL_BOWSER_2
                     || gPrevLevel == LEVEL_BOWSER_3) {
                     cutscene = CUTSCENE_EXIT_BOWSER_DEATH;
                 } else {
                     cutscene = CUTSCENE_NONPAINTING_DEATH;
                 }
+*/
                 break;
             case ACT_ENTERING_STAR_DOOR:
                 if (c->doorStatus == DOOR_DEFAULT) {

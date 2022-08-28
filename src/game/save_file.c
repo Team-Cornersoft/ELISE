@@ -454,6 +454,7 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex) {
     }
 
     switch (gCurrLevelNum) {
+/*
         case LEVEL_BOWSER_1:
             if (!(save_file_get_flags() & (SAVE_FLAG_HAVE_KEY_1 | SAVE_FLAG_UNLOCKED_BASEMENT_DOOR))) {
                 save_file_set_flags(SAVE_FLAG_HAVE_KEY_1);
@@ -468,7 +469,7 @@ void save_file_collect_star_or_key(s16 coinScore, s16 starIndex) {
 
         case LEVEL_BOWSER_3:
             break;
-
+*/
         default:
 #ifdef GLOBAL_STAR_IDS
             if (!(save_file_get_star_flags(fileIndex, starByte) & starFlag)) {
