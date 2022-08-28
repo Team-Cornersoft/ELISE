@@ -6085,6 +6085,15 @@ struct CameraTrigger sCamSSL[] = {
 };
 
 /**
+ * The SSL triggers are for starting the enter pyramid top cutscene,
+ * setting close mode in the middle of the pyramid, and setting the boss fight camera mode to outward
+ * radial.
+ */
+struct CameraTrigger sCamLLL[] = {
+    NULL_TRIGGER
+};
+
+/**
  * The RR triggers are for changing between fixed and 8 direction mode when entering / leaving the building at
  * the end of the ride.
  */
