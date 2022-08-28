@@ -96,7 +96,7 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT(MODEL_NONE, -5104, 500, -2893, 0, 0, 0, 0x00010000, bhvAnimatedWall),
 		OBJECT(MODEL_NONE, 0, 0, -1000, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, 5510, 545, -1271, 0, -150, 0, 0x00CB0000, bhvWarp),
-		OBJECT(MODEL_NONE, -4655, 285, -1200, 0, 0, 0, 0x00CA0000, bhvBooCage),
+		OBJECT(MODEL_NONE, -4655, 265, -1200, 0, 0, 0, 0x00CA0000, bhvBooCage),
 		OBJECT(MODEL_CUSTOM_DOOR_A, 5200, 0, -700, 0, 0, 0, 0x00DC0000, bhvDoorWarp),
 		OBJECT(MODEL_DREAM_DROP_BLUE, -556, 1000, -1052, 0, 0, 0, 0x01000000, bhvStar),
 		OBJECT(MODEL_CUSTOM_DOOR_A, 0, 0, -700, 0, 0, 0, 0x00DB0000, bhvDoorWarp),
