@@ -2,6 +2,7 @@ void scroll_bbh_dl_B_eyes_mesh_layer_1_vtx_0() {
 	int i = 0;
 	int count = 112;
 	int width = 32 * 0x20;
+	int height = 32 * 0x20;
 
 	static int currentX = 0;
 	int deltaX;
@@ -37,6 +38,7 @@ void scroll_bbh_dl_E_dress_mesh_layer_5_vtx_1() {
 	int i = 0;
 	int count = 52;
 	int width = 128 * 0x20;
+	int height = 32 * 0x20;
 
 	static int currentX = 0;
 	int deltaX;
