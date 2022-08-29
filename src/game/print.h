@@ -17,6 +17,8 @@ enum PrintfGlyphs {
     GLYPH_AMPERSAND       = 39,
     GLYPH_PERCENT         = 40,
     GLYPH_A_BUTTON        = 41,
+    GLYPH_DPAD_BUTTON     = 42,
+    GLYPH_C_BUTTON        = 43,
     GLYPH_SLASH           = 46,
     GLYPH_MINUS           = 47,
     GLYPH_MULTIPLY        = 48,

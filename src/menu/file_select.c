@@ -21,6 +21,7 @@
 #include "game/rumble_init.h"
 #include "sm64.h"
 #include "text_strings.h"
+#include "gfx_dimensions.h"
 
 #include "game/puppyprint.h"
 
@@ -31,7 +32,7 @@
 s8 sLanguageMode = LANGUAGE_ENGLISH;
 #endif
 
-#define PRINT_TEXT_FONT 2
+#define PRINT_TEXT_FONT 4
 
 extern void *languageTable[][3];
 
@@ -1153,10 +1154,10 @@ void bhv_file_select_manager_init(void) {
     sMainMenuButtons[MENU_BUTTON_PLAY_FILE_D]->oMenuButtonScale = SAVE_FILE_BUTTON_SCALE;
     sMainMenuButtons[MENU_BUTTON_COPY] =
         spawn_object_rel_with_rot(o, MODEL_MAIN_MENU_BLUE_COPY_BUTTON,
-                                  bhvMenuButton, 3600, -6000, 0, 0x0, 0x0, 0x0);
+                                  bhvMenuButton, 3600 + 860, -6000, 0, 0x0, 0x0, 0x0);
     sMainMenuButtons[MENU_BUTTON_ERASE] =
         spawn_object_rel_with_rot(o, MODEL_MAIN_MENU_BLUE_COPY_BUTTON,
-                                  bhvMenuButton, 7000, -6000, 0, 0x0, 0x0, 0x0);
+                                  bhvMenuButton, 7000 + 860, -6000, 0, 0x0, 0x0, 0x0);
 
     sTextBaseAlpha = 0;
 }
@@ -1551,6 +1552,10 @@ void print_save_file_star_count(s8 fileIndex, s16 x, s16 y) {
 #define MARIOTEXT_OFFSET_Y 14
 #define MARIOTEXT_OFFSET_X 3
 
+//Originally 213
+#define COPY_BUTTON_X 224.5f
+#define COPY_BUTTON_Y 201
+
 void print_copy_button_label(s8 isReturn) {
     // textSize = 0.8f;
 
@@ -1558,13 +1563,15 @@ void print_copy_button_label(s8 isReturn) {
     obj_scale(sMainMenuButtons[MENU_BUTTON_COPY], 1.1);
 
     if (isReturn) {
-        print_small_text(213, 200, /*"<COL_FFFFFFFF>Back<COL_-------->"*/ "Back", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT);
+        print_small_text(COPY_BUTTON_X, COPY_BUTTON_Y, /*"<COL_FFFFFFFF>Back<COL_-------->"*/ "Back", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT);
     } else {
-        print_small_text(213, 200, /*"<COL_FFFFFFFF>Copy<COL_-------->"*/ "Copy", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT);
+        print_small_text(COPY_BUTTON_X, COPY_BUTTON_Y, /*"<COL_FFFFFFFF>Copy<COL_-------->"*/ "Copy", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT);
     }
     
     // textSize = 1.0f;
 }
+
+#define ERASE_BUTTON_OFFSET_X 49
 
 void print_erase_button_label(s8 isReturn) {
     // textSize = 0.8f;
@@ -1572,9 +1579,9 @@ void print_erase_button_label(s8 isReturn) {
     obj_scale(sMainMenuButtons[MENU_BUTTON_ERASE], 1.1);
 
     if (isReturn) {
-        print_small_text(262, 200, /*"<COL_FFFFFFFF>Back<COL_-------->"*/ "Back", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT);
+        print_small_text(COPY_BUTTON_X + ERASE_BUTTON_OFFSET_X, COPY_BUTTON_Y, /*"<COL_FFFFFFFF>Back<COL_-------->"*/ "Back", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT);
     } else {
-        print_small_text(262, 200, /*"<COL_FFFFFFFF>Erase<COL_-------->"*/ "Erase", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT);
+        print_small_text(COPY_BUTTON_X + ERASE_BUTTON_OFFSET_X, COPY_BUTTON_Y, /*"<COL_FFFFFFFF>Erase<COL_-------->"*/ "Erase", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT);
     }
     
     // textSize = 1.0f;
@@ -2238,6 +2245,131 @@ void print_file_select_strings(void) {
     }
 }
 
+
+void render_menu_controls(void) {
+    u8 dpad_str[] = { GLYPH_DPAD_BUTTON, GLYPH_SPACE};
+    u8 c_str[] = {GLYPH_C_BUTTON, GLYPH_SPACE};
+
+    s16 textHeight = SCREEN_HEIGHT - 40;
+
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
+    print_hud_lut_string(HUD_LUT_GLOBAL, 100, textHeight, c_str);
+    // Will reenable once I get around to making the navigation thing, until then, it's gone.
+    // print_hud_lut_string(HUD_LUT_GLOBAL, 20, textHeight, dpad_str);
+    // print_small_text(40, textHeight + 2, "Navigate", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, PRINT_TEXT_FONT);
+    print_small_text(120, textHeight + 2, "Scroll Credits", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, PRINT_TEXT_FONT);
+    gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
+}
+
+// INFO:
+// Top left of screen = (4, 239)
+// Bottom right of screen = (317, 2)
+
+// Screen length: 313
+// Screen height: 237
+// 1/16 paddings = (19.5, 14.8)
+
+// Center = (160.5, 120.5)
+
+static const Vtx vertex_credits_box[] = {
+    {{{   121.5,     60.5,      0}, 0, {     0,      0}, {0xff, 0xff, 0xff, 0x2f}}}, // Bottom Left
+    {{{   297.5,   60.5,      0}, 0, {     0,      0}, {0xff, 0xff, 0xff, 0x2f}}}, // Bottom Right
+    {{{   297.5,   219.5,    0}, 0, {     0,      0}, {0xff, 0xff, 0xff, 0x2f}}}, // Top right
+    {{{   121.5,     219.5,    0}, 0, {     0,      0}, {0xff, 0xff, 0xff, 0x2f}}}, // Top left
+};
+
+void draw_credits_box(void) {
+    gDPPipeSync(gDisplayListHead++);
+    gSPClearGeometryMode(gDisplayListHead++, G_LIGHTING);
+    gDPSetCombineMode(gDisplayListHead++, G_CC_FADE, G_CC_FADE);
+    gDPSetRenderMode(gDisplayListHead++, G_RM_XLU_SURF, G_RM_XLU_SURF2);
+    gDPSetFillColor(gDisplayListHead++, GPACK_RGBA5551(255, 255, 255, 101));
+    gSPVertex(gDisplayListHead++, vertex_credits_box, 4, 0);
+    gSP2Triangles(gDisplayListHead++,  0,  1,  2, 0x0,  0,  2,  3, 0x0);
+    gDPPipeSync(gDisplayListHead++);
+}
+
+#define CREDITS_LEFT_X 145
+#define CREDITS_RIGHT_X 295
+#define CREDITS_TOP_Y 22
+
+#define CREDITS_PADDING 12
+
+#define LINES_ON_PAGE 12
+// Please keep this equal to the length of the sCreditStrings array, I don't know a good alternative to keep count
+#define CREDIT_COUNT 24
+static const char* sCreditStrings[] = {
+    "PRODUCERS",
+    "Mel, ArcticJaguar725",
+    "",
+    "FULLY ORIGINAL SOUNDTRACK",
+    "Mel, ArcticJaguar725",
+    "",
+    "ELISE VA",
+    "Frack",
+    "",
+    "PROGRAMMING",
+    "ArcticJaguar725, Bitlytic",
+    "",
+    "MODELS AND TEXTURES",
+    "Mel",
+    "",
+    "SOUND ENGINEERING/PORTING",
+    "ArcticJaguar725, PablosCorner",
+    "",
+    "ADDITIONAL HELP",
+    "FluffaLuigi (Mario Replacement), ",
+    "LuigixHero, Crissley10 (end card)",
+    "",
+    "SPECIAL THANKS",
+    "Reonu",
+};
+
+static s8 sCreditOffset = 0;
+
+void print_credit_strings(void) {
+    if (gControllers[0].buttonPressed & D_CBUTTONS) {
+        sCreditOffset++;
+    } else if (gControllers[0].buttonPressed & U_CBUTTONS) {
+        sCreditOffset--;
+    }
+
+    if (sCreditOffset >= CREDIT_COUNT - LINES_ON_PAGE) {
+        sCreditOffset = CREDIT_COUNT - LINES_ON_PAGE;
+    } else if (sCreditOffset < 0) {
+        sCreditOffset = 0;
+    }
+
+    s32 i;
+    s32 creditIndex;
+    for (i = 0; i < LINES_ON_PAGE; i++) {
+        creditIndex = i + sCreditOffset;
+        if (creditIndex < CREDIT_COUNT) {
+            print_small_text(CREDITS_RIGHT_X, CREDITS_TOP_Y + (CREDITS_PADDING*i), sCreditStrings[creditIndex], PRINT_TEXT_ALIGN_RIGHT, PRINT_ALL, PRINT_TEXT_FONT);
+        }
+    }
+
+    char scrollText[3];
+    if (sCreditOffset == CREDIT_COUNT - LINES_ON_PAGE) {
+        scrollText[1] = ' ';
+    } else {
+        scrollText[1] = '+';
+    }
+
+    if (sCreditOffset == 0) {
+        scrollText[0] = ' ';
+    } else {
+        scrollText[0] = '^';
+    }
+
+    scrollText[2] = '\0';
+
+    print_small_text(CREDITS_RIGHT_X, 166, scrollText, PRINT_TEXT_ALIGN_RIGHT, PRINT_ALL, PRINT_TEXT_FONT);
+
+    render_menu_controls();
+}
+
 /**
  * Geo function that prints file select strings and the cursor.
  */
@@ -2245,6 +2377,8 @@ Gfx *geo_file_select_strings_and_menu_cursor(s32 callContext, UNUSED struct Grap
     if (callContext == GEO_CONTEXT_RENDER) {
         // Moving this here so testing works
         create_dl_ortho_matrix();
+        draw_credits_box();
+        print_credit_strings();
         print_file_select_strings();
         print_menu_cursor();
     }
