@@ -2247,7 +2247,7 @@ void print_file_select_strings(void) {
 
 
 void render_menu_controls(void) {
-    u8 dpad_str[] = { GLYPH_DPAD_BUTTON, GLYPH_SPACE};
+    // u8 dpad_str[] = { GLYPH_DPAD_BUTTON, GLYPH_SPACE};
     u8 c_str[] = {GLYPH_C_BUTTON, GLYPH_SPACE};
 
     s16 textHeight = SCREEN_HEIGHT - 40;
