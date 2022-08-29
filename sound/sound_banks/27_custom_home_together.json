@@ -41,10 +41,10 @@
     },
     "instruments": {
 		"xylophone": {
-            "release_rate": 35,
+            "release_rate": 10,
 			"normal_range_lo": 34,
             "normal_range_hi": 37,
-            "envelope": "normalFadeOut",
+            "envelope": "longerFadeOut",
             "sound_lo": {"sample": "custom_xylophone_lo", "tuning": 0.172266},
 			"sound": {"sample": "custom_xylophone_mid", "tuning": 0.136727},
 			"sound_hi": {"sample": "custom_xylophone_hi", "tuning": 0.108521}
@@ -53,7 +53,7 @@
             "release_rate": 50,
 			"normal_range_lo": 28,
             "normal_range_hi": 33,
-            "envelope": "normal",
+            "envelope": "normalFadeOut",
             "sound_lo": {"sample": "custom_pizzicatoBass_lo", "tuning": 1.378125},
 			"sound": {"sample": "custom_pizzicatoBass_mid", "tuning": 0.974482},
 			"sound_hi": {"sample": "custom_pizzicatoBass_hi", "tuning": 0.689063}
@@ -72,9 +72,9 @@
             "normal_range_lo": 23,
             "normal_range_hi": 23,
             "envelope": "normal",
-            "sound_lo": {"sample": "custom_closedHiHat", "tuning": 1.948963},
+            "sound_lo": {"sample": "custom_closedHiHat", "tuning": 2.828427},
             "sound": {"sample": "custom_middleHiHat", "tuning": 1.736329},
-            "sound_hi": {"sample": "custom_openHiHat", "tuning": 1.546893}
+            "sound_hi": {"sample": "custom_openHiHat", "tuning": 2.244924}
         },
         "crashCymbal": {
             "release_rate": 10,
