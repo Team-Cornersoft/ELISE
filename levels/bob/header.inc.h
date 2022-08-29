@@ -23,7 +23,7 @@ extern Vtx bob_dl_A_Tree_A_mesh_layer_4_vtx_cull[8];
 extern Vtx bob_dl_A_Tree_A_mesh_layer_4_vtx_0[104];
 extern Gfx bob_dl_A_Tree_A_mesh_layer_4_tri_0[];
 extern Vtx bob_dl_A_Tree_B_mesh_layer_1_vtx_cull[8];
-extern Vtx bob_dl_A_Tree_B_mesh_layer_1_vtx_0[316];
+extern Vtx bob_dl_A_Tree_B_mesh_layer_1_vtx_0[332];
 extern Gfx bob_dl_A_Tree_B_mesh_layer_1_tri_0[];
 extern Vtx bob_dl_B_NosePerson_A_mesh_layer_1_vtx_cull[8];
 extern Vtx bob_dl_B_NosePerson_A_mesh_layer_1_vtx_0[75];
