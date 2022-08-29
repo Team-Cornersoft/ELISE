@@ -88,7 +88,7 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_NONE, -6900, -1538, -10980, 0, 0, 0, 0x10CA0000, bhvWarp),
 		OBJECT(MODEL_NONE, -11900, -4138, 1220, 0, 0, 0, 0x10CB0000, bhvWarp),
 		OBJECT(MODEL_NONE, 7200, -3338, 7620, 0, 0, 0, 0x10CC0000, bhvWarp),
-		OBJECT(MODEL_NONE, 11700, -8338, -4880, 0, 0, 0, 0x10CD0000, bhvWarp),
+		OBJECT(MODEL_NONE, 11700, -6838, -4880, 0, 0, 0, 0x10CD0000, bhvWarp),
 		TERRAIN(bbh_area_1_collision),
 		MACRO_OBJECTS(bbh_area_1_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_UNDERGROUND),
