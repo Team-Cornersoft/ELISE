@@ -28,3 +28,4 @@
 #include "animated_wall_dinoB/geo.inc.c"
 #include "animated_wall_dogA/geo.inc.c"
 #include "animated_wall_dogB/geo.inc.c"
+#include "despair/geo.inc.c"

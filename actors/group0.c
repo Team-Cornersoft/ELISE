@@ -43,3 +43,4 @@
 #include "animated_wall_dinoB/model.inc.c"
 #include "animated_wall_dogA/model.inc.c"
 #include "animated_wall_dogB/model.inc.c"
+#include "despair/model.inc.c"

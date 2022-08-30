@@ -4,7 +4,7 @@ const GeoLayout lll_area_1_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_TRANSPARENT, 59, 2123, -206, lll_dl_B__stairs_mesh_layer_5),
-		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 0, -6230, 0, lll_dl_B_Needle_000_mesh_layer_1),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 0, -6230, 0, lll_dl_B_Needles_mesh_layer_1),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_TRANSPARENT, 0, -5156, -7100, lll_dl_C_Portal_000_mesh_layer_5),
 		GEO_OPEN_NODE(),
 			GEO_DISPLAY_LIST(LAYER_OPAQUE, lll_dl_C_Portal_000_mesh_layer_1),
