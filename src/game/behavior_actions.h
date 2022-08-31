@@ -559,6 +559,10 @@ void bhv_volcano_trap_loop(void);
 
 void bhv_animated_wall_init(void);
 void bhv_animated_wall_loop(void);
+void bhv_despair_init(void);
+void bhv_despair_loop(void);
+void bhv_despair_swipe_loop(void);
+void bhv_crystal_projectile_loop(void);
 
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
 

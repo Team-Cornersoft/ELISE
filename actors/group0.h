@@ -355,4 +355,10 @@ extern const Gfx white_particle_small_unused_dl[];
 
 #include "animated_wall_dogB/geo_header.h"
 
+#include "crystal_projectile/geo_header.h"
+
+#include "despair/geo_header.h"
+
+
+#include "despair/anim_header.h"
 #endif

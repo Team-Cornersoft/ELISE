@@ -6101,3 +6101,33 @@ const BehaviorScript bhvAnimatedWall[] = {
         CALL_NATIVE(bhv_animated_wall_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvDespair[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    LOAD_ANIMATIONS(oAnimations, despair_anims),
+    CALL_NATIVE(bhv_despair_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_despair_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvDespairSwipe[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    SET_INTERACT_TYPE(INTERACT_DAMAGE),
+    SET_INT(oDamageOrCoinValue, 3),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_despair_swipe_loop),
+    END_LOOP(),
+};
+
+const BehaviorScript bhvCrystalProjectile[] = {
+    BEGIN(OBJ_LIST_GENACTOR),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    SET_INTERACT_TYPE(INTERACT_DAMAGE),
+    SET_INT(oDamageOrCoinValue, 3),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_crystal_projectile_loop),
+    END_LOOP(),
+};

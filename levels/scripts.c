@@ -122,6 +122,8 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_PORTAL_WARP,             custom_portal_w_geo),
     LOAD_MODEL_FROM_GEO(MODEL_DREAM_DROP_BLUE,         custom_dream_drop_blue_geo),
     LOAD_MODEL_FROM_GEO(MODEL_DREAM_DROP_RED,          custom_dream_drop_red_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_DESPAIR,                 despair_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_CRYSTAL_PROJECTILE,      crystal_projectile_geo),
 
     LOAD_MODEL_FROM_GEO(MODEL_ANIMATED_WALL_CAT_A,     animated_wall_catA_geo),
     LOAD_MODEL_FROM_GEO(MODEL_ANIMATED_WALL_CAT_B,     animated_wall_catB_geo),

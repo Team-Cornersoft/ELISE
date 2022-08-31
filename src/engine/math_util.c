@@ -11,6 +11,7 @@
 
 #include "config.h"
 #include "config/config_world.h"
+#include "game/print.h"
 
 
 Vec3f gVec3fX    = {  1.0f,  0.0f,  0.0f };
@@ -1590,4 +1591,38 @@ void mtxf_to_mtx_fast(s16* dst, float* src)
     // The low half was already set to zero in the loop, so we only need
     //  to set the top half.
     dst[15] = 1;
+}
+
+f32 lerp(f32 a, f32 b, f32 t) {
+    return a + ((b - a) * t);
+}
+
+f32 slerp(f32 a, f32 b, f32 c, f32 t) {
+    return lerp(lerp(a, b, t), lerp(b, c, t), t);
+}
+
+// h - height, r - radius
+// o - origin point
+// v - test point
+
+s32 does_intersect_with_cylinder(Vec3f o, s32 h, s32 r, Vec3f v) {
+    char text[25];
+
+    // Check height first, it's quick
+    if (absf(o[1] - v[1]) <= h) {
+        f32 dist;
+
+        // Transform into just horizontal components to prevent sphere check
+        Vec3f oLateral = {o[0], 0, o[2]};
+        Vec3f vLateral = {v[0], 0, v[2]};
+
+        vec3f_get_dist(oLateral, vLateral, &dist);
+
+        sprintf(text, "dist %f", dist);
+
+        print_text(20, 100, text);
+
+        return dist <= r;
+    }
+    return FALSE;
 }

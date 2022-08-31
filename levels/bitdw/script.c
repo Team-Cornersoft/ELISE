@@ -76,6 +76,7 @@ const LevelScript level_bitdw_entry[] = {
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, -180, 0, 0x00BA0000, bhvSpinAirborneWarp),
 		MARIO_POS(0x01, -180, 0, 0, 0),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, -180, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_DESPAIR, /*posX*/ 0, /*posY*/ 0, /*posZ*/ 0, /*rotX*/ 0, /*rotY*/ 0, /*rotZ*/ 0, 0x00000000, bhvDespair),		
 		TERRAIN(bitdw_area_1_collision),
 		MACRO_OBJECTS(bitdw_area_1_macro_objs),
 		STOP_MUSIC(0),

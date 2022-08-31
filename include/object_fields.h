@@ -1261,6 +1261,14 @@
 #define /*0x0FC*/ oYoshiChosenHome OBJECT_FIELD_S32(0x1D)
 #define /*0x100*/ oYoshiTargetYaw  OBJECT_FIELD_S32(0x1E)
 
+#define oDespairAttackCooldown     OBJECT_FIELD_S32(0x1B)
+#define oDespairAttackTimer        OBJECT_FIELD_S32(0x1C)
+#define oDespairHits               OBJECT_FIELD_S16(0x1D, 0)
+#define oDespairMaxHits            OBJECT_FIELD_S16(0x1D, 1)
+#define oDespairCurrentAttacks     OBJECT_FIELD_S16(0x1E, 0)
+#define oDespairSwipes             OBJECT_FIELD_S16(0x1E, 1)
+
+#define oDespairSpinAngle          OBJECT_FIELD_F32(0x1F)
 
 /*Custom general defines:
 

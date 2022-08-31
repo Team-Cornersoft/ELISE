@@ -559,6 +559,8 @@
 #define MODEL_ANIMATED_WALL_BIRD_B        0xFA
 #define MODEL_DREAM_DROP_BLUE             0xFB        // Blue dream drop  
 #define MODEL_DREAM_DROP_RED              0xFC        // Red dream drop
+#define MODEL_DESPAIR                     0xFD        // Needs importing, but I'm gonna temporarily use king whomp I think
+#define MODEL_CRYSTAL_PROJECTILE          0xFE
 
 #ifdef IA8_30FPS_COINS
 #define MODEL_SILVER_COIN                 0xE2        // silver_coin_geo
