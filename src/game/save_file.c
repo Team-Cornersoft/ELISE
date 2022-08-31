@@ -685,11 +685,17 @@ void save_file_set_camera_fields(s8 cameraType, s8 cameraSpeed) {
 
 s8 save_file_get_camera_type(void) {
     struct SaveFile *saveFile = &gSaveBuffer.files[gCurrSaveFileNum - 1][0];
+    if (saveFile->cameraType >= USERCAM_COUNT)
+        return 0;
+
     return saveFile->cameraType;
 }
 
 s8 save_file_get_camera_speed(void) {
     struct SaveFile *saveFile = &gSaveBuffer.files[gCurrSaveFileNum - 1][0];
+    if (saveFile->cameraSpeed >= NUM_CAMERA_SPEED_OPTIONS)
+        return 0;
+
     return saveFile->cameraSpeed;
 }
 
