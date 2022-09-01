@@ -82,7 +82,7 @@ const LevelScript level_bitdw_entry[] = {
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
-		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_BOSS_KOOPA, 0x01, 0x02),
+		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_EVENT_DISASTER_BOSS, 0x01, 0x02),
 		SET_ECHO(0x12, 0x12),
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
