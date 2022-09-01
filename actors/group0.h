@@ -362,4 +362,6 @@ extern const Gfx white_particle_small_unused_dl[];
 #include "despair/anim_header.h"
 
 #include "mario/geo_header.h"
+#include "custom_door_c/geo_header.h"
+
 #endif

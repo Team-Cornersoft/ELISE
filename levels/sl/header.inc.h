@@ -1,0 +1,17 @@
+extern const GeoLayout sl_area_1_geo[];
+extern const GeoLayout sl_area_1[];
+extern const Collision sl_area_1_collision[];
+extern const MacroObject sl_area_1_macro_objs[];
+extern u8 sl_dl_checkerboard_ia8[];
+extern u8 sl_dl_Glass_2_rgba32[];
+extern Vtx sl_dl_Test_mesh_layer_5_vtx_cull[8];
+extern Vtx sl_dl_Test_mesh_layer_5_vtx_0[4];
+extern Gfx sl_dl_Test_mesh_layer_5_tri_0[];
+extern Vtx sl_dl_Test_mesh_layer_5_vtx_1[84];
+extern Gfx sl_dl_Test_mesh_layer_5_tri_1[];
+extern Gfx mat_sl_dl_Checkerboard[];
+extern Gfx mat_revert_sl_dl_Checkerboard[];
+extern Gfx mat_sl_dl_GLACY_GLASS[];
+extern Gfx mat_revert_sl_dl_GLACY_GLASS[];
+extern Gfx sl_dl_Test_mesh_layer_5[];
+extern Gfx sl_dl_material_revert_render_settings[];
