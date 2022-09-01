@@ -223,10 +223,10 @@
             {"release_rate": 10, "pan": 62, "envelope": "envelope17", "sound": {"sample": "06_kick_drum_1", "tuning": 0.5}},
             {"release_rate": 10, "pan": 66, "envelope": "envelope17", "sound": {"sample": "08", "tuning": 0.8418465}},
             {"release_rate": 10, "pan": 66, "envelope": "envelope17", "sound": {"sample": "08", "tuning": 0.8919052}},
-            {"release_rate": 10, "pan": 31, "envelope": "envelope17", "sound": {"sample": "09", "tuning": 0.5}},
-            {"release_rate": 10, "pan": 79, "envelope": "envelope17", "sound": {"sample": "09", "tuning": 0.707107}},
-            {"release_rate": 10, "pan": 63, "envelope": "envelope17", "sound": {"sample": "09", "tuning": 0.840897}},
-            {"release_rate": 10, "pan": 47, "envelope": "envelope17", "sound": {"sample": "09", "tuning": 1.059463}},
+            {"release_rate": 10, "pan": 79, "envelope": "envelope17", "sound": {"sample": "09", "tuning": 0.5}},
+            {"release_rate": 10, "pan": 63, "envelope": "envelope17", "sound": {"sample": "09", "tuning": 0.707107}},
+            {"release_rate": 10, "pan": 47, "envelope": "envelope17", "sound": {"sample": "09", "tuning": 0.840897}},
+            {"release_rate": 10, "pan": 31, "envelope": "envelope17", "sound": {"sample": "09", "tuning": 1.059463}},
             {"release_rate": 40, "pan": 16, "envelope": "envelope16", "sound": {"sample": "20_cabasa", "tuning": 1.0}},
             {"release_rate": 40, "pan": 111, "envelope": "envelope16", "sound": {"sample": "20_cabasa", "tuning": 1.414214}}
         ]
