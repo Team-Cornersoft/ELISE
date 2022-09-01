@@ -1682,6 +1682,9 @@ void note_init_volume(struct Note *note) {
 }
 
 void note_set_vel_pan_reverb(struct Note *note, f32 velocity, f32 pan, u8 reverbVol) {
+
+    // I have no idea why, but this prevents a PJ64 crash. Good luck
+    volatile int tmp = 0;
     f32 volLeft, volRight;
     s32 panIndex = (s32)(pan * 127.5f) & 127;
 
