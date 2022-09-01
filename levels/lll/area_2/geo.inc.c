@@ -20,10 +20,10 @@ const GeoLayout lll_area_2_geo[] = {
 		GEO_OPEN_NODE(),
 			GEO_DISPLAY_LIST(LAYER_OPAQUE, lll_dl_C_Mountain_grave_mesh_layer_1),
 		GEO_CLOSE_NODE(),
-		GEO_TRANSLATE_NODE_WITH_DL(LAYER_TRANSPARENT, 10137, 10518, -13932, lll_dl_D_glitter_A_mesh_layer_5),
-		GEO_TRANSLATE_NODE_WITH_DL(LAYER_TRANSPARENT, -12202, 7014, 5675, lll_dl_D_glitter_A_001_mesh_layer_5),
-		GEO_TRANSLATE_NODE_WITH_DL(LAYER_TRANSPARENT, -12202, 7014, 5675, lll_dl_D_glitter_B_mesh_layer_5),
-		GEO_TRANSLATE_NODE_WITH_DL(LAYER_TRANSPARENT, 10137, 10518, -13932, lll_dl_D_glitter_B_001_mesh_layer_5),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_TRANSPARENT, 10137, 10518, -13932, -83, -79, 82, lll_dl_D_glitter_A_mesh_layer_5),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_TRANSPARENT, -12202, 7014, 5675, -83, -79, 82, lll_dl_D_glitter_A_001_mesh_layer_5),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_TRANSPARENT, -12202, 7014, 5675, -83, -79, 82, lll_dl_D_glitter_B_mesh_layer_5),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_TRANSPARENT, 10137, 10518, -13932, -83, -79, 82, lll_dl_D_glitter_B_001_mesh_layer_5),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 25086, 7732, -20968, lll_dl_D_Moon_mesh_layer_1),
 		GEO_OPEN_NODE(),
 			GEO_DISPLAY_LIST(LAYER_TRANSPARENT, lll_dl_D_Moon_mesh_layer_5),
@@ -41,7 +41,7 @@ const GeoLayout lll_dl_1_NOSEMAN_geo[] = {
 const GeoLayout lll_dl_2_Grave_mount_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 6262, 2610, -4828, lll_dl_B_grave_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 6262, 2610, -4828, 0, 40, 0, lll_dl_B_grave_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };

@@ -26,6 +26,7 @@ const GeoLayout ddd_dl_A_ROOM_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, -7322, 292, -406, ddd_dl_room_a_mesh_layer_1),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, -5324, 295, -3354, ddd_dl_room_b_003_mesh_layer_1),
 		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, -8277, 412, -996, ddd_dl_Window_A_mesh_layer_1),
 		GEO_OPEN_NODE(),
 			GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ddd_dl_Window_A_mesh_layer_5),
