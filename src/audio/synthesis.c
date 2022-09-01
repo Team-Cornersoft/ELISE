@@ -1682,6 +1682,13 @@ void note_init_volume(struct Note *note) {
 }
 
 void note_set_vel_pan_reverb(struct Note *note, f32 velocity, f32 pan, u8 reverbVol) {
+
+    // Crash software versions
+    // GNU Make 4.2.1 in Ubuntu WSL
+    // PJ64 3.0.1.5664-2df3434
+
+    // Uncommenting the following line will fix the pj64 crash
+    // volatile int tmp = 0;
     f32 volLeft, volRight;
     s32 panIndex = (s32)(pan * 127.5f) & 127;
 
