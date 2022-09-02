@@ -118,6 +118,13 @@ s32 can_attack(void) {
     return is_cooldown() && is_timer();
 }
 
+void push_elise_back(void) {
+    set_mario_action(gMarioState, ACT_SPAWN_NO_SPIN_AIRBORNE, 0);
+    gMarioState->forwardVel = -15.0f;
+    gMarioState->vel[1] = 40.0f;
+    gMarioState->faceAngle[1] = degrees_to_angle(180.0f);   
+}
+
 void take_damage(void) {
     o->oDespairHits++;
 
@@ -127,6 +134,8 @@ void take_damage(void) {
     // Phase 3 with 100%
     // Phase 5 defeat
 
+
+    push_elise_back();
 
     // Check if we're 100%
     if (o->oDespairMaxHits == 5) {
@@ -139,10 +148,6 @@ void take_damage(void) {
         } else if (o->oDespairHits == 5) {
             // Play ending 2 death sequence
             o->oAction = DEATH_TRUE;
-            set_mario_action(gMarioState, ACT_SPAWN_NO_SPIN_AIRBORNE, 0);
-            gMarioState->forwardVel = -20.0f;
-            gMarioState->vel[1] = 40.0f;
-            gMarioState->faceAngle[1] = degrees_to_angle(180.0f);
             return;
         }
     } else {
@@ -450,7 +455,7 @@ void update_resetting(void) {
     if (dist <= 300.0f) {
         vec3f_copy(&o->oPosX, sAnchorPositions[NORTH]);
 
-        if (sDespairDialogFlag) {
+        if (sDespairDialogFlag && gMarioState->action == ACT_IDLE) {
             if (gDialogResponse != 0) {
                 disable_time_stop_including_mario();
                 change_attack(IDLE, o->oDespairAttackCooldown, o->oDespairAttackTimer);

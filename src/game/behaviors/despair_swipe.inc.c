@@ -10,7 +10,7 @@ static struct ObjectHitbox sDespairSwipeHitbox = {
     /* radius:            */ 0,
     /* height:            */ 0,
     /* hurtboxRadius:     */ 200,
-    /* hurtboxHeight:     */ 100,
+    /* hurtboxHeight:     */ 300,
 };
 
 void bhv_despair_swipe_loop(void) {
