@@ -43,7 +43,7 @@ const LevelScript level_ccm_entry[] = {
 		WARP_NODE(0xDA, LEVEL_CASTLE, 0x01, 0xBC, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xDB, LEVEL_CCM, 0x02, 0xDA, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xDC, LEVEL_CCM, 0x04, 0xDB, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xDD, LEVEL_CCM, 0x01, 0xDD, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xDD, LEVEL_SL, 0x01, 0xDA, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xDE, LEVEL_CCM, 0x02, 0xDB, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xDF, LEVEL_CCM, 0x01, 0xDF, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xD0, LEVEL_CCM, 0x01, 0xD0, WARP_NO_CHECKPOINT),
@@ -104,7 +104,7 @@ const LevelScript level_ccm_entry[] = {
 		TERRAIN(ccm_area_2_collision),
 		ROOMS(ccm_area_2_collision_rooms),
 		MACRO_OBJECTS(ccm_area_2_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_HOME_TOGETHER),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_ANIMAL_PARTY),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
@@ -176,7 +176,7 @@ const LevelScript level_ccm_entry[] = {
 		OBJECT(MODEL_CUSTOM_DOOR_A, 1400, 0, -2590, 0, 0, 0, 0x00DA0000, bhvDoorWarp),
 		TERRAIN(ccm_area_6_collision),
 		MACRO_OBJECTS(ccm_area_6_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_ANIMAL_PARTY),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
