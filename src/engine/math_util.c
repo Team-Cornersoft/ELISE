@@ -1606,7 +1606,6 @@ f32 slerp(f32 a, f32 b, f32 c, f32 t) {
 // v - test point
 
 s32 does_intersect_with_cylinder(Vec3f o, s32 h, s32 r, Vec3f v) {
-    char text[25];
 
     // Check height first, it's quick
     if (absf(o[1] - v[1]) <= h) {
@@ -1617,10 +1616,6 @@ s32 does_intersect_with_cylinder(Vec3f o, s32 h, s32 r, Vec3f v) {
         Vec3f vLateral = {v[0], 0, v[2]};
 
         vec3f_get_dist(oLateral, vLateral, &dist);
-
-        sprintf(text, "dist %f", dist);
-
-        print_text(20, 100, text);
 
         return dist <= r;
     }

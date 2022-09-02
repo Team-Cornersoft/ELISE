@@ -2097,3 +2097,26 @@ Arrgghh!\n\
 Anyone entering this cave\n\
 without permission will\n\
 meet certain disaster."))
+
+DEFINE_DIALOG(DIALOG_170, 1, 7, 30, 200, _("\
+DESPAIR:\n\
+Defiance is futile!\n\
+You wanted this to begin\n\
+with, why refuse me now?\n\
+\n\
+\n\
+\n\
+ELISE:\n\
+It's time for me to face\n\
+my problems head on and\n\
+give life a chance even\n\
+despite my circumstances!\n\
+\n\
+\n\
+DESPAIR:\n\
+You are but a fool and\n\
+slave to reality.\n\
+I will pacify you here\n\
+and now, and keep you\n\
+protected in the bliss\n\
+of the dreamworld..."))
