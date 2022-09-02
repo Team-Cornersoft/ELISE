@@ -2120,3 +2120,99 @@ I will pacify you here\n\
 and now, and keep you\n\
 protected in the bliss\n\
 of the dreamworld..."))
+
+DEFINE_DIALOG(DIALOG_171, 1, 4, 30, 200, _("\
+DESPAIR:\n\
+H-h-how are you this\n\
+resilient?!\n\
+\n\
+ELISE:\n\
+Take that you stupid rock!\n\
+Now wake me up or I'll\n\
+tear you down completely!\n\
+DESPAIR:\n\
+Feisty, but even I know\n\
+when to give up.\n\
+\n\
+Very well. But remember:\n\
+I will return whenever\n\
+you wish for eternal\n\
+escape again."))
+
+DEFINE_DIALOG(DIALOG_172, 1, 5, 30, 200, _("\
+DESPAIR:\n\
+H-h-how are you this\n\
+resilient?!\n\
+\n\
+\n\
+ELISE:\n\
+Take that you stupid rock!\n\
+\n\
+\n\
+\n\
+DESPAIR:\n\
+The blasphemy! I gave\n\
+you a gift of eternal\n\
+happiness and you just\n\
+want to throw it away?!\n\
+ELISE:\n\
+Gift?!\n\
+I have been subjected\n\
+to nothing but my\n\
+internal struggles\n\
+and trauma here!\n\
+What you've done is\n\
+give me a wake up\n\
+call, and that's all\n\
+there is to it.\n\
+DESPAIR:\n\
+So this is it then?\n\
+\n\
+\n\
+\n\
+You are just going to\n\
+defile the blessing\n\
+bestowed upon you\n\
+with violence?\n\
+\n\
+ELISE:\n\
+Sorry rainbow eyes,\n\
+but I have a lot of\n\
+pent up frustration to\n\
+take out on you\n\
+DESPAIR:\n\
+This is IT!\n\
+YOU WILL BE PUT INTO\n\
+YOUR PLACE YOU\n\
+CURSED CHILD!!!"))
+
+DEFINE_DIALOG(DIALOG_173, 1, 4, 30, 200, _("\
+DESPAIR:\n\
+N-n-n-o! I can't...\n\
+Has humanity forsaken\n\
+me...\n\
+ELISE:\n\
+If only you didn't try\n\
+to trap people in a coma\n\
+maybe we wouldn't have.\n\
+DESPAIR:\n\
+But...\n\
+I did it for\n\
+humanity...\n\
+ELISE:\n\
+It's over, man.\n\
+\n\
+Go to bed.\n\
+DESPAIR:\n\
+...\n\
+\n\
+\n\
+Curse...\n\
+\n\
+\n\
+\n\
+You...\n\
+\n\
+\n\
+\n\
+ELISE...!"))

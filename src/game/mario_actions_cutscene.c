@@ -1294,7 +1294,7 @@ s32 act_special_death_exit(struct MarioState *m) {
 }
 
 s32 act_spawn_no_spin_airborne(struct MarioState *m) {
-    launch_mario_until_land(m, ACT_SPAWN_NO_SPIN_LANDING, MARIO_ANIM_GENERAL_FALL, 0.0f);
+    launch_mario_until_land(m, ACT_SPAWN_NO_SPIN_LANDING, MARIO_ANIM_GENERAL_FALL, m->forwardVel);
     if (m->pos[1] < m->waterLevel - 100) {
         set_water_plunge_action(m);
     }

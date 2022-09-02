@@ -78,13 +78,15 @@ enum DespairState {
     INTRO, // Done
     MIN_ATTACK,
     HOMING = MIN_ATTACK, // Done
-    THROWING_TORPEDO, // Need to increase amount and/or speed with phase
-    LAUNCHING_TORPEDOS, // Need to increase amount with phase
+    THROWING_TORPEDO, // Done
+    LAUNCHING_TORPEDOS, // Done
     MAX_ATTACK,
     SPINNING_ATTACK, // Done
     STUNNED, // Done except animation
     CHARGING, // Maybe needs new animation? Need to increase amount with phase
     RESETTING, // Done
+    DEATH_REGULAR, // Used for non-100% death sequence
+    DEATH_TRUE, // User for 100% death sequence
 };
 
 void change_attack(s32 action, s32 cooldown, s32 timer) {
@@ -118,8 +120,35 @@ void take_damage(void) {
     o->oDespairHits++;
 
     cur_obj_play_sound_2(SOUND_OBJ_THWOMP);
-    if (o->oDespairHits >= o->oDespairMaxHits) {
-        obj_mark_for_deletion(o);
+
+    // Phase 3 defeat without 100%
+    // Phase 3 with 100%
+    // Phase 5 defeat
+
+
+    // Check if we're 100%
+    if (o->oDespairMaxHits == 5) {
+        if (o->oDespairHits == 3) {
+            // Play intermediate dialog
+            change_attack(RESETTING, SECONDS_TO_TICKS(1), NO_TIME);
+            set_mario_action(gMarioState, ACT_SPAWN_NO_SPIN_AIRBORNE, 0);
+            return;
+        } else if (o->oDespairHits == 5) {
+            // Play ending 2 death sequence
+            o->oAction = DEATH_TRUE;
+            set_mario_action(gMarioState, ACT_SPAWN_NO_SPIN_AIRBORNE, 0);
+            gMarioState->forwardVel = -20.0f;
+            gMarioState->vel[1] = 40.0f;
+            gMarioState->faceAngle[1] = degrees_to_angle(180.0f);
+            return;
+        }
+    } else {
+        if (o->oDespairHits == 3) {
+            // Play ending 1 death sequence
+            o->oAction = DEATH_REGULAR;
+            set_mario_action(gMarioState, ACT_SPAWN_NO_SPIN_AIRBORNE, 0);
+            return;
+        }
     }
 
     change_attack(RESETTING, NO_COOLDOWN, NO_TIME);
@@ -417,7 +446,19 @@ void update_resetting(void) {
 
     if (dist <= 300.0f) {
         vec3f_copy(&o->oPosX, sAnchorPositions[NORTH]);
-        change_attack(IDLE, o->oDespairAttackCooldown, o->oDespairAttackTimer);
+
+        if (o->oDespairHits == 3 && o->oDespairMaxHits == 5) {
+            if (gDialogResponse != 0) {
+                disable_time_stop_including_mario();
+                change_attack(IDLE, o->oDespairAttackCooldown, o->oDespairAttackTimer);
+            }
+            else {
+                enable_time_stop_including_mario();
+                create_dialog_box(DIALOG_172);
+            }
+        } else {
+            change_attack(IDLE, o->oDespairAttackCooldown, o->oDespairAttackTimer);
+        }
     }
 }
 
@@ -432,6 +473,32 @@ void update_intro(void) {
         else {
             enable_time_stop_including_mario();
             create_dialog_box(DIALOG_170);
+        }
+    }
+}
+
+void update_death_regular(void) {
+    if (gMarioState->action == ACT_IDLE) {
+        if (gDialogResponse != 0) {
+            disable_time_stop_including_mario();
+            obj_mark_for_deletion(o);
+        }
+        else {
+            enable_time_stop_including_mario();
+            create_dialog_box(DIALOG_171);
+        }
+    }
+}
+
+void update_death_true(void) {
+    if (gMarioState->action == ACT_IDLE) {
+        if (gDialogResponse != 0) {
+            disable_time_stop_including_mario();
+            obj_mark_for_deletion(o);
+        }
+        else {
+            enable_time_stop_including_mario();
+            create_dialog_box(DIALOG_173);
         }
     }
 }
@@ -459,16 +526,18 @@ void bhv_despair_init(void) {
 
 void bhv_despair_loop(void) {
     switch (o->oAction) {
-        case IDLE:               update_idle();      break;
-        case INTRO:              update_intro();     break;
-        case HOMING:             update_homing();    break;
-        case THROWING_TORPEDO:   update_throwing();  break;
-        case LAUNCHING_TORPEDOS: update_torpedo();   break;
-        case SPINNING_ATTACK:    update_spin();      break;
-        case CHARGING:           update_charging();  break;
-        case RESETTING:          update_resetting(); break;
-        case STUNNED:            update_stunned();   break;
-        default:                                     break;
+        case IDLE:               update_idle();          break;
+        case INTRO:              update_intro();         break;
+        case HOMING:             update_homing();        break;
+        case THROWING_TORPEDO:   update_throwing();      break;
+        case LAUNCHING_TORPEDOS: update_torpedo();       break;
+        case SPINNING_ATTACK:    update_spin();          break;
+        case CHARGING:           update_charging();      break;
+        case RESETTING:          update_resetting();     break;
+        case STUNNED:            update_stunned();       break;
+        case DEATH_REGULAR:      update_death_regular(); break;
+        case DEATH_TRUE:         update_death_true();    break;
+        default: break;
     }
 
     update_gfx();
