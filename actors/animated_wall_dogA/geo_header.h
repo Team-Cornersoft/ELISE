@@ -1,6 +1,4 @@
 extern const GeoLayout animated_wall_dogA_geo[];
-extern Lights1 animated_wall_dogA_animal_wall_animated_2_006_lights;
-extern Lights1 animated_wall_dogA_animal_wall_animated_006_lights;
 extern u8 animated_wall_dogA_dog_A_01_ci8[];
 extern u8 animated_wall_dogA_dog_A_01_ci8_pal_rgba16[];
 extern u8 animated_wall_dogA_dog_A_00_ci8[];

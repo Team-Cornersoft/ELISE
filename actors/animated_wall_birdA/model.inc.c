@@ -1,5 +1,3 @@
-
-
 Gfx animated_wall_birdA_bird_A_01_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 animated_wall_birdA_bird_A_01_ci8[] = {
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -580,8 +578,7 @@ Gfx animated_wall_birdA_wall_animated_002_mesh_layer_5_tri_1[] = {
 
 Gfx mat_animated_wall_birdA_animal_wall_animated_2_002[] = {
 	gsDPPipeSync(),
-	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0),
-	gsSPClearGeometryMode(G_SHADE),
+	gsDPSetCombineLERP(TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0),
 	gsDPSetTextureFilter(G_TF_POINT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureLUT(G_TT_RGBA16),
@@ -599,14 +596,12 @@ Gfx mat_animated_wall_birdA_animal_wall_animated_2_002[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 252),
-    gsSPLightColor(LIGHT_1, 0xffffffff),
-    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
+	gsDPSetPrimColor(0, 0, 255, 255, 255, 255),
 	gsSPEndDisplayList(),
 };
 
 Gfx mat_revert_animated_wall_birdA_animal_wall_animated_2_002[] = {
 	gsDPPipeSync(),
-	gsSPSetGeometryMode(G_SHADE),
 	gsDPSetTextureFilter(G_TF_BILERP),
 	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),
@@ -614,8 +609,7 @@ Gfx mat_revert_animated_wall_birdA_animal_wall_animated_2_002[] = {
 
 Gfx mat_animated_wall_birdA_animal_wall_animated_002[] = {
 	gsDPPipeSync(),
-	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0),
-	gsSPClearGeometryMode(G_SHADE),
+	gsDPSetCombineLERP(TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0),
 	gsDPSetTextureFilter(G_TF_POINT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPSetTextureLUT(G_TT_RGBA16),
@@ -633,14 +627,12 @@ Gfx mat_animated_wall_birdA_animal_wall_animated_002[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 252),
-    gsSPLightColor(LIGHT_1, 0xffffffff),
-    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
+	gsDPSetPrimColor(0, 0, 255, 255, 255, 255),
 	gsSPEndDisplayList(),
 };
 
 Gfx mat_revert_animated_wall_birdA_animal_wall_animated_002[] = {
 	gsDPPipeSync(),
-	gsSPSetGeometryMode(G_SHADE),
 	gsDPSetTextureFilter(G_TF_BILERP),
 	gsDPSetTextureLUT(G_TT_NONE),
 	gsSPEndDisplayList(),

@@ -1,4 +1,3 @@
-
 Gfx animated_wall_catA_cat_B_01_ci8_aligner[] = {gsSPEndDisplayList()};
 u8 animated_wall_catA_cat_B_01_ci8[] = {
 	0x00, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -584,7 +583,7 @@ Gfx animated_wall_catA_wall_animated_mesh_layer_5_tri_1[] = {
 
 Gfx mat_animated_wall_catA_animal_wall_animated_2[] = {
 	gsDPPipeSync(),
-	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0),
+	gsDPSetCombineLERP(TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0),
 	gsSPClearGeometryMode(G_SHADE),
 	gsDPSetTextureFilter(G_TF_POINT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
@@ -603,8 +602,7 @@ Gfx mat_animated_wall_catA_animal_wall_animated_2[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 252),
-    gsSPLightColor(LIGHT_1, 0xffffffff),
-    gsSPLightColor(LIGHT_2, 0x7f7f7fff),
+	gsDPSetPrimColor(0, 0, 255, 255, 255, 255),
 	gsSPEndDisplayList(),
 };
 
@@ -618,7 +616,7 @@ Gfx mat_revert_animated_wall_catA_animal_wall_animated_2[] = {
 
 Gfx mat_animated_wall_catA_animal_wall_animated[] = {
 	gsDPPipeSync(),
-	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, SHADE, 0, 0, 0, 0, TEXEL0),
+	gsDPSetCombineLERP(TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, PRIMITIVE, 0, 0, 0, 0, TEXEL0),
 	gsSPClearGeometryMode(G_SHADE),
 	gsDPSetTextureFilter(G_TF_POINT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
@@ -637,6 +635,7 @@ Gfx mat_animated_wall_catA_animal_wall_animated[] = {
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_CI, G_IM_SIZ_8b, 4, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 252),
+	gsDPSetPrimColor(0, 0, 255, 255, 255, 255),
 	gsSPEndDisplayList(),
 };
 

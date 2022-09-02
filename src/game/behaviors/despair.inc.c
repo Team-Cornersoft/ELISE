@@ -89,6 +89,8 @@ enum DespairState {
     DEATH_TRUE, // User for 100% death sequence
 };
 
+s8 sDespairDialogFlag = FALSE;
+
 void change_attack(s32 action, s32 cooldown, s32 timer) {
     o->oAction = action;
     o->oDespairAttackCooldown = cooldown;
@@ -130,6 +132,7 @@ void take_damage(void) {
     if (o->oDespairMaxHits == 5) {
         if (o->oDespairHits == 3) {
             // Play intermediate dialog
+            sDespairDialogFlag = TRUE;
             change_attack(RESETTING, SECONDS_TO_TICKS(1), NO_TIME);
             set_mario_action(gMarioState, ACT_SPAWN_NO_SPIN_AIRBORNE, 0);
             return;
@@ -447,10 +450,11 @@ void update_resetting(void) {
     if (dist <= 300.0f) {
         vec3f_copy(&o->oPosX, sAnchorPositions[NORTH]);
 
-        if (o->oDespairHits == 3 && o->oDespairMaxHits == 5) {
+        if (sDespairDialogFlag) {
             if (gDialogResponse != 0) {
                 disable_time_stop_including_mario();
                 change_attack(IDLE, o->oDespairAttackCooldown, o->oDespairAttackTimer);
+                sDespairDialogFlag = FALSE;
             }
             else {
                 enable_time_stop_including_mario();
