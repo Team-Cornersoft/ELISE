@@ -1,4 +1,6 @@
 
+#include "engine/math_util.h"
+
 static struct ObjectHitbox sCrystalProjectileHitbox = {
     /* interactType:      */ INTERACT_DAMAGE,
     /* downOffset:        */ 200,
@@ -10,6 +12,8 @@ static struct ObjectHitbox sCrystalProjectileHitbox = {
     /* hurtboxRadius:     */ 105,
     /* hurtboxHeight:     */ 225,
 };
+
+#define SPEED 50.0f
 
 void falling_crystal_loop(void) {
     if (o->oTimer == 0) {
@@ -26,10 +30,26 @@ void falling_crystal_loop(void) {
     }
 }
 
+void horizontal_crystal_loop(void) {
+    Vec3f scale = {SPEED, SPEED, SPEED};
+
+    o->oFaceAngleYaw = atan2s(o->oHomeZ, o->oHomeX);
+    o->oFaceAngleYaw += degrees_to_angle(180);
+
+    vec3f_prod(scale, &o->oHomeX, scale);
+
+    o->oPosX += scale[0];
+    o->oPosY += scale[1];
+    o->oPosZ += scale[2];
+
+}
+
 void bhv_crystal_projectile_loop(void) {
     obj_set_hitbox(o, &sCrystalProjectileHitbox);
 
     if (o->oBehParams2ndByte) {
         falling_crystal_loop();
+    } else {
+        horizontal_crystal_loop();
     }
 }

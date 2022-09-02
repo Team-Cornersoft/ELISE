@@ -32,7 +32,9 @@ Torpedo Attack
 #define CHARGING_SWIPE_COOLDOWN      SECONDS_TO_TICKS(0.5f)
 #define SPINNING_ATTACK_TIME         SECONDS_TO_TICKS(5)
 #define SPINNING_ATTACK_COOLDOWN     SECONDS_TO_TICKS(8)
-#define THROW_TORPEDO_COOLDOWN       SECONDS_TO_TICKS(2)
+#define LAUNCH_TORPEDO_COOLDOWN      SECONDS_TO_TICKS(2)
+#define THROW_TORPEDO_COOLDOWN       SECONDS_TO_TICKS(0.75f)
+#define THROW_TORPEDO_TIME           SECONDS_TO_TICKS(2)
 #define STUN_TIMER                   SECONDS_TO_TICKS(7)
 
 static struct ObjectHitbox sDespairSpinHitbox = {
@@ -41,8 +43,8 @@ static struct ObjectHitbox sDespairSpinHitbox = {
     /* damageOrCoinValue: */ 4,
     /* health:            */ 0,
     /* numLootCoins:      */ 0,
-    /* radius:            */ 0,
-    /* height:            */ 0,
+    /* radius:            */ 400,
+    /* height:            */ 1000,
     /* hurtboxRadius:     */ 200,
     /* hurtboxHeight:     */ 1000,
 };
@@ -57,6 +59,11 @@ Vec3f sAnchorPositions[] = {
 enum DespairAnimations {
     IDLE_ANIM,
     TORPEDO_CHARGE_ANIM,
+    CAST_ANIM,
+    SWIPE_ANIM,
+    THROW_ANIM,
+    WIND_UP_ANIM,
+    STUN_ANIM,
 };
 
 enum DespairDirection {
@@ -67,16 +74,17 @@ enum DespairDirection {
 };
 
 enum DespairState {
-    IDLE,
+    IDLE, // Done
+    INTRO, // Done
     MIN_ATTACK,
-    HOMING = MIN_ATTACK,
-    THROWING_TORPEDO,
-    LAUNCHING_TORPEDOS,
+    HOMING = MIN_ATTACK, // Done
+    THROWING_TORPEDO, // Need to increase amount and/or speed with phase
+    LAUNCHING_TORPEDOS, // Need to increase amount with phase
     MAX_ATTACK,
-    SPINNING_ATTACK,
-    STUNNED,
-    CHARGING,
-    RESETTING,
+    SPINNING_ATTACK, // Done
+    STUNNED, // Done except animation
+    CHARGING, // Maybe needs new animation? Need to increase amount with phase
+    RESETTING, // Done
 };
 
 void change_attack(s32 action, s32 cooldown, s32 timer) {
@@ -118,7 +126,7 @@ void take_damage(void) {
 }
 
 void choose_attack(void) {
-    if (o->oDespairCurrentAttacks == 3) {
+    if (o->oDespairCurrentAttacks >= 3) {
         change_attack(SPINNING_ATTACK, NO_COOLDOWN, SPINNING_ATTACK_TIME);
         o->oDespairSpinAngle = 270.0f;
         o->oDespairCurrentAttacks = 0;
@@ -129,8 +137,8 @@ void choose_attack(void) {
 
     switch(action) {
         case HOMING: change_attack(action, NO_COOLDOWN, HOMING_ATTACK_TIME); break;
-        case THROWING_TORPEDO: change_attack(action, THROW_TORPEDO_COOLDOWN, 0); break;
-        // case LAUNCHING_TORPEDOS: change_attack(action, , 0); break;
+        case LAUNCHING_TORPEDOS: change_attack(action, LAUNCH_TORPEDO_COOLDOWN, 0); break;
+        case THROWING_TORPEDO: change_attack(action, THROW_TORPEDO_COOLDOWN, THROW_TORPEDO_TIME); break;
 
         default: return;
     }
@@ -171,7 +179,7 @@ void despair_bob(void) {
 
 // Fuckin sit still ig
 void update_idle(void) {
-    cur_obj_init_animation_with_accel_and_sound(IDLE_ANIM, 0.5f);
+    cur_obj_init_animation(IDLE_ANIM);
     despair_bob();
     if (can_attack()) {
         choose_attack();
@@ -180,7 +188,7 @@ void update_idle(void) {
 
 // Chase toward mario, after a set amount of time, lock in place and swipe in his direction
 void update_homing(void) {
-    cur_obj_init_animation_with_accel_and_sound(TORPEDO_CHARGE_ANIM, 0.5f);
+    cur_obj_init_animation(TORPEDO_CHARGE_ANIM);
 
     f32 dist;
 
@@ -204,7 +212,7 @@ void update_homing(void) {
 // Spawn a swipe object, this will delete itself after a time, but acts as a hitbox to give the illusion that I know how damage works
 void swipe_attack(void) {
     o->oDespairAttackCooldown = CHARGING_SWIPE_COOLDOWN;
-    o->oDespairAttackTimer++;
+    o->oDespairSwipes++;
 
     Vec3f dir;
 
@@ -218,7 +226,7 @@ void swipe_attack(void) {
 
     dir[1] = -300;
 
-    struct Object* spawnedAttack = spawn_object(o, MODEL_GOOMBA, bhvDespairSwipe);
+    struct Object* spawnedAttack = spawn_object(o, MODEL_NONE, bhvDespairSwipe);
 
     spawnedAttack->oPosX = o->oPosX + dir[0];
     spawnedAttack->oPosY = o->oPosY + dir[1];
@@ -226,28 +234,23 @@ void swipe_attack(void) {
 }
 
 /*  Plan for charging: Before first charge, chase mario for Cooldown.
-    Afterwards, charge, then use cooldown for swipes
+    Afterwards, charge
 */ 
 void update_charging(void) {
     s16 isCooldown = is_cooldown();
 
-    if (o->oDespairSwipes == 0) {
+    if (o->oDespairSwipes < 3) {
         if (isCooldown) {
+            cur_obj_init_animation_and_anim_frame(SWIPE_ANIM, 0);
             swipe_attack();
         } else {
-
             Vec3f dir;
             direction_to_target(dir, gMarioState->pos);
             o->oFaceAngleYaw = atan2s(dir[2], dir[0]);    
         }
-    } else {
-        if (isCooldown) {
-            swipe_attack();
-        }
     }
-
-    // Max swipes for now
-    if (o->oDespairAttackTimer == 3) {
+    else if(o->oDespairSwipes >= 3 && isCooldown) {
+        // Max swipes for now
         change_attack(RESETTING, SECONDS_TO_TICKS(0.5f), 0);
     }
 
@@ -263,40 +266,77 @@ void spawn_crystal_attack(void) {
     f32 rz = random_f32_around_zero(sAnchorPositions[SOUTH][2]);
 
     crystal->oPosX = rx;
-    crystal->oPosY = 3000.0f;
+    crystal->oPosY = 1500.0f;
     crystal->oPosZ = rz;
 
-    o->oDespairAttackTimer = SECONDS_TO_TICKS(0.5f);
+    f32 time = 0.5f;
+
+    time -= (o->oDespairHits*0.07f);
+
+    o->oDespairAttackTimer = SECONDS_TO_TICKS(time);
     o->oDespairSwipes++;
 }
 
-// Aim at mario, throw a single one
-void update_throwing(void) {
+// Spawn rain of torpedos
+void update_torpedo(void) {
 
-
-    // Use cooldown for initial launching
-    // Use timer in between each throw
-    // After last throw, return to resetting
-
-    //TODO: Replace, this just make him spin to show it happening
     if (!is_cooldown()) {
-        o->oFaceAngleYaw += degrees_to_angle(10.0f);
+        cur_obj_init_animation(CAST_ANIM);
     } else {
-        if (o->oDespairSwipes <= 5) {
+        s32 attackCount = 5 + (o->oDespairHits*o->oDespairHits);
+        if (o->oDespairSwipes <= attackCount) {
             if (is_timer()) {
                 spawn_crystal_attack();
             }
         } else {
-            change_attack(RESETTING, SECONDS_TO_TICKS(5), 0);
+            change_attack(RESETTING, SECONDS_TO_TICKS(2), 0);
         }
     }
 }
 
-// Launch torpedos in the air, have them fall randomly on the stage
-void update_torpedo(void) {
-    print_text(20, 20, "Torpedo");
-    if (can_attack()) {
-        choose_attack();
+void throw_crystal(Vec3f dir) {
+
+    struct Object* crystal = spawn_object(o, MODEL_CRYSTAL_PROJECTILE, bhvCrystalProjectile);
+
+    // Set 2nd byte to FALSE because it not vertical crystal
+    crystal->oBehParams2ndByte = FALSE;
+
+    crystal->oPosY = 160.0f;
+
+    // Reusing oHome to store target direction
+    crystal->oHomeX = dir[0];
+    crystal->oHomeY = dir[1];
+    crystal->oHomeZ = dir[2];
+
+    f32 time = 0.75f;
+
+    time -= (o->oDespairHits*0.1f);
+
+    o->oDespairAttackCooldown = SECONDS_TO_TICKS(time);
+    o->oDespairSwipes++;
+}
+
+// Throw torpedo at mario
+void update_throwing(void) {
+
+    s32 isCooldown = is_cooldown();
+
+    Vec3f dir;
+    direction_to_target(dir, gMarioState->pos);
+    o->oFaceAngleYaw = atan2s(dir[2], dir[0]);
+
+    if (isCooldown) {
+        cur_obj_init_animation(THROW_ANIM);
+        throw_crystal(dir);
+    } else {
+        cur_obj_init_animation(WIND_UP_ANIM);
+    }
+
+    s32 attackCount = 3 + (o->oDespairHits * o->oDespairHits);
+
+
+    if (o->oDespairSwipes == attackCount) {
+        change_attack(RESETTING, SECONDS_TO_TICKS(2), NO_TIME);
     }
 }
 
@@ -341,6 +381,8 @@ void update_spin(void) {
 
 // mf is stunned, can hit him by ground pounding
 void update_stunned(void) {
+    cur_obj_init_animation(STUN_ANIM);
+
     s32 ticksSinceStunned = STUN_TIMER - o->oDespairAttackTimer;
 
     // For the first second
@@ -351,7 +393,7 @@ void update_stunned(void) {
         o->oFaceAngleYaw -= degrees_to_angle(40.0f * (1.0f - ratio));
     }
 
-    s32 b = does_intersect_with_cylinder(&o->oPosX, sDespairSpinHitbox.hurtboxHeight, sDespairSpinHitbox.hurtboxRadius, &gMarioObject->oPosX);
+    s32 b = does_intersect_with_cylinder(&o->oPosX, sDespairSpinHitbox.height, sDespairSpinHitbox.radius, &gMarioObject->oPosX);
 
     if (b && (gMarioState->action == ACT_GROUND_POUND || gMarioState->action == ACT_GROUND_POUND_LAND)) {
         take_damage();
@@ -379,19 +421,46 @@ void update_resetting(void) {
     }
 }
 
+void update_intro(void) {
+    cur_obj_init_animation(IDLE_ANIM);
+
+    if (gMarioState->action == ACT_IDLE) {
+        if (gDialogResponse != 0) {
+            disable_time_stop_including_mario();
+            change_attack(IDLE, SECONDS_TO_TICKS(1), NO_TIME);
+        }
+        else {
+            enable_time_stop_including_mario();
+            create_dialog_box(DIALOG_170);
+        }
+    }
+}
+
 void bhv_despair_init(void) {
+    gMarioState->pos[1] = 1000.0f;
+    set_mario_action(gMarioState, ACT_SPAWN_NO_SPIN_AIRBORNE, 0);
+
+    change_attack(INTRO, NO_COOLDOWN, NO_TIME);
+
+
     f32 *startPos = sAnchorPositions[NORTH];
     o->oPosX = startPos[0];
     o->oPosY = startPos[1];
     o->oPosZ = startPos[2];
 
     o->oDespairAttackCooldown = SECONDS_TO_TICKS(3);
-    o->oDespairMaxHits = 3;
+
+    if (save_file_get_total_star_count(gCurrSaveFileNum - 1, COURSE_MIN - 1, COURSE_MAX - 1) > 12 || TRUE) {
+        o->oDespairMaxHits = 5;
+    } else {
+        o->oDespairMaxHits = 3;
+    }
 }
 
 void bhv_despair_loop(void) {
     switch (o->oAction) {
         case IDLE:               update_idle();      break;
+        case INTRO:              update_intro();     break;
         case HOMING:             update_homing();    break;
         case THROWING_TORPEDO:   update_throwing();  break;
         case LAUNCHING_TORPEDOS: update_torpedo();   break;

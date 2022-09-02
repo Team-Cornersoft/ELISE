@@ -1,2 +1,7 @@
 #include "anim_Idle.inc.c"
 #include "anim_charge.inc.c"
+#include "anim_cast.inc.c"
+#include "anim_swipe.inc.c"
+#include "anim_throw.inc.c"
+#include "anim_wind_up.inc.c"
+#include "anim_stun.inc.c"
