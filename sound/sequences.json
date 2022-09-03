@@ -44,5 +44,6 @@
     "29_custom_time": ["2C_custom_time"],
     "2A_custom_chimes": ["2D_custom_chimes"],
     "2B_custom_chimes_lpf": ["2E_custom_chimes_lpf"],
-    "2C_custom_alone": ["2F_custom_alone"]
+    "2C_custom_alone": ["2F_custom_alone"],
+    "2D_custom_pillow_fort": ["30_custom_pillow_fort"]
 }

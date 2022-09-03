@@ -1,0 +1,91 @@
+{
+    "date": "2022-08-27",
+    "sample_bank": "instruments",
+    "envelopes": {
+        "normal": [
+            [1, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+		"normalFadeOut": [
+            [1, 32700],
+            [500, 0],
+            [1, 0],
+            "hang"
+        ],
+		"hard": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+		"longerFadeOut": [
+            [1, 32700],
+            [1000, 0],
+            [1, 0],
+            "hang"
+        ],
+        "evenLongerFadeOut": [
+            [1, 32700],
+            [3000, 0],
+            [1, 0],
+            "hang"
+        ],
+        "donk": [
+            [2, 32700],
+            [405, 0],
+            [1, 0],
+            "hang"
+        ],
+        "softNormal": [
+            [20, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "softLongerFadeOut": [
+            [20, 32700],
+            [3000, 0],
+            [1, 0],
+            "hang"
+        ],
+		"vibraphoneStuff": [
+            [2, 32700],
+            [500, 0],
+            [1, 0],
+            "hang"
+        ]
+    },
+    "instruments": {
+        "crystal": {
+            "release_rate": 3,
+            "envelope": "normalFadeOut",
+			"sound": {"sample": "custom_crystal", "tuning": 0.140308}
+        },
+		"tinkerBell": {
+            "release_rate": 3,
+            "envelope": "normal",
+			"sound": {"sample": "custom_tinkerBell", "tuning": 0.344531}
+        },
+        "brightness": {
+            "release_rate": 3,
+            "envelope": "longerFadeOut",
+			"sound": {"sample": "custom_brightness", "tuning": 0.919788}
+        }
+    },
+    "instrument_list": [
+		"tinkerBell",
+		"crystal",
+		"brightness",
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+        null
+    ]
+}
