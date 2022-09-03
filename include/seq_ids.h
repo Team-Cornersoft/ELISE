@@ -50,6 +50,7 @@ enum SeqId {
     SEQ_EVENT_DISASTER_BOSS,          // 0x25
     SEQ_LEVEL_ANIMAL_PARTY,           // 0x26
     SEQ_LEVEL_BLOOD_FLOW,             // 0x27
+    SEQ_LEVEL_FLOWER_PATCH,           // 0x28
     SEQ_COUNT
 };
 
