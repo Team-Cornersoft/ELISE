@@ -51,6 +51,7 @@ enum SeqId {
     SEQ_LEVEL_ANIMAL_PARTY,           // 0x26
     SEQ_LEVEL_BLOOD_FLOW,             // 0x27
     SEQ_LEVEL_FLOWER_PATCH,           // 0x28
+    SEQ_LEVEL_TIME,                   // 0x29
     SEQ_COUNT
 };
 

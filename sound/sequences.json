@@ -40,5 +40,6 @@
     "25_custom_despair_boss": ["28_custom_despair_boss"],
     "26_custom_animal_party": ["29_custom_animal_party"],
     "27_custom_blood_flow": ["30_custom_blood_flow"],
-    "28_custom_flower_patch": ["31_custom_flower_patch"]
+    "28_custom_flower_patch": ["31_custom_flower_patch"],
+    "29_custom_time": ["32_custom_time"]
 }
