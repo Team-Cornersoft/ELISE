@@ -9,7 +9,7 @@ static struct ObjectHitbox sDespairSwipeHitbox = {
     /* numLootCoins:      */ 0,
     /* radius:            */ 0,
     /* height:            */ 0,
-    /* hurtboxRadius:     */ 200,
+    /* hurtboxRadius:     */ 425,
     /* hurtboxHeight:     */ 300,
 };
 

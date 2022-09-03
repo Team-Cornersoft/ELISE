@@ -299,8 +299,17 @@ void spawn_crystal_attack(void) {
     // Set 2nd byte to TRUE so it fall down instead of forward
     crystal->oBehParams2ndByte = TRUE;
 
-    f32 rx = random_f32_around_zero(sAnchorPositions[EAST][0]);
-    f32 rz = random_f32_around_zero(sAnchorPositions[SOUTH][2]);
+    f32 rx; 
+    f32 rz; 
+
+    // 30% of the time crystals will spawn in a medium radius around elise
+    if (random_float() < 0.3) {
+        rx = gMarioState->pos[0] + random_f32_around_zero(300.0f);
+        rz = gMarioState->pos[1] + random_f32_around_zero(300.0f);
+    } else {
+        rx = random_f32_around_zero(sAnchorPositions[EAST][0]);
+        rz = random_f32_around_zero(sAnchorPositions[SOUTH][2]);
+    }
 
     crystal->oPosX = rx;
     crystal->oPosY = 1500.0f;
