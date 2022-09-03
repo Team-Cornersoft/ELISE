@@ -5,4 +5,8 @@
 #include "levels/wf/area_2/room.inc.c"
 #include "levels/wf/area_2/macro.inc.c"
 #include "levels/wf/area_2/spline.inc.c"
+#include "levels/wf/area_3/collision.inc.c"
+#include "levels/wf/area_3/room.inc.c"
+#include "levels/wf/area_3/macro.inc.c"
+#include "levels/wf/area_3/spline.inc.c"
 #include "levels/wf/model.inc.c"
