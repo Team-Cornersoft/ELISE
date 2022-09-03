@@ -83,7 +83,7 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_NONE, -3500, -100, -8500, 0, 0, 0, 0x00680000, bhvPoleGrabbing),
 		OBJECT(MODEL_NONE, -5400, -800, -9200, 0, 0, 0, 0x00680000, bhvPoleGrabbing),
 		OBJECT(MODEL_NONE, 5300, -5800, -1900, 0, 0, 0, 0x00680000, bhvPoleGrabbing),
-		OBJECT(MODEL_NONE, 5800, 1600, 5700, 0, 0, 0, 0x00000000, bhvStar),
+		OBJECT(MODEL_NONE, 5800, 1400, 5700, 0, 0, 0, 0x00000000, bhvStar),
 		OBJECT(MODEL_NONE, 0, 1082, -10280, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_NONE, -6900, -1538, -10980, 0, 0, 0, 0x10CA0000, bhvWarp),
 		OBJECT(MODEL_NONE, -11900, -4138, 1220, 0, 0, 0, 0x10CB0000, bhvWarp),
@@ -91,10 +91,10 @@ const LevelScript level_bbh_entry[] = {
 		OBJECT(MODEL_NONE, 11700, -6838, -4880, 0, 0, 0, 0x10CD0000, bhvWarp),
 		TERRAIN(bbh_area_1_collision),
 		MACRO_OBJECTS(bbh_area_1_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_UNDERGROUND),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_FLOWER_PATCH),
 		TERRAIN_TYPE(TERRAIN_STONE),
 		/* Fast64 begin persistent block [area commands] */
-		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_UNDERGROUND, 0x01, 0x02),
+		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_FLOWER_PATCH, 0x01, 0x02),
 		SET_ECHO(0x0A, 0x0A),
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),

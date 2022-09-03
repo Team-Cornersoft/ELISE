@@ -1,0 +1,101 @@
+{
+    "date": "2022-08-27",
+    "sample_bank": "instruments",
+    "envelopes": {
+        "normal": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+		"normalFadeOut": [
+            [2, 32700],
+            [500, 0],
+            [1, 0],
+            "hang"
+        ],
+		"hard": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+		"longerFadeOut": [
+            [2, 32700],
+            [1000, 0],
+            [1, 0],
+            "hang"
+        ],
+        "evenLongerFadeOut": [
+            [2, 32700],
+            [4000, 0],
+            [1, 0],
+            "hang"
+        ],
+        "donk": [
+            [2, 32700],
+            [405, 0],
+            [1, 0],
+            "hang"
+        ],
+        "softNormal": [
+            [20, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "softLongerFadeOut": [
+            [20, 32700],
+            [1000, 0],
+            [1, 0],
+            "hang"
+        ],
+		"vibraphoneStuff": [
+            [2, 32700],
+            [500, 0],
+            [1, 0],
+            "hang"
+        ]
+    },
+    "instruments": {
+        "sawtooth": {
+            "release_rate": 60,
+			"normal_range_lo": 52,
+            "envelope": "normal",
+            "sound_lo": {"sample": "custom_sawtooth_WWSM_lo", "tuning": 0.344531},
+			"sound": {"sample": "custom_sawtooth_WWSM_mid", "tuning": 0.172266}
+        },
+		"pizzicato": {
+            "release_rate": 25,
+			"normal_range_lo": 28,
+            "normal_range_hi": 33,
+            "envelope": "normal",
+            "sound_lo": {"sample": "custom_pizzicato_lo", "tuning": 1.378125},
+			"sound": {"sample": "custom_pizzicato_mid", "tuning": 0.974482},
+			"sound_hi": {"sample": "custom_pizzicato_hi", "tuning": 0.689063}
+        },
+        "musicBox": {
+            "release_rate": 20,
+			"normal_range_lo": 52,
+            "normal_range_hi": 57,
+            "envelope": "normalFadeOut",
+            "sound_lo": {"sample": "custom_musicBox_lo", "tuning": 0.344531},
+			"sound": {"sample": "custom_musicBox_mid", "tuning": 0.258107},
+            "sound_hi": {"sample": "custom_musicBox_hi", "tuning": 0.182509}
+        }
+    },
+    "instrument_list": [
+		"sawtooth",
+		"pizzicato",
+		"musicBox",
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+        null
+    ]
+}

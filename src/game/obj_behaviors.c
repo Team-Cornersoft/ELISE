@@ -231,6 +231,10 @@ f32 get_gravity_mult(u8 warpOverride) {
     case LEVEL_BBH:
         res = 0.5f;
         break;
+
+    case LEVEL_WDW:
+        res = 0.3f;
+        break;
     }
 
     if (shouldFadeMarioWarp > 0 && warpOverride) {
