@@ -3,7 +3,7 @@
     "sample_bank": "streamed_audio",
     "envelopes": {
         "envelope0": [
-            [1, 32700],
+            [2, 32700],
             "hang"
         ]
     },

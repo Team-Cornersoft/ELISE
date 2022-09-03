@@ -47,11 +47,14 @@ enum SeqId {
     SEQ_EVENT_CUTSCENE_LAKITU,        // 0x22 (not in JP)
     SEQ_LEVEL_LOSS,                   // 0x23
     SEQ_LEVEL_HOME_TOGETHER,          // 0x24
-    SEQ_EVENT_DISASTER_BOSS,          // 0x25
+    SEQ_EVENT_DESPAIR_BOSS,           // 0x25
     SEQ_LEVEL_ANIMAL_PARTY,           // 0x26
     SEQ_LEVEL_BLOOD_FLOW,             // 0x27
     SEQ_LEVEL_FLOWER_PATCH,           // 0x28
     SEQ_LEVEL_TIME,                   // 0x29
+    SEQ_LEVEL_CHIMES,                 // 0x2A
+    SEQ_LEVEL_CHIMES_LPF,             // 0x2B
+    SEQ_LEVEL_ALONE,                  // 0x2C
     SEQ_COUNT
 };
 

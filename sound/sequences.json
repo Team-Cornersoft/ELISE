@@ -39,7 +39,10 @@
     "24_custom_home_together": ["27_custom_home_together"],
     "25_custom_despair_boss": ["28_custom_despair_boss"],
     "26_custom_animal_party": ["29_custom_animal_party"],
-    "27_custom_blood_flow": ["30_custom_blood_flow"],
-    "28_custom_flower_patch": ["31_custom_flower_patch"],
-    "29_custom_time": ["32_custom_time"]
+    "27_custom_blood_flow": ["2A_custom_blood_flow"],
+    "28_custom_flower_patch": ["2B_custom_flower_patch"],
+    "29_custom_time": ["2C_custom_time"],
+    "2A_custom_chimes": ["2D_custom_chimes"],
+    "2B_custom_chimes_lpf": ["2E_custom_chimes_lpf"],
+    "2C_custom_alone": ["2F_custom_alone"]
 }
