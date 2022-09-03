@@ -534,6 +534,34 @@ s32 save_file_get_course_star_count(s32 fileIndex, s32 courseIndex) {
 }
 #endif
 
+s32 save_file_get_course_blue_drop_count(s32 fileIndex, s32 courseIndex) {
+    s32 i;
+    s32 count = 0;
+    u8 flag = 1;
+    u8 starFlags = save_file_get_star_flags(fileIndex, courseIndex);
+
+    for (i = 0; i < 4; i++, flag <<= 1) {
+        if (starFlags & flag) {
+            count++;
+        }
+    }
+    return count;
+}
+
+s32 save_file_get_course_red_drop_count(s32 fileIndex, s32 courseIndex) {
+    s32 i;
+    s32 count = 0;
+    u8 flag = 1;
+    u8 starFlags = save_file_get_star_flags(fileIndex, courseIndex);
+
+    for (i = 4; i < 7; i++, flag <<= 1) {
+        if (starFlags & flag) {
+            count++;
+        }
+    }
+    return count;
+}
+
 s32 save_file_get_total_star_count(s32 fileIndex, s32 minCourse, s32 maxCourse) {
     s32 count = 0;
 
@@ -544,6 +572,30 @@ s32 save_file_get_total_star_count(s32 fileIndex, s32 minCourse, s32 maxCourse) 
 
     // Add castle secret star count.
     return save_file_get_course_star_count(fileIndex, COURSE_NUM_TO_INDEX(COURSE_NONE)) + count;
+}
+
+s32 save_file_get_total_blue_drop_count(s32 fileIndex, s32 minCourse, s32 maxCourse) {
+    s32 count = 0;
+
+    // Get standard course star count.
+    for (; minCourse <= maxCourse; minCourse++) {
+        count += save_file_get_course_blue_drop_count(fileIndex, minCourse);
+    }
+
+    // Add castle secret star count.
+    return save_file_get_course_blue_drop_count(fileIndex, COURSE_NUM_TO_INDEX(COURSE_NONE)) + count;
+}
+
+s32 save_file_get_total_red_drop_count(s32 fileIndex, s32 minCourse, s32 maxCourse) {
+    s32 count = 0;
+
+    // Get standard course star count.
+    for (; minCourse <= maxCourse; minCourse++) {
+        count += save_file_get_course_red_drop_count(fileIndex, minCourse);
+    }
+
+    // Add castle secret star count.
+    return save_file_get_course_red_drop_count(fileIndex, COURSE_NUM_TO_INDEX(COURSE_NONE)) + count;
 }
 
 void save_file_set_flags(u32 flags) {

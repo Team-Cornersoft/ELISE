@@ -348,6 +348,10 @@ s32 char_to_glyph_index(char c) {
         return GLYPH_STAR; // star
     }
 
+    if (c == ';') {
+        return GLYPH_RED_DROP; // red drop star
+    }
+
     if (c == '.') {
         return GLYPH_PERIOD; // large shaded dot, JP only
     }

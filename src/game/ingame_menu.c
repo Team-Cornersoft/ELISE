@@ -1562,12 +1562,12 @@ void render_widescreen_setting(void) {
     gSPDisplayList(gDisplayListHead++, dl_ia_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, gDialogTextAlpha);
     if (!gConfig.widescreen) {
-        print_generic_string(10, 220, textCurrRatio43);
-        print_generic_string(10, 203, textPressL);
+        print_generic_string(216, 212, textCurrRatio43);
+        print_generic_string(216, 195, textPressL);
     }
     else {
-        print_generic_string(10, 220, textCurrRatio169);
-        print_generic_string(10, 203, textPressL);
+        print_generic_string(212, 212, textCurrRatio169);
+        print_generic_string(212, 195, textPressL);
     }
     gSPDisplayList(gDisplayListHead++, dl_ia_text_end);
     if (gPlayer1Controller->buttonPressed & L_TRIG){
@@ -1928,6 +1928,7 @@ s32 gCourseCompleteCoins = 0;
 s8 gHudFlash = HUD_FLASH_NONE;
 
 s32 render_pause_courses_and_castle(void) {
+    u8 textPause[] = { 0x19, 0x0A, 0x1E, 0x1C, 0x0E, GLYPH_SPACE }; // PAUSE
     s16 index;
 
 #ifdef PUPPYCAM
@@ -1941,20 +1942,28 @@ s32 render_pause_courses_and_castle(void) {
             level_set_transition(-1, NULL);
             play_sound(SOUND_MENU_PAUSE_OPEN, gGlobalSoundSource);
 
-            if (gCurrCourseNum >= COURSE_MIN
-             && gCurrCourseNum <= COURSE_MAX) {
+            // if (gCurrCourseNum >= COURSE_MIN
+            //  && gCurrCourseNum <= COURSE_MAX) {
                 change_dialog_camera_angle();
                 gDialogBoxState = DIALOG_STATE_VERTICAL;
-            } else {
-                highlight_last_course_complete_stars();
-                gDialogBoxState = DIALOG_STATE_HORIZONTAL;
-            }
+            // } else {
+            //     highlight_last_course_complete_stars();
+            //     gDialogBoxState = DIALOG_STATE_HORIZONTAL;
+            // }
             break;
 
         case DIALOG_STATE_VERTICAL:
             shade_screen();
-            render_pause_my_score_coins();
+            // render_pause_my_score_coins();
             render_pause_red_coins();
+
+            gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
+            gDPSetEnvColor(gDisplayListHead++, 255, 255, 63, gDialogTextAlpha);
+
+            print_hud_lut_string(HUD_LUT_GLOBAL, 120, 90, textPause);
+
+            gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
+
 #ifndef DISABLE_EXIT_COURSE
 #ifndef EXIT_COURSE_WHILE_MOVING
             if (gMarioStates[0].action & ACT_FLAG_PAUSE_EXIT) {

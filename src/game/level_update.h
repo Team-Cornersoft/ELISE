@@ -118,10 +118,11 @@ struct HudDisplay {
     /*0x00*/ s16 lives;
     /*0x02*/ s16 coins;
     /*0x04*/ s16 stars;
-    /*0x06*/ s16 wedges;
-    /*0x08*/ s16 keys;
-    /*0x0A*/ s16 flags;
-    /*0x0C*/ u16 timer;
+    /*0x06*/ s16 redDrops;
+    /*0x08*/ s16 wedges;
+    /*0x0A*/ s16 keys;
+    /*0x0C*/ s16 flags;
+    /*0x10*/ u16 timer;
 #ifdef BREATH_METER
              u16 breath;
 #endif

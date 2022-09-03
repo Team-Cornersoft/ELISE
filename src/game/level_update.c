@@ -599,7 +599,9 @@ s16 music_unchanged_through_warp(s16 arg) {
  * Set the current warp type and destination level/area/node.
  */
 void initiate_warp(s16 destLevel, s16 destArea, s16 destWarpNode, s32 warpFlags) {
-    if (destWarpNode >= WARP_NODE_CREDITS_MIN) {
+    if(destLevel == EXIT_COURSE_LEVEL && destWarpNode == EXIT_COURSE_NODE && destArea == EXIT_COURSE_AREA) {
+        sWarpDest.type = WARP_TYPE_CHANGE_LEVEL;
+    } else if (destWarpNode >= WARP_NODE_CREDITS_MIN) {
         sWarpDest.type = WARP_TYPE_CHANGE_LEVEL;
     } else if (destLevel != gCurrLevelNum) {
         sWarpDest.type = WARP_TYPE_CHANGE_LEVEL;
@@ -1021,6 +1023,7 @@ void update_hud_values(void) {
 #endif
 
         gHudDisplay.stars = gMarioState->numStars;
+        gHudDisplay.redDrops = gMarioState->numRedDrops;
         gHudDisplay.lives = gMarioState->numLives;
         gHudDisplay.keys = gMarioState->numKeys;
 

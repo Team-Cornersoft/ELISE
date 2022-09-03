@@ -468,19 +468,20 @@ struct MarioState {
     /*0xA4*/ u32 collidedObjInteractTypes;
     /*0xA8*/ s16 numCoins;
     /*0xAA*/ s16 numStars;
-    /*0xAC*/ s8 numKeys; // Unused key mechanic
-    /*0xAD*/ s8 numLives;
-    /*0xAE*/ s16 health;
-    /*0xB0*/ s16 animYTrans;
-    /*0xB2*/ u8 hurtCounter;
-    /*0xB3*/ u8 healCounter;
-    /*0xB4*/ u8 squishTimer;
-    /*0xB5*/ u8 fadeWarpOpacity;
-    /*0xB6*/ u16 capTimer;
-    /*0xB8*/ s16 prevNumStarsForDialog;
-    /*0xBC*/ f32 peakHeight;
-    /*0xC0*/ f32 quicksandDepth;
-    /*0xC4*/ f32 windGravity;
+    /*0xAC*/ s16 numRedDrops;
+    /*0xAE*/ s8 numKeys; // Unused key mechanic
+    /*0xAF*/ s8 numLives;
+    /*0xB0*/ s16 health;
+    /*0xB2*/ s16 animYTrans;
+    /*0xB4*/ u8 hurtCounter;
+    /*0xB5*/ u8 healCounter;
+    /*0xB6*/ u8 squishTimer;
+    /*0xB7*/ u8 fadeWarpOpacity;
+    /*0xB8*/ u16 capTimer;
+    /*0xBA*/ s16 prevNumStarsForDialog;
+    /*0xC0*/ f32 peakHeight;
+    /*0xC4*/ f32 quicksandDepth;
+    /*0xC8*/ f32 windGravity;
     // -- HackerSM64 MarioState fields begin --
 #ifdef BREATH_METER
              s16 breath;
