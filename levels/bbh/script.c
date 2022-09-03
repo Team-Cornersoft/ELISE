@@ -94,7 +94,7 @@ const LevelScript level_bbh_entry[] = {
 		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_FLOWER_PATCH),
 		TERRAIN_TYPE(TERRAIN_STONE),
 		/* Fast64 begin persistent block [area commands] */
-		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_UNDERGROUND, 0x01, 0x02),
+		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_FLOWER_PATCH, 0x01, 0x02),
 		SET_ECHO(0x0A, 0x0A),
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
