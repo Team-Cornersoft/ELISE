@@ -129,7 +129,7 @@ const LevelScript level_jrb_entry[] = {
 		WARP_NODE(0xDA, LEVEL_CCM, 0x01, 0xD2, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, -1299, 400, -3352, 0, 0, 0, 0x05000000, bhvStar),
 		OBJECT(MODEL_NONE, 0, 0, -300, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
-		OBJECT(MODEL_CUSTOM_DOOR_B, 0, 0, 10, 0, 0, 0, 0x00DA0000, bhvDoorWarp),
+		OBJECT(MODEL_CUSTOM_DOOR_A, 0, 0, 10, 0, 0, 0, 0x00DA0000, bhvDoorWarp),
 		TERRAIN(jrb_area_4_collision),
 		MACRO_OBJECTS(jrb_area_4_macro_objs),
 		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_DARKNESS),
