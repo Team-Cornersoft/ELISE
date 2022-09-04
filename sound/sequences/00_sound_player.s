@@ -7720,14 +7720,18 @@ layer_end
 chan_setinstr 128
 chan_setnotepriority 14
 chan_setpanmix 0
+chan_setval 0x7F
+chan_call .set_reverb
 chan_setenvelope .envelope_3378
 chan_ioreadval 4
 chan_subtract 0x28
 chan_readseq .major_scale
 chan_writeseq 0, .transpose_by_coin_index, 1
-chan_setlayer 0, .layer_3146
-chan_setlayer 1, .layer_3168
-chan_setlayer 2, .layer_3148
+chan_setlayer 0, .red_coin_layer_0
+chan_setlayer 1, .red_coin_layer_1
+chan_delay 0x1A
+chan_setlayer 2, .red_coin_layer_2
+chan_setlayer 3, .red_coin_layer_3
 chan_end
 
 .major_scale:
@@ -7740,36 +7744,68 @@ chan_end
 .byte 11
 .byte 12
 
-.layer_3146:
-layer_delay 0x6
-
-#ifdef VERSION_SH
-  .set RED_COIN_NOTE_VELOCITY_SUB, 10
-#else
-  .set RED_COIN_NOTE_VELOCITY_SUB, 0
-#endif
-
-.layer_3148:
+.red_coin_layer_0:
 layer_call .transpose_by_coin_index
-layer_note0 46, 0xc, (75 - RED_COIN_NOTE_VELOCITY_SUB), 20
-layer_note0 45, 0xc, (75 - RED_COIN_NOTE_VELOCITY_SUB), 20
-layer_note0 46, 0xc, (75 - RED_COIN_NOTE_VELOCITY_SUB), 20
-layer_note0 58, 0x10, (80 - RED_COIN_NOTE_VELOCITY_SUB), 80
-layer_note0 58, 0x10, (45 - RED_COIN_NOTE_VELOCITY_SUB), 80
-layer_note0 58, 0x10, (20 - RED_COIN_NOTE_VELOCITY_SUB), 80
-layer_note0 58, 0x10, (15 - RED_COIN_NOTE_VELOCITY_SUB), 80
+
+layer_note0 34, 0x8, 75, 20
+layer_note0 39, 0x8, 75, 20
+layer_note0 41, 0x8, 75, 20
+layer_note0 46, 0x8, 75, 20
+layer_note0 51, 0x8, 75, 20
+layer_note0 53, 0x8, 75, 20
+layer_note0 58, 0x10, 80, 80
+layer_note0 58, 0x10, 45, 80
+layer_note0 58, 0x10, 20, 80
+layer_note0 58, 0x10, 10, 80
 
 layer_end
 
-.layer_3168:
+.red_coin_layer_1:
 layer_call .transpose_by_coin_index
-layer_note0 41, 0xc, (75 - RED_COIN_NOTE_VELOCITY_SUB), 20
-layer_note0 40, 0xc, (75 - RED_COIN_NOTE_VELOCITY_SUB), 20
-layer_note0 41, 0xc, (75 - RED_COIN_NOTE_VELOCITY_SUB), 20
-layer_note0 53, 0x10, (80 - RED_COIN_NOTE_VELOCITY_SUB), 80
-layer_note0 53, 0x10, (45 - RED_COIN_NOTE_VELOCITY_SUB), 80
-layer_note0 53, 0x10, (20 - RED_COIN_NOTE_VELOCITY_SUB), 80
-layer_note0 53, 0x10, (15 - RED_COIN_NOTE_VELOCITY_SUB), 80
+
+layer_note0 29, 0x8, 75, 20
+layer_note0 34, 0x8, 75, 20
+layer_note0 36, 0x8, 75, 20
+layer_note0 41, 0x8, 75, 20
+layer_note0 46, 0x8, 75, 20
+layer_note0 48, 0x8, 75, 20
+layer_note0 53, 0x10, 80, 80
+layer_note0 53, 0x10, 45, 80
+layer_note0 53, 0x10, 20, 80
+layer_note0 53, 0x10, 10, 80
+
+layer_end
+
+.red_coin_layer_2:
+layer_call .transpose_by_coin_index
+
+layer_note0 34, 0x8, 45, 20
+layer_note0 39, 0x8, 45, 20
+layer_note0 41, 0x8, 45, 20
+layer_note0 46, 0x8, 45, 20
+layer_note0 51, 0x8, 45, 20
+layer_note0 53, 0x8, 45, 20
+layer_note0 58, 0x10, 50, 80
+layer_note0 58, 0x10, 25, 80
+layer_note0 58, 0x10, 10, 80
+layer_note0 58, 0x10, 5, 80
+
+layer_end
+
+.red_coin_layer_3:
+layer_call .transpose_by_coin_index
+
+layer_note0 29, 0x8, 45, 20
+layer_note0 34, 0x8, 45, 20
+layer_note0 36, 0x8, 45, 20
+layer_note0 41, 0x8, 45, 20
+layer_note0 46, 0x8, 45, 20
+layer_note0 48, 0x8, 45, 20
+layer_note0 53, 0x10, 50, 80
+layer_note0 53, 0x10, 25, 80
+layer_note0 53, 0x10, 10, 80
+layer_note0 53, 0x10, 5, 80
+
 layer_end
 
 .transpose_by_coin_index:
