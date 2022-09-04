@@ -55,6 +55,9 @@ enum SeqId {
     SEQ_LEVEL_CHIMES,                 // 0x2A
     SEQ_LEVEL_CHIMES_LPF,             // 0x2B
     SEQ_LEVEL_ALONE,                  // 0x2C
+    SEQ_LEVEL_PILLOW_FORT,            // 0x2D
+    SEQ_LEVEL_DARKNESS,               // 0x2E
+    SEQ_LEVEL_HEARTBURN,              // 0x2F
     SEQ_COUNT
 };
 

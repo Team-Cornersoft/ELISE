@@ -551,7 +551,7 @@ s32 save_file_get_course_blue_drop_count(s32 fileIndex, s32 courseIndex) {
 s32 save_file_get_course_red_drop_count(s32 fileIndex, s32 courseIndex) {
     s32 i;
     s32 count = 0;
-    u8 flag = 1;
+    u8 flag = 1 << 4;
     u8 starFlags = save_file_get_star_flags(fileIndex, courseIndex);
 
     for (i = 4; i < 7; i++, flag <<= 1) {

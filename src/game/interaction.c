@@ -1865,8 +1865,10 @@ void check_death_barrier(struct MarioState *m) {
         level_trigger_warp(m, WARP_OP_WARP_FLOOR, TRUE);
 
         if (!(m->flags & MARIO_FALL_SOUND_PLAYED)) {
-            play_sound(SOUND_MARIO_WAAAOOOW, m->marioObj->header.gfx.cameraToObject);
-            m->flags |= MARIO_FALL_SOUND_PLAYED;
+            if (!(gCurrLevelNum == LEVEL_HMC && gCurrAreaIndex == 1)) {
+                play_sound(SOUND_MARIO_WAAAOOOW, m->marioObj->header.gfx.cameraToObject);
+                m->flags |= MARIO_FALL_SOUND_PLAYED;
+            }
         }
     }
 }

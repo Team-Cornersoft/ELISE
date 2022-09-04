@@ -167,6 +167,13 @@ s16 sDynBbh[] = {
     SEQ_LEVEL_SPOOKY, DYN1(MARIO_IS_IN_ROOM, BBH_OUTSIDE_ROOM, 6),
     DYN1(MARIO_IS_IN_ROOM, BBH_NEAR_MERRY_GO_ROUND_ROOM, 6), 5,
 };
+s16 sDynCcm[] = {
+    SEQ_LEVEL_ANIMAL_PARTY,
+    DYN2(MARIO_X_GE, 4000, MARIO_IS_IN_AREA, AREA_CCM_SLIDE & 0xf, 8),
+    DYN2(MARIO_X_GE, -1000, MARIO_IS_IN_AREA, AREA_CCM_SLIDE & 0xf, 9),
+    DYN1(MARIO_IS_IN_AREA, AREA_CCM_SLIDE & 0xf, 10),
+    11,
+};
 s16 sDynDdd[] = {
     SEQ_LEVEL_WATER,
     DYN2(MARIO_X_LT, -800, MARIO_IS_IN_AREA, AREA_DDD_WHIRLPOOL & 0xf, 0),
@@ -224,7 +231,7 @@ struct MusicDynamic {
     /*0xA*/ s16 dur2;
 }; // size = 0xC
 
-struct MusicDynamic sMusicDynamics[8] = {
+struct MusicDynamic sMusicDynamics[12] = {
     { 0x0000, 127, 100, 0x0e43, 0, 100 }, // SEQ_LEVEL_WATER
     { 0x0003, 127, 100, 0x0e40, 0, 100 }, // SEQ_LEVEL_WATER
     { 0x0e43, 127, 200, 0x0000, 0, 200 }, // SEQ_LEVEL_WATER
@@ -233,6 +240,10 @@ struct MusicDynamic sMusicDynamics[8] = {
     { 0x0070, 127, 10, 0x0000, 0, 100 },  // SEQ_LEVEL_SPOOKY
     { 0x0000, 127, 100, 0x0070, 0, 10 },  // SEQ_LEVEL_SPOOKY
     { 0xffff, 127, 100, 0x0000, 0, 100 }, // any (unused)
+    { 0xfff3, 127, 0, 0x000c, 0, 0 }, // ANIMAL_PARTY_DOG
+    { 0xffeb, 127, 0, 0x0014, 0, 0 }, // ANIMAL_PARTY_CAT
+    { 0xffe7, 127, 0, 0x0018, 0, 0 }, // ANIMAL_PARTY_BIRD
+    { 0xffe3, 127, 0, 0x001c, 0, 0 } // ANIMAL_PARTY_DINO
 };
 
 #define STUB_LEVEL(_0, _1, _2, _3, echo1, echo2, echo3, _7, _8) { echo1, echo2, echo3 },

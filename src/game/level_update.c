@@ -963,7 +963,8 @@ void initiate_delayed_warp(void) {
                 }
 
                 if (sDelayedWarpTimer == 18) {
-                    deathTransitionUpdates = MUS_DEATH_TRANSITION_TIME;
+                    if (!(gCurrLevelNum == LEVEL_HMC && gCurrAreaIndex == 1))
+                        deathTransitionUpdates = MUS_DEATH_TRANSITION_TIME;
                 }
                 else if (sDelayedWarpTimer == 28) {
                     play_sound(SOUND_MENU_CUSTOM_DEATH, gGlobalSoundSource);

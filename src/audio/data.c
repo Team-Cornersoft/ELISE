@@ -86,6 +86,22 @@ struct BetterReverbSettings gBetterReverbSettings[] = {
         1, FALSE, NUM_ALLPASS, 0x1000, 0x31FF, 0x60, 0xA0, // default emulator
         delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
     },
+    {
+        2, FALSE, (NUM_ALLPASS - 9), 0x1000, 0x37FF, 0x58, 0xA0, // WDW console
+        delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
+    },
+    {
+        2, FALSE, (NUM_ALLPASS - 3), 0x1000, 0x2EFF, 0x68, 0xA0, // WDW emulator
+        delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
+    },
+    {
+        2, FALSE, (NUM_ALLPASS - 9), 0x2600, 0x48FF, 0x38, 0x80, // LLL Area 2 console
+        delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
+    },
+    {
+        2, FALSE, NUM_ALLPASS, 0x2600, 0x4CFF, 0x40, 0x80, // LLL Area 2 console
+        delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
+    },
 };
 #endif
 
