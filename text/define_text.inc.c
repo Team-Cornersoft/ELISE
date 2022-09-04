@@ -11,6 +11,10 @@
     static const struct DialogEntry dialog_entry_ ## id = { \
         unused, linesPerBox, leftOffset, width, dialog_text_ ## id \
     };
+#define DEFINE_DIALOG_ASCII(id, unused, linesPerBox, leftOffset, width, str) \
+    static const struct DialogEntry dialog_entry_ ## id = { \
+        unused, linesPerBox, leftOffset, width, str \
+    };
 
 #include "dialogs.h"
 

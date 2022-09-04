@@ -2227,6 +2227,6 @@ Setting Elise or Despair to talk will append a line automatically, so it does no
 Also note that this text is not capable of scrolling, so anything that is sequential needs to have its own dialog.
 */
 DEFINE_DIALOG(DIALOG_174, 8, 3, 30, 270, _("\
-Hi my name is Elise lol\n\
+Hi my name is Elise lol.\n\
 I like to eat cheese!\n\
 It do be kind of delicious!"))

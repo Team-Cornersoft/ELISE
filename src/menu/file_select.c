@@ -1563,9 +1563,9 @@ void print_copy_button_label(s8 isReturn) {
     obj_scale(sMainMenuButtons[MENU_BUTTON_COPY], 1.1);
 
     if (isReturn) {
-        print_small_text(COPY_BUTTON_X, COPY_BUTTON_Y, /*"<COL_FFFFFFFF>Back<COL_-------->"*/ "Back", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT);
+        print_small_text(COPY_BUTTON_X, COPY_BUTTON_Y, /*"<COL_FFFFFFFF>Back<COL_-------->"*/ "Back", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT, FALSE);
     } else {
-        print_small_text(COPY_BUTTON_X, COPY_BUTTON_Y, /*"<COL_FFFFFFFF>Copy<COL_-------->"*/ "Copy", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT);
+        print_small_text(COPY_BUTTON_X, COPY_BUTTON_Y, /*"<COL_FFFFFFFF>Copy<COL_-------->"*/ "Copy", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT, FALSE);
     }
     
     // textSize = 1.0f;
@@ -1579,9 +1579,9 @@ void print_erase_button_label(s8 isReturn) {
     obj_scale(sMainMenuButtons[MENU_BUTTON_ERASE], 1.1);
 
     if (isReturn) {
-        print_small_text(COPY_BUTTON_X + ERASE_BUTTON_OFFSET_X, COPY_BUTTON_Y, /*"<COL_FFFFFFFF>Back<COL_-------->"*/ "Back", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT);
+        print_small_text(COPY_BUTTON_X + ERASE_BUTTON_OFFSET_X, COPY_BUTTON_Y, /*"<COL_FFFFFFFF>Back<COL_-------->"*/ "Back", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT, FALSE);
     } else {
-        print_small_text(COPY_BUTTON_X + ERASE_BUTTON_OFFSET_X, COPY_BUTTON_Y, /*"<COL_FFFFFFFF>Erase<COL_-------->"*/ "Erase", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT);
+        print_small_text(COPY_BUTTON_X + ERASE_BUTTON_OFFSET_X, COPY_BUTTON_Y, /*"<COL_FFFFFFFF>Erase<COL_-------->"*/ "Erase", PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT, FALSE);
     }
     
     // textSize = 1.0f;
@@ -1609,10 +1609,10 @@ void print_main_menu_strings(void) {
     gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_begin);
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, 255);
 
-    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y - MARIOTEXT_OFFSET_Y, "FILE A", 0, -1, PRINT_TEXT_FONT);
-    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING - MARIOTEXT_OFFSET_Y, "FILE B", 0, -1, PRINT_TEXT_FONT);
-    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING*2 - MARIOTEXT_OFFSET_Y, "FILE C", 0, -1, PRINT_TEXT_FONT);
-    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING*3 - MARIOTEXT_OFFSET_Y, "FILE D", 0, -1, PRINT_TEXT_FONT);
+    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y - MARIOTEXT_OFFSET_Y, "FILE A", 0, -1, PRINT_TEXT_FONT, FALSE);
+    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING - MARIOTEXT_OFFSET_Y, "FILE B", 0, -1, PRINT_TEXT_FONT, FALSE);
+    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING*2 - MARIOTEXT_OFFSET_Y, "FILE C", 0, -1, PRINT_TEXT_FONT, FALSE);
+    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING*3 - MARIOTEXT_OFFSET_Y, "FILE D", 0, -1, PRINT_TEXT_FONT, FALSE);
 
     gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_end);
 }
@@ -1799,13 +1799,13 @@ void print_copy_menu_strings(void) {
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 
     set_text_copy_color(0);
-    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y - MARIOTEXT_OFFSET_Y, "FILE A", 0, -1, PRINT_TEXT_FONT);
+    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y - MARIOTEXT_OFFSET_Y, "FILE A", 0, -1, PRINT_TEXT_FONT, FALSE);
     set_text_copy_color(1);
-    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING - MARIOTEXT_OFFSET_Y, "FILE B", 0, -1, PRINT_TEXT_FONT);
+    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING - MARIOTEXT_OFFSET_Y, "FILE B", 0, -1, PRINT_TEXT_FONT, FALSE);
     set_text_copy_color(2);
-    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING*2 - MARIOTEXT_OFFSET_Y, "FILE C", 0, -1, PRINT_TEXT_FONT);
+    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING*2 - MARIOTEXT_OFFSET_Y, "FILE C", 0, -1, PRINT_TEXT_FONT, FALSE);
     set_text_copy_color(3);
-    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING*3 - MARIOTEXT_OFFSET_Y, "FILE D", 0, -1, PRINT_TEXT_FONT);
+    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING*3 - MARIOTEXT_OFFSET_Y, "FILE D", 0, -1, PRINT_TEXT_FONT, FALSE);
 
     gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, sTextBaseAlpha);
 }
@@ -2002,13 +2002,13 @@ void print_erase_menu_strings(void) {
 
 
     set_text_erase_color(0);
-    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y - MARIOTEXT_OFFSET_Y, "FILE A", 0, -1, PRINT_TEXT_FONT);
+    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y - MARIOTEXT_OFFSET_Y, "FILE A", 0, -1, PRINT_TEXT_FONT, FALSE);
     set_text_erase_color(1);
-    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING - MARIOTEXT_OFFSET_Y, "FILE B", 0, -1, PRINT_TEXT_FONT);
+    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING - MARIOTEXT_OFFSET_Y, "FILE B", 0, -1, PRINT_TEXT_FONT, FALSE);
     set_text_erase_color(2);
-    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING*2 - MARIOTEXT_OFFSET_Y, "FILE C", 0, -1, PRINT_TEXT_FONT);
+    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING*2 - MARIOTEXT_OFFSET_Y, "FILE C", 0, -1, PRINT_TEXT_FONT, FALSE);
     set_text_erase_color(3);
-    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING*3 - MARIOTEXT_OFFSET_Y, "FILE D", 0, -1, PRINT_TEXT_FONT);
+    print_small_text(SAVEFILE_X + MARIOTEXT_OFFSET_X, SAVEFILE_TOP_Y + SAVEFILE_SPACING*3 - MARIOTEXT_OFFSET_Y, "FILE D", 0, -1, PRINT_TEXT_FONT, FALSE);
 
     gSPDisplayList(gDisplayListHead++, dl_menu_ia8_text_end);
 }
@@ -2257,8 +2257,8 @@ void render_menu_controls(void) {
     print_hud_lut_string(HUD_LUT_GLOBAL, 100, textHeight, c_str);
     // Will reenable once I get around to making the navigation thing, until then, it's gone.
     // print_hud_lut_string(HUD_LUT_GLOBAL, 20, textHeight, dpad_str);
-    // print_small_text(40, textHeight + 2, "Navigate", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, PRINT_TEXT_FONT);
-    print_small_text(120, textHeight + 2, "Scroll Credits", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, PRINT_TEXT_FONT);
+    // print_small_text(40, textHeight + 2, "Navigate", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, PRINT_TEXT_FONT, FALSE);
+    print_small_text(120, textHeight + 2, "Scroll Credits", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, PRINT_TEXT_FONT, FALSE);
     gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 }
 
@@ -2346,7 +2346,7 @@ void print_credit_strings(void) {
     for (i = 0; i < LINES_ON_PAGE; i++) {
         creditIndex = i + sCreditOffset;
         if (creditIndex < CREDIT_COUNT) {
-            print_small_text(CREDITS_RIGHT_X, CREDITS_TOP_Y + (CREDITS_PADDING*i), sCreditStrings[creditIndex], PRINT_TEXT_ALIGN_RIGHT, PRINT_ALL, PRINT_TEXT_FONT);
+            print_small_text(CREDITS_RIGHT_X, CREDITS_TOP_Y + (CREDITS_PADDING*i), sCreditStrings[creditIndex], PRINT_TEXT_ALIGN_RIGHT, PRINT_ALL, PRINT_TEXT_FONT, FALSE);
         }
     }
 
@@ -2365,7 +2365,7 @@ void print_credit_strings(void) {
 
     scrollText[2] = '\0';
 
-    print_small_text(CREDITS_RIGHT_X, 166, scrollText, PRINT_TEXT_ALIGN_RIGHT, PRINT_ALL, PRINT_TEXT_FONT);
+    print_small_text(CREDITS_RIGHT_X, 166, scrollText, PRINT_TEXT_ALIGN_RIGHT, PRINT_ALL, PRINT_TEXT_FONT, FALSE);
 
     render_menu_controls();
 }

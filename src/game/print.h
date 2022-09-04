@@ -35,6 +35,7 @@ enum PrintfGlyphs {
     GLYPH_UMLAUT          = 58,
 };
 
+u8 glyph_to_char_index(u8 c);
 void print_text_fmt_int(s32 x, s32 y, const char *str, s32 n);
 void print_text(s32 x, s32 y, const char *str);
 void print_text_centered(s32 x, s32 y, const char *str);

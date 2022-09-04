@@ -3078,7 +3078,7 @@ const Gfx dl_skybox_end[] = {
 const Gfx dl_elise_texture_begin[] = {
     gsDPPipeSync(),
     gsSPClearGeometryMode(G_LIGHTING),
-    gsDPSetCombineMode(G_CC_MODULATEFADE, G_CC_MODULATEFADE),
+    gsDPSetCombineMode(G_CC_FADEA, G_CC_FADEA),
     gsDPSetEnvColor(255, 255, 255, 255),
     gsDPSetRenderMode(G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2),
     gsDPSetTextureFilter(G_TF_POINT),

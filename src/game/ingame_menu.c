@@ -1185,11 +1185,6 @@ void render_elise_text_art(s16 topX, s16 topY, s16 bottomX, s16 bottomY, u8 alph
 
     topY = SCREEN_HEIGHT - topY;
     bottomY = SCREEN_HEIGHT - bottomY;
-
-    print_text_fmt_int(16, 64, "%d", topX);
-    print_text_fmt_int(16, 48, "%d", topY);
-    print_text_fmt_int(16, 32, "%d", bottomX);
-    print_text_fmt_int(16, 16, "%d", bottomY);
     
     void **eliseTextures = segmented_to_virtual(elise_dialog_borders);
 
@@ -1209,7 +1204,7 @@ void render_elise_text_art(s16 topX, s16 topY, s16 bottomX, s16 bottomY, u8 alph
     gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION | G_MTX_MUL | G_MTX_NOPUSH);
     gSPDisplayList(gDisplayListHead++, dl_elise_texture_tile_tex_settings);
 
-    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, alpha);
+    gDPSetEnvColor(gDisplayListHead++, 255, 191, 191, alpha);
 
     gLoadBlockTexture8b(gDisplayListHead++, 64, 32, G_IM_FMT_IA, eliseTextures[0]);
     gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts1), 4, 0);
@@ -1320,7 +1315,7 @@ void render_elise_dialog_entry(void) {
 
             if (x2 - x1 > 64) {
                 f32 alphatmp = 255.0f * ((f32) (x2 - x1 - 64) / (f32) (dialog->width - 64)); // Should theoretically never divide by 0
-                alpha = sqr(alphatmp) / 255.0f;
+                alpha = sqr(alphatmp) / 255.0f; // Add emphasis to fade
 
                 render_elise_text_art(x2-64-2, y1+2, x1+2, y2-32-2, alpha);
             }
@@ -1405,6 +1400,8 @@ void render_elise_dialog_entry(void) {
         // TODO: ELISE_SPECIAL_FLAG_ELISE_TEXT or ELISE_SPECIAL_FLAG_DESPAIR_TEXT
         // TODO: Print all text via Puppyprint (Align left)
 
+        print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, (char*) segmented_to_virtual(dialog->str), PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, TRUE);
+
         if (eliseDialogTimer >= ((s32) elisePrompt->dialogFreeze - 1)) {
             eliseDialogTimer--;
 
@@ -1427,6 +1424,7 @@ void render_elise_dialog_entry(void) {
     if (eliseDialogState == ELISE_DIALOG_READING) {
         // TODO: ELISE_SPECIAL_FLAG_ELISE_TEXT and ELISE_SPECIAL_FLAG_DESPAIR_TEXT (Do not scroll this text!)
         // TODO: Print scrolling text via Puppyprint (Align left because of this)
+        print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, (char*) segmented_to_virtual(dialog->str), PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, TRUE);
 
         if (eliseDialogTimer == 0 && elisePrompt->soundId != NO_SOUND)
             play_sound(elisePrompt->soundId, gGlobalSoundSource);
