@@ -26,11 +26,21 @@
 #include "config.h"
 #include "puppycam2.h"
 #include "main.h"
+#include "puppyprint.h"
 
 #ifdef VERSION_EU
 #undef LANGUAGE_FUNCTION
 #define LANGUAGE_FUNCTION gInGameLanguage
 #endif
+
+struct EliseDialogOptions eliseDialogPrompts[] = {
+  /*0x00*/  { DIALOG_174, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT), NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(5.0f), SEC_TO_FRAMES(8.0f) },
+            { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
+            { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
+            { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
+  /*0x04*/  { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
+            { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
+};
 
 u16 gDialogColorFadeTimer;
 s8 gLastDialogLineNum;
@@ -83,6 +93,10 @@ enum DialogBoxType {
     DIALOG_TYPE_ROTATE, // used in NPCs and level messages
     DIALOG_TYPE_ZOOM    // used in signposts and wall signs and etc
 };
+
+s8 eliseDialogState = ELISE_DIALOG_CLOSED;
+s32 eliseDialogTimer = -1;
+s32 eliseDialogCurrPrompt = -1;
 
 #define DEFAULT_DIALOG_BOX_ANGLE 90.0f
 #define DEFAULT_DIALOG_BOX_SCALE 19.0f
@@ -1157,6 +1171,242 @@ u8 *gEndCutsceneStringsEn[] = {
     NULL
 };
 
+void render_elise_text_art(s16 topX, s16 topY, s16 bottomX, s16 bottomY, u8 alpha) {
+    // TODO: render fancy text borders
+}
+
+// Return 0 on success, some negative value on failure
+s8 set_elise_dialog_prompt(u8 eliseDialogPromptIndex) {
+    if (eliseDialogCurrPrompt >= 0)
+        return -1; // Prompt already set and cannot be overwritten
+
+    struct EliseDialogOptions *prompt = &eliseDialogPrompts[eliseDialogPromptIndex];
+    if (prompt->hasBeenRead && !(prompt->specialFlags & ELISE_SPECIAL_FLAG_MULTI_USE)) {
+        return -2; // Prompt has already been read before and cannot be read again.
+    }
+
+    eliseDialogCurrPrompt = eliseDialogPromptIndex & 0xFF;
+    if (eliseDialogCurrPrompt > (s32) (sizeof(eliseDialogPrompts) / sizeof(struct EliseDialogOptions))) {
+        eliseDialogCurrPrompt = -1;
+        return -3; // Invalid prompt selection!
+    }
+
+    prompt->hasBeenRead = TRUE;
+    if (!save_file_set_elise_dialog_flags(prompt->saveFlagIndex)) {
+        eliseDialogCurrPrompt = -1;
+        return -2; // Prompt has already been read before and cannot be read again, stored in the save file.
+    }
+
+    return 0; // Success
+}
+
+#define ELISE_DIALOG_ANIM_FRAMES 26
+#define ELISE_DIALOG_WAIT_FRAMES 4
+#define ELISE_LINE_HEIGHT_MARGINS 5
+#define ELISE_LINE_HEIGHT 12
+void render_elise_dialog_entry(void) {
+    if (eliseDialogCurrPrompt < 0) {
+        eliseDialogTimer = -1;
+        eliseDialogState = ELISE_DIALOG_CLOSED;
+        return; // No prompt to be read at the moment
+    }
+
+    struct EliseDialogOptions *elisePrompt = &eliseDialogPrompts[eliseDialogCurrPrompt];
+
+    void **dialogTable = segmented_to_virtual(languageTable[gInGameLanguage][0]);
+    struct DialogEntry *dialog = segmented_to_virtual(dialogTable[elisePrompt->dialogId]);
+
+    s8 numLines = dialog->linesPerBox;
+    if (elisePrompt->saveFlagIndex & (ELISE_SPECIAL_FLAG_ELISE_TEXT | ELISE_SPECIAL_FLAG_DESPAIR_TEXT)) {
+        numLines++;
+    }
+
+    s32 x1 = SCREEN_CENTER_X - (dialog->width / 2);
+    s32 x2 = x1 + dialog->width;
+    s32 y1 = dialog->leftOffset; // Not actually left offset; this is vertical offset.
+    s32 y2 = y1 + (2 * ELISE_LINE_HEIGHT_MARGINS) + (numLines * ELISE_LINE_HEIGHT);
+
+    // Is the entry invalid?
+    if (segmented_to_virtual(NULL) == dialog) {
+        // TODO: ELISE_SPECIAL_FLAG_QUIET_MUSIC (Reference vanilla dialog for this part)
+        // TODO: ELISE_SPECIAL_FLAG_PAUSE_CHARACTER (NOTE: Make sure Mario is on the ground when doing this, just copy whatever's in the Koopa the Quick function)
+        eliseDialogState = ELISE_DIALOG_CLOSED;
+        eliseDialogCurrPrompt = -1;
+        eliseDialogTimer = -1;
+        return;
+    }
+
+    eliseDialogTimer++;
+
+    if (eliseDialogState == ELISE_DIALOG_CLOSED) {
+        if (eliseDialogTimer >= elisePrompt->dialogDelay) {
+            eliseDialogTimer = 0; // Not setting to -1 intentional due to the return bypass
+
+            if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_OPEN_PROMPT) {
+                eliseDialogState = ELISE_DIALOG_OPENING;
+            } else {
+                eliseDialogState = ELISE_DIALOG_OPENING_BLANK_FRAMES;
+            }
+        } else {
+            return;
+        }
+
+        // No return
+    }
+
+    // IMPORTANT NOTE: Flags cannot carry between dialogs, but game states can only be set/cleared with the open/close prompts.
+    // Make sure that ELISE_SPECIAL_FLAG_QUIET_MUSIC and ELISE_SPECIAL_FLAG_PAUSE_CHARACTER are carried throughout the entire dialog sequence for everything!
+    if (eliseDialogState == ELISE_DIALOG_OPENING) {
+        // TODO: ELISE_SPECIAL_FLAG_QUIET_MUSIC
+        // TODO: ELISE_SPECIAL_FLAG_PAUSE_CHARACTER
+
+        // TODO: render opening box
+
+        f32 progress = (coss(((u32) eliseDialogTimer * 0x8000) / ELISE_DIALOG_ANIM_FRAMES) + 1.0f) / 2.0f;
+        s32 tmp = (s32) (progress * (f32) dialog->width) / 2;
+        x1 += tmp;
+        x2 -= tmp;
+
+        if (x1 < x2) {
+            u8 alpha = 0x7F - (progress * 0x1F);
+            prepare_blank_box();
+            render_blank_box(x1, y1, x2, y2, 0x00, 0x00, 0x00, alpha);
+            finish_blank_box();
+
+            if (x2 - x1 > 64) {
+                alpha = 0xFF * ((x2 - x1 - 64) / (dialog->width - 64)); // Should theoretically never divide by 0
+
+                render_elise_text_art(x2-64-2, y1+2, y2-32-2, x1+2, alpha);
+            }
+            print_text_fmt_int(16, 64, "%d", x1);
+            print_text_fmt_int(16, 48, "%d", x2);
+            print_text_fmt_int(16, 32, "%d", y1);
+            print_text_fmt_int(16, 16, "%d", y2);
+        }
+
+        if (eliseDialogTimer >= (ELISE_DIALOG_ANIM_FRAMES - 1)) {
+            eliseDialogTimer = -1;
+            eliseDialogState = ELISE_DIALOG_OPENING_BLANK_FRAMES;
+        }
+
+        return;
+    }
+
+    if (eliseDialogState == ELISE_DIALOG_CLOSING) {
+        // TODO: ELISE_SPECIAL_FLAG_QUIET_MUSIC
+        // TODO: ELISE_SPECIAL_FLAG_PAUSE_CHARACTER
+
+        // TODO: render closing box
+
+        f32 progress = (coss((((u32) eliseDialogTimer * 0x8000) / ELISE_DIALOG_ANIM_FRAMES) + 0x8000) + 1.0f) / 2.0f;
+        s32 tmp = (s32) (progress * (f32) dialog->width) / 2;
+        x1 += tmp;
+        x2 -= tmp;
+
+        if (x1 < x2) {
+            u8 alpha = 0x7F - (progress * 0x1F);
+            prepare_blank_box();
+            render_blank_box(x1, y1, x2, y2, 0x00, 0x00, 0x00, alpha);
+            finish_blank_box();
+
+            if (x2 - x1 > 64) {
+                alpha = 0xFF * ((x2 - x1 - 64) / (dialog->width - 64)); // Should theoretically never divide by 0
+
+                render_elise_text_art(x2-64-2, y1+2, y2-32-2, x1+2, alpha);
+            }
+        }
+
+        if (eliseDialogTimer >= (ELISE_DIALOG_ANIM_FRAMES - 1)) {
+            eliseDialogTimer = -1;
+            eliseDialogCurrPrompt = -1;
+            eliseDialogState = ELISE_DIALOG_CLOSED;
+        }
+
+        return;
+    }
+
+    prepare_blank_box();
+    render_blank_box(x1, y1, x2, y2, 0x00, 0x00, 0x00, 0x7F);
+    finish_blank_box();
+    print_text_fmt_int(16, 64, "%d", x1);
+    print_text_fmt_int(16, 48, "%d", x2);
+    print_text_fmt_int(16, 32, "%d", y1);
+    print_text_fmt_int(16, 16, "%d", y2);
+
+    // TODO: render fancy text borders
+    
+    if (eliseDialogState == ELISE_DIALOG_OPENING_BLANK_FRAMES) {
+        if (eliseDialogTimer >= (ELISE_DIALOG_WAIT_FRAMES - 1)) {
+            eliseDialogTimer = -1;
+            eliseDialogState = ELISE_DIALOG_READING;
+            if (elisePrompt->soundDuration == 0) {
+                if (elisePrompt->soundId != NO_SOUND)
+                    play_sound(elisePrompt->soundId, gGlobalSoundSource);
+
+                eliseDialogState = ELISE_DIALOG_DONE_READING;
+            }
+        }
+
+        return;
+    }
+    
+    if (eliseDialogState == ELISE_DIALOG_CLOSING_BLANK_FRAMES) {
+        if (eliseDialogTimer >= (ELISE_DIALOG_WAIT_FRAMES - 1)) {
+            eliseDialogTimer = -1;
+            if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_CLOSE_PROMPT) {
+                eliseDialogState = ELISE_DIALOG_CLOSING;
+            } else {
+                eliseDialogCurrPrompt = -1;
+                eliseDialogState = ELISE_DIALOG_CLOSED;
+            }
+        }
+
+        return;
+    }
+
+    if (eliseDialogState == ELISE_DIALOG_DONE_READING) {
+        // TODO: ELISE_SPECIAL_FLAG_ELISE_TEXT or ELISE_SPECIAL_FLAG_DESPAIR_TEXT
+        // TODO: Print all text via Puppyprint (Align left)
+
+        if (eliseDialogTimer >= ((s32) elisePrompt->dialogFreeze - 1)) {
+            eliseDialogTimer--;
+
+            if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS) {
+                // TODO: Render A button
+
+                if (gPlayer1Controller->buttonPressed & (A_BUTTON | B_BUTTON | START_BUTTON)) {
+                    eliseDialogTimer = -1;
+                    eliseDialogState = ELISE_DIALOG_CLOSING_BLANK_FRAMES;
+                }
+            } else {
+                eliseDialogTimer = -1;
+                eliseDialogState = ELISE_DIALOG_CLOSING_BLANK_FRAMES;
+            }
+        }
+
+        return;
+    }
+    
+    if (eliseDialogState == ELISE_DIALOG_READING) {
+        // TODO: ELISE_SPECIAL_FLAG_ELISE_TEXT and ELISE_SPECIAL_FLAG_DESPAIR_TEXT (Do not scroll this text!)
+        // TODO: Print scrolling text via Puppyprint (Align left because of this)
+
+        if (eliseDialogTimer == 0 && elisePrompt->soundId != NO_SOUND)
+            play_sound(elisePrompt->soundId, gGlobalSoundSource);
+
+        if (eliseDialogTimer >= ((s32) elisePrompt->soundDuration - 1)) {
+            eliseDialogTimer = -1;
+            eliseDialogState = ELISE_DIALOG_DONE_READING;
+        }
+
+        return;
+    }
+
+    // It should not be possible to get here!
+    eliseDialogState = ELISE_DIALOG_CLOSED;
+    eliseDialogCurrPrompt = -1;
+    eliseDialogTimer = -1;
+}
 
 u16 gCutsceneMsgFade        =  0;
 s16 gCutsceneMsgIndex       = -1;

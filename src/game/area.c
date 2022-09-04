@@ -399,6 +399,9 @@ void render_game(void) {
 
         gDPSetScissor(gDisplayListHead++, G_SC_NON_INTERLACE, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         render_text_labels();
+        
+        if (sCurrPlayMode == PLAY_MODE_NORMAL)
+            render_elise_dialog_entry();
 #ifdef PUPPYPRINT_DEBUG
         puppyprint_print_deferred();
 #endif
@@ -435,6 +438,9 @@ void render_game(void) {
         }
     } else {
         render_text_labels();
+        
+        if (sCurrPlayMode == PLAY_MODE_NORMAL)
+            render_elise_dialog_entry();
 #ifdef PUPPYPRINT_DEBUG
         puppyprint_print_deferred();
 #endif
