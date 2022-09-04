@@ -1,8 +1,15 @@
 extern const GeoLayout transparent_star_geo[];
 extern u8 transparent_star_Glass_2_rgba32[];
+extern u8 transparent_star_gotten_ci8[];
+extern u8 transparent_star_gotten_ci8_pal_rgba16[];
 extern Vtx transparent_star_000_displaylist_mesh_layer_5_vtx_0[149];
 extern Gfx transparent_star_000_displaylist_mesh_layer_5_tri_0[];
+extern Vtx transparent_star_000_displaylist_mesh_layer_1_vtx_0[150];
+extern Gfx transparent_star_000_displaylist_mesh_layer_1_tri_0[];
 extern Gfx mat_transparent_star_Glass[];
 extern Gfx mat_revert_transparent_star_Glass[];
+extern Gfx mat_transparent_star_Drop_gotten[];
+extern Gfx mat_revert_transparent_star_Drop_gotten[];
 extern Gfx transparent_star_000_displaylist_mesh_layer_5[];
+extern Gfx transparent_star_000_displaylist_mesh_layer_1[];
 extern Gfx transparent_star_material_revert_render_settings[];
