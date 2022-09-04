@@ -45,7 +45,7 @@ extern s32 *gReverbMultsL;
 extern s32 *gReverbMultsR;
 
 extern u8 toggleBetterReverb;
-#define REVERB_WINDOW_SIZE_MAX 0x2000
+#define REVERB_WINDOW_SIZE_MAX 0x3000
 
 STATIC_ASSERT(NUM_ALLPASS % 3 == 0, "NUM_ALLPASS must be a multiple of 3!");
 
