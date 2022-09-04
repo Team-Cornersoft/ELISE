@@ -27,6 +27,7 @@
 #include "puppycam2.h"
 #include "main.h"
 #include "puppyprint.h"
+#include "geo_misc.h"
 
 #ifdef VERSION_EU
 #undef LANGUAGE_FUNCTION
@@ -34,7 +35,7 @@
 #endif
 
 struct EliseDialogOptions eliseDialogPrompts[] = {
-  /*0x00*/  { DIALOG_174, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT), NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(5.0f), SEC_TO_FRAMES(8.0f) },
+  /*0x00*/  { DIALOG_174, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(5.0f), SEC_TO_FRAMES(8.0f) },
             { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
             { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
             { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
@@ -1173,6 +1174,52 @@ u8 *gEndCutsceneStringsEn[] = {
 
 void render_elise_text_art(s16 topX, s16 topY, s16 bottomX, s16 bottomY, u8 alpha) {
     // TODO: render fancy text borders
+
+    Vtx *verts1 = alloc_display_list(4 * sizeof(*verts1));
+    Vtx *verts2 = alloc_display_list(4 * sizeof(*verts2));
+    Mtx *mtx = alloc_display_list(sizeof(*mtx));
+
+    if (verts1 == NULL || verts2 == NULL || mtx == NULL) {
+        return;
+    }
+
+    topY = SCREEN_HEIGHT - topY;
+    bottomY = SCREEN_HEIGHT - bottomY;
+
+    print_text_fmt_int(16, 64, "%d", topX);
+    print_text_fmt_int(16, 48, "%d", topY);
+    print_text_fmt_int(16, 32, "%d", bottomX);
+    print_text_fmt_int(16, 16, "%d", bottomY);
+    
+    void **eliseTextures = segmented_to_virtual(elise_dialog_borders);
+
+    guOrtho(mtx, 0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, 0.0f, 3.0f, 1.0f);
+
+    make_vertex(verts1, 0, topX, topY, -1, 0, 0, 255, 255, 255, 255);
+    make_vertex(verts1, 1, topX, topY - 32, -1, 0, 31 << 5, 255, 255, 255, 255);
+    make_vertex(verts1, 2, topX + 64, topY - 32, -1, 63 << 5, 31 << 5, 255, 255, 255, 255);
+    make_vertex(verts1, 3, topX + 64, topY, -1, 63 << 5, 0, 255, 255, 255, 255);
+
+    make_vertex(verts2, 0, bottomX, bottomY, -1, 0, 0, 255, 255, 255, 255);
+    make_vertex(verts2, 1, bottomX, bottomY - 32, -1, 0, 31 << 5, 255, 255, 255, 255);
+    make_vertex(verts2, 2, bottomX + 64, bottomY - 32, -1, 63 << 5, 31 << 5, 255, 255, 255, 255);
+    make_vertex(verts2, 3, bottomX + 64, bottomY, -1, 63 << 5, 0, 255, 255, 255, 255);
+
+    gSPDisplayList(gDisplayListHead++, dl_elise_texture_begin);
+    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION | G_MTX_MUL | G_MTX_NOPUSH);
+    gSPDisplayList(gDisplayListHead++, dl_elise_texture_tile_tex_settings);
+
+    gDPSetEnvColor(gDisplayListHead++, 255, 255, 255, alpha);
+
+    gLoadBlockTexture8b(gDisplayListHead++, 64, 32, G_IM_FMT_IA, eliseTextures[0]);
+    gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts1), 4, 0);
+    gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123);
+
+    gLoadBlockTexture8b(gDisplayListHead++, 64, 32, G_IM_FMT_IA, eliseTextures[1]);
+    gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts2), 4, 0);
+    gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123);
+
+    gSPDisplayList(gDisplayListHead++, dl_elise_texture_end);
 }
 
 // Return 0 on success, some negative value on failure
@@ -1260,8 +1307,6 @@ void render_elise_dialog_entry(void) {
         // TODO: ELISE_SPECIAL_FLAG_QUIET_MUSIC
         // TODO: ELISE_SPECIAL_FLAG_PAUSE_CHARACTER
 
-        // TODO: render opening box
-
         f32 progress = (coss(((u32) eliseDialogTimer * 0x8000) / ELISE_DIALOG_ANIM_FRAMES) + 1.0f) / 2.0f;
         s32 tmp = (s32) (progress * (f32) dialog->width) / 2;
         x1 += tmp;
@@ -1274,14 +1319,11 @@ void render_elise_dialog_entry(void) {
             finish_blank_box();
 
             if (x2 - x1 > 64) {
-                alpha = 0xFF * ((x2 - x1 - 64) / (dialog->width - 64)); // Should theoretically never divide by 0
+                f32 alphatmp = 255.0f * ((f32) (x2 - x1 - 64) / (f32) (dialog->width - 64)); // Should theoretically never divide by 0
+                alpha = sqr(alphatmp) / 255.0f;
 
-                render_elise_text_art(x2-64-2, y1+2, y2-32-2, x1+2, alpha);
+                render_elise_text_art(x2-64-2, y1+2, x1+2, y2-32-2, alpha);
             }
-            print_text_fmt_int(16, 64, "%d", x1);
-            print_text_fmt_int(16, 48, "%d", x2);
-            print_text_fmt_int(16, 32, "%d", y1);
-            print_text_fmt_int(16, 16, "%d", y2);
         }
 
         if (eliseDialogTimer >= (ELISE_DIALOG_ANIM_FRAMES - 1)) {
@@ -1296,8 +1338,6 @@ void render_elise_dialog_entry(void) {
         // TODO: ELISE_SPECIAL_FLAG_QUIET_MUSIC
         // TODO: ELISE_SPECIAL_FLAG_PAUSE_CHARACTER
 
-        // TODO: render closing box
-
         f32 progress = (coss((((u32) eliseDialogTimer * 0x8000) / ELISE_DIALOG_ANIM_FRAMES) + 0x8000) + 1.0f) / 2.0f;
         s32 tmp = (s32) (progress * (f32) dialog->width) / 2;
         x1 += tmp;
@@ -1310,9 +1350,10 @@ void render_elise_dialog_entry(void) {
             finish_blank_box();
 
             if (x2 - x1 > 64) {
-                alpha = 0xFF * ((x2 - x1 - 64) / (dialog->width - 64)); // Should theoretically never divide by 0
+                f32 alphatmp = 255.0f * ((f32) (x2 - x1 - 64) / (f32) (dialog->width - 64)); // Should theoretically never divide by 0
+                alpha = sqr(alphatmp) / 255.0f; // Add emphasis to fade
 
-                render_elise_text_art(x2-64-2, y1+2, y2-32-2, x1+2, alpha);
+                render_elise_text_art(x2-64-2, y1+2, x1+2, y2-32-2, alpha);
             }
         }
 
@@ -1328,12 +1369,8 @@ void render_elise_dialog_entry(void) {
     prepare_blank_box();
     render_blank_box(x1, y1, x2, y2, 0x00, 0x00, 0x00, 0x7F);
     finish_blank_box();
-    print_text_fmt_int(16, 64, "%d", x1);
-    print_text_fmt_int(16, 48, "%d", x2);
-    print_text_fmt_int(16, 32, "%d", y1);
-    print_text_fmt_int(16, 16, "%d", y2);
 
-    // TODO: render fancy text borders
+    render_elise_text_art(x2-64-2, y1+2, x1+2, y2-32-2, 0xFF);
     
     if (eliseDialogState == ELISE_DIALOG_OPENING_BLANK_FRAMES) {
         if (eliseDialogTimer >= (ELISE_DIALOG_WAIT_FRAMES - 1)) {
