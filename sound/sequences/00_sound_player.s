@@ -339,7 +339,7 @@ sound_ref .chan_810
 sound_ref .chan_828
 sound_ref .sound_action_intro_unk45e
 sound_ref .sound_action_intro_unk45f
-sound_ref .sound_action_custom_teleport
+sound_ref .sound_action_heavy_landing_default
 sound_ref .sound_action_heavy_landing_grass
 sound_ref .sound_action_heavy_landing_water
 sound_ref .sound_action_heavy_landing_stone
@@ -355,6 +355,7 @@ sound_ref .sound_action_jump_default
 sound_ref .sound_action_jump_default
 sound_ref .sound_action_jump_default
 sound_ref .sound_action_jump_default
+sound_ref .sound_action_custom_teleport
 
 .sound_action_jump_default:
 chan_setbank 1
