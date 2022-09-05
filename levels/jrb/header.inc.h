@@ -31,8 +31,6 @@ extern u8 jrb_dl_bricks_ci8[];
 extern u8 jrb_dl_bricks_ci8_pal_rgba16[];
 extern u8 jrb_dl_bricks_rgba16[];
 extern u8 jrb_dl_carpet_i8[];
-extern u8 jrb_dl_grass_ci4[];
-extern u8 jrb_dl_grass_ci4_pal_rgba16[];
 extern u8 jrb_dl_grass_rgba16[];
 extern u8 jrb_dl_blind_texture_i8_copy[];
 extern u8 jrb_dl_Door_B_i8[];
