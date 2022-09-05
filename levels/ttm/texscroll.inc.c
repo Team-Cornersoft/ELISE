@@ -1,6 +1,6 @@
-void scroll_ttm_dl_C_UFO_mesh_layer_1_vtx_0() {
+void scroll_ttm_dl_C_UFO_mesh_layer_1_vtx_2() {
 	int i = 0;
-	int count = 58;
+	int count = 38;
 	int width = 32 * 0x20;
 	int height = 32 * 0x20;
 
@@ -8,7 +8,7 @@ void scroll_ttm_dl_C_UFO_mesh_layer_1_vtx_0() {
 	int deltaX;
 	static int currentY = 0;
 	int deltaY;
-	Vtx *vertices = segmented_to_virtual(ttm_dl_C_UFO_mesh_layer_1_vtx_0);
+	Vtx *vertices = segmented_to_virtual(ttm_dl_C_UFO_mesh_layer_1_vtx_2);
 
 	deltaX = (int)(2.0 * 0x20) % width;
 	deltaY = (int)(2.0 * 0x20) % height;
@@ -28,5 +28,5 @@ void scroll_ttm_dl_C_UFO_mesh_layer_1_vtx_0() {
 }
 
 void scroll_ttm() {
-	scroll_ttm_dl_C_UFO_mesh_layer_1_vtx_0();
+	scroll_ttm_dl_C_UFO_mesh_layer_1_vtx_2();
 }
