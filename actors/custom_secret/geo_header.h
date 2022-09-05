@@ -1,0 +1,16 @@
+extern const GeoLayout custom_secret_geo[];
+extern u8 custom_secret_gold_ci8[];
+extern u8 custom_secret_gold_ci8_pal_rgba16[];
+extern u8 custom_secret_Glass_2_ci4[];
+extern u8 custom_secret_Glass_2_ci4_pal_rgba16[];
+extern Vtx custom_secret_Secret_ring_001_mesh_layer_1_vtx_0[208];
+extern Gfx custom_secret_Secret_ring_001_mesh_layer_1_tri_0[];
+extern Vtx custom_secret_Secret_ring_001_mesh_layer_5_vtx_0[159];
+extern Gfx custom_secret_Secret_ring_001_mesh_layer_5_tri_0[];
+extern Gfx mat_custom_secret_gold[];
+extern Gfx mat_revert_custom_secret_gold[];
+extern Gfx mat_custom_secret_glass[];
+extern Gfx mat_revert_custom_secret_glass[];
+extern Gfx custom_secret_Secret_ring_001_mesh_layer_1[];
+extern Gfx custom_secret_Secret_ring_001_mesh_layer_5[];
+extern Gfx custom_secret_material_revert_render_settings[];
