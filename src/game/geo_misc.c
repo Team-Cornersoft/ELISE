@@ -62,7 +62,6 @@ void make_vertex(Vtx *vtx, s32 n, f32 x, f32 y, f32 z, s16 tx, s16 ty, u8 r, u8 
     vtx[n].v.cn[3] = a;
 }
 
-#define NUM_STARS_REQUIRED_FOR_WING_CAP_LIGHT 10
 /**
  * Create a display list for the light in the castle lobby that shows the
  * player where to look to enter Tower of the Wing Cap.
@@ -72,27 +71,23 @@ Gfx *geo_exec_inside_castle_light(s32 callContext, struct GraphNode *node, UNUSE
     Gfx *displayList = NULL;
 
     if (callContext == GEO_CONTEXT_RENDER) {
-        s32 flags = save_file_get_flags();
-        if (gHudDisplay.stars >= NUM_STARS_REQUIRED_FOR_WING_CAP_LIGHT && !(flags & SAVE_FLAG_HAVE_WING_CAP)) {
-            displayList = alloc_display_list(2 * sizeof(*displayList));
+        displayList = alloc_display_list(2 * sizeof(*displayList));
 
-            if (displayList == NULL) {
-                return NULL;
-            } else {
-                displayListHead = displayList;
-            }
-
-            struct GraphNodeGenerated *generatedNode = (struct GraphNodeGenerated *) node;
-            SET_GRAPH_NODE_LAYER(generatedNode->fnNode.node.flags, LAYER_TRANSPARENT);
-
-            gSPDisplayList(displayListHead++, dl_castle_lobby_wing_cap_light);
-            gSPEndDisplayList(displayListHead);
+        if (displayList == NULL) {
+            return NULL;
+        } else {
+            displayListHead = displayList;
         }
+
+        struct GraphNodeGenerated *generatedNode = (struct GraphNodeGenerated *) node;
+        SET_GRAPH_NODE_LAYER(generatedNode->fnNode.node.flags, LAYER_TRANSPARENT);
+
+        gSPDisplayList(displayListHead++, dl_castle_lobby_wing_cap_light);
+        gSPEndDisplayList(displayListHead);
     }
 
     return displayList;
 }
-#undef NUM_STARS_REQUIRED_FOR_WING_CAP_LIGHT
 
 /**
  * Update static timer variables that control the flying carpets' ripple effect.
