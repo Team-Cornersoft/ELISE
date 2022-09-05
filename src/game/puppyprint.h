@@ -112,10 +112,10 @@ extern void render_blank_box(s32 x1, s32 y1, s32 x2, s32 y2, u8 r, u8 g, u8 b, u
 extern void render_blank_box_rounded(s32 x1, s32 y1, s32 x2, s32 y2, u8 r, u8 g, u8 b, u8 a);
 extern void append_puppyprint_log(const char *str, ...);
 extern char consoleLogTable[LOG_BUFFER_SIZE][255];
-extern void print_small_text_buffered(s32 x, s32 y, const char *str, u8 align, s32 amount, u8 font, u8 glyphToChar);
+extern u8 print_small_text_buffered(s32 x, s32 y, const char *str, u8 align, s32 amount, u8 font, u8 glyphToChar);
 extern void puppyprint_print_deferred(void);
 extern s32 puppyprint_strlen(const char *str);
 extern void set_segment_memory_printout(u32 segment, u32 amount);
 extern void print_small_text_light(s32 x, s32 y, const char *str, s32 align, s32 amount, u8 font, u8 glyphToChar);
-extern void print_small_text_buffered_light(s32 x, s32 y, const char *str, u8 align, s32 amount, u8 font, u8 glyphToChar);
+extern u8 print_small_text_buffered_light(s32 x, s32 y, const char *str, u8 align, s32 amount, u8 font, u8 glyphToChar);
 void puppyprint_profiler_process(void);

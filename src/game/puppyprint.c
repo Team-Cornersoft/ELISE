@@ -1378,12 +1378,12 @@ static u8 gIsLightText = FALSE;
 // Then the string length, text alignment, amount and font each get a byte.
 // The data afterwards is the text data itself, using the string length byte to know when to stop.
 #define HEADERSIZE 13
-void print_small_text_buffered(s32 x, s32 y, const char *str, u8 align, s32 amount, u8 font, u8 glyphToChar) {
+u8 print_small_text_buffered(s32 x, s32 y, const char *str, u8 align, s32 amount, u8 font, u8 glyphToChar) {
     u8 strLen = 0;
 
     // Compare the cursor position and the string length, plus 12 (header size) and return if it overflows.
-    if (sPuppyprintTextBufferPos + strLen + HEADERSIZE > sizeof(sPuppyprintTextBuffer))
-        return;
+    if (sPuppyprintTextBufferPos + 0xFF + HEADERSIZE > sizeof(sPuppyprintTextBuffer))
+        return 0;
     x += 0x8000;
     y += 0x8000;
     sPuppyprintTextBuffer[sPuppyprintTextBufferPos + 0] = (x >> 8) & 0xFF;
@@ -1401,29 +1401,45 @@ void print_small_text_buffered(s32 x, s32 y, const char *str, u8 align, s32 amou
     sPuppyprintTextBuffer[sPuppyprintTextBufferPos + 12] = gIsLightText;
     
     if (glyphToChar) {
-        for (; strLen < 0xFF; strLen++) {
+        s32 loopAmount = 0xFF;
+        u8 *strLenAddr = &sPuppyprintTextBuffer[sPuppyprintTextBufferPos + 8];
+        sPuppyprintTextBufferPos += HEADERSIZE;
+        if (amount >= 0)
+            loopAmount = MIN(loopAmount, amount);
+
+        for (; strLen < (u8) loopAmount; strLen++) {
             u8 ret = glyph_to_char_index(str[strLen]);
-            sPuppyprintTextBuffer[sPuppyprintTextBufferPos + HEADERSIZE + strLen] = ret;
+            sPuppyprintTextBuffer[sPuppyprintTextBufferPos++] = ret;
 
             if (ret == 0)
                 break;
         }
-        if (strLen == 0xFF) {
-            sPuppyprintTextBuffer[sPuppyprintTextBufferPos + HEADERSIZE + strLen] = 0;
+        if (strLen == (u8) loopAmount) {
+            if (strLen > 0)
+                sPuppyprintTextBuffer[sPuppyprintTextBufferPos - 1] = 0;
+            strLen -= 1;
         }
+        strLen += 1;
+        *strLenAddr = strLen;
+
+
     } else {
-        strLen = MIN((signed)strlen(str), 255);
+        strLen = MIN((signed)strlen(str), 0xFF);
         bcopy(str, &sPuppyprintTextBuffer[sPuppyprintTextBufferPos + HEADERSIZE], strLen);
+        sPuppyprintTextBuffer[sPuppyprintTextBufferPos + 8] = strLen;
+        sPuppyprintTextBufferPos += strLen + HEADERSIZE;
     }
 
-    sPuppyprintTextBuffer[sPuppyprintTextBufferPos + 8] = strLen;
-    sPuppyprintTextBufferPos += strLen + HEADERSIZE;
+    return strLen;
 }
 
-void print_small_text_buffered_light(s32 x, s32 y, const char *str, u8 align, s32 amount, u8 font, u8 glyphToChar) {
+u8 print_small_text_buffered_light(s32 x, s32 y, const char *str, u8 align, s32 amount, u8 font, u8 glyphToChar) {
+    u8 ret;
     gIsLightText = TRUE;
-    print_small_text_buffered(x, y, str, align, amount, font, glyphToChar);
+    ret = print_small_text_buffered(x, y, str, align, amount, font, glyphToChar);
     gIsLightText = FALSE;
+
+    return ret;
 }
 
 void puppyprint_print_deferred(void) {
@@ -1462,6 +1478,7 @@ void puppyprint_print_deferred(void) {
         i+=length + HEADERSIZE;
     }
     //Reset the position back to zero, effectively clearing the buffer.
+    bzero(sPuppyprintTextBuffer, sizeof(sPuppyprintTextBuffer));
     sPuppyprintTextBufferPos = 0;
 }
 

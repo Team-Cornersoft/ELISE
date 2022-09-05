@@ -35,7 +35,7 @@
 #endif
 
 struct EliseDialogOptions eliseDialogPrompts[] = {
-  /*0x00*/  { DIALOG_174, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(5.0f), SEC_TO_FRAMES(8.0f) },
+  /*0x00*/  { DIALOG_174, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_ELISE_TEXT), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(8.0f) },
             { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
             { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
             { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
@@ -1172,9 +1172,20 @@ u8 *gEndCutsceneStringsEn[] = {
     NULL
 };
 
-void render_elise_text_art(s16 topX, s16 topY, s16 bottomX, s16 bottomY, u8 alpha) {
-    // TODO: render fancy text borders
+u8 get_glyph_str_length(u8* str) {
+    u8 strLen = 0;
+    for (; strLen < 0xFF; strLen++) {
+        if (str[strLen] == DIALOG_CHAR_TERMINATOR)
+            break;
+    }
+    if (strLen == 0xFF) {
+        strLen -= 1;
+    }
 
+    return strLen;
+}
+
+void render_elise_text_art(s16 topX, s16 topY, s16 bottomX, s16 bottomY, u8 alpha) {
     Vtx *verts1 = alloc_display_list(4 * sizeof(*verts1));
     Vtx *verts2 = alloc_display_list(4 * sizeof(*verts2));
     Mtx *mtx = alloc_display_list(sizeof(*mtx));
@@ -1204,7 +1215,7 @@ void render_elise_text_art(s16 topX, s16 topY, s16 bottomX, s16 bottomY, u8 alph
     gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION | G_MTX_MUL | G_MTX_NOPUSH);
     gSPDisplayList(gDisplayListHead++, dl_elise_texture_tile_tex_settings);
 
-    gDPSetEnvColor(gDisplayListHead++, 255, 191, 191, alpha);
+    gDPSetEnvColor(gDisplayListHead++, 207, 255, 207, alpha);
 
     gLoadBlockTexture8b(gDisplayListHead++, 64, 32, G_IM_FMT_IA, eliseTextures[0]);
     gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts1), 4, 0);
@@ -1243,8 +1254,9 @@ s8 set_elise_dialog_prompt(u8 eliseDialogPromptIndex) {
 }
 
 #define ELISE_DIALOG_ANIM_FRAMES 26
-#define ELISE_DIALOG_WAIT_FRAMES 4
-#define ELISE_LINE_HEIGHT_MARGINS 5
+#define ELISE_DIALOG_WAIT_FRAMES 3
+#define ELISE_DIALOG_FADE_FRAMES 5
+#define ELISE_LINE_HEIGHT_MARGINS 6
 #define ELISE_LINE_HEIGHT 12
 void render_elise_dialog_entry(void) {
     if (eliseDialogCurrPrompt < 0) {
@@ -1259,7 +1271,7 @@ void render_elise_dialog_entry(void) {
     struct DialogEntry *dialog = segmented_to_virtual(dialogTable[elisePrompt->dialogId]);
 
     s8 numLines = dialog->linesPerBox;
-    if (elisePrompt->saveFlagIndex & (ELISE_SPECIAL_FLAG_ELISE_TEXT | ELISE_SPECIAL_FLAG_DESPAIR_TEXT)) {
+    if (elisePrompt->specialFlags & (ELISE_SPECIAL_FLAG_ELISE_TEXT | ELISE_SPECIAL_FLAG_DESPAIR_TEXT)) {
         numLines++;
     }
 
@@ -1272,6 +1284,7 @@ void render_elise_dialog_entry(void) {
     if (segmented_to_virtual(NULL) == dialog) {
         // TODO: ELISE_SPECIAL_FLAG_QUIET_MUSIC (Reference vanilla dialog for this part)
         // TODO: ELISE_SPECIAL_FLAG_PAUSE_CHARACTER (NOTE: Make sure Mario is on the ground when doing this, just copy whatever's in the Koopa the Quick function)
+
         eliseDialogState = ELISE_DIALOG_CLOSED;
         eliseDialogCurrPrompt = -1;
         eliseDialogTimer = -1;
@@ -1313,8 +1326,8 @@ void render_elise_dialog_entry(void) {
             render_blank_box(x1, y1, x2, y2, 0x00, 0x00, 0x00, alpha);
             finish_blank_box();
 
-            if (x2 - x1 > 64) {
-                f32 alphatmp = 255.0f * ((f32) (x2 - x1 - 64) / (f32) (dialog->width - 64)); // Should theoretically never divide by 0
+            if (x2 - x1 > 68 && y2 - y1 >= 36) { // Very important that the x coordinates remain > over >=
+                f32 alphatmp = 255.0f * ((f32) (x2 - x1 - 68) / (f32) (dialog->width - 68)); // Should theoretically never divide by 0
                 alpha = sqr(alphatmp) / 255.0f; // Add emphasis to fade
 
                 render_elise_text_art(x2-64-2, y1+2, x1+2, y2-32-2, alpha);
@@ -1344,8 +1357,8 @@ void render_elise_dialog_entry(void) {
             render_blank_box(x1, y1, x2, y2, 0x00, 0x00, 0x00, alpha);
             finish_blank_box();
 
-            if (x2 - x1 > 64) {
-                f32 alphatmp = 255.0f * ((f32) (x2 - x1 - 64) / (f32) (dialog->width - 64)); // Should theoretically never divide by 0
+            if (x2 - x1 > 68 && y2 - y1 >= 36) { // Very important that the x coordinates remain > over >=
+                f32 alphatmp = 255.0f * ((f32) (x2 - x1 - 68) / (f32) (dialog->width - 68)); // Should theoretically never divide by 0
                 alpha = sqr(alphatmp) / 255.0f; // Add emphasis to fade
 
                 render_elise_text_art(x2-64-2, y1+2, x1+2, y2-32-2, alpha);
@@ -1365,7 +1378,9 @@ void render_elise_dialog_entry(void) {
     render_blank_box(x1, y1, x2, y2, 0x00, 0x00, 0x00, 0x7F);
     finish_blank_box();
 
-    render_elise_text_art(x2-64-2, y1+2, x1+2, y2-32-2, 0xFF);
+    if (x2 - x1 > 68 && y2 - y1 >= 36) { // Very important that the x coordinates remain > over >=
+        render_elise_text_art(x2-64-2, y1+2, x1+2, y2-32-2, 0xFF);
+    }
     
     if (eliseDialogState == ELISE_DIALOG_OPENING_BLANK_FRAMES) {
         if (eliseDialogTimer >= (ELISE_DIALOG_WAIT_FRAMES - 1)) {
@@ -1383,7 +1398,23 @@ void render_elise_dialog_entry(void) {
     }
     
     if (eliseDialogState == ELISE_DIALOG_CLOSING_BLANK_FRAMES) {
-        if (eliseDialogTimer >= (ELISE_DIALOG_WAIT_FRAMES - 1)) {
+        if (eliseDialogTimer < ELISE_DIALOG_FADE_FRAMES) { // Should never divide by 0 here unless configured stupidly
+            u8 alpha = 255 - (eliseDialogTimer * 255) / ELISE_DIALOG_FADE_FRAMES;
+
+            if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ELISE_TEXT) {
+                print_set_envcolour(255, 159, 255, alpha);
+                print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "ELISE:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+                y1 += ELISE_LINE_HEIGHT;
+            } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_DESPAIR_TEXT) {
+            print_set_envcolour(127, 95, 191, alpha);
+                print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "DESPAIR:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+                y1 += ELISE_LINE_HEIGHT;
+            }
+
+            print_set_envcolour(255, 255, 255, alpha);
+            print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, (char*) segmented_to_virtual(dialog->str), PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, TRUE);
+        }
+        if (eliseDialogTimer >= (ELISE_DIALOG_WAIT_FRAMES + ELISE_DIALOG_FADE_FRAMES - 1)) {
             eliseDialogTimer = -1;
             if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_CLOSE_PROMPT) {
                 eliseDialogState = ELISE_DIALOG_CLOSING;
@@ -1397,9 +1428,17 @@ void render_elise_dialog_entry(void) {
     }
 
     if (eliseDialogState == ELISE_DIALOG_DONE_READING) {
-        // TODO: ELISE_SPECIAL_FLAG_ELISE_TEXT or ELISE_SPECIAL_FLAG_DESPAIR_TEXT
-        // TODO: Print all text via Puppyprint (Align left)
+        if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ELISE_TEXT) {
+            print_set_envcolour(255, 159, 255, 255);
+            print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "ELISE:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            y1 += ELISE_LINE_HEIGHT;
+        } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_DESPAIR_TEXT) {
+            print_set_envcolour(150, 120, 182, 255);
+            print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "DESPAIR:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            y1 += ELISE_LINE_HEIGHT;
+        }
 
+        print_set_envcolour(255, 255, 255, 255);
         print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, (char*) segmented_to_virtual(dialog->str), PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, TRUE);
 
         if (eliseDialogTimer >= ((s32) elisePrompt->dialogFreeze - 1)) {
@@ -1422,14 +1461,39 @@ void render_elise_dialog_entry(void) {
     }
     
     if (eliseDialogState == ELISE_DIALOG_READING) {
-        // TODO: ELISE_SPECIAL_FLAG_ELISE_TEXT and ELISE_SPECIAL_FLAG_DESPAIR_TEXT (Do not scroll this text!)
-        // TODO: Print scrolling text via Puppyprint (Align left because of this)
-        print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, (char*) segmented_to_virtual(dialog->str), PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, TRUE);
+        u8 strLen = get_glyph_str_length(segmented_to_virtual(dialog->str));
+
+        if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ELISE_TEXT) {
+            print_set_envcolour(255, 159, 255, 255);
+            print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "ELISE:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            y1 += ELISE_LINE_HEIGHT;
+        } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_DESPAIR_TEXT) {
+            print_set_envcolour(150, 120, 182, 255);
+            print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "DESPAIR:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            y1 += ELISE_LINE_HEIGHT;
+        }
+
+        print_set_envcolour(255, 255, 255, 255);
+
+        s32 printAmount = strLen;
+
+        if (elisePrompt->soundDuration == 0xFFFF) {
+            printAmount = eliseDialogTimer;
+        } else if (elisePrompt->soundDuration > 0) {
+            printAmount = printAmount * eliseDialogTimer / (s32) elisePrompt->soundDuration;
+        }
+
+        print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, (char*) segmented_to_virtual(dialog->str), PRINT_TEXT_ALIGN_LEFT, (u8) printAmount, FONT_ELISE, TRUE);
 
         if (eliseDialogTimer == 0 && elisePrompt->soundId != NO_SOUND)
             play_sound(elisePrompt->soundId, gGlobalSoundSource);
 
-        if (eliseDialogTimer >= ((s32) elisePrompt->soundDuration - 1)) {
+        if (elisePrompt->soundDuration == 0xFFFF) {
+            if (eliseDialogTimer >= strLen) {
+                eliseDialogTimer = -1;
+                eliseDialogState = ELISE_DIALOG_DONE_READING;
+            }
+        } else if (eliseDialogTimer >= ((s32) elisePrompt->soundDuration - 1)) {
             eliseDialogTimer = -1;
             eliseDialogState = ELISE_DIALOG_DONE_READING;
         }
