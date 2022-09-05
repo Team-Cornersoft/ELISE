@@ -59,11 +59,16 @@ Vec3f sAnchorPositions[] = {
 enum DespairAnimations {
     IDLE_ANIM,
     TORPEDO_CHARGE_ANIM,
-    CAST_ANIM,
-    SWIPE_ANIM,
-    THROW_ANIM,
-    WIND_UP_ANIM,
+    CHASE_ANIM,
+    HURT_ANIM,
+    RAIN_ANIM,
+    RELEASE_ANIM,
+    SPIN_ANIM,
     STUN_ANIM,
+    SWIPE_1_ANIM,
+    SWIPE_2_ANIM,
+    SWIPE_3_ANIM,
+    TREMBLE_ANIM,
 };
 
 enum DespairDirection {
@@ -86,7 +91,8 @@ enum DespairState {
     CHARGING, // Maybe needs new animation? Need to increase amount with phase
     RESETTING, // Done
     DEATH_REGULAR, // Used for non-100% death sequence
-    DEATH_TRUE, // User for 100% death sequence
+    DEATH_TRUE, // Used for 100% death sequence
+    HURT,
 };
 
 s8 sDespairDialogFlag = FALSE;
@@ -142,7 +148,7 @@ void take_damage(void) {
         if (o->oDespairHits == 3) {
             // Play intermediate dialog
             sDespairDialogFlag = TRUE;
-            change_attack(RESETTING, SECONDS_TO_TICKS(1), NO_TIME);
+            change_attack(HURT, SECONDS_TO_TICKS(1), NO_TIME);
             set_mario_action(gMarioState, ACT_SPAWN_NO_SPIN_AIRBORNE, 0);
             return;
         } else if (o->oDespairHits == 5) {
@@ -159,7 +165,7 @@ void take_damage(void) {
         }
     }
 
-    change_attack(RESETTING, NO_COOLDOWN, NO_TIME);
+    change_attack(HURT, NO_COOLDOWN, NO_TIME);
 }
 
 void choose_attack(void) {
@@ -225,7 +231,7 @@ void update_idle(void) {
 
 // Chase toward mario, after a set amount of time, lock in place and swipe in his direction
 void update_homing(void) {
-    cur_obj_init_animation(TORPEDO_CHARGE_ANIM);
+    cur_obj_init_animation(CHASE_ANIM);
 
     f32 dist;
 
@@ -278,7 +284,7 @@ void update_charging(void) {
 
     if (o->oDespairSwipes < 3) {
         if (isCooldown) {
-            cur_obj_init_animation_and_anim_frame(SWIPE_ANIM, 0);
+            cur_obj_init_animation_and_anim_frame(SWIPE_1_ANIM + o->oDespairSwipes, 0);
             swipe_attack();
         } else {
             Vec3f dir;
@@ -327,8 +333,14 @@ void spawn_crystal_attack(void) {
 void update_torpedo(void) {
 
     if (!is_cooldown()) {
-        cur_obj_init_animation(CAST_ANIM);
+        cur_obj_init_animation(TORPEDO_CHARGE_ANIM);
     } else {
+        if (o->oSubAction == 0 && cur_obj_check_if_at_animation_end()) {
+            o->oSubAction = 1;
+            cur_obj_init_animation(IDLE);
+        } else if (o->oSubAction == 0) {
+            cur_obj_init_animation(RELEASE_ANIM);
+        }
         s32 attackCount = 5 + (o->oDespairHits*o->oDespairHits);
         if (o->oDespairSwipes <= attackCount) {
             if (is_timer()) {
@@ -372,10 +384,12 @@ void update_throwing(void) {
     o->oFaceAngleYaw = atan2s(dir[2], dir[0]);
 
     if (isCooldown) {
-        cur_obj_init_animation(THROW_ANIM);
+        cur_obj_init_animation(SWIPE_1_ANIM);
         throw_crystal(dir);
     } else {
-        cur_obj_init_animation(WIND_UP_ANIM);
+        if (cur_obj_check_if_at_animation_end()) {
+            cur_obj_init_animation(TORPEDO_CHARGE_ANIM);
+        }
     }
 
     s32 attackCount = 3 + (o->oDespairHits * o->oDespairHits);
@@ -388,6 +402,8 @@ void update_throwing(void) {
 
 // Bounce around stage or swirl inwards while spinning, afterwards, transition to STUN state
 void update_spin(void) {
+
+    cur_obj_init_animation(SPIN_ANIM);
 
     f32 radius = 1000.0f;
 
@@ -480,6 +496,16 @@ void update_resetting(void) {
     }
 }
 
+void update_hurt(void) {
+
+    cur_obj_init_animation(HURT_ANIM);
+
+    if (cur_obj_check_if_at_animation_end()) {
+        change_attack(RESETTING, o->oDespairAttackCooldown, o->oDespairAttackTimer);
+    }
+
+}
+
 void update_intro(void) {
     cur_obj_init_animation(IDLE_ANIM);
 
@@ -527,7 +553,6 @@ void bhv_despair_init(void) {
 
     change_attack(INTRO, NO_COOLDOWN, NO_TIME);
 
-
     f32 *startPos = sAnchorPositions[NORTH];
     o->oPosX = startPos[0];
     o->oPosY = startPos[1];
@@ -543,6 +568,8 @@ void bhv_despair_init(void) {
 }
 
 void bhv_despair_loop(void) {
+    print_text_fmt_int(20, 20, "%d", o->oAnimState);
+
     switch (o->oAction) {
         case IDLE:               update_idle();          break;
         case INTRO:              update_intro();         break;
@@ -555,6 +582,7 @@ void bhv_despair_loop(void) {
         case STUNNED:            update_stunned();       break;
         case DEATH_REGULAR:      update_death_regular(); break;
         case DEATH_TRUE:         update_death_true();    break;
+        case HURT:               update_hurt();          break;
         default: break;
     }
 
