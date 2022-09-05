@@ -1,4 +1,4 @@
-const Collision ttm_area_3_collision[] = {
+const Collision wdw_area_2_collision[] = {
 	COL_INIT(),
 	COL_VERTEX_INIT(4),
 	COL_VERTEX(-800, 0, 800),

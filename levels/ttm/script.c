@@ -99,13 +99,13 @@ const LevelScript level_ttm_entry[] = {
 		WARP_NODE(0xDA, LEVEL_CCM, 0x01, 0xEB, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xBA, LEVEL_JRB, 0x02, 0xBA, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xCA, LEVEL_JRB, 0x01, 0xBC, WARP_NO_CHECKPOINT),
-		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00000000, bhvStar),
-		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x00BA0000, bhvFadingWarp),
+		OBJECT(MODEL_NONE, 0, 400, 0, 0, 0, 0, 0x00000000, bhvStar),
+		OBJECT(MODEL_NONE, 0, 1000, 0, 0, 0, 0, 0x00BA0000, bhvFadingWarp),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
-		OBJECT(MODEL_PORTAL_WARP, 0, 0, 0, 0, 0, 0, 0x00CA0000, bhvPortalWarp),
+		OBJECT(MODEL_PORTAL_WARP, -500, 0, 0, 0, 0, 0, 0x00CA0000, bhvPortalWarp),
 		TERRAIN(ttm_area_2_collision),
 		MACRO_OBJECTS(ttm_area_2_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_DARKNESS),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_EVENT_MERRY_GO_ROUND),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
@@ -116,11 +116,11 @@ const LevelScript level_ttm_entry[] = {
 		INSTANT_WARP(0x00, 0x03, 0, 0, -30000),
 		WARP_NODE(0xDA, LEVEL_WF, 0x01, 0xBC, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xDB, LEVEL_WF, 0x01, 0xBC, WARP_NO_CHECKPOINT),
-		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x04000000, bhvStar),
+		OBJECT(MODEL_NONE, 0, 400, 0, 0, 0, 0, 0x04000000, bhvStar),
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x000A0000, bhvSpinAirborneWarp),
 		TERRAIN(ttm_area_3_collision),
 		MACRO_OBJECTS(ttm_area_3_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_DARKNESS),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_SNOW),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		/* Fast64 end persistent block [area commands] */
