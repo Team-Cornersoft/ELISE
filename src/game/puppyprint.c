@@ -1102,7 +1102,7 @@ void print_small_text(s32 x, s32 y, const char *str, s32 align, s32 amount, u8 f
                                                     (y + textPos[1] + (s16)((shakePos[1] + offsetY + wavePos))) << 2,
                                                     (x + textPos[0] + (s16)((shakePos[0] + textOffsets[0]))) << 2,
                                                     (y + textPos[1] + (s16)((wavePos + offsetY + shakePos[1] + textOffsets[1]))) << 2,
-                                                    G_TX_RENDERTILE, (textX << 6), 0, textTempScale, textTempScale);
+                                                    G_TX_RENDERTILE, textX, 0, textTempScale, textTempScale);
         textPos[0] += (spaceX + 1) * textSizeTotal;
     }
 
@@ -1186,7 +1186,7 @@ void print_small_text_light(s32 x, s32 y, const char *str, s32 align, s32 amount
                                                     (y + textPos[1] + offsetY) << 2,
                                                     (x + textPos[0] + 8) << 2,
                                                     (y + textPos[1] + offsetY + 12) << 2,
-                                                    G_TX_RENDERTILE, (textX << 6), 0, 1024, 1024);
+                                                    G_TX_RENDERTILE, textX, 0, 1024, 1024);
         textPos[0] += (spaceX + 1);
     }
 
@@ -1358,14 +1358,17 @@ void get_char_from_byte(u8 letter, s32 *textX, u8 *spaceX, s8 *offsetY, u8 font,
             let -= (3);
         }
 
-        *textX = (let) * 4;
+        *textX = let * 0x100;
+        if (*textX == 0x4000)
+            (*textX)++;
+
         *spaceX = textLen[let];
 
         if (font != FONT_OUTLINE && font != FONT_ELISE) {
             font_offsets(offsetY, font, letter);
         }
     } else {
-        *textX = -12;
+        *textX = -3 * 0x100;
         *spaceX = 2;
     }
 }
