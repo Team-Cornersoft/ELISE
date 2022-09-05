@@ -591,7 +591,7 @@ void apply_twirl_gravity(struct MarioState *m) {
     }
 }
 
-u32 should_strengthen_gravity_for_jump_ascent(struct MarioState *m, f32 gravityMult) {
+u32 should_strengthen_gravity_for_jump_ascent(struct MarioState *m, UNUSED f32 gravityMult) {
     if (!(m->flags & MARIO_JUMPING)) {
         return FALSE;
     }
@@ -600,7 +600,7 @@ u32 should_strengthen_gravity_for_jump_ascent(struct MarioState *m, f32 gravityM
         return FALSE;
     }
 
-    if (!(m->input & INPUT_A_DOWN) && m->vel[1] > 20.0f * gravityMult) {
+    if (!(m->input & INPUT_A_DOWN) && m->vel[1] > 20.0f /* * gravityMult */) {
         return (m->action & ACT_FLAG_CONTROL_JUMP_HEIGHT) != 0;
     }
 
@@ -634,7 +634,7 @@ void apply_gravity(struct MarioState *m) {
             m->vel[1] = TERM_VEL(-75.0f);
         }
     } else if (should_strengthen_gravity_for_jump_ascent(m, gravityMult)) {
-        m->vel[1] /= (4.0f * gravityMult);
+        m->vel[1] /= MAX((4.0f * gravityMult), 1.25f);
     } else if (m->action & ACT_FLAG_METAL_WATER) { // (Who cares about gravity here)
         m->vel[1] -= 1.6f;
         if (m->vel[1] < -16.0f) {
