@@ -39,9 +39,9 @@
 
 struct EliseDialogOptions eliseDialogPrompts[] = {
   /*0x00*/  { DIALOG_174, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER), NO_SOUND, SEC_TO_FRAMES(0.5f), 0xFFFF, SEC_TO_FRAMES(3.0f) },
-            { DIALOG_170, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_DESPAIR_TEXT), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(4.0f), SEC_TO_FRAMES(0.0f) },
-            { DIALOG_175, FALSE, 0, (ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_ELISE_TEXT), NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(4.0f), SEC_TO_FRAMES(0.0f) },
-            { DIALOG_176, FALSE, 0, (ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_DESPAIR_TEXT), NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(4.0f), SEC_TO_FRAMES(0.0f) },
+            { DIALOG_170, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_DESPAIR_TEXT), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(0.75f) },
+            { DIALOG_175, FALSE, 0, (ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_ELISE_TEXT), NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(0.75f) },
+            { DIALOG_176, FALSE, 0, (ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_DESPAIR_TEXT), NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.75f) },
   /*0x04*/  { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
             { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
 };
@@ -1398,7 +1398,24 @@ void render_elise_dialog_entry(void) {
     }
     
     if (eliseDialogState == ELISE_DIALOG_OPENING_BLANK_FRAMES) {
-        if (eliseDialogTimer >= (ELISE_DIALOG_WAIT_FRAMES - 1)) {
+        s32 framesToWait = ELISE_DIALOG_WAIT_FRAMES;
+        if (elisePrompt->specialFlags & (ELISE_SPECIAL_FLAG_DESPAIR_TEXT | ELISE_SPECIAL_FLAG_ELISE_TEXT)) {
+            framesToWait += ELISE_DIALOG_FADE_FRAMES;
+            if (eliseDialogTimer > ELISE_DIALOG_WAIT_FRAMES) { // Should never divide by 0 here unless configured stupidly
+                u8 alpha = (eliseDialogTimer - ELISE_DIALOG_WAIT_FRAMES) * 255 / ELISE_DIALOG_FADE_FRAMES;
+
+                if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ELISE_TEXT) {
+                    print_set_envcolour(255, 159, 255, alpha);
+                    print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "ELISE:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+                    y1 += ELISE_LINE_HEIGHT;
+                } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_DESPAIR_TEXT) {
+                    print_set_envcolour(127, 95, 191, alpha);
+                    print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "DESPAIR:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+                    y1 += ELISE_LINE_HEIGHT;
+                }
+            }
+        }
+        if (eliseDialogTimer >= (framesToWait - 1)) {
             eliseDialogTimer = -1;
             eliseDialogState = ELISE_DIALOG_READING;
             if (elisePrompt->soundDuration == 0) {
@@ -1421,7 +1438,7 @@ void render_elise_dialog_entry(void) {
                 print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "ELISE:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
                 y1 += ELISE_LINE_HEIGHT;
             } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_DESPAIR_TEXT) {
-            print_set_envcolour(127, 95, 191, alpha);
+                print_set_envcolour(127, 95, 191, alpha);
                 print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "DESPAIR:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
                 y1 += ELISE_LINE_HEIGHT;
             }
