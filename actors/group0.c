@@ -48,3 +48,4 @@
 #include "despair/anims/data.inc.c"
 #include "despair/anims/table.inc.c"
 #include "custom_door_c/model.inc.c"
+#include "custom_secret/model.inc.c"

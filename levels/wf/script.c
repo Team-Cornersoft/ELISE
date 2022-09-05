@@ -159,7 +159,7 @@ const LevelScript level_wf_entry[] = {
 		OBJECT(MODEL_PORTAL_WARP, -25000, 0, 14400, 0, 0, 0, 0x00CC0100, bhvPortalWarp),
 		OBJECT(MODEL_PORTAL_WARP, -26300, 0, 4500, 0, 45, 0, 0x00CD0100, bhvPortalWarp),
 		OBJECT(MODEL_CUSTOM_DOOR_A, 25800, 100, -1710, 0, -180, 0, 0x00DA0000, bhvDoorWarp),
-		OBJECT(MODEL_PORTAL_WARP, 66, -500, -15293, 0, 0, 0, 0x00CE0100, bhvPortalWarp),
+		OBJECT(MODEL_PORTAL_WARP, 0, -500, -15293, 0, 0, 0, 0x00CE0100, bhvPortalWarp),
 		TERRAIN(wf_area_3_collision),
 		ROOMS(wf_area_3_collision_rooms),
 		MACRO_OBJECTS(wf_area_3_macro_objs),
