@@ -42,7 +42,7 @@ struct EliseDialogOptions eliseDialogPrompts[] = {
             { DIALOG_170, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_DESPAIR_TEXT), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(4.0f), SEC_TO_FRAMES(0.0f) },
             { DIALOG_175, FALSE, 0, (ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_ELISE_TEXT), NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(4.0f), SEC_TO_FRAMES(0.0f) },
             { DIALOG_176, FALSE, 0, (ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_DESPAIR_TEXT), NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(4.0f), SEC_TO_FRAMES(0.0f) },
-  /*0x04*/  { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
+  /*0x04*/  { DIALOG_002, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(2.0f) },
             { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
 };
 
@@ -1229,6 +1229,11 @@ void render_elise_text_art(s16 topX, s16 topY, s16 bottomX, s16 bottomY, u8 alph
     gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123);
 
     gSPDisplayList(gDisplayListHead++, dl_elise_texture_end);
+}
+
+void overwrite_elise_dialog_prompt(u8 eliseDialogPromptIndex, u8 dialogId) {
+    struct EliseDialogOptions *prompt = &eliseDialogPrompts[eliseDialogPromptIndex];
+    prompt->dialogId = dialogId;
 }
 
 // Return 0 on success, some negative value on failure

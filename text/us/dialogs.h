@@ -53,23 +53,10 @@ Please come back to see\n\
 me after you've retrieved\n\
 the Power Star!"))
 
-DEFINE_DIALOG(DIALOG_002, 1, 4, 95, 200, _("\
-Hey, you! It's dangerous\n\
-ahead, so listen up! Take\n\
-my advice.\n\
-\n\
-Cross the two\n\
-bridges ahead, then\n\
-watch for falling\n\
-water bombs.\n\
-The Big Bob-omb at the\n\
-top of the mountain is\n\
-very powerful--don't let\n\
-him grab you!\n\
-We're Bob-omb Buddies,\n\
-and we're on your side.\n\
-You can talk to us\n\
-whenever you'd like to!"))
+DEFINE_DIALOG(DIALOG_002, 8, 3, 30, 270, _("\
+This is the first text from noseman\n\
+It's a hackjob and hijacks the dialog system\n\
+It do be kind of delicious!"))
 
 DEFINE_DIALOG(DIALOG_003, 1, 5, 95, 200, _("\
 Thank you, Mario! The Big\n\
@@ -87,16 +74,7 @@ waiting for you. Be sure\n\
 to talk to them--they'll\n\
 set up cannons for you."))
 
-DEFINE_DIALOG(DIALOG_004, 1, 3, 95, 200, _("\
-We're peace-loving\n\
-Bob-ombs, so we don't use\n\
-cannons.\n\
-But if you'd like\n\
-to blast off, we don't\n\
-mind. Help yourself.\n\
-We'll prepare all of the\n\
-cannons in this course for\n\
-you to use. Bon Voyage!"))
+DEFINE_DIALOG(DIALOG_004, 0, 0, 0, 0, _(""))
 
 DEFINE_DIALOG(DIALOG_005, 1, 3, 30, 200, _("\
 Hey, Mario! Is it true\n\
@@ -2222,3 +2200,8 @@ DEFINE_DIALOG(DIALOG_176, 8, 3, 30, 270, _("\
 You are but a fool and slave to reality.\n\
 I will pacify you here and now, and keep\n\
 you protected in the bliss of the dreamworld..."))
+
+DEFINE_DIALOG(DIALOG_177, 8, 3, 30, 270, _("\
+This is the first text from noseman\n\
+It's a hackjob and hijacks the dialog system\n\
+It do be kind of delicious!"))
