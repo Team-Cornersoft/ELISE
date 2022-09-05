@@ -8,6 +8,7 @@ enum DialogId {
     DIALOG_002,
     DIALOG_003,
     DIALOG_004,
+    DIALOG_BLANK = DIALOG_004,
     DIALOG_005,
     DIALOG_006,
     DIALOG_007,
@@ -180,6 +181,7 @@ enum DialogId {
     DIALOG_174,
     DIALOG_175,
     DIALOG_176,
+    DIALOG_177,
     DIALOG_COUNT
 };
 

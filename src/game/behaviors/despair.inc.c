@@ -458,7 +458,11 @@ void update_stunned(void) {
 
     s32 b = does_intersect_with_cylinder(&o->oPosX, sDespairSpinHitbox.height, sDespairSpinHitbox.radius, &gMarioObject->oPosX);
 
-    if (b && (gMarioState->action == ACT_GROUND_POUND || gMarioState->action == ACT_GROUND_POUND_LAND)) {
+    if (b && 
+    (gMarioState->action == ACT_GROUND_POUND 
+    || gMarioState->action == ACT_GROUND_POUND_LAND
+    || gMarioState->action == ACT_JUMP_KICK
+    || gMarioState->action == ACT_DIVE)) {
         take_damage();
     }
 

@@ -181,6 +181,7 @@ extern s16 gCutsceneMsgXOffset;
 extern s16 gCutsceneMsgYOffset;
 extern s8  gRedCoinsCollected;
 
+void overwrite_elise_dialog_prompt(u8 eliseDialogPromptIndex, u8 dialogId);
 s8 set_elise_dialog_prompt(u8 eliseDialogPromptIndex); // Return 0 on success, some negative value on failure
 void render_elise_dialog_entry(void);
 void create_dl_identity_matrix(void);
