@@ -28,6 +28,8 @@
 #include "spawn_sound.h"
 #include "puppylights.h"
 
+#include "print.h"
+
 static s8 sLevelsWithRooms[] = { LEVEL_BBH, LEVEL_CASTLE, LEVEL_HMC, -1 };
 
 static s32 clear_move_flag(u32 *bitSet, s32 flag);
@@ -2001,9 +2003,12 @@ void clear_time_stop_flags(s32 flags) {
 }
 
 s32 cur_obj_can_mario_activate_textbox(f32 radius, f32 height, UNUSED s32 unused) {
+    f32 dist = sqrtf(radius*radius + height*height);
+    print_text_fmt_int(20, 40, "%d", dist);
+    // print_text_fmt_int(20, 60, "%d", gMarioObject->oPosY + );
     return (
-        o->oDistanceToMario < 1500.0f
-        && o->oPosY < gMarioObject->oPosY + 160.0f
+        o->oDistanceToMario < dist
+        // && o->oPosY < gMarioObject->oPosY + 160.0f
         && gMarioObject->oPosY < o->oPosY + height
         && !(gMarioStates[0].action & ACT_FLAG_AIR)
         && lateral_dist_between_objects(o, gMarioObject) < radius

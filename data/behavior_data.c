@@ -6131,3 +6131,13 @@ const BehaviorScript bhvCrystalProjectile[] = {
         CALL_NATIVE(bhv_crystal_projectile_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvNoseman[] = {
+    BEGIN(OBJ_LIST_DEFAULT),
+    OR_INT(oFlags, OBJ_FLAG_COMPUTE_DIST_TO_MARIO),
+    OR_INT(oFlags, OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO),
+    CALL_NATIVE(bhv_noseman_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_noseman_loop),
+    END_LOOP(),
+};

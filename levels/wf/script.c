@@ -80,7 +80,7 @@ const LevelScript level_wf_entry[] = {
 		WARP_NODE(0xBA, LEVEL_WF, 0x01, 0xBA, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xBB, LEVEL_WF, 0x01, 0xBB, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xCA, LEVEL_LLL, 0x01, 0xBB, WARP_NO_CHECKPOINT),
-		WARP_NODE(0xCB, LEVEL_JRB, 0x04, 0xBA, WARP_NO_CHECKPOINT),
+		WARP_NODE(0xCB, LEVEL_JRB, 0x03, 0xDA, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xCC, LEVEL_WF, 0x02, 0xBA, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xBC, LEVEL_WF, 0x01, 0xBC, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, 0, 700, 8500, 0, -180, 0, 0x00BA0000, bhvFadingWarp),
@@ -93,7 +93,7 @@ const LevelScript level_wf_entry[] = {
 		OBJECT(MODEL_NONE, 0, 0, 0, 0, 0, 0, 0x10CC0000, bhvWarp),
 		TERRAIN(wf_area_1_collision),
 		MACRO_OBJECTS(wf_area_1_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_HEARTBURN),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		SET_ECHO(0x10, 0x12),
@@ -163,7 +163,7 @@ const LevelScript level_wf_entry[] = {
 		TERRAIN(wf_area_3_collision),
 		ROOMS(wf_area_3_collision_rooms),
 		MACRO_OBJECTS(wf_area_3_macro_objs),
-		STOP_MUSIC(0),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_DARKNESS),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_DARKNESS, 0x01, 0x02),
