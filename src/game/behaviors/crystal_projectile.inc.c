@@ -31,6 +31,10 @@ void falling_crystal_loop(void) {
 }
 
 void horizontal_crystal_loop(void) {
+    if (o->oTimer >= 150) {
+        obj_mark_for_deletion(o);
+    }
+
     Vec3f scale = {SPEED, SPEED, SPEED};
 
     o->oFaceAngleYaw = atan2s(o->oHomeZ, o->oHomeX);
