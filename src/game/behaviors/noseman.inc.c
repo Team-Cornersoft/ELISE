@@ -1,6 +1,6 @@
 #include "../print.h"
 
-#define NOSEMAN_ELISE_DIALOG_ID 3
+#define NOSEMAN_ELISE_DIALOG_ID 4
 
 enum NosemanState {
     NOSEMAN_IDLE,
