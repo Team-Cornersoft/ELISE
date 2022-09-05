@@ -29,8 +29,31 @@ void bhv_hidden_star_loop(void) {
             break;
     }
 }
+void bhv_hidden_star_trigger_animation(void) {
+
+    u8 spinSpeed = MIN(o->oTimer + 1, 10);
+
+    o->oFaceAngleYaw += (0x400 * spinSpeed);
+
+    if (o->oTimer > 8) {
+        f32 scale = 1.0f - ((f32) (o->oTimer - 8) / 30.0f);
+
+        if (scale <= 0.0f) {
+            spawn_mist_particles();
+            o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+            return;
+        }
+
+        cur_obj_scale(scale);
+    }
+}
 
 void bhv_hidden_star_trigger_loop(void) {
+    if (o->oAction == 1) {
+        bhv_hidden_star_trigger_animation();
+        return;
+    }
+
     if (obj_check_if_collided_with_object(o, gMarioObject)) {
         struct Object *hiddenStar = cur_obj_nearest_object_with_behavior(bhvHiddenStar);
 
@@ -44,7 +67,7 @@ void bhv_hidden_star_trigger_loop(void) {
             play_sound(SOUND_MENU_COLLECT_SECRET + (((u8) hiddenStar->oHiddenStarTriggerCounter - 1) << 16), gGlobalSoundSource);
         }
 
-        o->activeFlags = ACTIVE_FLAG_DEACTIVATED;
+        o->oAction = 1;
     }
 }
 
