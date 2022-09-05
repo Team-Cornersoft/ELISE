@@ -99,7 +99,7 @@ enum EliseDialogStates {
 #define ELISE_SPECIAL_FLAG_MULTI_USE (1 << 3) // Allow dialog to appear more than once. If the dialog is stored to the save file, it will only run one time ever, else it'll run again on reboot.
 #define ELISE_SPECIAL_FLAG_OPEN_PROMPT (1 << 4) // Use this whenever opening with a sequence of dialogs, but not following dialogs.
 #define ELISE_SPECIAL_FLAG_CLOSE_PROMPT (1 << 5) // Use this only at the end of a dialog chain. Can be combined with ELISE_SPECIAL_FLAG_OPEN_PROMPT.
-#define ELISE_SPECIAL_FLAG_PAUSE_CHARACTER (1 << 6) // Use this only at the end of a dialog chain. Can be combined with ELISE_SPECIAL_FLAG_OPEN_PROMPT.
+#define ELISE_SPECIAL_FLAG_PAUSE_CHARACTER (1 << 6) // This can cause a softlock if not broken with ELISE_SPECIAL_FLAG_CLOSE_PROMPT in a future/current prompt.
 #define ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS (1 << 7) // Require an A press to proceed dialog. Only recommended to be used alongside ELISE_SPECIAL_FLAG_PAUSE_CHARACTER;
 
 struct EliseDialogOptions {
