@@ -7,7 +7,7 @@ enum NosemanState {
 };
 
 void update_noseman_idle(void) {
-    char text[25];
+    // char text[25];
     
     // Map from 00 - B4 which represents 00 - 180
     // B4 would be full 360, which is two 180 sides
