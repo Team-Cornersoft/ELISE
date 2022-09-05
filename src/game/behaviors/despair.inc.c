@@ -573,8 +573,6 @@ void bhv_despair_init(void) {
 }
 
 void bhv_despair_loop(void) {
-    print_text_fmt_int(20, 20, "%d", o->oAnimState);
-
     switch (o->oAction) {
         case IDLE:               update_idle();          break;
         case INTRO:              update_intro();         break;

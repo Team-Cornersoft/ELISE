@@ -2004,8 +2004,6 @@ void clear_time_stop_flags(s32 flags) {
 
 s32 cur_obj_can_mario_activate_textbox(f32 radius, f32 height, UNUSED s32 unused) {
     f32 dist = sqrtf(radius*radius + height*height);
-    print_text_fmt_int(20, 40, "%d", dist);
-    // print_text_fmt_int(20, 60, "%d", gMarioObject->oPosY + );
     return (
         o->oDistanceToMario < dist
         // && o->oPosY < gMarioObject->oPosY + 160.0f
