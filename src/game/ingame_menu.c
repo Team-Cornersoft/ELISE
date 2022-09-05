@@ -26,6 +26,9 @@
 #include "config.h"
 #include "puppycam2.h"
 #include "main.h"
+#include "object_constants.h"
+#include "object_list_processor.h"
+#include "mario.h"
 #include "puppyprint.h"
 #include "geo_misc.h"
 
@@ -35,7 +38,7 @@
 #endif
 
 struct EliseDialogOptions eliseDialogPrompts[] = {
-  /*0x00*/  { DIALOG_174, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_ELISE_TEXT), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(8.0f) },
+  /*0x00*/  { DIALOG_174, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(3.0f), SEC_TO_FRAMES(3.0f) },
             { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
             { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
             { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
@@ -1282,12 +1285,12 @@ void render_elise_dialog_entry(void) {
 
     // Is the entry invalid?
     if (segmented_to_virtual(NULL) == dialog) {
-        // TODO: ELISE_SPECIAL_FLAG_QUIET_MUSIC (Reference vanilla dialog for this part)
-        // TODO: ELISE_SPECIAL_FLAG_PAUSE_CHARACTER (NOTE: Make sure Mario is on the ground when doing this, just copy whatever's in the Koopa the Quick function)
-
         eliseDialogState = ELISE_DIALOG_CLOSED;
         eliseDialogCurrPrompt = -1;
         eliseDialogTimer = -1;
+
+        if (gMarioState->action & ACT_FLAG_INTANGIBLE)
+            set_mario_action(gMarioState, ACT_IDLE, 0);
         return;
     }
 
@@ -1312,8 +1315,17 @@ void render_elise_dialog_entry(void) {
     // IMPORTANT NOTE: Flags cannot carry between dialogs, but game states can only be set/cleared with the open/close prompts.
     // Make sure that ELISE_SPECIAL_FLAG_QUIET_MUSIC and ELISE_SPECIAL_FLAG_PAUSE_CHARACTER are carried throughout the entire dialog sequence for everything!
     if (eliseDialogState == ELISE_DIALOG_OPENING) {
-        // TODO: ELISE_SPECIAL_FLAG_QUIET_MUSIC
-        // TODO: ELISE_SPECIAL_FLAG_PAUSE_CHARACTER
+        if (eliseDialogTimer == 0 && elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_QUIET_MUSIC)
+            seq_player_lower_volume(SEQ_PLAYER_LEVEL, 60, 40);
+
+        if (eliseDialogTimer == 0 && elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_PAUSE_CHARACTER) {
+            if (gMarioState->action & ACT_FLAG_AIR) {
+                eliseDialogTimer--;
+                return;
+            }
+
+            set_mario_action(gMarioState, ACT_WAITING_FOR_DIALOG, 0);
+        }
 
         f32 progress = (coss(((u32) eliseDialogTimer * 0x8000) / ELISE_DIALOG_ANIM_FRAMES) + 1.0f) / 2.0f;
         s32 tmp = (s32) (progress * (f32) dialog->width) / 2;
@@ -1343,8 +1355,12 @@ void render_elise_dialog_entry(void) {
     }
 
     if (eliseDialogState == ELISE_DIALOG_CLOSING) {
-        // TODO: ELISE_SPECIAL_FLAG_QUIET_MUSIC
-        // TODO: ELISE_SPECIAL_FLAG_PAUSE_CHARACTER
+        if (eliseDialogTimer == 0) {
+            if (gMarioState->action & ACT_FLAG_INTANGIBLE)
+                set_mario_action(gMarioState, ACT_IDLE, 0);
+            if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_QUIET_MUSIC)
+                seq_player_unlower_volume(SEQ_PLAYER_LEVEL, 60);
+        }
 
         f32 progress = (coss((((u32) eliseDialogTimer * 0x8000) / ELISE_DIALOG_ANIM_FRAMES) + 0x8000) + 1.0f) / 2.0f;
         s32 tmp = (s32) (progress * (f32) dialog->width) / 2;
@@ -1418,6 +1434,8 @@ void render_elise_dialog_entry(void) {
             eliseDialogTimer = -1;
             if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_CLOSE_PROMPT) {
                 eliseDialogState = ELISE_DIALOG_CLOSING;
+                if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_PAUSE_CHARACTER)
+                    set_mario_action(gMarioState, ACT_IDLE, 0);
             } else {
                 eliseDialogCurrPrompt = -1;
                 eliseDialogState = ELISE_DIALOG_CLOSED;
@@ -1445,7 +1463,7 @@ void render_elise_dialog_entry(void) {
             eliseDialogTimer--;
 
             if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS) {
-                // TODO: Render A button
+                image_screen_press_button(-1, 0);
 
                 if (gPlayer1Controller->buttonPressed & (A_BUTTON | B_BUTTON | START_BUTTON)) {
                     eliseDialogTimer = -1;
@@ -1455,6 +1473,8 @@ void render_elise_dialog_entry(void) {
                 eliseDialogTimer = -1;
                 eliseDialogState = ELISE_DIALOG_CLOSING_BLANK_FRAMES;
             }
+        } else {
+            init_image_screen_press_button(0, 0);
         }
 
         return;
@@ -1505,6 +1525,8 @@ void render_elise_dialog_entry(void) {
     eliseDialogState = ELISE_DIALOG_CLOSED;
     eliseDialogCurrPrompt = -1;
     eliseDialogTimer = -1;
+    if (gMarioState->action & ACT_FLAG_INTANGIBLE)
+        set_mario_action(gMarioState, ACT_IDLE, 0);
 }
 
 u16 gCutsceneMsgFade        =  0;
