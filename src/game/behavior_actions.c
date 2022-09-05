@@ -236,3 +236,4 @@ void set_obj_anim_with_accel_and_sound(s16 frame1, s16 frame2, s32 sound) {
 #include "behaviors/despair.inc.c"
 #include "behaviors/despair_swipe.inc.c"
 #include "behaviors/crystal_projectile.inc.c"
+#include "behaviors/noseman.inc.c"

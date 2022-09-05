@@ -1270,6 +1270,8 @@
 
 #define oDespairSpinAngle          OBJECT_FIELD_F32(0x1F)
 
+#define oNosemanTalkAngle          OBJECT_FIELD_F32(0x1B)
+
 /*Custom general defines:
 
 For general s32 ints, use o->oF4, oF8, oFC, o100, o104, o108, o10C, and o110

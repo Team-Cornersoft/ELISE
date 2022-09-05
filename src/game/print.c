@@ -5,6 +5,7 @@
 #include "memory.h"
 #include "print.h"
 #include "segment2.h"
+#include "ingame_menu.h"
 
 /**
  * This file handles printing and formatting the colorful text that
@@ -278,6 +279,80 @@ void print_text_centered(s32 x, s32 y, const char *str) {
     sTextLabels[sTextLabelsCount]->x = x - length * 6; // * 12 / 2;
     sTextLabels[sTextLabelsCount]->y = y;
     sTextLabelsCount++;
+}
+
+/**
+ * Converts a char into the proper colorful glyph for the char.
+ */
+u8 glyph_to_char_index(u8 c) {
+    if (c == DIALOG_CHAR_TERMINATOR) {
+        return 0;
+    }
+
+    if (c == DIALOG_CHAR_NEWLINE) {
+        return '\n';
+    }
+
+    if (c <= 0x09) {
+        return c + '0';
+    }
+    
+    if (c >= 0x0A && c <= 0x23) {
+        return c + ('A' - 0x0A);
+    }
+
+    if (c >= 0x24 && c <= 0x3D) {
+        return c + ('a' - 0x24);
+    }
+
+    switch (c) {
+        case DIALOG_CHAR_SPACE:
+            return ' ';
+        case 0x3E:
+            return '\'';
+        case 0x9F:
+            return '-';
+        case 0xD0:
+            return '/';
+        case 0x3F:
+            return '.';
+        case 0x6F:
+            return ',';
+        case 0x50:
+            return '^';
+        case 0x51:
+            return '^';
+        case 0x52:
+            return '<';
+        case 0x53:
+            return '>';
+        case DIALOG_CHAR_COLOR:
+            return '@';
+        case 0xE1:
+            return '(';
+        case 0xE3:
+            return ')';
+        case 0xE4:
+            return '+';
+        case 0xE5:
+            return ':';
+        case 0xF2:
+            return '!';
+        case 0xF3:
+            return '%';
+        case 0xF4:
+            return '?';
+        case 0xF0:
+        case 0xF5:
+        case 0xF6:
+            return '"';
+        case 0xF7:
+            return '~';
+        case 0xF9:
+            return '$';
+    }
+
+    return 0;
 }
 
 /**

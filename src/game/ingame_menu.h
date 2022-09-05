@@ -80,6 +80,39 @@ enum DialogMark {
     DIALOG_MARK_HANDAKUTEN
 };
 
+enum EliseDialogStates {
+    ELISE_DIALOG_CLOSED,
+    ELISE_DIALOG_OPENING,
+    ELISE_DIALOG_OPENING_BLANK_FRAMES,
+    ELISE_DIALOG_READING,
+    ELISE_DIALOG_DONE_READING,
+    ELISE_DIALOG_CLOSING_BLANK_FRAMES,
+    ELISE_DIALOG_CLOSING
+};
+
+#define SEC_TO_FRAMES(x) (x * 30.0f)
+
+#define ELISE_SPECIAL_FLAG_NONE 0
+#define ELISE_SPECIAL_FLAG_ELISE_TEXT (1 << 0) // Give Elise a text header
+#define ELISE_SPECIAL_FLAG_DESPAIR_TEXT (1 << 1) // Give Despair a text header
+#define ELISE_SPECIAL_FLAG_QUIET_MUSIC (1 << 2) // Quiet music during dialog exchange
+#define ELISE_SPECIAL_FLAG_MULTI_USE (1 << 3) // Allow dialog to appear more than once. If the dialog is stored to the save file, it will only run one time ever, else it'll run again on reboot.
+#define ELISE_SPECIAL_FLAG_OPEN_PROMPT (1 << 4) // Use this whenever opening with a sequence of dialogs, but not following dialogs.
+#define ELISE_SPECIAL_FLAG_CLOSE_PROMPT (1 << 5) // Use this only at the end of a dialog chain. Can be combined with ELISE_SPECIAL_FLAG_OPEN_PROMPT.
+#define ELISE_SPECIAL_FLAG_PAUSE_CHARACTER (1 << 6) // This can cause a softlock if not broken with ELISE_SPECIAL_FLAG_CLOSE_PROMPT in a future/current prompt.
+#define ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS (1 << 7) // Require an A press to proceed dialog. Only recommended to be used alongside ELISE_SPECIAL_FLAG_PAUSE_CHARACTER;
+
+struct EliseDialogOptions {
+    u8 dialogId;
+    u8 hasBeenRead;
+    u8 saveFlagIndex; // Treated as: (1 << (saveFlagIndex - 1))
+    u8 specialFlags;
+    s32 soundId;
+    u16 dialogDelay; // How long to wait before initializing the dialog? (Number of frames) (Use only recommended with ELISE_SPECIAL_FLAG_OPEN_PROMPT)
+    u16 soundDuration; // How long is the sound effect? (Number of frames) (Set to 0xFFFF to scroll character per frame.)
+    u16 dialogFreeze; // Once everything has been printed on screen, how long should it stay on screen? (Number of frames)
+};
+
 // definitions for some of the special characters defined in charmap.txt
 enum DialogSpecialChars {
 #ifdef VERSION_EU
@@ -148,6 +181,8 @@ extern s16 gCutsceneMsgXOffset;
 extern s16 gCutsceneMsgYOffset;
 extern s8  gRedCoinsCollected;
 
+s8 set_elise_dialog_prompt(u8 eliseDialogPromptIndex); // Return 0 on success, some negative value on failure
+void render_elise_dialog_entry(void);
 void create_dl_identity_matrix(void);
 void create_dl_translation_matrix(s8 pushOp, f32 x, f32 y, f32 z);
 void create_dl_ortho_matrix(void);

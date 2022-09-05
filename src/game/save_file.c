@@ -598,6 +598,29 @@ s32 save_file_get_total_red_drop_count(s32 fileIndex, s32 minCourse, s32 maxCour
     return save_file_get_course_red_drop_count(fileIndex, COURSE_NUM_TO_INDEX(COURSE_NONE)) + count;
 }
 
+u8 save_file_set_elise_dialog_flags(u8 flags) {
+    u32 flagToSet;
+    struct SaveFile *saveFile;
+
+    if (flags == 0) {
+        return TRUE;
+    }
+
+    saveFile = &gSaveBuffer.files[gCurrSaveFileNum - 1][0];
+    flagToSet = (1 << (flags - 1));
+    if (flagToSet == 0)
+        return TRUE;
+    
+    if ((saveFile->flags & SAVE_FLAG_FILE_EXISTS) && (saveFile->eliseDialogFlags & flagToSet)) {
+        return FALSE;
+    }
+
+    saveFile->eliseDialogFlags |= flagToSet;
+    saveFile->flags |= SAVE_FLAG_FILE_EXISTS;
+    gSaveFileModified = TRUE;
+    return TRUE;
+}
+
 void save_file_set_flags(u32 flags) {
     gSaveBuffer.files[gCurrSaveFileNum - 1][0].flags |= (flags | SAVE_FLAG_FILE_EXISTS);
     gSaveFileModified = TRUE;

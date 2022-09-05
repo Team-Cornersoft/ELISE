@@ -36,7 +36,7 @@ struct SaveFile {
 #else
     s8 cameraType;
     s8 cameraSpeed;
-    u8 filler[4];
+    u32 eliseDialogFlags;
 #endif
 
     u32 flags;
@@ -182,6 +182,7 @@ s32 save_file_get_course_star_count(s32 fileIndex, s32 courseIndex);
 s32 save_file_get_total_star_count(s32 fileIndex, s32 minCourse, s32 maxCourse);
 s32 save_file_get_total_blue_drop_count(s32 fileIndex, s32 minCourse, s32 maxCourse);
 s32 save_file_get_total_red_drop_count(s32 fileIndex, s32 minCourse, s32 maxCourse);
+u8 save_file_set_elise_dialog_flags(u8 flagIndex); // Return FALSE if it has already been set
 void save_file_set_flags(u32 flags);
 void save_file_clear_flags(u32 flags);
 u32 save_file_get_flags(void);

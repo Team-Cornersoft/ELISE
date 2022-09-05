@@ -2216,3 +2216,17 @@ You...\n\
 \n\
 \n\
 ELISE...!"))
+
+/**
+ELISE DIALOG TEMPLATE:
+
+Argunemts: Dialog ID, Horizontal Dialog Offset (from start of text box), Number of lines, Vertical Offset (not horizontal, states very top of text box), Text Box Width (always centered)
+
+NOTE: Number of lines is recommended to be kept the same for progressive dialog sequences that piggy back off one another.
+Setting Elise or Despair to talk will append a line automatically, so it does not need to be accounted for here.
+Also note that this text is not capable of scrolling, so anything that is sequential needs to have its own dialog.
+*/
+DEFINE_DIALOG(DIALOG_174, 8, 3, 30, 270, _("\
+Hi my name is Elise lol.\n\
+I like to eat cheese!\n\
+It do be kind of delicious!"))

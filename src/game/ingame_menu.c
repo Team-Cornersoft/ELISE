@@ -26,11 +26,25 @@
 #include "config.h"
 #include "puppycam2.h"
 #include "main.h"
+#include "object_constants.h"
+#include "object_list_processor.h"
+#include "mario.h"
+#include "puppyprint.h"
+#include "geo_misc.h"
 
 #ifdef VERSION_EU
 #undef LANGUAGE_FUNCTION
 #define LANGUAGE_FUNCTION gInGameLanguage
 #endif
+
+struct EliseDialogOptions eliseDialogPrompts[] = {
+  /*0x00*/  { DIALOG_174, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS), NO_SOUND, SEC_TO_FRAMES(0.5f), 0xFFFF, SEC_TO_FRAMES(3.0f) },
+            { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
+            { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
+            { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
+  /*0x04*/  { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
+            { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
+};
 
 u16 gDialogColorFadeTimer;
 s8 gLastDialogLineNum;
@@ -83,6 +97,10 @@ enum DialogBoxType {
     DIALOG_TYPE_ROTATE, // used in NPCs and level messages
     DIALOG_TYPE_ZOOM    // used in signposts and wall signs and etc
 };
+
+s8 eliseDialogState = ELISE_DIALOG_CLOSED;
+s32 eliseDialogTimer = -1;
+s32 eliseDialogCurrPrompt = -1;
 
 #define DEFAULT_DIALOG_BOX_ANGLE 90.0f
 #define DEFAULT_DIALOG_BOX_SCALE 19.0f
@@ -1157,6 +1175,359 @@ u8 *gEndCutsceneStringsEn[] = {
     NULL
 };
 
+u8 get_glyph_str_length(u8* str) {
+    u8 strLen = 0;
+    for (; strLen < 0xFF; strLen++) {
+        if (str[strLen] == DIALOG_CHAR_TERMINATOR)
+            break;
+    }
+    if (strLen == 0xFF) {
+        strLen -= 1;
+    }
+
+    return strLen;
+}
+
+void render_elise_text_art(s16 topX, s16 topY, s16 bottomX, s16 bottomY, u8 alpha) {
+    Vtx *verts1 = alloc_display_list(4 * sizeof(*verts1));
+    Vtx *verts2 = alloc_display_list(4 * sizeof(*verts2));
+    Mtx *mtx = alloc_display_list(sizeof(*mtx));
+
+    if (verts1 == NULL || verts2 == NULL || mtx == NULL) {
+        return;
+    }
+
+    topY = SCREEN_HEIGHT - topY;
+    bottomY = SCREEN_HEIGHT - bottomY;
+    
+    void **eliseTextures = segmented_to_virtual(elise_dialog_borders);
+
+    guOrtho(mtx, 0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, 0.0f, 3.0f, 1.0f);
+
+    make_vertex(verts1, 0, topX, topY, -1, 0, 0, 255, 255, 255, 255);
+    make_vertex(verts1, 1, topX, topY - 32, -1, 0, 31 << 5, 255, 255, 255, 255);
+    make_vertex(verts1, 2, topX + 64, topY - 32, -1, 63 << 5, 31 << 5, 255, 255, 255, 255);
+    make_vertex(verts1, 3, topX + 64, topY, -1, 63 << 5, 0, 255, 255, 255, 255);
+
+    make_vertex(verts2, 0, bottomX, bottomY, -1, 0, 0, 255, 255, 255, 255);
+    make_vertex(verts2, 1, bottomX, bottomY - 32, -1, 0, 31 << 5, 255, 255, 255, 255);
+    make_vertex(verts2, 2, bottomX + 64, bottomY - 32, -1, 63 << 5, 31 << 5, 255, 255, 255, 255);
+    make_vertex(verts2, 3, bottomX + 64, bottomY, -1, 63 << 5, 0, 255, 255, 255, 255);
+
+    gSPDisplayList(gDisplayListHead++, dl_elise_texture_begin);
+    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(mtx), G_MTX_PROJECTION | G_MTX_MUL | G_MTX_NOPUSH);
+    gSPDisplayList(gDisplayListHead++, dl_elise_texture_tile_tex_settings);
+
+    gDPSetEnvColor(gDisplayListHead++, 207, 255, 207, alpha);
+
+    gLoadBlockTexture8b(gDisplayListHead++, 64, 32, G_IM_FMT_IA, eliseTextures[0]);
+    gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts1), 4, 0);
+    gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123);
+
+    gLoadBlockTexture8b(gDisplayListHead++, 64, 32, G_IM_FMT_IA, eliseTextures[1]);
+    gSPVertex(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(verts2), 4, 0);
+    gSPDisplayList(gDisplayListHead++, dl_draw_quad_verts_0123);
+
+    gSPDisplayList(gDisplayListHead++, dl_elise_texture_end);
+}
+
+// Return 0 on success, some negative value on failure
+s8 set_elise_dialog_prompt(u8 eliseDialogPromptIndex) {
+    if (eliseDialogCurrPrompt >= 0)
+        return -1; // Prompt already set and cannot be overwritten
+
+    struct EliseDialogOptions *prompt = &eliseDialogPrompts[eliseDialogPromptIndex];
+    if (prompt->hasBeenRead && !(prompt->specialFlags & ELISE_SPECIAL_FLAG_MULTI_USE)) {
+        return -2; // Prompt has already been read before and cannot be read again.
+    }
+
+    eliseDialogCurrPrompt = eliseDialogPromptIndex & 0xFF;
+    if (eliseDialogCurrPrompt > (s32) (sizeof(eliseDialogPrompts) / sizeof(struct EliseDialogOptions))) {
+        eliseDialogCurrPrompt = -1;
+        return -3; // Invalid prompt selection!
+    }
+
+    prompt->hasBeenRead = TRUE;
+    if (!save_file_set_elise_dialog_flags(prompt->saveFlagIndex)) {
+        eliseDialogCurrPrompt = -1;
+        return -2; // Prompt has already been read before and cannot be read again, stored in the save file.
+    }
+
+    return 0; // Success
+}
+
+#define ELISE_DIALOG_ANIM_FRAMES 26
+#define ELISE_DIALOG_WAIT_FRAMES 3
+#define ELISE_DIALOG_FADE_FRAMES 5
+#define ELISE_LINE_HEIGHT_MARGINS 6
+#define ELISE_LINE_HEIGHT 12
+void render_elise_dialog_entry(void) {
+    if (eliseDialogCurrPrompt < 0) {
+        eliseDialogTimer = -1;
+        eliseDialogState = ELISE_DIALOG_CLOSED;
+        return; // No prompt to be read at the moment
+    }
+
+    struct EliseDialogOptions *elisePrompt = &eliseDialogPrompts[eliseDialogCurrPrompt];
+
+    void **dialogTable = segmented_to_virtual(languageTable[gInGameLanguage][0]);
+    struct DialogEntry *dialog = segmented_to_virtual(dialogTable[elisePrompt->dialogId]);
+
+    s8 numLines = dialog->linesPerBox;
+    if (elisePrompt->specialFlags & (ELISE_SPECIAL_FLAG_ELISE_TEXT | ELISE_SPECIAL_FLAG_DESPAIR_TEXT)) {
+        numLines++;
+    }
+
+    s32 x1 = SCREEN_CENTER_X - (dialog->width / 2);
+    s32 x2 = x1 + dialog->width;
+    s32 y1 = dialog->leftOffset; // Not actually left offset; this is vertical offset.
+    s32 y2 = y1 + (2 * ELISE_LINE_HEIGHT_MARGINS) + (numLines * ELISE_LINE_HEIGHT);
+
+    // Is the entry invalid?
+    if (segmented_to_virtual(NULL) == dialog) {
+        eliseDialogState = ELISE_DIALOG_CLOSED;
+        eliseDialogCurrPrompt = -1;
+        eliseDialogTimer = -1;
+
+        if (gMarioState->action & ACT_FLAG_INTANGIBLE)
+            set_mario_action(gMarioState, ACT_IDLE, 0);
+        return;
+    }
+
+    eliseDialogTimer++;
+
+    if (eliseDialogState == ELISE_DIALOG_CLOSED) {
+        if (eliseDialogTimer >= elisePrompt->dialogDelay) {
+            eliseDialogTimer = 0; // Not setting to -1 intentional due to the return bypass
+
+            if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_OPEN_PROMPT) {
+                eliseDialogState = ELISE_DIALOG_OPENING;
+            } else {
+                eliseDialogState = ELISE_DIALOG_OPENING_BLANK_FRAMES;
+            }
+        } else {
+            return;
+        }
+
+        // No return
+    }
+
+    // IMPORTANT NOTE: Flags cannot carry between dialogs, but game states can only be set/cleared with the open/close prompts.
+    // Make sure that ELISE_SPECIAL_FLAG_QUIET_MUSIC and ELISE_SPECIAL_FLAG_PAUSE_CHARACTER are carried throughout the entire dialog sequence for everything!
+    if (eliseDialogState == ELISE_DIALOG_OPENING) {
+        if (eliseDialogTimer == 0 && elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_QUIET_MUSIC)
+            seq_player_lower_volume(SEQ_PLAYER_LEVEL, 60, 40);
+
+        if (eliseDialogTimer == 0 && elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_PAUSE_CHARACTER) {
+            if (gMarioState->action & ACT_FLAG_AIR) {
+                eliseDialogTimer--;
+                return;
+            }
+
+            set_mario_action(gMarioState, ACT_UNUSED_10B, 0);
+        }
+
+        f32 progress = (coss(((u32) eliseDialogTimer * 0x8000) / ELISE_DIALOG_ANIM_FRAMES) + 1.0f) / 2.0f;
+        s32 tmp = (s32) (progress * (f32) dialog->width) / 2;
+        x1 += tmp;
+        x2 -= tmp;
+
+        if (x1 < x2) {
+            u8 alpha = 0x7F - (progress * 0x1F);
+            prepare_blank_box();
+            render_blank_box(x1, y1, x2, y2, 0x00, 0x00, 0x00, alpha);
+            finish_blank_box();
+
+            if (x2 - x1 > 68 && y2 - y1 >= 36) { // Very important that the x coordinates remain > over >=
+                f32 alphatmp = 255.0f * ((f32) (x2 - x1 - 68) / (f32) (dialog->width - 68)); // Should theoretically never divide by 0
+                alpha = sqr(alphatmp) / 255.0f; // Add emphasis to fade
+
+                render_elise_text_art(x2-64-2, y1+2, x1+2, y2-32-2, alpha);
+            }
+        }
+
+        if (eliseDialogTimer >= (ELISE_DIALOG_ANIM_FRAMES - 1)) {
+            eliseDialogTimer = -1;
+            eliseDialogState = ELISE_DIALOG_OPENING_BLANK_FRAMES;
+        }
+
+        return;
+    }
+
+    if (eliseDialogState == ELISE_DIALOG_CLOSING) {
+        if (eliseDialogTimer == 0) {
+            if (gMarioState->action & ACT_FLAG_INTANGIBLE)
+                set_mario_action(gMarioState, ACT_IDLE, 0);
+            if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_QUIET_MUSIC)
+                seq_player_unlower_volume(SEQ_PLAYER_LEVEL, 60);
+        }
+
+        f32 progress = (coss((((u32) eliseDialogTimer * 0x8000) / ELISE_DIALOG_ANIM_FRAMES) + 0x8000) + 1.0f) / 2.0f;
+        s32 tmp = (s32) (progress * (f32) dialog->width) / 2;
+        x1 += tmp;
+        x2 -= tmp;
+
+        if (x1 < x2) {
+            u8 alpha = 0x7F - (progress * 0x1F);
+            prepare_blank_box();
+            render_blank_box(x1, y1, x2, y2, 0x00, 0x00, 0x00, alpha);
+            finish_blank_box();
+
+            if (x2 - x1 > 68 && y2 - y1 >= 36) { // Very important that the x coordinates remain > over >=
+                f32 alphatmp = 255.0f * ((f32) (x2 - x1 - 68) / (f32) (dialog->width - 68)); // Should theoretically never divide by 0
+                alpha = sqr(alphatmp) / 255.0f; // Add emphasis to fade
+
+                render_elise_text_art(x2-64-2, y1+2, x1+2, y2-32-2, alpha);
+            }
+        }
+
+        if (eliseDialogTimer >= (ELISE_DIALOG_ANIM_FRAMES - 1)) {
+            eliseDialogTimer = -1;
+            eliseDialogCurrPrompt = -1;
+            eliseDialogState = ELISE_DIALOG_CLOSED;
+        }
+
+        return;
+    }
+
+    prepare_blank_box();
+    render_blank_box(x1, y1, x2, y2, 0x00, 0x00, 0x00, 0x7F);
+    finish_blank_box();
+
+    if (x2 - x1 > 68 && y2 - y1 >= 36) { // Very important that the x coordinates remain > over >=
+        render_elise_text_art(x2-64-2, y1+2, x1+2, y2-32-2, 0xFF);
+    }
+    
+    if (eliseDialogState == ELISE_DIALOG_OPENING_BLANK_FRAMES) {
+        if (eliseDialogTimer >= (ELISE_DIALOG_WAIT_FRAMES - 1)) {
+            eliseDialogTimer = -1;
+            eliseDialogState = ELISE_DIALOG_READING;
+            if (elisePrompt->soundDuration == 0) {
+                if (elisePrompt->soundId != NO_SOUND)
+                    play_sound(elisePrompt->soundId, gGlobalSoundSource);
+
+                eliseDialogState = ELISE_DIALOG_DONE_READING;
+            }
+        }
+
+        return;
+    }
+    
+    if (eliseDialogState == ELISE_DIALOG_CLOSING_BLANK_FRAMES) {
+        if (eliseDialogTimer < ELISE_DIALOG_FADE_FRAMES) { // Should never divide by 0 here unless configured stupidly
+            u8 alpha = 255 - (eliseDialogTimer * 255) / ELISE_DIALOG_FADE_FRAMES;
+
+            if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ELISE_TEXT) {
+                print_set_envcolour(255, 159, 255, alpha);
+                print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "ELISE:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+                y1 += ELISE_LINE_HEIGHT;
+            } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_DESPAIR_TEXT) {
+            print_set_envcolour(127, 95, 191, alpha);
+                print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "DESPAIR:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+                y1 += ELISE_LINE_HEIGHT;
+            }
+
+            print_set_envcolour(255, 255, 255, alpha);
+            print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, (char*) segmented_to_virtual(dialog->str), PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, TRUE);
+        }
+        if (eliseDialogTimer >= (ELISE_DIALOG_WAIT_FRAMES + ELISE_DIALOG_FADE_FRAMES - 1)) {
+            eliseDialogTimer = -1;
+            if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_CLOSE_PROMPT) {
+                eliseDialogState = ELISE_DIALOG_CLOSING;
+                if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_PAUSE_CHARACTER)
+                    set_mario_action(gMarioState, ACT_IDLE, 0);
+            } else {
+                eliseDialogCurrPrompt = -1;
+                eliseDialogState = ELISE_DIALOG_CLOSED;
+            }
+        }
+
+        return;
+    }
+
+    if (eliseDialogState == ELISE_DIALOG_DONE_READING) {
+        if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ELISE_TEXT) {
+            print_set_envcolour(255, 159, 255, 255);
+            print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "ELISE:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            y1 += ELISE_LINE_HEIGHT;
+        } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_DESPAIR_TEXT) {
+            print_set_envcolour(150, 120, 182, 255);
+            print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "DESPAIR:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            y1 += ELISE_LINE_HEIGHT;
+        }
+
+        print_set_envcolour(255, 255, 255, 255);
+        print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, (char*) segmented_to_virtual(dialog->str), PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, TRUE);
+
+        if (eliseDialogTimer >= ((s32) elisePrompt->dialogFreeze - 1)) {
+            eliseDialogTimer--;
+
+            if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS) {
+                image_screen_press_button(-1, 0);
+
+                if (gPlayer1Controller->buttonPressed & (A_BUTTON | B_BUTTON | START_BUTTON)) {
+                    eliseDialogTimer = -1;
+                    eliseDialogState = ELISE_DIALOG_CLOSING_BLANK_FRAMES;
+                }
+            } else {
+                eliseDialogTimer = -1;
+                eliseDialogState = ELISE_DIALOG_CLOSING_BLANK_FRAMES;
+            }
+        } else {
+            init_image_screen_press_button(0, 0);
+        }
+
+        return;
+    }
+    
+    if (eliseDialogState == ELISE_DIALOG_READING) {
+        u8 strLen = get_glyph_str_length(segmented_to_virtual(dialog->str));
+
+        if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ELISE_TEXT) {
+            print_set_envcolour(255, 159, 255, 255);
+            print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "ELISE:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            y1 += ELISE_LINE_HEIGHT;
+        } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_DESPAIR_TEXT) {
+            print_set_envcolour(150, 120, 182, 255);
+            print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "DESPAIR:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            y1 += ELISE_LINE_HEIGHT;
+        }
+
+        print_set_envcolour(255, 255, 255, 255);
+
+        s32 printAmount = strLen;
+
+        if (elisePrompt->soundDuration == 0xFFFF) {
+            printAmount = eliseDialogTimer;
+        } else if (elisePrompt->soundDuration > 0) {
+            printAmount = printAmount * eliseDialogTimer / (s32) elisePrompt->soundDuration;
+        }
+
+        print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, (char*) segmented_to_virtual(dialog->str), PRINT_TEXT_ALIGN_LEFT, (u8) printAmount, FONT_ELISE, TRUE);
+
+        if (eliseDialogTimer == 0 && elisePrompt->soundId != NO_SOUND)
+            play_sound(elisePrompt->soundId, gGlobalSoundSource);
+
+        if (elisePrompt->soundDuration == 0xFFFF) {
+            if (eliseDialogTimer >= strLen) {
+                eliseDialogTimer = -1;
+                eliseDialogState = ELISE_DIALOG_DONE_READING;
+            }
+        } else if (eliseDialogTimer >= ((s32) elisePrompt->soundDuration - 1)) {
+            eliseDialogTimer = -1;
+            eliseDialogState = ELISE_DIALOG_DONE_READING;
+        }
+
+        return;
+    }
+
+    // It should not be possible to get here!
+    eliseDialogState = ELISE_DIALOG_CLOSED;
+    eliseDialogCurrPrompt = -1;
+    eliseDialogTimer = -1;
+    if (gMarioState->action & ACT_FLAG_INTANGIBLE)
+        set_mario_action(gMarioState, ACT_IDLE, 0);
+}
 
 u16 gCutsceneMsgFade        =  0;
 s16 gCutsceneMsgIndex       = -1;

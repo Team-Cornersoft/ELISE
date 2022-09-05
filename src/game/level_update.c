@@ -1072,6 +1072,10 @@ s32 play_mode_normal(void) {
     }
 #endif
 
+    if (gPlayer1Controller->buttonPressed & A_BUTTON) {
+        set_elise_dialog_prompt(0);
+    }
+
     warp_area();
     check_instant_warp();
 

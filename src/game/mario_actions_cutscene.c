@@ -2670,6 +2670,7 @@ s32 mario_execute_cutscene_action(struct MarioState *m) {
         case ACT_READING_SIGN:               cancel = act_reading_sign(m);               break;
         case ACT_JUMBO_STAR_CUTSCENE:        cancel = act_jumbo_star_cutscene(m);        break;
         case ACT_WAITING_FOR_DIALOG:         cancel = act_waiting_for_dialog(m);         break;
+        case ACT_UNUSED_10B:                 cancel = act_waiting_for_dialog(m);         break;
         case ACT_STANDING_DEATH:             cancel = act_standing_death(m);             break;
         case ACT_QUICKSAND_DEATH:            cancel = act_quicksand_death(m);            break;
         case ACT_ELECTROCUTION:              cancel = act_electrocution(m);              break;

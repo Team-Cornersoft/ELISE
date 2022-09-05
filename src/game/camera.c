@@ -8624,6 +8624,8 @@ void cutscene_enter_pyramid_top(struct Camera *c) {
  * cvar9.point is gCutsceneFocus's position
  * cvar9.angle[1] is the yaw between Mario and the gCutsceneFocus
  */
+
+#define PUSH_BACK_SCALE 2500.0f
 void cutscene_dialog_start(struct Camera *c) {
     s16 yaw;
 
@@ -8639,8 +8641,20 @@ void cutscene_dialog_start(struct Camera *c) {
 
     // Store Mario's position and faceAngle
     sCutsceneVars[8].angle[0] = 0;
-    vec3f_copy(sCutsceneVars[8].point, sMarioCamState->pos);
-    sCutsceneVars[8].point[1] += 125.f;
+    
+    Vec3f dir;
+    vec3f_diff(dir, sMarioCamState->pos, &gCutsceneFocus->oPosX);
+    vec3f_normalize(dir);
+    
+    Vec3f scale = {PUSH_BACK_SCALE, PUSH_BACK_SCALE, PUSH_BACK_SCALE};
+
+    vec3f_mul(dir, scale);
+
+    vec3f_add(dir, sMarioCamState->pos);
+
+    vec3f_copy(sCutsceneVars[8].point, dir);
+
+    sCutsceneVars[8].point[1] = sMarioCamState->pos[1] + 250.f;
 
     // Store gCutsceneFocus's position and yaw
     object_pos_to_vec3f(sCutsceneVars[9].point, gCutsceneFocus);

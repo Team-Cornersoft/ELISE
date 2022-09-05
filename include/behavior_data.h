@@ -545,5 +545,6 @@ extern const BehaviorScript bhvAnimatedWall[];
 extern const BehaviorScript bhvDespair[];
 extern const BehaviorScript bhvDespairSwipe[];
 extern const BehaviorScript bhvCrystalProjectile[];
+extern const BehaviorScript bhvNoseman[];
 
 #endif // BEHAVIOR_DATA_H
