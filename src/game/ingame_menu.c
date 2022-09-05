@@ -39,9 +39,9 @@
 
 struct EliseDialogOptions eliseDialogPrompts[] = {
   /*0x00*/  { DIALOG_174, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER), NO_SOUND, SEC_TO_FRAMES(0.5f), 0xFFFF, SEC_TO_FRAMES(3.0f) },
-            { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
-            { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
-            { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
+            { DIALOG_170, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_DESPAIR_TEXT), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(4.0f), SEC_TO_FRAMES(0.0f) },
+            { DIALOG_175, FALSE, 0, (ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_ELISE_TEXT), NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(4.0f), SEC_TO_FRAMES(0.0f) },
+            { DIALOG_176, FALSE, 0, (ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_DESPAIR_TEXT), NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(4.0f), SEC_TO_FRAMES(0.0f) },
   /*0x04*/  { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
             { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
 };
@@ -1241,17 +1241,16 @@ s8 set_elise_dialog_prompt(u8 eliseDialogPromptIndex) {
         return -2; // Prompt has already been read before and cannot be read again.
     }
 
-    eliseDialogCurrPrompt = eliseDialogPromptIndex & 0xFF;
-    if (eliseDialogCurrPrompt > (s32) (sizeof(eliseDialogPrompts) / sizeof(struct EliseDialogOptions))) {
-        eliseDialogCurrPrompt = -1;
+    if (eliseDialogPromptIndex > (s32) (sizeof(eliseDialogPrompts) / sizeof(struct EliseDialogOptions))) {
         return -3; // Invalid prompt selection!
     }
 
     prompt->hasBeenRead = TRUE;
     if (!save_file_set_elise_dialog_flags(prompt->saveFlagIndex)) {
-        eliseDialogCurrPrompt = -1;
         return -2; // Prompt has already been read before and cannot be read again, stored in the save file.
     }
+
+    eliseDialogCurrPrompt = eliseDialogPromptIndex;
 
     return 0; // Success
 }

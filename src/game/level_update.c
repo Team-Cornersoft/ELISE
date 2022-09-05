@@ -349,6 +349,7 @@ void set_mario_initial_action(struct MarioState *m, u32 spawnType, u32 actionArg
 void init_mario_after_warp(void) {
     struct ObjectWarpNode *spawnNode = area_get_warp_node(sWarpDest.nodeId);
     u32 marioSpawnType = get_mario_spawn_type(spawnNode->object);
+    u8 shouldPlayMusic = TRUE;
 
     if (gMarioState->action != ACT_UNINITIALIZED) {
         gPlayerSpawnInfos[0].startPos[0] = (s16) spawnNode->object->oPosX;
@@ -362,6 +363,9 @@ void init_mario_after_warp(void) {
         if (marioSpawnType == MARIO_SPAWN_DOOR_WARP) {
             init_door_warp(&gPlayerSpawnInfos[0], sWarpDest.arg);
         }
+
+        if (sWarpDest.levelNum == LEVEL_BITDW && sWarpDest.type == WARP_TYPE_CHANGE_LEVEL)
+            shouldPlayMusic = FALSE;
 
         if (sWarpDest.type == WARP_TYPE_CHANGE_LEVEL || sWarpDest.type == WARP_TYPE_CHANGE_AREA) {
             gPlayerSpawnInfos[0].areaIndex = sWarpDest.areaIdx;
@@ -405,7 +409,10 @@ void init_mario_after_warp(void) {
     }
 
     if (gCurrDemoInput == NULL) {
-        set_background_music(gCurrentArea->musicParam, gCurrentArea->musicParam2, 0, gCurrentArea->reverbPreset);
+        if (shouldPlayMusic)
+            set_background_music(gCurrentArea->musicParam, gCurrentArea->musicParam2, 0, gCurrentArea->reverbPreset);
+        else
+            set_background_music(gCurrentArea->musicParam, SEQ_SOUND_PLAYER, 0, gCurrentArea->reverbPreset);
 
         if (gMarioState->flags & MARIO_METAL_CAP) {
             play_cap_music(SEQUENCE_ARGS(4, SEQ_EVENT_METAL_CAP));
@@ -1277,6 +1284,7 @@ s32 init_level(void) {
 #ifdef PUPPYPRINT_DEBUG
     OSTime first = osGetTime();
 #endif
+    u8 shouldPlayMusic = TRUE;
 
     set_play_mode(PLAY_MODE_NORMAL);
 
@@ -1289,6 +1297,9 @@ s32 init_level(void) {
     } else {
         gHudDisplay.flags = HUD_DISPLAY_NONE;
     }
+
+    if (sWarpDest.levelNum == LEVEL_BITDW && sWarpDest.type == WARP_TYPE_CHANGE_LEVEL)
+        shouldPlayMusic = FALSE;
 
     sTimerRunning = FALSE;
 
@@ -1338,7 +1349,10 @@ s32 init_level(void) {
         }
 
         if (gCurrDemoInput == NULL) {
-            set_background_music(gCurrentArea->musicParam, gCurrentArea->musicParam2, 0, gCurrentArea->reverbPreset);
+            if (shouldPlayMusic)
+                set_background_music(gCurrentArea->musicParam, gCurrentArea->musicParam2, 0, gCurrentArea->reverbPreset);
+            else
+                set_background_music(gCurrentArea->musicParam, SEQ_SOUND_PLAYER, 0, gCurrentArea->reverbPreset);
         }
     }
 #if ENABLE_RUMBLE
