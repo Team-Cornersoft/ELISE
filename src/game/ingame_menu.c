@@ -38,7 +38,7 @@
 #endif
 
 struct EliseDialogOptions eliseDialogPrompts[] = {
-  /*0x00*/  { DIALOG_174, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(3.0f), SEC_TO_FRAMES(3.0f) },
+  /*0x00*/  { DIALOG_174, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS), NO_SOUND, SEC_TO_FRAMES(0.5f), 0xFFFF, SEC_TO_FRAMES(3.0f) },
             { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
             { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
             { DIALOG_000, FALSE, 0, ELISE_SPECIAL_FLAG_NONE, NO_SOUND, SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(8.0f) },
@@ -1324,7 +1324,7 @@ void render_elise_dialog_entry(void) {
                 return;
             }
 
-            set_mario_action(gMarioState, ACT_WAITING_FOR_DIALOG, 0);
+            set_mario_action(gMarioState, ACT_UNUSED_10B, 0);
         }
 
         f32 progress = (coss(((u32) eliseDialogTimer * 0x8000) / ELISE_DIALOG_ANIM_FRAMES) + 1.0f) / 2.0f;
