@@ -237,7 +237,7 @@ f32 get_gravity_mult(u8 warpOverride) {
         break;
 
     case LEVEL_TTM:
-        res = 0.3f;
+        res = 0.225f;
         break;
     }
 

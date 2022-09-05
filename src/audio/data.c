@@ -102,6 +102,14 @@ struct BetterReverbSettings gBetterReverbSettings[] = {
         2, FALSE, NUM_ALLPASS, 0x2600, 0x4CFF, 0x40, 0x80, // LLL Area 2 console
         delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
     },
+    {
+        2, FALSE, (NUM_ALLPASS - 9), 0x2A00, 0x40FF, 0x34, 0x70, // TTM Area 1 console
+        delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
+    },
+    {
+        2, FALSE, (NUM_ALLPASS - 3), 0x2A00, 0x44FF, 0x38, 0x70, // TTM Area 1 console
+        delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
+    },
 };
 #endif
 

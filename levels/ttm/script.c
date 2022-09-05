@@ -90,6 +90,8 @@ const LevelScript level_ttm_entry[] = {
 		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_PILLOW_FORT),
 		TERRAIN_TYPE(TERRAIN_STONE),
 		/* Fast64 begin persistent block [area commands] */
+		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_PILLOW_FORT, 0x07, 0x08),
+		SET_ECHO(0x40, 0x40),
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
 
@@ -108,6 +110,8 @@ const LevelScript level_ttm_entry[] = {
 		SET_BACKGROUND_MUSIC(0x00, SEQ_EVENT_MERRY_GO_ROUND),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
+		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_EVENT_MERRY_GO_ROUND, 0x01, 0x02),
+		SET_ECHO(0x08, 0x08),
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
 
@@ -123,6 +127,8 @@ const LevelScript level_ttm_entry[] = {
 		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_SNOW),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
+		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_SNOW, 0x01, 0x02),
+		SET_ECHO(0x08, 0x08),
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
 
