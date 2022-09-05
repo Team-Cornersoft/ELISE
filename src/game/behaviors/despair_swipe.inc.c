@@ -19,7 +19,7 @@ void bhv_despair_swipe_loop(void) {
 
     // This effectively doubles the hitbox size, making it hit x units above and x units below
     if (does_intersect_with_cylinder(&o->oPosX, sDespairSwipeHitbox.hurtboxHeight, sDespairSwipeHitbox.hurtboxRadius, &gMarioObject->oPosX) && gMarioState->invincTimer <= 0) {
-        hurt_and_set_mario_action(gMarioState, ACT_BACKWARD_GROUND_KB, 0, 0xc);
+        hurt_and_set_mario_action(gMarioState, ACT_BACKWARD_GROUND_KB, 0, 0x4);
         gMarioState->invincTimer = 50;
         obj_mark_for_deletion(o);
     }

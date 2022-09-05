@@ -166,11 +166,11 @@ void take_damage(void) {
         }
     }
 
-    change_attack(HURT, NO_COOLDOWN, NO_TIME);
+    change_attack(HURT, SECONDS_TO_TICKS(1), NO_TIME);
 }
 
 void choose_attack(void) {
-    if (o->oDespairCurrentAttacks >= 3) {
+    if (o->oDespairCurrentAttacks >= 0) {
         change_attack(SPINNING_ATTACK, NO_COOLDOWN, SPINNING_ATTACK_TIME);
         o->oDespairSpinAngle = 270.0f;
         o->oDespairCurrentAttacks = 0;
@@ -485,7 +485,7 @@ void update_resetting(void) {
     if (dist <= 300.0f) {
         vec3f_copy(&o->oPosX, sAnchorPositions[NORTH]);
 
-        if (sDespairDialogFlag && gMarioState->action == ACT_IDLE) {
+        if (sDespairDialogFlag) {
             if (gDialogResponse != 0) {
                 disable_time_stop_including_mario();
                 change_attack(IDLE, o->oDespairAttackCooldown, o->oDespairAttackTimer);
@@ -505,8 +505,10 @@ void update_hurt(void) {
 
     cur_obj_init_animation(HURT_ANIM);
 
-    if (cur_obj_check_if_at_animation_end()) {
+    if (o->oSubAction > 15 && cur_obj_check_if_at_animation_end()) {
         change_attack(RESETTING, o->oDespairAttackCooldown, o->oDespairAttackTimer);
+    } else {
+        o->oSubAction++;
     }
 
 }
