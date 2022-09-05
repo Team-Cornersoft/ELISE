@@ -1484,6 +1484,10 @@ void render_elise_dialog_entry(void) {
                 if (gPlayer1Controller->buttonPressed & (A_BUTTON | B_BUTTON | START_BUTTON)) {
                     eliseDialogTimer = -1;
                     eliseDialogState = ELISE_DIALOG_CLOSING_BLANK_FRAMES;
+                    if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_CLOSE_PROMPT)
+                        play_sound(SOUND_MENU_MESSAGE_DISAPPEAR, gGlobalSoundSource);
+                    else
+                        play_sound(SOUND_MENU_MESSAGE_NEXT_PAGE, gGlobalSoundSource);
                 }
             } else {
                 eliseDialogTimer = -1;
