@@ -248,10 +248,10 @@ struct MusicDynamic sMusicDynamics[12] = {
     { 0x0070, 127, 10, 0x0000, 0, 100 },  // SEQ_LEVEL_SPOOKY
     { 0x0000, 127, 100, 0x0070, 0, 10 },  // SEQ_LEVEL_SPOOKY
     { 0xffff, 127, 100, 0x0000, 0, 100 }, // any (unused)
-    { 0xfff3, 127, 0, 0x000c, 0, 0 }, // ANIMAL_PARTY_DOG
-    { 0xffeb, 127, 0, 0x0014, 0, 0 }, // ANIMAL_PARTY_CAT
-    { 0xffe7, 127, 0, 0x0018, 0, 0 }, // ANIMAL_PARTY_BIRD
-    { 0xffe3, 127, 0, 0x001c, 0, 0 } // ANIMAL_PARTY_DINO
+    { 0xfff3, 127, 1, 0x000c, 0, 1 }, // ANIMAL_PARTY_DOG
+    { 0xffeb, 127, 1, 0x0014, 0, 1 }, // ANIMAL_PARTY_CAT
+    { 0xffe7, 127, 1, 0x0018, 0, 1 }, // ANIMAL_PARTY_BIRD
+    { 0xffe3, 127, 1, 0x001c, 0, 1 } // ANIMAL_PARTY_DINO
 };
 
 #define STUB_LEVEL(_0, _1, _2, _3, echo1, echo2, echo3, _7, _8) { echo1, echo2, echo3 },
