@@ -31,3 +31,4 @@
 #include "crystal_projectile/geo.inc.c"
 #include "despair/geo.inc.c"
 #include "custom_door_c/geo.inc.c"
+#include "custom_secret/geo.inc.c"

@@ -2098,28 +2098,10 @@ Anyone entering this cave\n\
 without permission will\n\
 meet certain disaster."))
 
-DEFINE_DIALOG(DIALOG_170, 1, 7, 30, 200, _("\
-DESPAIR:\n\
+DEFINE_DIALOG(DIALOG_170, 8, 3, 30, 270, _("\
 Defiance is futile!\n\
-You wanted this to begin\n\
-with, why refuse me now?\n\
-\n\
-\n\
-\n\
-ELISE:\n\
-It's time for me to face\n\
-my problems head on and\n\
-give life a chance even\n\
-despite my circumstances!\n\
-\n\
-\n\
-DESPAIR:\n\
-You are but a fool and\n\
-slave to reality.\n\
-I will pacify you here\n\
-and now, and keep you\n\
-protected in the bliss\n\
-of the dreamworld..."))
+You wanted this to begin with,\n\
+why refuse me now?"))
 
 DEFINE_DIALOG(DIALOG_171, 1, 4, 30, 200, _("\
 DESPAIR:\n\
@@ -2230,3 +2212,13 @@ DEFINE_DIALOG(DIALOG_174, 8, 3, 30, 270, _("\
 Hi my name is Elise lol.\n\
 I like to eat cheese!\n\
 It do be kind of delicious!"))
+
+DEFINE_DIALOG(DIALOG_175, 8, 3, 30, 270, _("\
+It's time for me to face my problems\n\
+head on and give life a chance\n\
+even despite my circumstances!"))
+
+DEFINE_DIALOG(DIALOG_176, 8, 3, 30, 270, _("\
+You are but a fool and slave to reality.\n\
+I will pacify you here and now, and keep\n\
+you protected in the bliss of the dreamworld..."))

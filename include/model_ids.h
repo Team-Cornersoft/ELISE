@@ -562,6 +562,7 @@
 #define MODEL_DESPAIR                     0xFD        // Needs importing, but I'm gonna temporarily use king whomp I think
 #define MODEL_CRYSTAL_PROJECTILE          0xFE
 #define MODEL_CUSTOM_DOOR_C               0xFF        // Door for CHESS area
+#define MODEL_CUSTOM_SECRET               0x100       // Secrets model
 
 #ifdef IA8_30FPS_COINS
 #define MODEL_SILVER_COIN                 0xE2        // silver_coin_geo

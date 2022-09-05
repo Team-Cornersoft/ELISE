@@ -1,5 +1,6 @@
 #include "engine/math_util.h"
-#include "../print.h"
+#include "game/print.h"
+#include "game/sound_init.h"
 
 
 
@@ -509,16 +510,16 @@ void update_hurt(void) {
 void update_intro(void) {
     cur_obj_init_animation(IDLE_ANIM);
 
-    if (gMarioState->action == ACT_IDLE) {
-        if (gDialogResponse != 0) {
-            disable_time_stop_including_mario();
-            change_attack(IDLE, SECONDS_TO_TICKS(1), NO_TIME);
-        }
-        else {
-            enable_time_stop_including_mario();
-            create_dialog_box(DIALOG_170);
-        }
-    }
+    if (set_elise_dialog_prompt(1) != -2)
+        return;
+    if (set_elise_dialog_prompt(2) != -2)
+        return;
+    if (set_elise_dialog_prompt(3) != -2)
+        return;
+        
+    change_attack(IDLE, SECONDS_TO_TICKS(1), NO_TIME);
+    play_music(SEQ_PLAYER_LEVEL, SEQ_EVENT_DESPAIR_BOSS, 0);
+    sCurrentMusic = SEQ_EVENT_DESPAIR_BOSS;
 }
 
 void update_death_regular(void) {
