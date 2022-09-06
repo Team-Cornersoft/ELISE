@@ -56,9 +56,25 @@ void scroll_ttm_dl_UFO_mesh_layer_1_vtx_0() {
 	currentX += deltaX;
 }
 
+void scroll_sts_mat_ttm_dl_Water_A_layer5() {
+	Gfx *mat = segmented_to_virtual(mat_ttm_dl_Water_A_layer5);
+	shift_s_down(mat, 15, PACK_TILESIZE(0, 1));
+	shift_t_down(mat, 15, PACK_TILESIZE(0, 1));
+	shift_s(mat, 23, PACK_TILESIZE(0, 1));
+};
+
+void scroll_sts_mat_ttm_dl_Water_B_layer5() {
+	Gfx *mat = segmented_to_virtual(mat_ttm_dl_Water_B_layer5);
+	shift_s_down(mat, 15, PACK_TILESIZE(0, 1));
+	shift_s(mat, 23, PACK_TILESIZE(0, 1));
+	shift_t_down(mat, 23, PACK_TILESIZE(0, 1));
+};
+
 void scroll_ttm() {
 	scroll_ttm_dl_C_UFO_mesh_layer_1_vtx_2();
 	scroll_sts_mat_ttm_dl_Sparkles_A_layer5();
 	scroll_sts_mat_ttm_dl_Sparkles_B_layer5();
 	scroll_ttm_dl_UFO_mesh_layer_1_vtx_0();
+	scroll_sts_mat_ttm_dl_Water_A_layer5();
+	scroll_sts_mat_ttm_dl_Water_B_layer5();
 }
