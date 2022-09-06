@@ -32,7 +32,7 @@
 s8 sLanguageMode = LANGUAGE_ENGLISH;
 #endif
 
-#define PRINT_TEXT_FONT 4
+#define PRINT_TEXT_FONT FONT_ELISE
 
 extern void *languageTable[][3];
 
@@ -2290,56 +2290,58 @@ void draw_credits_box(void) {
     gDPPipeSync(gDisplayListHead++);
 }
 
-#define CREDITS_LEFT_X 145
-#define CREDITS_RIGHT_X 295
+#define CREDITS_LEFT_X 124
+#define CREDITS_RIGHT_X 294
+#define CREDITS_CENTER_X (((CREDITS_RIGHT_X - CREDITS_LEFT_X) / 2) + CREDITS_LEFT_X)
 #define CREDITS_TOP_Y 22
 
 #define CREDITS_PADDING 12
 
 #define LINES_ON_PAGE 12
 // Please keep this equal to the length of the sCreditStrings array, I don't know a good alternative to keep count
-#define CREDIT_COUNT 42
+#define CREDIT_COUNT 43
 static const char* sCreditStrings[] = {
     "",
-    "COMPETITION NOTE",
+    "<COL_FFFF7FFF>COMPETITION NOTE<COL_-------->",
     "This romhack was made for the",
     "RHDC Dream competition 2022.",
     "The goal is to gather all 12 blue",
     "Dream Drops and fight the boss",
     "in the hub area.",
-    "Special thanks to Simpleflips for",
+    "Special thanks to SimpleFlips for",
     "playing and streaming this hack!",
     "Scroll further down for credits. ",
     "",
-    "CREDITS",
     "",
-    "PRODUCERS",
+    "<RAINBOW>CREDITS<RAINBOW>",
+    "",
+    "<COL_FF5F5FFF>PRODUCERS<COL_-------->",
     "Mel, ArcticJaguar725",
     "",
-    "FULLY ORIGINAL SOUNDTRACK",
+    "<COL_5FFF5FFF>FULLY ORIGINAL SOUNDTRACK",
     "Mel, ArcticJaguar725",
     "",
-    "ELISE VA",
-    "Frackhead",
-    "",
-    "PROGRAMMING",
-    "ArcticJaguar725, Bitlytic",
-    "",
-    "MODELS, TEXTURES, CUTSCENES",
+    "<COL_8F8F8FFF>ARTWORK AND MODELS<COL_-------->",
     "Mel",
     "",
-    "SOUND ENGINEERING/PORTING",
+    "<COL_FF7F1FFF>PROGRAMMING<COL_-------->",
+    "ArcticJaguar725, Bitlytic",
+    "",
+    "<COL_7F7FFFFF>SOUND ENGINEERING/PORTING<COL_-------->",
     "ArcticJaguar725, PablosCorner",
     "",
-    "ADDITIONAL HELP",
+    "<COL_FF3FFFFF>ELISE VA<COL_-------->",
+    "Frackhead",
+    "",
+    "<COL_FF7F7FFF>ADDITIONAL HELP<COL_-------->",
     "FluffaLuigi (Mario replacement),",
     "LuigixHero (custom animations),",
     "Crissley10 (end card)",
     "",
-    "SPECIAL THANKS",
+    "<COL_2FFF2FFF>SPECIAL THANKS<COL_-------->",
     "Reonu, Blender, Seq64, RHDC",
     "",
-    "SAMPLE SOURCES",
+    "<COL_4F4F4FFF>SAMPLE SOURCES<COL_-------->",
     "pixabay.com, mixkit.co",
     "",
 };
@@ -2364,7 +2366,7 @@ void print_credit_strings(void) {
     for (i = 0; i < LINES_ON_PAGE; i++) {
         creditIndex = i + sCreditOffset;
         if (creditIndex < CREDIT_COUNT) {
-            print_small_text(CREDITS_RIGHT_X, CREDITS_TOP_Y + (CREDITS_PADDING*i), sCreditStrings[creditIndex], PRINT_TEXT_ALIGN_RIGHT, PRINT_ALL, PRINT_TEXT_FONT, FALSE);
+            print_small_text(CREDITS_CENTER_X, CREDITS_TOP_Y + (CREDITS_PADDING*i), sCreditStrings[creditIndex], PRINT_TEXT_ALIGN_CENTER, PRINT_ALL, PRINT_TEXT_FONT, FALSE);
         }
     }
 
