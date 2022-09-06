@@ -29,6 +29,7 @@ const LevelScript level_ccy_title_screen[] = {
 	LOAD_YAY0(0x07, _castle_courtyard_segment_7SegmentRomStart, _castle_courtyard_segment_7SegmentRomEnd), 
 
 	ALLOC_LEVEL_POOL(),
+	AREA(1, castle_courtyard_area_1),
 	END_AREA(),
 	FREE_LEVEL_POOL(),
 
