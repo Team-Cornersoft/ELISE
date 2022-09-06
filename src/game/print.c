@@ -335,6 +335,8 @@ u8 glyph_to_char_index(u8 c) {
         case 0xE4:
             return '+';
         case 0xE5:
+            return '&';
+        case 0xE6:
             return ':';
         case 0xF2:
             return '!';

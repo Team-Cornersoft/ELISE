@@ -1,0 +1,28 @@
+{
+    "date": "1996-02-14",
+    "sample_bank": "sfx_custom_elise_voices",
+    "envelopes": {
+        "envelope0": [
+            [2, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ]
+    },
+    "instruments": {
+        "inst0": {
+            "release_rate": 7,
+            "envelope": "envelope0",
+            "sound": "00_custom_rain_L"
+        },
+        "inst1": {
+            "release_rate": 7,
+            "envelope": "envelope0",
+            "sound": "01_custom_rain_R"
+        }
+    },
+    "instrument_list": [
+        "inst0",
+        "inst1"
+    ]
+}

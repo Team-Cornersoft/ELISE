@@ -12,7 +12,7 @@ seq_setmutescale 0
   seq_setvol 127
 #endif
 seq_settempo 120
-seq_initchannels 0x3ff
+seq_initchannels 0xfff
 seq_startchannel 0, .channel0
 seq_startchannel 1, .channel1
 seq_startchannel 2, .channel2
@@ -23,6 +23,8 @@ seq_startchannel 6, .channel6
 seq_startchannel 7, .channel7
 seq_startchannel 8, .channel38
 seq_startchannel 9, .channel59
+seq_startchannel 10, .channelA
+seq_startchannel 11, .channelB
 .seq_loop:
 seq_delay 20000
 seq_jump .seq_loop
@@ -69,6 +71,28 @@ chan_setval 0
 chan_iowriteval 5
 chan_stereoheadseteffects 1
 chan_setdyntable .channel59_table
+chan_jump .main_loop_023589
+
+.channelA:
+chan_largenoteson
+chan_setinstr 0
+chan_setpanmix 127
+chan_setnotepriority 14
+chan_setval 0
+chan_iowriteval 5
+chan_stereoheadseteffects 1
+chan_setdyntable .channelA_table
+chan_jump .main_loop_023589
+
+.channelB:
+chan_largenoteson
+chan_setinstr 0
+chan_setpanmix 127
+chan_setnotepriority 14
+chan_setval 0
+chan_iowriteval 5
+chan_stereoheadseteffects 1
+chan_setdyntable .channelB_table
 chan_jump .main_loop_023589
 
 // Main loop for standard, non-continuous sound effects
@@ -1332,7 +1356,7 @@ layer_end
 .sound_action_custom_teleport:
 chan_setbank 9
 chan_setinstr 7
-chan_setpanmix 127
+chan_setpanmix 0
 chan_setval 48
 chan_call .set_reverb
 chan_setlayer 0, .layer_custom_teleport
@@ -1340,14 +1364,14 @@ chan_setlayer 1, .layer_custom_teleport_2
 chan_end
 
 .layer_custom_teleport:
-layer_setpan 0x20
-layer_note1 39, 0x100, 95
+layer_setpan 0x24
+layer_note1 39, 0x100, 91
 layer_end
 
 .layer_custom_teleport_2:
 layer_delay 0x3
-layer_setpan 0x5F
-layer_note1 39, 0x100, 95
+layer_setpan 0x5B
+layer_note1 39, 0x100, 91
 layer_end
 
 .chan_7A5:
@@ -6954,7 +6978,7 @@ layer_end
 .sound_obj_custom_warp:
 chan_setbank 6
 chan_setinstr 13
-chan_setpanmix 127
+chan_setpanmix 0
 chan_setval 48
 chan_call .set_reverb
 chan_setlayer 0, .layer_custom_warp
@@ -6962,15 +6986,15 @@ chan_setlayer 1, .layer_custom_warp_2
 chan_end
 
 .layer_custom_warp:
-layer_setpan 0x10
-layer_portamento 0x1, 24, 0x1C0
-layer_note1 0, 0x90, 127
+layer_setpan 0x20
+layer_portamento 0x1, 23, 0x1C0
+layer_note1 0, 0x90, 111
 layer_end
 
 .layer_custom_warp_2:
-layer_setpan 0x6F
-layer_portamento 0x1, 23, 0x1C0
-layer_note1 0, 0x90, 127
+layer_setpan 0x5F
+layer_portamento 0x1, 24, 0x1C0
+layer_note1 0, 0x90, 111
 layer_end
 
 .sound_menu_change_select:
@@ -7987,6 +8011,66 @@ layer_note0 38, 0x3, 127, 127
 .layer_32BF:
 layer_delay 0x2a
 layer_jump .layer_32B7
+
+
+
+.channelA_table:
+sound_ref .sound_env_rain_stereo
+
+
+
+.sound_env_rain_stereo:
+chan_setbank 11
+chan_setpanmix 0
+chan_setlayer 0, .sound_env_rain_L
+chan_setlayer 1, .sound_env_rain_R
+chan_end
+
+.sound_env_rain_L:
+layer_setinstr 0
+layer_setpan 0x00
+layer_somethingon
+.sound_env_rain_L_loop:
+layer_note1 39, 0x480, 85
+layer_jump .sound_env_rain_L_loop
+
+.sound_env_rain_R:
+layer_setinstr 1
+layer_setpan 0x7F
+layer_somethingon
+.sound_env_rain_R_loop:
+layer_note1 39, 0x480, 85
+layer_jump .sound_env_rain_R_loop
+
+
+
+.channelB_table:
+sound_ref .sound_env_rain_stereo_tmp
+
+
+
+.sound_env_rain_stereo_tmp:
+chan_setbank 12
+chan_setpanmix 0
+chan_setlayer 0, .sound_env_rain_L_tmp
+chan_setlayer 1, .sound_env_rain_R_tmp
+chan_end
+
+.sound_env_rain_L_tmp:
+layer_setinstr 0
+layer_setpan 0x0C
+layer_somethingon
+.sound_env_rain_L_loop_tmp:
+layer_note1 39, 0x480, 85
+layer_jump .sound_env_rain_L_loop_tmp
+
+.sound_env_rain_R_tmp:
+layer_setinstr 1
+layer_setpan 0x73
+layer_somethingon
+.sound_env_rain_R_loop_tmp:
+layer_note1 39, 0x480, 85
+layer_jump .sound_env_rain_R_loop_tmp
 
 .align 2, 0
 .envelope_32C4:
