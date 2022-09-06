@@ -1519,3 +1519,17 @@ s32 image_screen_cannot_press_button(s16 frames, UNUSED s32 arg1) {
 
     return FALSE; // Don't continue in level script, call this function again next frame
 }
+
+s32 pause_if_emulator(s16 frames, UNUSED s32 arg1) {
+    loadFrames--;
+
+    if (loadFrames < 0)
+        loadFrames = frames; // Timer never expires if frames < 0
+
+    if (loadFrames == 0 || gIsConsole) {
+        loadFrames = 0;
+        return TRUE; // Continue in level script
+    }
+
+    return FALSE; // Don't continue in level script, call this function again next frame
+}

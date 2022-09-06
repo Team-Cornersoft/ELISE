@@ -191,5 +191,6 @@ void basic_update(void);
 s32 init_image_screen_press_button(s16 frames, UNUSED s32 arg1);
 s32 image_screen_press_button(s16 frames, UNUSED s32 arg1);
 s32 image_screen_cannot_press_button(s16 frames, UNUSED s32 arg1);
+s32 pause_if_emulator(s16 frames, UNUSED s32 arg1);
 
 #endif // LEVEL_UPDATE_H

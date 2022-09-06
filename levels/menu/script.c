@@ -53,6 +53,7 @@ const LevelScript level_main_menu_entry_file_select[] = {
     STOP_MUSIC(/*fadeOutTime*/ 0x00BE),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0xFF, 0xFF, 0xFF),
     SLEEP(/*frames*/ 16),
+    CALL_LOOP(/*arg*/ 20, /*func*/ pause_if_emulator),
     CLEAR_LEVEL(),
     SLEEP_BEFORE_EXIT(/*frames*/ 1),
     SET_REG(/*value*/ START_LEVEL),
