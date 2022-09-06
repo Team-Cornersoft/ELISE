@@ -3,7 +3,14 @@
 const GeoLayout ttm_area_2_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_Plane_mesh_layer_1),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_TRANSPARENT, -194, 5038, 135, ttm_dl_D_glitter_A_001_mesh_layer_5),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_TRANSPARENT, -194, 5038, 135, ttm_dl_D_glitter_B_001_mesh_layer_5),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 0, 1525, 240, ttm_dl_UFO_mesh_layer_1),
+		GEO_OPEN_NODE(),
+			GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ttm_dl_UFO_mesh_layer_5),
+			GEO_DISPLAY_LIST(LAYER_ALPHA, ttm_dl_UFO_mesh_layer_4),
+		GEO_CLOSE_NODE(),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_TRANSPARENT, 0, 1400, -4974, ttm_dl_Zodiac_mesh_layer_5),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
@@ -30,6 +37,8 @@ const GeoLayout ttm_area_2[] = {
 			GEO_CLOSE_NODE(),
 		GEO_CLOSE_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_material_revert_render_settings),
+		GEO_DISPLAY_LIST(LAYER_ALPHA, ttm_dl_material_revert_render_settings),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ttm_dl_material_revert_render_settings),
 	GEO_CLOSE_NODE(),
 	GEO_END(),
 };
