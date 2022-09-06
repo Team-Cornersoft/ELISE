@@ -59,7 +59,7 @@ const LevelScript level_ssl_entry[] = {
 		INSTANT_WARP(0x00, 0x01, 15400, 0, 0),
 		INSTANT_WARP(0x01, 0x01, -15400, 0, 0),
 		OBJECT(MODEL_CUSTOM_DOOR_A, 0, 0, -2110, 0, 0, 0, 0x00DA0000, bhvDoorWarp),
-		OBJECT(MODEL_NONE, -400, 690, 1300, 0, 0, 0, 0x00BA0000, bhvFadingWarp),
+		OBJECT(MODEL_NONE, -400, 690, 1300, 0, -180, 0, 0x00BA0000, bhvFadingWarp),
 		MARIO_POS(0x01, -180, -400, -20, 800),
 		OBJECT(MODEL_NONE, -400, -20, 800, 0, -180, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_PORTAL_WARP, -400, -10, 4000, 0, 0, 0, 0x00CA0000, bhvPortalWarp),

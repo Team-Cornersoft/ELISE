@@ -3,7 +3,15 @@
 const GeoLayout ttm_area_3_geo[] = {
 	GEO_NODE_START(),
 	GEO_OPEN_NODE(),
-		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_Plane_001_mesh_layer_1),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_TRANSPARENT, 232, 2486, 791, ttm_dl_B__stairs_mesh_layer_5),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_TRANSPARENT, 0, 9300, 6483, ttm_dl_C_Portal_mesh_layer_5),
+		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 0, -4044, 0, ttm_dl_CS_fountain_mesh_layer_1),
+		GEO_OPEN_NODE(),
+			GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ttm_dl_CS_fountain_mesh_layer_5),
+		GEO_CLOSE_NODE(),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_TRANSPARENT, 0, 5005, 0, 0, -180, 0, ttm_dl_Y_white_mesh_layer_5),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_TRANSPARENT, 0, -5000, 0, 0, -180, 0, ttm_dl_Z_Water_A_mesh_layer_5),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_TRANSPARENT, 0, 5000, 0, 0, -180, 0, ttm_dl_Z_Water_B_mesh_layer_5),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
@@ -30,6 +38,7 @@ const GeoLayout ttm_area_3[] = {
 			GEO_CLOSE_NODE(),
 		GEO_CLOSE_NODE(),
 		GEO_DISPLAY_LIST(LAYER_OPAQUE, ttm_dl_material_revert_render_settings),
+		GEO_DISPLAY_LIST(LAYER_TRANSPARENT, ttm_dl_material_revert_render_settings),
 	GEO_CLOSE_NODE(),
 	GEO_END(),
 };

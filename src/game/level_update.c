@@ -1491,9 +1491,6 @@ s32 init_image_screen_press_button(UNUSED s16 frames, UNUSED s32 arg1) {
 s32 image_screen_press_button(s16 frames, UNUSED s32 arg1) {
     loadFrames--;
 
-    if (gCurrLevelNum == LEVEL_CASTLE_COURTYARD)
-        lvl_init_or_update(1, 0);
-
     if (loadFrames < 0)
         loadFrames = frames; // Timer never expires if frames < 0
 
@@ -1511,9 +1508,6 @@ s32 image_screen_press_button(s16 frames, UNUSED s32 arg1) {
 s32 image_screen_cannot_press_button(s16 frames, UNUSED s32 arg1) {
     loadFrames--;
 
-    if (gCurrLevelNum == LEVEL_CASTLE_COURTYARD)
-        lvl_init_or_update(1, 0);
-
     if (loadFrames < 0)
         loadFrames = frames; // Timer never expires if frames < 0
 
@@ -1522,6 +1516,20 @@ s32 image_screen_cannot_press_button(s16 frames, UNUSED s32 arg1) {
 
     renderPressA = TRUE;
     pressAFrames++;
+
+    return FALSE; // Don't continue in level script, call this function again next frame
+}
+
+s32 pause_if_emulator(s16 frames, UNUSED s32 arg1) {
+    loadFrames--;
+
+    if (loadFrames < 0)
+        loadFrames = frames; // Timer never expires if frames < 0
+
+    if (loadFrames == 0 || gIsConsole) {
+        loadFrames = 0;
+        return TRUE; // Continue in level script
+    }
 
     return FALSE; // Don't continue in level script, call this function again next frame
 }

@@ -19,6 +19,7 @@
 #include "make_const_nonconst.h"
 #include "levels/intro/header.h"
 #include "levels/cutscene_0/header.h"
+#include "levels/castle_courtyard/header.h"
 #include "farcall.h"
 
 #include "config.h"
@@ -51,7 +52,7 @@ const LevelScript level_scam_warning_screen[] = {
     UNLOAD_AREA(/*area*/ 1),
     CLEAR_LEVEL(),
     SLEEP(/*frames*/ 20),
-    EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _introSegmentRomStart, _introSegmentRomEnd, level_intro_splash_screen, _introSegmentBssStart, _introSegmentBssEnd),
+    EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_LEVEL_SCRIPT, _castle_courtyardSegmentRomStart, _castle_courtyardSegmentRomEnd, level_ccy_title_screen, _castle_courtyardSegmentBssStart, _castle_courtyardSegmentBssEnd),
 };
 
 const LevelScript level_intro_splash_screen[] = {
@@ -191,7 +192,7 @@ const LevelScript level_intro_entry_level_select[] = {
 // These should be static, but C doesn't allow non-sized forward declarations of static arrays
 
 const LevelScript script_intro_file_select[] = {
-    STOP_MUSIC(/*fadeOutTime*/ 0x00BE),
+    // STOP_MUSIC(/*fadeOutTime*/ 0x00BE),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0xFF, 0xFF, 0xFF),
     SLEEP(/*frames*/ 16),
     CLEAR_LEVEL(),
