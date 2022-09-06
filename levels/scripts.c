@@ -135,6 +135,8 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_ANIMATED_WALL_DINO_B,    animated_wall_dinoB_geo),
     LOAD_MODEL_FROM_GEO(MODEL_ANIMATED_WALL_BIRD_A,    animated_wall_birdA_geo),
     LOAD_MODEL_FROM_GEO(MODEL_ANIMATED_WALL_BIRD_B,    animated_wall_birdB_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_ANIMATED_WALL_ALIEN_A,   animated_wall_alienA_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_ANIMATED_WALL_ALIEN_B,   animated_wall_alienB_geo),
 
     FREE_LEVEL_POOL(),
     CALL(/*arg*/ 0, /*func*/ lvl_init_from_save_file),

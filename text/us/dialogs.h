@@ -2205,3 +2205,16 @@ DEFINE_DIALOG(DIALOG_177, 8, 3, 30, 270, _("\
 This is the first text from noseman\n\
 It's a hackjob and hijacks the dialog system\n\
 It do be kind of delicious!"))
+
+DEFINE_DIALOG(DIALOG_178, 8, 3, 30, 270, _("\
+H-h-how are you this resilient?"))
+
+DEFINE_DIALOG(DIALOG_179, 8, 3, 30, 270, _("\
+Take that you stupid rock!\n\
+Now wake me up or I'll tear you down\n\
+completely!"))
+
+DEFINE_DIALOG(DIALOG_180, 8, 3, 30, 270, _("\
+Feisty, but even I know when to give up.\n\
+Very well. But remember, I will return\n\
+whenever you wish for eternal escape again."))

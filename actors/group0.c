@@ -49,3 +49,5 @@
 #include "despair/anims/table.inc.c"
 #include "custom_door_c/model.inc.c"
 #include "custom_secret/model.inc.c"
+#include "animated_wall_alienA/model.inc.c"
+#include "animated_wall_alienB/model.inc.c"

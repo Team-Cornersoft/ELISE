@@ -16,6 +16,7 @@ u8 models[] = {
     ANIMAL_MODEL(DOG),
     ANIMAL_MODEL(DINO),
     ANIMAL_MODEL(BIRD),
+    ANIMAL_MODEL(ALIEN),
 };
 
 void update_model(void) {
