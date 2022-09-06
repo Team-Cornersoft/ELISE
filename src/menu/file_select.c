@@ -2298,8 +2298,21 @@ void draw_credits_box(void) {
 
 #define LINES_ON_PAGE 12
 // Please keep this equal to the length of the sCreditStrings array, I don't know a good alternative to keep count
-#define CREDIT_COUNT 24
+#define CREDIT_COUNT 42
 static const char* sCreditStrings[] = {
+    "",
+    "COMPETITION NOTE",
+    "This romhack was made for the",
+    "RHDC Dream competition 2022.",
+    "The goal is to gather all 12 blue",
+    "Dream Drops and fight the boss",
+    "in the hub area.",
+    "Special thanks to Simpleflips for",
+    "playing and streaming this hack!",
+    "Scroll further down for credits. ",
+    "",
+    "CREDITS",
+    "",
     "PRODUCERS",
     "Mel, ArcticJaguar725",
     "",
@@ -2307,23 +2320,28 @@ static const char* sCreditStrings[] = {
     "Mel, ArcticJaguar725",
     "",
     "ELISE VA",
-    "Frack",
+    "Frackhead",
     "",
     "PROGRAMMING",
     "ArcticJaguar725, Bitlytic",
     "",
-    "MODELS AND TEXTURES",
+    "MODELS, TEXTURES, CUTSCENES",
     "Mel",
     "",
     "SOUND ENGINEERING/PORTING",
     "ArcticJaguar725, PablosCorner",
     "",
     "ADDITIONAL HELP",
-    "FluffaLuigi (Mario Replacement), ",
-    "LuigixHero, Crissley10 (end card)",
+    "FluffaLuigi (Mario replacement),",
+    "LuigixHero (custom animations),",
+    "Crissley10 (end card)",
     "",
     "SPECIAL THANKS",
-    "Reonu",
+    "Reonu, Blender, Seq64, RHDC",
+    "",
+    "SAMPLE SOURCES",
+    "pixabay.com, mixkit.co",
+    "",
 };
 
 static s8 sCreditOffset = 0;
