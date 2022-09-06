@@ -398,7 +398,7 @@ void prepare_reverb_ring_buffer(s32 chunkLen, u32 updateIndex) {
         else if (toggleBetterReverb) {
             reverbFilterCount--; // Temporarily lower filter count for optimized bulk processing
             item = &gSynthesisReverb.items[gSynthesisReverb.curFrame][updateIndex];
-            if (gSoundMode == SOUND_MODE_MONO || monoReverb) {
+            if (/*gSoundMode == SOUND_MODE_MONO || */monoReverb) {
                 if (gReverbDownsampleRate != 1) {
                     osInvalDCache(item->toDownsampleLeft, DEFAULT_LEN_2CH);
                     for (srcPos = 0, dstPos = item->startPos; dstPos < ((item->lengthA / 2) + item->startPos); srcPos += gReverbDownsampleRate, dstPos++) {
@@ -1721,14 +1721,14 @@ void note_set_vel_pan_reverb(struct Note *note, f32 velocity, f32 pan, u8 reverb
         note->stereoStrongLeft = strongLeft;
     } else if (gSoundMode == SOUND_MODE_MONO) {
 #else
-    if (gSoundMode == SOUND_MODE_MONO) {
+    // if (gSoundMode == SOUND_MODE_MONO) {
 #endif
-        volLeft = 0.707f;
-        volRight = 0.707f;
-    } else {
+    //     volLeft = 0.707f;
+    //     volRight = 0.707f;
+    // } else {
         volLeft = gDefaultPanVolume[panIndex];
         volRight = gDefaultPanVolume[127 - panIndex];
-    }
+    // }
 
     if (velocity < 0) {
         velocity = 0;
