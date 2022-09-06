@@ -1,0 +1,4 @@
+extern void scroll_sts_mat_castle_courtyard_dl_Sparkles_A_layer5();
+extern void scroll_sts_mat_castle_courtyard_dl_Sparkles_B_layer5();
+extern void scroll_castle_courtyard_dl_E_dress_mesh_layer_5_vtx_1();
+extern void scroll_castle_courtyard();
