@@ -486,15 +486,14 @@ void update_resetting(void) {
         vec3f_copy(&o->oPosX, sAnchorPositions[NORTH]);
 
         if (sDespairDialogFlag) {
-            if (gDialogResponse != 0) {
-                disable_time_stop_including_mario();
-                change_attack(IDLE, o->oDespairAttackCooldown, o->oDespairAttackTimer);
-                sDespairDialogFlag = FALSE;
-            }
-            else {
-                enable_time_stop_including_mario();
-                create_dialog_box(DIALOG_172);
-            }
+            if (set_elise_dialog_prompt(5) != -2)
+                return;
+            if (set_elise_dialog_prompt(6) != -2)
+                return;
+            if (set_elise_dialog_prompt(7) != -2)
+                return;
+            change_attack(IDLE, o->oDespairAttackCooldown, o->oDespairAttackTimer);
+            sDespairDialogFlag = FALSE;
         } else {
             change_attack(IDLE, o->oDespairAttackCooldown, o->oDespairAttackTimer);
         }

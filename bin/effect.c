@@ -108,7 +108,7 @@ const Texture *const bubble_ptr_0B006848[] = {
 // Tiny Bubble
 // 0x0B00684C
 ALIGNED8 const Texture effect_0B00684C[] = {
-#include "textures/effect/tiny_bubble.0684C.rgba16.inc.c"
+#include "textures/effect/envfx_rain.custom.rgba16.inc.c"
 };
 
 // 0x0B006A50 - 0x0B006AB0
@@ -116,7 +116,7 @@ const Gfx tiny_bubble_dl_0B006A50[] = {
     gsDPPipeSync(),
     gsSPClearGeometryMode(G_LIGHTING | G_CULL_BACK | G_SHADING_SMOOTH),
     gsSPTexture(0x8000, 0x8000, 0, G_TX_RENDERTILE, G_ON),
-    gsDPSetCombineMode(G_CC_DECALRGBA, G_CC_DECALRGBA),
+    gsDPSetCombineMode(G_CC_MODULATERGBA, G_CC_MODULATERGBA),
     gsDPSetRenderMode(G_RM_AA_ZB_TEX_EDGE, G_RM_AA_ZB_TEX_EDGE2),
     gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, effect_0B00684C),
     gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 0, 0, G_TX_LOADTILE, 0, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD, G_TX_WRAP | G_TX_NOMIRROR, 4, G_TX_NOLOD),

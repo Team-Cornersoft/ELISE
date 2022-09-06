@@ -42,9 +42,9 @@ s16 gSnowParticleMaxCount;
 s8 gEnvFxMode = ENVFX_MODE_NONE;
 
 /// Template for a snow particle triangle
-Vtx gSnowTempVtx[3] = { { { { -5, 5, 0 }, 0, { 0, 0 }, { 0x7F, 0x7F, 0x7F, 0xFF } } },
-                        { { { -5, -5, 0 }, 0, { 0, 960 }, { 0x7F, 0x7F, 0x7F, 0xFF } } },
-                        { { { 5, 5, 0 }, 0, { 960, 0 }, { 0x7F, 0x7F, 0x7F, 0xFF } } } };
+Vtx gSnowTempVtx[3] = { { { { -15,  15,  0 }, 0, {   0,   0 }, { 0xb2, 0xd4, 0xd4, 0x45 } } },
+                        { { { -15, -15,  0 }, 0, {   0, 960 }, { 0xb2, 0xd4, 0xd4, 0x45 } } },
+                        { { {  15,  15,  0 }, 0, { 960,   0 }, { 0xb2, 0xd4, 0xd4, 0x45 } } } };
 
 // Change these to make snowflakes smaller or bigger
 struct SnowFlakeVertex gSnowFlakeVertex1 = { -5, 5, 0 };
@@ -66,7 +66,7 @@ s32 envfx_init_snow(s32 mode) {
 
         case ENVFX_SNOW_NORMAL:
             gSnowParticleMaxCount = 140;
-            gSnowParticleCount = 5;
+            gSnowParticleCount = 80;
             break;
 
         case ENVFX_SNOW_WATER:
@@ -221,9 +221,9 @@ void envfx_update_snow_normal(s32 snowCylinderX, s32 snowCylinderY, s32 snowCyli
             (gEnvFxBuffer + i)->yPos = 200.0f * random_float() + snowCylinderY;
             (gEnvFxBuffer + i)->isAlive = TRUE;
         } else {
-            (gEnvFxBuffer + i)->xPos += random_float() * 2 - 1.0f + (s16)(deltaX / 1.2);
-            (gEnvFxBuffer + i)->yPos -= 2 -(s16)(deltaY * 0.8);
-            (gEnvFxBuffer + i)->zPos += random_float() * 2 - 1.0f + (s16)(deltaZ / 1.2);
+            // (gEnvFxBuffer + i)->xPos += random_float() * 2 - 1.0f + (s16)(deltaX / 1.2);
+            (gEnvFxBuffer + i)->yPos -= 20 -(s16)(deltaY * 0.8);
+            // (gEnvFxBuffer + i)->zPos += random_float() * 2 - 1.0f + (s16)(deltaZ / 1.2);
         }
     }
 
@@ -255,9 +255,9 @@ void envfx_update_snow_blizzard(s32 snowCylinderX, s32 snowCylinderY, s32 snowCy
             (gEnvFxBuffer + i)->yPos = 400.0f * random_float() - 200.0f + snowCylinderY;
             (gEnvFxBuffer + i)->isAlive = TRUE;
         } else {
-            (gEnvFxBuffer + i)->xPos += random_float() * 2 - 1.0f + (s16)(deltaX / 1.2) + 20.0f;
+            // (gEnvFxBuffer + i)->xPos += random_float() * 2 - 1.0f + (s16)(deltaX / 1.2) + 20.0f;
             (gEnvFxBuffer + i)->yPos -= 5 -(s16)(deltaY * 0.8);
-            (gEnvFxBuffer + i)->zPos += random_float() * 2 - 1.0f + (s16)(deltaZ / 1.2);
+            // (gEnvFxBuffer + i)->zPos += random_float() * 2 - 1.0f + (s16)(deltaZ / 1.2);
         }
     }
 
@@ -436,7 +436,7 @@ Gfx *envfx_update_snow(s32 snowMode, Vec3s marioPos, Vec3s camFrom, Vec3s camTo)
             break;
     }
 
-    rotate_triangle_vertices((s16 *) &vertex1, (s16 *) &vertex2, (s16 *) &vertex3, pitch, yaw);
+    rotate_triangle_vertices((s16 *) &vertex1, (s16 *) &vertex2, (s16 *) &vertex3, 0, yaw);
 
     if (snowMode == ENVFX_SNOW_NORMAL || snowMode == ENVFX_SNOW_BLIZZARD) {
         gSPDisplayList(gfx++, &tiny_bubble_dl_0B006A50); // snowflake with gray edge

@@ -366,4 +366,8 @@ extern const Gfx white_particle_small_unused_dl[];
 
 #include "custom_secret/geo_header.h"
 
+#include "animated_wall_alienA/geo_header.h"
+
+#include "animated_wall_alienB/geo_header.h"
+
 #endif

@@ -563,6 +563,8 @@
 #define MODEL_CRYSTAL_PROJECTILE          0xFE
 #define MODEL_CUSTOM_DOOR_C               0xFF        // Door for CHESS area
 #define MODEL_CUSTOM_SECRET               0x100       // Secrets model
+#define MODEL_ANIMATED_WALL_ALIEN_A       0xC7
+#define MODEL_ANIMATED_WALL_ALIEN_B       0xC8
 
 #ifdef IA8_30FPS_COINS
 #define MODEL_SILVER_COIN                 0xE2        // silver_coin_geo
