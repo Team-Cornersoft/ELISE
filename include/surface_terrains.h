@@ -98,7 +98,7 @@ enum SurfaceTypes {
     SURFACE_007E,                       // 0x007E // Unused
     SURFACE_007F,                       // 0x007F // Unused
     SURFACE_PORTAL_WARP,                // 0x0080 // Unused
-    SURFACE_0081,                       // 0x0081 // Unused
+    SURFACE_BOSS_PORTAL_WARP,           // 0x0081 // Unused
     SURFACE_0082,                       // 0x0082 // Unused
     SURFACE_0083,                       // 0x0083 // Unused
     SURFACE_0084,                       // 0x0084 // Unused
