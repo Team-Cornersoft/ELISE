@@ -141,12 +141,10 @@ you went to the toilet.\n\
 "))
 
 DEFINE_DIALOG(DIALOG_016, 8, 7, 30, 270, _("\
-NOSEDAD:\n\
-This is the wrong dialogue, bitch.\n\
+ELISE:\n\
+Ehm...\n\
 \n\
-\n\
-\n\
-Amogus\n\
+Sure, mom, will do.\n\
 "))
 
 // Elise nosemen dialogues
