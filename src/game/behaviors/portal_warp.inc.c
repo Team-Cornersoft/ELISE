@@ -63,7 +63,7 @@ void bhv_boss_portal_warp_loop(void) {
     }
 
     if (gMarioState->floor != NULL) {
-        if (gMarioState->floor->type == SURFACE_BOSS_PORTAL_WARP && !(gMarioState->action & ACT_FLAG_AIR) && gMarioState->floor->object == o) {
+        if (gMarioState->floor->type == SURFACE_BOSS_PORTAL_WARP && gMarioState->floor->object == o) {
             o->hitboxRadius = 200000.0f;
             o->hitboxHeight = 200000.0f;
         }
