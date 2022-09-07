@@ -27,6 +27,7 @@
 
 #include "game/object_list_processor.h"
 
+// BEGIN FIRST CUTSCENE EXCHANGE
 const LevelScript level_cutscene_scene_0_0[] = {
     INIT_LEVEL(),
     FIXED_LOAD(/*loadAddr*/ _goddardSegmentStart, /*romStart*/ _goddardSegmentRomStart, /*romEnd*/ _goddardSegmentRomEnd),

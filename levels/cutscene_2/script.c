@@ -27,6 +27,7 @@
 
 #include "game/object_list_processor.h"
 
+// BEGIN DESPAIR INTRO CUTSCENE EXCHANGE
 const LevelScript level_cutscene_scene_2_0[] = {
     INIT_LEVEL(),
     FIXED_LOAD(/*loadAddr*/ _goddardSegmentStart, /*romStart*/ _goddardSegmentRomStart, /*romEnd*/ _goddardSegmentRomEnd),

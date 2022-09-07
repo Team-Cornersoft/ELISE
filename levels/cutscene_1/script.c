@@ -113,7 +113,7 @@ const LevelScript level_cutscene_scene_1_2[] = {
     EXIT_AND_EXECUTE(/*seg*/ SEGMENT_GLOBAL_LEVEL_SCRIPT, _scriptsSegmentRomStart, _scriptsSegmentRomEnd, level_main_scripts_entry),
 };
 
-// STOP FIRST CUTSCENE
+// END FIRST CUTSCENE EXCHANGE
 
 const LevelScript level_cutscene_scene_1_3[] = {
     INIT_LEVEL(),

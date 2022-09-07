@@ -921,8 +921,6 @@ void initiate_delayed_warp(void) {
                         break;
 
                     case WARP_OP_BOSS_PORTAL_WARP:
-                        initiate_warp(sWarpDest.levelNum & 0x7F, sWarpDest.areaIdx,
-                                    sWarpDest.nodeId, sWarpDest.arg);
                         warp_special(WARP_SPECIAL_DESPAIR_PROMPT);
                         gameFreezeFrames = 45;
                         break;

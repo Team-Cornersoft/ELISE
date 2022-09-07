@@ -103,13 +103,17 @@ const LevelScript level_cutscene_scene_4_2[] = {
     SLEEP(/*frames*/ 105),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
+    STOP_MUSIC(/*fadeOutTime*/ 0x0200),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
     CALL_LOOP(/*arg*/ 16, /*func*/ image_screen_cannot_press_button),
     UNLOAD_AREA(/*area*/ 1),
     CLEAR_LEVEL(),
-    SLEEP(/*frames*/ 20),
+    SLEEP(/*frames*/ 60),
+    SET_REG(/*value*/ LEVEL_BITDW),
     EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _cutscene_4SegmentRomStart, _cutscene_4SegmentRomEnd, level_cutscene_scene_4_3, _cutscene_4SegmentBssStart, _cutscene_4SegmentBssEnd),
 };
+
+// END DESPAIR INTRO CUTSCENE EXCHANGE
 
 const LevelScript level_cutscene_scene_4_3[] = {
     INIT_LEVEL(),
