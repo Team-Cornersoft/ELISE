@@ -914,6 +914,13 @@ void initiate_delayed_warp(void) {
                         warp_special(WARP_SPECIAL_MARIO_HEAD_REGULAR);
                         break;
 
+                    case WARP_OP_BOSS_PORTAL_WARP:
+                        initiate_warp(sWarpDest.levelNum & 0x7F, sWarpDest.areaIdx,
+                                    sWarpDest.nodeId, sWarpDest.arg);
+                        warp_special(WARP_SPECIAL_DESPAIR_PROMPT);
+                        gameFreezeFrames = 45;
+                        break;
+
                     case WARP_OP_CREDITS_START:
                         gCurrCreditsEntry = &sCreditsSequence[0];
                         initiate_warp(gCurrCreditsEntry->levelNum, gCurrCreditsEntry->areaIndex,

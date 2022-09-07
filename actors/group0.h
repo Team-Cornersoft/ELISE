@@ -370,4 +370,8 @@ extern const Gfx white_particle_small_unused_dl[];
 
 #include "animated_wall_alienB/geo_header.h"
 
+#include "custom_boss_portal/geo_header.h"
+
+#include "custom_boss_portal/collision_header.h"
+
 #endif

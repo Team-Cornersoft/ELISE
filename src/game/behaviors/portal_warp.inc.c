@@ -43,6 +43,35 @@ void bhv_portal_warp_loop(void) {
     o->oInteractStatus = INT_STATUS_NONE;
 }
 
+void bhv_boss_portal_warp_init(void) {
+    if (GET_BPARAM4(o->oBehParams) != 0) {
+        obj_scale(o, (f32) GET_BPARAM4(o->oBehParams) / 64.0f);
+    }
+
+    if (ABS(o->oFaceAnglePitch) > 1 || ABS(o->oFaceAngleRoll) > 1) { // Fast64 float moment, also rotated portals should not do stuff
+        o->oInteractType = INTERACT_NONE;
+    }
+
+    o->hitboxRadius = 0.0f;
+    o->hitboxHeight = 0.0f;
+}
+
+void bhv_boss_portal_warp_loop(void) {
+    if (ABS(o->oFaceAnglePitch) > 1 || ABS(o->oFaceAngleRoll) > 1) {
+        o->oInteractStatus = INT_STATUS_NONE;
+        return;
+    }
+
+    if (gMarioState->floor != NULL) {
+        if (gMarioState->floor->type == SURFACE_BOSS_PORTAL_WARP && !(gMarioState->action & ACT_FLAG_AIR) && gMarioState->floor->object == o) {
+            o->hitboxRadius = 200000.0f;
+            o->hitboxHeight = 200000.0f;
+        }
+    }
+
+    o->oInteractStatus = INT_STATUS_NONE;
+}
+
 Gfx *geo_portal_warp_color(s32 callContext, struct GraphNode *node, UNUSED s32 context) {
     Gfx *gfxHead = NULL;
 

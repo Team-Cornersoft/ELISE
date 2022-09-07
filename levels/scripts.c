@@ -124,6 +124,7 @@ const LevelScript level_main_scripts_entry[] = {
     LOAD_MODEL_FROM_GEO(MODEL_CUSTOM_DOOR_B,           custom_door_b_geo),
     LOAD_MODEL_FROM_GEO(MODEL_CUSTOM_DOOR_C,           custom_door_c_geo),
     LOAD_MODEL_FROM_GEO(MODEL_CUSTOM_SECRET,           custom_secret_geo),
+    LOAD_MODEL_FROM_GEO(MODEL_CUSTOM_BOSS_PORTAL,      custom_boss_portal_geo),
     LOAD_MODEL_FROM_GEO(MODEL_PORTAL_WARP,             custom_portal_w_geo),
     LOAD_MODEL_FROM_GEO(MODEL_DREAM_DROP_BLUE,         custom_dream_drop_blue_geo),
     LOAD_MODEL_FROM_GEO(MODEL_DREAM_DROP_RED,          custom_dream_drop_red_geo),

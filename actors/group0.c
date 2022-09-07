@@ -51,3 +51,5 @@
 #include "custom_secret/model.inc.c"
 #include "animated_wall_alienA/model.inc.c"
 #include "animated_wall_alienB/model.inc.c"
+#include "custom_boss_portal/model.inc.c"
+#include "custom_boss_portal/collision.inc.c"
