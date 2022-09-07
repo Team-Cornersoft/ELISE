@@ -844,7 +844,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp, u8 fadeMario) {
 
             case WARP_OP_BOSS_PORTAL_WARP:
                 sDelayedWarpTimer = 60;
-                fadeMusic = !music_unchanged_through_warp(sSourceWarpNodeId);
+                fadeMusic = TRUE;
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
                 break;
 
