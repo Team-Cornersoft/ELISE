@@ -53,224 +53,163 @@ Please come back to see\n\
 me after you've retrieved\n\
 the Power Star!"))
 
-DEFINE_DIALOG(DIALOG_002, 8, 3, 30, 270, _("\
-This is the first text from noseman\n\
-It's a hackjob and hijacks the dialog system\n\
-It do be kind of delicious!"))
+// Nosemen dialogues
+DEFINE_DIALOG(DIALOG_002, 8, 4, 30, 270, _("\
+NOSEMAN:\n\
+\n\
+So... Alone...\n\
+"))
 
-DEFINE_DIALOG(DIALOG_003, 1, 5, 95, 200, _("\
-Thank you, Mario! The Big\n\
-Bob-omb is nothing but a\n\
-big dud now! But the\n\
-battle for the castle has\n\
-just begun.\n\
-Other enemies are holding\n\
-the other Power Stars. If\n\
-you recover more Stars,\n\
-you can open new doors\n\
-that lead to new worlds!\n\
-My Bob-omb Buddies are\n\
-waiting for you. Be sure\n\
-to talk to them--they'll\n\
-set up cannons for you."))
+DEFINE_DIALOG(DIALOG_003, 8, 4, 30, 270, _("\
+NOSEMAN:\n\
+\n\
+We saw it all...\n\
+"))
 
 DEFINE_DIALOG(DIALOG_004, 0, 0, 0, 0, _(""))
 
-DEFINE_DIALOG(DIALOG_005, 1, 3, 30, 200, _("\
-Hey, Mario! Is it true\n\
-that you beat the Big\n\
-Bob-omb? Cool!\n\
-You must be strong. And\n\
-pretty fast. So, how fast\n\
-are you, anyway?\n\
-Fast enough to beat me...\n\
-Koopa the Quick? I don't\n\
-think so. Just try me.\n\
-How about a race to the\n\
-mountaintop, where the\n\
-Big Bob-omb was?\n\
-Whaddya say? When I say\n\
-『Go,』 let the race begin!\n\
+DEFINE_DIALOG(DIALOG_005, 8, 4, 30, 270, _("\
+NOSEMAN:\n\
 \n\
-Ready....\n\
+Why did noone help...?\n\
+"))
+
+DEFINE_DIALOG(DIALOG_006, 8, 3, 30, 270, _("\
 \n\
-//Go!////Don't Go"))
+The noseman doesn't speak, it only weeps.\n\
+"))
 
-DEFINE_DIALOG(DIALOG_006, 1, 3, 30, 200, _("\
-Hey!!! Don't try to " SCAM_ME
-"You've gotta run\n\
-the whole course.\n\
-Later. Look me up when\n\
-you want to race for\n\
-real."))
-
-DEFINE_DIALOG(DIALOG_007, 1, 5, 30, 200, _("\
-Hufff...fff...pufff...\n\
-Whoa! You...really...are...\n\
-fast! A human blur!\n\
-Here you go--you've won\n\
-it, fair and square!"))
-
-DEFINE_DIALOG(DIALOG_008, 1, 4, 30, 200, _("\
-BEWARE OF CHAIN CHOMP\n\
-Extreme Danger!\n\
-Get close and press [C]^\n\
-for a better look.\n\
-Scary, huh?\n\
-See the Red Coin on top\n\
-of the stake?\n\
+DEFINE_DIALOG(DIALOG_007, 8, 4, 30, 270, _("\
+NOSEMAN:\n\
 \n\
-When you collect eight of\n\
-them, a Power Star will\n\
-appear in the meadow\n\
-across the bridge."))
+Did he suffer...?\n\
+"))
 
-DEFINE_DIALOG(DIALOG_009, 1, 5, 30, 200, _("\
-Long time, no see! Wow,\n\
-have you gotten fast!\n\
-Have you been training\n\
-on the sly, or is it the\n\
-power of the Stars?\n\
-I've been feeling down\n\
-about losing the last\n\
-race. This is my home\n\
-course--how about a\n\
-rematch?\n\
-The goal is in\n\
-Windswept Valley.\n\
-Ready?\n\
+DEFINE_DIALOG(DIALOG_008, 8, 4, 30, 270, _("\
+NOSEMAN:\n\
 \n\
-//Go//// Don't Go"))
+Are we next...?\n\
+"))
 
-DEFINE_DIALOG(DIALOG_010, 1, 4, 30, 200, _("\
-You've stepped on the\n\
-Wing Cap Switch. Wearing\n\
-the Wing Cap, you can\n\
-soar through the sky.\n\
-Now Wing Caps will pop\n\
-out of all the red blocks\n\
-you find.\n\
+DEFINE_DIALOG(DIALOG_009, 8, 4, 30, 270, _("\
+NOSEMAN:\n\
 \n\
-Would you like to Save?\n\
+He was never able to catch it...\n\
+"))
+
+DEFINE_DIALOG(DIALOG_010, 8, 4, 30, 270, _("\
+NOSEMAN:\n\
 \n\
-//Yes////No"))
+The tree... is wilting...?\n\
+"))
 
-DEFINE_DIALOG(DIALOG_011, 1, 4, 30, 200, _("\
-You've just stepped on\n\
-the Metal Cap Switch!\n\
-The Metal Cap makes\n\
-Mario invincible.\n\
-Now Metal Caps will\n\
-pop out of all of the\n\
-green blocks you find.\n\
+DEFINE_DIALOG(DIALOG_011, 8, 4, 30, 270, _("\
+NOSEMAN:\n\
 \n\
-Would you like to Save?\n\
+It's a curse...\n\
+"))
+
+DEFINE_DIALOG(DIALOG_012, 8, 4, 30, 270, _("\
+NOSEMAN:\n\
 \n\
-//Yes////No"))
+Why us...?\n\
+"))
 
-DEFINE_DIALOG(DIALOG_012, 1, 4, 30, 200, _("\
-You've just stepped on\n\
-the Vanish Cap Switch.\n\
-The Vanish Cap makes\n\
-Mario disappear.\n\
-Now Vanish Caps will pop\n\
-from all of the blue\n\
-blocks you find.\n\
+DEFINE_DIALOG(DIALOG_013, 8, 4, 30, 270, _("\
+NOSEMAN:\n\
 \n\
-Would you like to Save?\n\
+We were... too late...\n\
+"))
+
+DEFINE_DIALOG(DIALOG_014, 8, 4, 30, 270, _("\
+NOSEMAN:\n\
 \n\
-//Yes////No"))
+Eternal heartache...\n\
+"))
 
-DEFINE_DIALOG(DIALOG_013, 1, 5, 30, 200, _("\
-You've collected 100\n\
-coins! Mario gains more\n\
-power from the castle.\n\
-Do you want to Save?\n\
-//Yes////No"))
+// MISC. nosemen dialogues --- Keep for later: <COL_FF9FFFFF>ELISE:<COL_-------->
 
-DEFINE_DIALOG(DIALOG_014, 1, 4, 30, 200, _("\
-Wow! Another Power Star!\n\
-Mario gains more courage\n\
-from the power of the\n\
-castle.\n\
-Do you want to Save?\n\
+DEFINE_DIALOG(DIALOG_015, 8, 4, 30, 270, _("\
+NOSEMOM:\n\
+Sweetie, don't forget to wash your hands after\n\
+you went to the toilet.\n\
+"))
+
+DEFINE_DIALOG(DIALOG_016, 8, 7, 30, 270, _("\
+NOSEDAD:\n\
+This is the wrong dialogue, bitch.\n\
 \n\
-//You Bet//Not Now"))
-
-DEFINE_DIALOG(DIALOG_015, 1, 4, 30, 200, _("\
-You can punch enemies to\n\
-knock them down. Press [A]\n\
-to jump, [B] to punch.\n\
-Press [A] then [B] to Kick.\n\
-To pick something up,\n\
-press [B], too. To throw\n\
-something you're holding,\n\
-press [B] again."))
-
-DEFINE_DIALOG(DIALOG_016, 1, 3, 30, 200, _("\
-Hop on the shiny shell and\n\
-ride wherever you want to\n\
-go! Shred those enemies!"))
-
-DEFINE_DIALOG(DIALOG_017, 1, 4, 30, 200, _("\
-I'm the Big Bob-omb, lord\n\
-of all blasting matter,\n\
-king of ka-booms the\n\
-world over!\n\
-How dare you scale my\n\
-mountain? By what right\n\
-do you set foot on my\n\
-imperial mountaintop?\n\
-You may have eluded my\n\
-guards, but you'll never\n\
-escape my grasp...\n\
 \n\
-...and you'll never take\n\
-away my Power Star. I\n\
-hereby challenge you,\n\
-Mario!\n\
-If you want the Star I\n\
-hold, you must prove\n\
-yourself in battle.\n\
 \n\
-Can you pick me up from\n\
-the back and hurl me to\n\
-this royal turf? I think\n\
-that you cannot!"))
+Amogus\n\
+"))
 
-DEFINE_DIALOG(DIALOG_018, 1, 4, 30, 200, _("\
-I'm sleeping because...\n\
-...I'm sleepy. I don't\n\
-like being disturbed.\n\
-Please walk quietly."))
+// Elise nosemen dialogues
 
-DEFINE_DIALOG(DIALOG_019, 1, 2, 30, 200, _("\
-Shhh! Please walk\n\
-quietly in the hallway!"))
+DEFINE_DIALOG(DIALOG_017, 8, 5, 30, 270, _("\
+ELISE:\n\
+Oh, poor Sammy...\n\
+You were a noisy but good neighbourhood cat.\n\
+Rest in piece, buddy.\n\
+"))
 
-DEFINE_DIALOG(DIALOG_020, 1, 6, 95, 150, _("\
-Dear Mario:\n\
-Please come to the\n\
-castle. I've baked\n\
-a cake for you.\n\
-Yours truly--\n\
-Princess Toadstool"))
+DEFINE_DIALOG(DIALOG_018, 8, 8, 30, 270, _("\
+ELISE:\n\
+Man, how many nights this dog's barking didn't\n\
+wake everyone up.\n\
+I can count them on my hands.\n\
+Still, I'll never forget your loyalty.\n\
+\n\
+Let's play together again someday, okay?\n\
+"))
 
-DEFINE_DIALOG(DIALOG_021, 1, 5, 95, 200, _("\
-Welcome.\n\
-No one's home!\n\
-Now " SCRAM "\n\
-and don't come back!\n\
-Gwa ha ha!"))
+DEFINE_DIALOG(DIALOG_019, 8, 7, 30, 270, _("\
+ELISE:\n\
+Dad used to have it out for this bird>\n\
+Saying it's some kind of reptile from the depths\n\
+of the dankest swamps.\n\
+\n\
+I wonder if it's still alive and kicking?\n\
+"))
 
-DEFINE_DIALOG(DIALOG_022, 1, 2, 95, 200, _("\
-You need a key to open\n\
-this door."))
 
-DEFINE_DIALOG(DIALOG_023, 1, 3, 95, 200, _("\
-This key doesn't fit!\n\
-Maybe it's for the\n\
-basement..."))
+DEFINE_DIALOG(DIALOG_020, 8, 9, 30, 270, _("\
+ELISE:\n\
+I always found it odd that card decks came\n\
+with a joker card. It's so uncreative!\n\
+Behold, the next best thing: The cat card!\n\
+though this card should have been placed\n\
+before the jack, not after it...\n\
+\n\
+It's just as sneaky as a real cat.\n\
+"))
+
+
+DEFINE_DIALOG(DIALOG_021, 8, 8, 30, 270, _("\
+ELISE:\n\
+Mom...\n\
+\n\
+She must've been so devistated.\n\
+Of course she doesn't want to see me like this.\n\
+\n\
+Was I wrong for making that wish...?\n\
+"))
+
+
+/* Nosedad dialogue */
+
+DEFINE_DIALOG(DIALOG_022, 8, 4, 30, 270, _("\
+NOSEDAD:\n\
+...Don't be afraid, Elise...\n\
+I will always watch over you...\n\
+"))
+
+DEFINE_DIALOG(DIALOG_023, 8, 3, 30, 270, _("\
+ELISE:\n\
+Dad...\n\
+"))
+
+/* Vanilla dialogue */
 
 DEFINE_DIALOG(DIALOG_024, 1, 5, 95, 200, _("\
 You need Star power to\n\
@@ -2191,6 +2130,7 @@ Hi my name is Elise lol.\n\
 I like to eat cheese!\n\
 It do be kind of delicious!"))
 
+// DESPAIR fight dialogues
 DEFINE_DIALOG(DIALOG_175, 8, 3, 30, 270, _("\
 It's time for me to face my problems\n\
 head on and give life a chance\n\
@@ -2218,3 +2158,26 @@ DEFINE_DIALOG(DIALOG_180, 8, 3, 30, 270, _("\
 Feisty, but even I know when to give up.\n\
 Very well. But remember, I will return\n\
 whenever you wish for eternal escape again."))
+
+DEFINE_DIALOG(DIALOG_181, 8, 3, 30, 270, _("\
+N-n-n-o!\n\
+I can't...\n\
+Has humanity forsaken me...?"))
+
+DEFINE_DIALOG(DIALOG_182, 8, 3, 30, 270, _("\
+If only you didn't try to trap people\n\
+in a coma maybe we wouldn't have."))
+
+DEFINE_DIALOG(DIALOG_183, 8, 3, 30, 270, _("\
+But...\n\
+I did it for humanity..."))
+
+DEFINE_DIALOG(DIALOG_184, 8, 3, 30, 270, _("\
+It's over, man.\n\
+\n\
+Go to bed."))
+
+DEFINE_DIALOG(DIALOG_185, 8, 3, 30, 270, _("\
+...CURSE...\n\
+...YOU...\n\
+...ELISE...!"))
