@@ -34,3 +34,4 @@
 #include "custom_secret/geo.inc.c"
 #include "animated_wall_alienA/geo.inc.c"
 #include "animated_wall_alienB/geo.inc.c"
+#include "custom_boss_portal/geo.inc.c"

@@ -24,6 +24,8 @@ void bhv_door_init(void);
 void bhv_door_loop(void);
 void bhv_portal_warp_init(void);
 void bhv_portal_warp_loop(void);
+void bhv_boss_portal_warp_init(void);
+void bhv_boss_portal_warp_loop(void);
 void bhv_star_door_loop(void);
 void bhv_mr_i_iris_loop(void);
 void bhv_mr_i_body_loop(void);

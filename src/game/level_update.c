@@ -842,6 +842,12 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp, u8 fadeMario) {
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
                 break;
 
+            case WARP_OP_BOSS_PORTAL_WARP:
+                sDelayedWarpTimer = 60;
+                fadeMusic = !music_unchanged_through_warp(sSourceWarpNodeId);
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
+                break;
+
             case WARP_OP_CREDITS_START:
                 sDelayedWarpTimer = 30;
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
@@ -912,6 +918,13 @@ void initiate_delayed_warp(void) {
 
                     case WARP_OP_DEMO_NEXT:
                         warp_special(WARP_SPECIAL_MARIO_HEAD_REGULAR);
+                        break;
+
+                    case WARP_OP_BOSS_PORTAL_WARP:
+                        initiate_warp(sWarpDest.levelNum & 0x7F, sWarpDest.areaIdx,
+                                    sWarpDest.nodeId, sWarpDest.arg);
+                        warp_special(WARP_SPECIAL_DESPAIR_PROMPT);
+                        gameFreezeFrames = 45;
                         break;
 
                     case WARP_OP_CREDITS_START:

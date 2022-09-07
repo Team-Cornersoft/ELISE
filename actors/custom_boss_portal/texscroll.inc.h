@@ -1,0 +1,2 @@
+extern void scroll_custom_boss_portal_NO_FIUCKING_COLLISION_mesh_layer_5_vtx_0();
+extern void scroll_actor_geo_custom_boss_portal();
