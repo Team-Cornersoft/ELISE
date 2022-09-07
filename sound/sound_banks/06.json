@@ -67,6 +67,12 @@
             [1, 32700],
             [600, 0],
             "hang"
+        ],
+        "envelope11": [
+            [30, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
         ]
     },
     "instruments": {
@@ -149,6 +155,11 @@
             "release_rate": 10,
             "envelope": "envelope10",
             "sound": "0F_custom_warp"
+        },
+        "inst16": {
+            "release_rate": 10,
+            "envelope": "envelope11",
+            "sound": "10_custom_boss_warp"
         }
     },
     "instrument_list": [
@@ -167,6 +178,7 @@
         "inst11",
         "inst15",
         "inst12",
-        "inst13"
+        "inst13",
+        "inst16"
     ]
 }

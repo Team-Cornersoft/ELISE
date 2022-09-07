@@ -904,8 +904,11 @@ u32 interact_warp(struct MarioState *m, UNUSED u32 interactType, struct Object *
             return FALSE;
         }
 
-        if (obj->behavior == segmented_to_virtual(bhvBossPortalWarp)) { // TODO:
-            play_sound(SOUND_MENU_CUSTOM_WARP, gGlobalSoundSource);
+        if (obj->behavior == segmented_to_virtual(bhvBossPortalWarp)) {
+            if (gMarioState->action & ACT_FLAG_AIR)
+                return FALSE;
+            
+            play_sound(SOUND_MENU_CUSTOM_BOSS_WARP, gGlobalSoundSource);
 
             mario_stop_riding_object(m);
             level_trigger_warp(m, WARP_OP_BOSS_PORTAL_WARP, TRUE);

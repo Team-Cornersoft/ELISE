@@ -5042,7 +5042,7 @@ sound_ref .sound_obj_bubba_chomp
 sound_ref .sound_obj_enemy_defeat_shrink
 sound_ref .sound_obj_custom_death
 sound_ref .sound_obj_custom_warp
-sound_ref .sound_obj_bowser_spinning
+sound_ref .sound_obj_custom_boss_warp
 sound_ref .sound_obj_klepto2
 sound_ref .sound_obj_king_bobomb_talk
 sound_ref .sound_obj_baby_penguin_walk
@@ -6962,6 +6962,7 @@ sound_ref .sound_menu_camera_buzz
 sound_ref .sound_menu_camera_turn
 sound_ref .sound_obj_custom_death
 sound_ref .sound_obj_custom_warp
+sound_ref .sound_obj_custom_boss_warp
 
 .sound_obj_custom_death:
 chan_setbank 6
@@ -6995,6 +6996,26 @@ layer_end
 layer_setpan 0x5F
 layer_portamento 0x1, 24, 0x1C0
 layer_note1 0, 0x90, 111
+layer_end
+
+.sound_obj_custom_boss_warp:
+chan_setbank 6
+chan_setinstr 16
+chan_setpanmix 0
+chan_setval 0x7F
+chan_call .set_reverb
+chan_setlayer 0, .layer_custom_boss_warp
+chan_setlayer 1, .layer_custom_boss_warp_2
+chan_end
+
+.layer_custom_boss_warp:
+layer_setpan 0x18
+layer_note1 39, 0x180, 115
+layer_end
+
+.layer_custom_boss_warp_2:
+layer_setpan 0x67
+layer_note1 40, 0x180, 115
 layer_end
 
 .sound_menu_change_select:
