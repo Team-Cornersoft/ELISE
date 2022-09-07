@@ -74,40 +74,48 @@ s32 reverbMultsArr[][NUM_ALLPASS / 3] = {
  * delaysBaselineL, delaysBaselineR, reverbMultsL, reverbMultsR
  */ 
 struct BetterReverbSettings gBetterReverbSettings[] = {
-    {
+    { /* 00 */
         -1, FALSE, NUM_ALLPASS, -1, -1, 0x00, 0x00, // vanilla reverb
         delaysBaselineArr[0], delaysBaselineArr[0], reverbMultsArr[0], reverbMultsArr[0]
     },
-    {
+    { /* 01 */
         2, FALSE, (NUM_ALLPASS - 9), 0x1000, 0x53FF, 0x30, 0xA0, // default console
         delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
     },
-    {
+    { /* 02 */
         1, FALSE, NUM_ALLPASS, 0x1000, 0x31FF, 0x60, 0xA0, // default emulator
         delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
     },
-    {
+    { /* 03 */
         2, FALSE, (NUM_ALLPASS - 9), 0x1000, 0x37FF, 0x58, 0xA0, // WDW console
         delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
     },
-    {
+    { /* 04 */
         2, FALSE, (NUM_ALLPASS - 3), 0x1000, 0x2EFF, 0x68, 0xA0, // WDW emulator
         delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
     },
-    {
+    { /* 05 */
         2, FALSE, (NUM_ALLPASS - 9), 0x2600, 0x48FF, 0x38, 0x80, // LLL Area 2 console
         delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
     },
-    {
-        2, FALSE, NUM_ALLPASS, 0x2600, 0x4CFF, 0x40, 0x80, // LLL Area 2 console
+    { /* 06 */
+        2, FALSE, NUM_ALLPASS, 0x2600, 0x4CFF, 0x40, 0x80, // LLL Area 2 emulator
         delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
     },
-    {
+    { /* 07 */
         2, FALSE, (NUM_ALLPASS - 9), 0x2A00, 0x40FF, 0x34, 0x70, // TTM Area 1 console
         delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
     },
-    {
-        2, FALSE, (NUM_ALLPASS - 3), 0x2A00, 0x44FF, 0x38, 0x70, // TTM Area 1 console
+    { /* 08 */
+        2, FALSE, (NUM_ALLPASS - 3), 0x2A00, 0x44FF, 0x38, 0x70, // TTM Area 1 emulator
+        delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
+    },
+    { /* 09 */
+        2, FALSE, (NUM_ALLPASS - 9), 0x0800, 0x3BFF, 0x55, 0x90, // CCM Area 4 console
+        delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
+    },
+    { /* 0A */
+        2, FALSE, (NUM_ALLPASS - 3), 0x0800, 0x3BFF, 0x60, 0x90, // CCM Area 4 emulator
         delaysBaselineArr[1], delaysBaselineArr[2], reverbMultsArr[1], reverbMultsArr[2]
     },
 };

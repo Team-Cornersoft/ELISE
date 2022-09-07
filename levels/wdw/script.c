@@ -76,7 +76,7 @@ const LevelScript level_wdw_entry[] = {
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
-		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_WATER, 0x03, 0x03),
+		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_WATER, 0x03, 0x04),
 		SET_ECHO(0x24, 0x24),
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
@@ -86,6 +86,7 @@ const LevelScript level_wdw_entry[] = {
 		WARP_NODE(0xBA, LEVEL_WDW, 0x02, 0xBA, WARP_NO_CHECKPOINT),
 		WARP_NODE(0xCA, LEVEL_WDW, 0x01, 0xBA, WARP_NO_CHECKPOINT),
 		OBJECT(MODEL_NONE, 0, -3800, 0, 0, 0, 0, 0x00BA0000, bhvFadingWarp),
+		OBJECT(MODEL_NONE, 0, -3800, 0, 0, 0, 0, 0x000A0000, bhvFadingWarp),
 		MARIO_POS(0x01, 0, 0, 0, 0),
 		OBJECT(MODEL_NONE, -958, 8322, -958, 0, 0, 0, 0x04000000, bhvStar),
 		OBJECT(MODEL_NONE, 0, -10200, 0, 0, 0, 0, 0x60CA0000, bhvWarp),
@@ -94,6 +95,8 @@ const LevelScript level_wdw_entry[] = {
 		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_ALONE),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
+		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_ALONE, 0x01, 0x02),
+		SET_ECHO(0x10, 0x10),
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
 
