@@ -844,6 +844,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp, u8 fadeMario) {
 
             case WARP_OP_BOSS_PORTAL_WARP:
                 sDelayedWarpTimer = 60;
+                sSourceWarpNodeId = GET_BPARAM2(m->usedObj->oBehParams);
                 fadeMusic = TRUE;
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
                 break;
@@ -921,7 +922,13 @@ void initiate_delayed_warp(void) {
                         break;
 
                     case WARP_OP_BOSS_PORTAL_WARP:
-                        warp_special(WARP_SPECIAL_DESPAIR_PROMPT);
+                        warpNode = area_get_warp_node(sSourceWarpNodeId);
+
+                        initiate_warp(warpNode->node.destLevel & 0x7F, warpNode->node.destArea,
+                                    warpNode->node.destNode, sDelayedWarpArg);
+                        sWarpDest.type = WARP_TYPE_NOT_WARPING; // Override normal warp while still preserving the warp node destination
+
+                        warp_special(WARP_SPECIAL_DESPAIR_PROMPT); // Despair warp
                         gameFreezeFrames = 45;
                         break;
 
