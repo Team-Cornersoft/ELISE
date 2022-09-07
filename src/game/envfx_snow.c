@@ -491,6 +491,8 @@ Gfx *envfx_update_particles(s32 mode, Vec3s marioPos, Vec3s camTo, Vec3s camFrom
         case ENVFX_SNOW_NORMAL:
             // Assuming this is what's getting replaced with rain
             play_sound(SOUND_CUSTOM_STEREO_RAIN, gGlobalSoundSource);
+            if (gIsConsole)
+                return NULL;
             gfx = envfx_update_snow(1, marioPos, camFrom, camTo);
             break;
 
