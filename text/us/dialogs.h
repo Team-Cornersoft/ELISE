@@ -1250,7 +1250,7 @@ but I've always loved it here.\n\
 "))
 
 // CCM AREA 6 dino room
-DEFINE_DIALOG(DIALOG_111, 8, 9, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_111, 8, 10, 30, 270, _("\
 Well, well, well.\n\
 Look at what showed its big, bulky face:\n\
 The swamp reptile itself!\n\
@@ -1263,7 +1263,7 @@ How silly.\n\
 "))
 
 // BBH AREA 1 bloom level
-DEFINE_DIALOG(DIALOG_112, 8, 7, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_112, 8, 8, 30, 270, _("\
 Oh, no.\n\
 I remember this.\n\
 It was shortly before the anesthesia completely wore off...\n\
