@@ -181,6 +181,10 @@ extern s16 gCutsceneMsgXOffset;
 extern s16 gCutsceneMsgYOffset;
 extern s8  gRedCoinsCollected;
 
+extern s8 eliseDialogState;
+extern s32 eliseDialogTimer;
+extern s32 eliseDialogCurrPrompt;
+
 void overwrite_elise_dialog_prompt(u8 eliseDialogPromptIndex, u8 dialogId);
 s8 set_elise_dialog_prompt(u8 eliseDialogPromptIndex); // Return 0 on success, some negative value on failure
 void render_elise_dialog_entry(void);

@@ -1,10 +1,12 @@
 #include "../print.h"
+#include "../ingame_menu.h"
 
 #define NOSEMAN_ELISE_DIALOG_ID 4
 
 enum NosemanState {
     NOSEMAN_IDLE,
     NOSEMAN_TALKING_TO_ELISE,
+    NOSEMAN_TALKING_ACTIVE,
     NOSEMAN_UNABLE_TO_TALK,
 };
 
@@ -13,11 +15,11 @@ void update_noseman_idle(void) {
     
     // Map from 00 - B4 which represents 00 - 180
     // B4 would be full 360, which is two 180 sides
-    f32 talkAngle = GET_BPARAM1(o->oBehParams);
+    s32 talkAngle = ((u32) o->oBehParams >> 24) * 0x10000 / 360;
 
-    f32 angle = angle_to_degrees(o->oAngleToMario);
+    s16 angle = o->oAngleToMario - o->oFaceAngleYaw;
 
-    if (absf(angle) < talkAngle && cur_obj_can_mario_activate_textbox_2(900.0f, 1400.0f)) {
+    if (ABS((s32) angle) < talkAngle && cur_obj_can_mario_activate_textbox_2(1000.0f, 1400.0f)) {
         o->oAction = NOSEMAN_TALKING_TO_ELISE;
         u8 dialogId = GET_BPARAM2(o->oBehParams);
         overwrite_elise_dialog_prompt(NOSEMAN_ELISE_DIALOG_ID, dialogId);
@@ -25,38 +27,43 @@ void update_noseman_idle(void) {
 }
 
 void update_noseman_talking(void) {
-    s32 err = 0;
-    if (o->oSubAction > 15) {
-        err = set_elise_dialog_prompt(NOSEMAN_ELISE_DIALOG_ID);
-    } else {
-        o->oSubAction++;
-    }
+    if (set_elise_dialog_prompt(NOSEMAN_ELISE_DIALOG_ID) == 0)
+        o->oAction = NOSEMAN_TALKING_ACTIVE;
+}
 
-    if (err == -2) {
-        o->oDialogState = DIALOG_STATUS_STOP_DIALOG;
-    }
+void update_noseman_active_talking(void) {
+    if (o->oTimer == 0)
+        start_object_cutscene(CUTSCENE_ELISE_DIALOG, o);
 
-    if (cur_obj_update_dialog_with_cutscene(MARIO_DIALOG_LOOK_UP,
-            DIALOG_FLAG_NONE, CUTSCENE_DIALOG, DIALOG_BLANK)) {
-        disable_time_stop_including_mario();
+    if (!(gMarioState->action & ACT_FLAG_INTANGIBLE)) {
         o->oAction = NOSEMAN_UNABLE_TO_TALK;
+        return;
     }
 
-}
+    s16 angle = approach_angle(gMarioState->faceAngle[1], mario_obj_angle_to_object(gMarioState, o), 0x600);
+    if (gMarioState->faceAngle[1] == angle) {
+        o->oAction = NOSEMAN_UNABLE_TO_TALK;
+        return;
+    }
 
-void update_noseman_silent(void) {
-    
-}
+    gMarioState->faceAngle[1] = angle;
+}  
 
 void bhv_noseman_init(void) {
     // I'm 99% sure this is always set to 0, but might as well make sure
-    o->oAction = 0;
+    o->oAction = NOSEMAN_IDLE;
 }
 
 void bhv_noseman_loop(void) {
+    if (gMarioState->health < 0x0100)
+        return;
+
     switch(o->oAction) {
         case NOSEMAN_IDLE:             update_noseman_idle();    break;
         case NOSEMAN_TALKING_TO_ELISE: update_noseman_talking(); break;
-        case NOSEMAN_UNABLE_TO_TALK:   update_noseman_silent();  break;
+        case NOSEMAN_TALKING_ACTIVE:   update_noseman_active_talking();  break;
     }
+    
+    if (o->oTimer > 0x10000)
+        o->oTimer = 0x10000;
 }

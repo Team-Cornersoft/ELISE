@@ -302,7 +302,8 @@ enum Cutscenes {
     CUTSCENE_CREDITS,
     CUTSCENE_EXIT_WATERFALL,
     CUTSCENE_EXIT_FALL_WMOTR,
-    CUTSCENE_ENTER_POOL
+    CUTSCENE_ENTER_POOL,
+    CUTSCENE_ELISE_DIALOG
 };
 
 /**
@@ -811,6 +812,7 @@ s16 camera_course_processing(struct Camera *c);
 void resolve_geometry_collisions(Vec3f pos);
 s32 rotate_camera_around_walls(struct Camera *c, Vec3f cPos, s16 *avoidYaw, s16 yawRange);
 void find_mario_floor_and_ceil(struct PlayerGeometry *pg);
+void start_object_cutscene(u8 cutscene, struct Object *obj);
 void start_object_cutscene_without_focus(u8 cutscene);
 s16 cutscene_object_with_dialog(u8 cutscene, struct Object *obj, s16 dialogID);
 s16 cutscene_object_without_dialog(u8 cutscene, struct Object *obj);

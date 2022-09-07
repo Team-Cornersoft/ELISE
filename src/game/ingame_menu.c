@@ -45,7 +45,7 @@ struct EliseDialogOptions eliseDialogPrompts[] = {
             { DIALOG_175, FALSE, 0, (ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_ELISE_TEXT), NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(0.75f) },
             { DIALOG_176, FALSE, 0, (ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_DESPAIR_TEXT), NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.75f) },
   /*0x04 Noseman dialogue*/  
-            { DIALOG_002, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_MULTI_USE), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(1.0f), SEC_TO_FRAMES(0.0f) },
+            { DIALOG_002, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_MULTI_USE | ELISE_SPECIAL_FLAG_QUIET_MUSIC), NO_SOUND, SEC_TO_FRAMES(0.5f), 0xFFFE, SEC_TO_FRAMES(0.5f) },
   /*0x05 Despair dialogue 2*/  
             { DIALOG_178, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_DESPAIR_TEXT), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(0.75f) },
             { DIALOG_179, FALSE, 0, (ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_ELISE_TEXT), NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(0.75f) },
@@ -1312,6 +1312,15 @@ void render_elise_dialog_entry(void) {
     eliseDialogTimer++;
 
     if (eliseDialogState == ELISE_DIALOG_CLOSED) {
+        if (eliseDialogTimer == 0 && elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_PAUSE_CHARACTER) {
+            if (gMarioState->action & ACT_FLAG_AIR) {
+                eliseDialogTimer--;
+                return;
+            }
+
+            set_mario_action(gMarioState, ACT_UNUSED_10B, 0);
+        }
+
         if (eliseDialogTimer >= elisePrompt->dialogDelay) {
             eliseDialogTimer = 0; // Not setting to -1 intentional due to the return bypass
 
@@ -1332,15 +1341,6 @@ void render_elise_dialog_entry(void) {
     if (eliseDialogState == ELISE_DIALOG_OPENING) {
         if (eliseDialogTimer == 0 && elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_QUIET_MUSIC)
             seq_player_lower_volume(SEQ_PLAYER_LEVEL, 60, 40);
-
-        if (eliseDialogTimer == 0 && elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_PAUSE_CHARACTER) {
-            if (gMarioState->action & ACT_FLAG_AIR) {
-                eliseDialogTimer--;
-                return;
-            }
-
-            set_mario_action(gMarioState, ACT_UNUSED_10B, 0);
-        }
 
         f32 progress = (coss(((u32) eliseDialogTimer * 0x8000) / ELISE_DIALOG_ANIM_FRAMES) + 1.0f) / 2.0f;
         s32 tmp = (s32) (progress * (f32) dialog->width) / 2;
@@ -1535,6 +1535,10 @@ void render_elise_dialog_entry(void) {
 
         if (elisePrompt->soundDuration == 0xFFFF) {
             printAmount = eliseDialogTimer;
+        } else if (elisePrompt->soundDuration == 0xFFFE) {
+            printAmount = eliseDialogTimer * 3 / 2;
+        } else if (elisePrompt->soundDuration == 0xFFFD) {
+            printAmount = eliseDialogTimer * 2;
         } else if (elisePrompt->soundDuration > 0) {
             printAmount = printAmount * eliseDialogTimer / (s32) elisePrompt->soundDuration;
         }
@@ -1544,8 +1548,8 @@ void render_elise_dialog_entry(void) {
         if (eliseDialogTimer == 0 && elisePrompt->soundId != NO_SOUND)
             play_sound(elisePrompt->soundId, gGlobalSoundSource);
 
-        if (elisePrompt->soundDuration == 0xFFFF) {
-            if (eliseDialogTimer >= strLen) {
+        if (elisePrompt->soundDuration >= 0xFFF0) {
+            if (printAmount >= strLen) {
                 eliseDialogTimer = -1;
                 eliseDialogState = ELISE_DIALOG_DONE_READING;
             }

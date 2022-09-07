@@ -8672,6 +8672,41 @@ void cutscene_dialog_start(struct Camera *c) {
     }
 }
 
+void cutscene_elise_dialog_start(struct Camera *c) {
+    s16 yaw;
+
+    store_info_star(c);
+
+    // Store Mario's position and faceAngle
+    sCutsceneVars[8].angle[0] = 0;
+    
+    Vec3f dir;
+    vec3f_diff(dir, sMarioCamState->pos, &gCutsceneFocus->oPosX);
+    vec3f_normalize(dir);
+    
+    Vec3f scale = {PUSH_BACK_SCALE, PUSH_BACK_SCALE, PUSH_BACK_SCALE};
+
+    vec3f_mul(dir, scale);
+
+    vec3f_add(dir, sMarioCamState->pos);
+
+    vec3f_copy(sCutsceneVars[8].point, dir);
+
+    sCutsceneVars[8].point[1] = sMarioCamState->pos[1] + 250.f;
+
+    // Store gCutsceneFocus's position and yaw
+    object_pos_to_vec3f(sCutsceneVars[9].point, gCutsceneFocus);
+    sCutsceneVars[9].point[1] += gCutsceneFocus->hitboxHeight + 200.f;
+    sCutsceneVars[9].angle[1] = calculate_yaw(sCutsceneVars[8].point, sCutsceneVars[9].point);
+
+    yaw = calculate_yaw(sMarioCamState->pos, gLakituState.curPos);
+    if ((yaw - sCutsceneVars[9].angle[1]) & 0x8000) {
+        sCutsceneVars[9].angle[1] -= 0x6000;
+    } else {
+        sCutsceneVars[9].angle[1] += 0x6000;
+    }
+}
+
 /**
  * Move closer to Mario and the object, adjusting to their difference in height.
  * The camera's generally ends up looking over Mario's shoulder.
@@ -8750,8 +8785,31 @@ void cutscene_dialog(struct Camera *c) {
 /**
  * Sets the CAM_FLAG_UNUSED_CUTSCENE_ACTIVE flag, which does nothing.
  */
+void cutscene_dialog_do_nothing(UNUSED struct Camera *c) {
+    return;
+}
+/**
+ * Sets the CAM_FLAG_UNUSED_CUTSCENE_ACTIVE flag, which does nothing.
+ */
 void cutscene_dialog_set_flag(UNUSED struct Camera *c) {
     sStatusFlags |= CAM_FLAG_UNUSED_CUTSCENE_ACTIVE;
+}
+
+/**
+ * Cutscene that plays when Elise talks to a noseman.
+ */
+void cutscene_elise_dialog(struct Camera *c) {
+    cutscene_event(cutscene_elise_dialog_start, c, 0, 0);
+    cutscene_event(cutscene_dialog_move_mario_shoulder, c, 0, -1);
+    cutscene_event(cutscene_dialog_do_nothing, c, 15, 15);
+    sStatusFlags |= CAM_FLAG_SMOOTH_MOVEMENT;
+
+    if (eliseDialogCurrPrompt == -1 || eliseDialogState == ELISE_DIALOG_CLOSING_BLANK_FRAMES || eliseDialogState == ELISE_DIALOG_CLOSING) {
+        gCutsceneTimer = CUTSCENE_LOOP;
+        retrieve_info_star(c);
+        transition_next_state(c, 22);
+        sStatusFlags |= CAM_FLAG_UNUSED_CUTSCENE_ACTIVE;
+    }
 }
 
 /**
@@ -8761,6 +8819,14 @@ void cutscene_dialog_end(struct Camera *c) {
     sStatusFlags |= CAM_FLAG_UNUSED_CUTSCENE_ACTIVE;
     c->cutscene = 0;
     clear_time_stop_flags(TIME_STOP_ENABLED | TIME_STOP_DIALOG);
+}
+
+/**
+ * Ends the dialog cutscene.
+ */
+void cutscene_elise_dialog_end(struct Camera *c) {
+    sStatusFlags |= CAM_FLAG_UNUSED_CUTSCENE_ACTIVE;
+    c->cutscene = 0;
 }
 
 /**
@@ -10462,6 +10528,12 @@ struct Cutscene sCutsceneDialog[] = {
     { cutscene_dialog_end, 0 }
 };
 
+struct Cutscene sCutsceneEliseDialog[] = {
+    { cutscene_elise_dialog, CUTSCENE_LOOP },
+    { cutscene_dialog_set_flag, 18 },
+    { cutscene_elise_dialog_end, 0 }
+};
+
 /**
  * Cutscene that plays when Mario reads a sign or message.
  */
@@ -10928,6 +11000,7 @@ void play_cutscene(struct Camera *c) {
         CUTSCENE(CUTSCENE_EXIT_FALL_WMOTR,      sCutsceneFallToCastleGrounds)
         CUTSCENE(CUTSCENE_NONPAINTING_DEATH,    sCutsceneNonPaintingDeath)
         CUTSCENE(CUTSCENE_DIALOG,               sCutsceneDialog)
+        CUTSCENE(CUTSCENE_ELISE_DIALOG,         sCutsceneEliseDialog)
         CUTSCENE(CUTSCENE_READ_MESSAGE,         sCutsceneReadMessage)
         CUTSCENE(CUTSCENE_RACE_DIALOG,          sCutsceneDialog)
         CUTSCENE(CUTSCENE_ENTER_PYRAMID_TOP,    sCutsceneEnterPyramidTop)
