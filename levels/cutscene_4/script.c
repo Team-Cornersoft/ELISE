@@ -110,7 +110,7 @@ const LevelScript level_cutscene_scene_4_2[] = {
     CLEAR_LEVEL(),
     SLEEP(/*frames*/ 60),
     SET_REG(/*value*/ LEVEL_BITDW),
-    EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _cutscene_4SegmentRomStart, _cutscene_4SegmentRomEnd, level_cutscene_scene_4_3, _cutscene_4SegmentBssStart, _cutscene_4SegmentBssEnd),
+    EXIT_AND_EXECUTE(/*seg*/ SEGMENT_GLOBAL_LEVEL_SCRIPT, _scriptsSegmentRomStart, _scriptsSegmentRomEnd, level_main_scripts_entry),
 };
 
 // END DESPAIR INTRO CUTSCENE EXCHANGE
