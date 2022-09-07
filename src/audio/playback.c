@@ -9,6 +9,7 @@
 #include "effects.h"
 #include "external.h"
 #include "sounds.h"
+#include "game/area.h"
 
 void note_set_resampling_rate(struct Note *note, f32 resamplingRateInput);
 
@@ -340,7 +341,7 @@ void process_notes(void) {
 #ifndef VERSION_SH
     f32 frequency;
 #if defined(VERSION_JP) || defined(VERSION_US)
-    u8 reverbVol;
+    s32 reverbVol;
 #endif
     f32 velocity;
 #if defined(VERSION_JP) || defined(VERSION_US)
@@ -592,6 +593,11 @@ void process_notes(void) {
                 velocity = note->parentLayer->noteVelocity;
                 pan = note->parentLayer->notePan;
                 reverbVol = note->parentLayer->seqChannel->reverbVol;
+                if (note->parentLayer->seqChannel->seqPlayer != NULL) {
+                    if (note->parentLayer->seqChannel->seqPlayer == &gSequencePlayers[1]) {
+                        reverbVol += (s8) gAreaData[gCurrAreaIndex].echoOverride;
+                    }
+                }
             }
 
             scale = note->adsrVolScale;
@@ -607,13 +613,15 @@ void process_notes(void) {
             reverbVol += reverbAdd;
             if (reverbVol > 0x7F)
                 reverbVol = 0x7F;
+            else if (reverbVol < 0)
+                reverbVol = 0;
 
-            if (note->bankId > SOUND_BANK_COUNT + 1) { // This is technically incorrect but whatever, at least I'll probably make an extra bank for both types if I do
+            if (note->bankId > SOUND_BANK_COUNT) { // This is technically incorrect but whatever, at least I'll probably make an extra bank for both types if I do
                 note_set_frequency(note, frequency * freqTempMult);
-                note_set_vel_pan_reverb(note, velocity * volumeMult, pan, reverbVol);
+                note_set_vel_pan_reverb(note, velocity * volumeMult, pan, (u8) reverbVol);
             } else {
                 note_set_frequency(note, frequency);
-                note_set_vel_pan_reverb(note, velocity, pan, reverbVol);
+                note_set_vel_pan_reverb(note, velocity, pan, (u8) reverbVol);
             }
             continue;
         }
@@ -740,6 +748,12 @@ void seq_channel_layer_decay_release_internal(struct SequenceChannelLayer *seqLa
 #endif
         if (seqLayer->seqChannel != NULL) {
             attributes->reverbVol = seqLayer->seqChannel->reverbVol;
+            
+            if (seqLayer->seqChannel->seqPlayer != NULL) {
+                if (seqLayer->seqChannel->seqPlayer == &gSequencePlayers[1]) {
+                    attributes->reverbVol += (s8) gAreaData[gCurrAreaIndex].echoOverride;
+                }
+            }
 #ifdef VERSION_SH
             attributes->synthesisVolume = seqLayer->seqChannel->synthesisVolume;
             attributes->filter = seqLayer->seqChannel->filter;
