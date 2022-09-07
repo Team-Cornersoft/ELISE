@@ -4,20 +4,20 @@ void scroll_custom_boss_portal_NO_FIUCKING_COLLISION_mesh_layer_5_vtx_0() {
 	int width = 16 * 0x20;
 	int height = 16 * 0x20;
 
-	static int currentY = 0;
-	int deltaY;
+	static int currentX = 0;
+	int deltaX;
 	Vtx *vertices = segmented_to_virtual(custom_boss_portal_NO_FIUCKING_COLLISION_mesh_layer_5_vtx_0);
 
-	deltaY = (int)(2.0 * 0x20) % height;
+	deltaX = (int)(2.0 * 0x20) % width;
 
-	if (absi(currentY) > height) {
-		deltaY -= (int)(absi(currentY) / height) * height * signum_positive(deltaY);
+	if (absi(currentX) > width) {
+		deltaX -= (int)(absi(currentX) / width) * width * signum_positive(deltaX);
 	}
 
 	for (i = 0; i < count; i++) {
-		vertices[i].n.tc[1] += deltaY;
+		vertices[i].n.tc[0] += deltaX;
 	}
-	currentY += deltaY;
+	currentX += deltaX;
 }
 
 void scroll_actor_geo_custom_boss_portal() {
