@@ -17,6 +17,11 @@
 
 #include "make_const_nonconst.h"
 #include "levels/menu/header.h"
+#include "levels/cutscene_0/header.h"
+
+const LevelScript level_main_menu_entry_file_select_cutscene_trigger[] = {
+    EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _cutscene_0SegmentRomStart, _cutscene_0SegmentRomEnd, level_cutscene_scene_0_0, _cutscene_0SegmentBssStart, _cutscene_0SegmentBssEnd),
+};
 
 const LevelScript level_main_menu_entry_file_select[] = {
     INIT_LEVEL(),
@@ -56,6 +61,8 @@ const LevelScript level_main_menu_entry_file_select[] = {
     CALL_LOOP(/*arg*/ 20, /*func*/ pause_if_emulator),
     CLEAR_LEVEL(),
     SLEEP_BEFORE_EXIT(/*frames*/ 1),
+    CALL(/*arg*/ 0, /*func*/ should_play_elise_cutscene),
+    JUMP_IF(/*op*/ OP_EQ, /*arg*/ TRUE,  level_main_menu_entry_file_select_cutscene_trigger),
     SET_REG(/*value*/ START_LEVEL),
     EXIT_AND_EXECUTE(/*seg*/ SEGMENT_GLOBAL_LEVEL_SCRIPT, _scriptsSegmentRomStart, _scriptsSegmentRomEnd, level_main_scripts_entry),
 };

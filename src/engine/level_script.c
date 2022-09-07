@@ -903,7 +903,6 @@ static void level_cmd_puppylight_node(void) {
     sCurrentCmd = CMD_NEXT;
 }
 
-
 static void level_cmd_set_echo(void) {
     if (sCurrAreaIndex >= 0 && sCurrAreaIndex < AREA_COUNT) {
         if (gIsConsole)
@@ -911,6 +910,11 @@ static void level_cmd_set_echo(void) {
         else
             gAreaData[sCurrAreaIndex].echoOverride = CMD_GET(s8, 3);
     }
+    sCurrentCmd = CMD_NEXT;
+}
+
+static void level_cmd_play_sound_effect(void) {
+    play_sound(CMD_GET(s32, 4), gGlobalSoundSource);
     sCurrentCmd = CMD_NEXT;
 }
 
@@ -981,6 +985,7 @@ static void (*LevelScriptJumpTable[])(void) = {
     /*LEVEL_CMD_PUPPYLIGHT_ENVIRONMENT      */ level_cmd_puppylight_environment,
     /*LEVEL_CMD_PUPPYLIGHT_NODE             */ level_cmd_puppylight_node,
     /*LEVEL_CMD_SET_ECHO                    */ level_cmd_set_echo,
+    /*LEVEL_CMD_PLAY_SOUND_EFFECT           */ level_cmd_play_sound_effect,
 };
 
 struct LevelCommand *level_script_execute(struct LevelCommand *cmd) {

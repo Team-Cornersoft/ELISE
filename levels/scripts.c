@@ -29,6 +29,8 @@
 #include "actors/group16.h"
 #include "actors/group17.h"
 
+#include "levels/cutscene_2/header.h"
+
 #include "levels/menu/header.h"
 #include "levels/intro/header.h"
 
@@ -150,6 +152,7 @@ const LevelScript level_main_scripts_entry[] = {
     JUMP_IF(   /*op*/ OP_EQ, /*arg*/ WARP_SPECIAL_MARIO_HEAD_DIZZY,    goto_mario_head_dizzy),
     JUMP_IF(   /*op*/ OP_EQ, /*arg*/ WARP_SPECIAL_INTRO_SPLASH_SCREEN, goto_intro_splash_screen),
     JUMP_IF(   /*op*/ OP_EQ, /*arg*/ WARP_SPECIAL_LEVEL_SELECT,        goto_debug_level_select),
+    JUMP_IF(   /*op*/ OP_EQ, /*arg*/ WARP_SPECIAL_DESPAIR_PROMPT,      goto_despair_prompt),
 };
 
 static const LevelScript goto_intro_splash_screen[] = {
@@ -170,6 +173,10 @@ static const LevelScript goto_mario_head_dizzy[] = {
 
 static const LevelScript goto_debug_level_select[] = {
     EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _introSegmentRomStart, _introSegmentRomEnd, level_intro_entry_level_select, _introSegmentBssStart, _introSegmentBssEnd),
+};
+
+static const LevelScript goto_despair_prompt[] = {
+    EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _cutscene_2SegmentRomStart, _cutscene_2SegmentRomEnd, level_cutscene_scene_2_0, _cutscene_2SegmentBssStart, _cutscene_2SegmentBssEnd),
 };
 
 // Include the level jumptable.

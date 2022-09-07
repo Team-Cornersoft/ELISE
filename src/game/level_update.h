@@ -33,6 +33,7 @@ enum WarpOperation {
 };
 
 enum SpecialWarpDestinations {
+    WARP_SPECIAL_DESPAIR_PROMPT      = -10,
     WARP_SPECIAL_LEVEL_SELECT        = -9,
     WARP_SPECIAL_INTRO_SPLASH_SCREEN = -8,
     WARP_SPECIAL_MARIO_HEAD_DIZZY    = -3,
@@ -192,5 +193,6 @@ s32 init_image_screen_press_button(s16 frames, UNUSED s32 arg1);
 s32 image_screen_press_button(s16 frames, UNUSED s32 arg1);
 s32 image_screen_cannot_press_button(s16 frames, UNUSED s32 arg1);
 s32 pause_if_emulator(s16 frames, UNUSED s32 arg1);
+s32 should_play_elise_cutscene(s16 cutsceneSequenceIndex, UNUSED s32 arg1);
 
 #endif // LEVEL_UPDATE_H

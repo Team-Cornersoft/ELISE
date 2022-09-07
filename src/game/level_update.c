@@ -37,6 +37,8 @@
 
 static s32 gameFreezeFrames = 0;
 
+static u8 hasWatchedDespairIntroduction = FALSE;
+
 // TODO: Make these ifdefs better
 const char *credits01[] = { "1GAME DIRECTOR", "SHIGERU MIYAMOTO" };
 const char *credits02[] = { "2ASSISTANT DIRECTORS", "YOSHIAKI KOIZUMI", "TAKASHI TEZUKA" };
@@ -1532,4 +1534,17 @@ s32 pause_if_emulator(s16 frames, UNUSED s32 arg1) {
     }
 
     return FALSE; // Don't continue in level script, call this function again next frame
+}
+
+// Should we transition into a cutscene here or no?
+s32 should_play_elise_cutscene(s16 cutsceneSequenceIndex, UNUSED s32 arg1) {
+    if (cutsceneSequenceIndex == 0 && !save_file_exists(gCurrSaveFileNum - 1))
+        return TRUE;
+
+    if (cutsceneSequenceIndex == 1 && !hasWatchedDespairIntroduction) {
+        hasWatchedDespairIntroduction = TRUE;
+        return TRUE;
+    }
+
+    return FALSE;
 }
