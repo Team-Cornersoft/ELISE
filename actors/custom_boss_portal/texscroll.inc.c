@@ -8,7 +8,7 @@ void scroll_custom_boss_portal_NO_FIUCKING_COLLISION_mesh_layer_5_vtx_0() {
 	int deltaX;
 	Vtx *vertices = segmented_to_virtual(custom_boss_portal_NO_FIUCKING_COLLISION_mesh_layer_5_vtx_0);
 
-	deltaX = (int)(2.0 * 0x20) % width;
+	deltaX = (int)(1.0 * 0x20) % width;
 
 	if (absi(currentX) > width) {
 		deltaX -= (int)(absi(currentX) / width) * width * signum_positive(deltaX);
