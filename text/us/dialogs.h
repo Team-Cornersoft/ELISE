@@ -53,7 +53,12 @@ Please come back to see\n\
 me after you've retrieved\n\
 the Power Star!"))
 
-// Nosemen dialogues
+/* 
+
+    Nosemen dialogues
+
+*/
+
 DEFINE_DIALOG(DIALOG_002, 8, 4, 30, 270, _("\
 NOSEMAN:\n\
 \n\
@@ -209,7 +214,11 @@ ELISE:\n\
 Dad...\n\
 "))
 
-/* Vanilla dialogue */
+/* 
+
+    Vanilla dialogue 
+
+*/
 
 DEFINE_DIALOG(DIALOG_024, 1, 5, 95, 200, _("\
 You need Star power to\n\
@@ -1154,244 +1163,213 @@ I'll pass right through\n\
 this wall. Can you do\n\
 that? Heh, heh, heh!"))
 
-DEFINE_DIALOG(DIALOG_100, 1, 3, 95, 200, _("\
-Ukkiki...Wakkiki...kee kee!\n\
-Ha! I snagged it!\n\
-It's mine! Heeheeheeee!"))
+/* 
 
-DEFINE_DIALOG(DIALOG_101, 1, 3, 95, 200, _("\
-Ackk! Let...go...\n\
-You're...choking...me...\n\
-Cough...I've been framed!\n\
-This Cap? Oh, all right,\n\
-take it. It's a cool Cap,\n\
-but I'll give it back.\n\
-I think it looks better on\n\
-me than it does on you,\n\
-though! Eeeee! Kee keee!"))
+    AREA SPECIFIC DIALOGUES
 
-DEFINE_DIALOG(DIALOG_102, 1, 5, 30, 200, _("\
-Pssst! The Boos are super\n\
-shy. If you look them\n\
-in the eyes, they fade\n\
-away, but if you turn\n\
-your back, they reappear.\n\
-It's no use trying to hit\n\
-them when they're fading\n\
-away. Instead, sneak up\n\
-behind them and punch."))
-
-DEFINE_DIALOG(DIALOG_103, 1, 4, 95, 200, _("\
-Upon four towers\n\
-one must alight...\n\
-Then at the peak\n\
-shall shine the light..."))
-
-DEFINE_DIALOG(DIALOG_104, 1, 5, 30, 200, _("\
-The shadowy star in front\n\
-of you is a 『Star\n\
-Marker.』 When you collect\n\
-all 8 Red Coins, the Star\n\
-will appear here."))
-
-DEFINE_DIALOG(DIALOG_105, 1, 3, 95, 200, _("\
-Ready for blastoff! Come\n\
-on, hop into the cannon!\n\
+*/
+// BOB AREA 1 loss room
+DEFINE_DIALOG(DIALOG_100, 8, 4, 30, 270, _("\
+The tree...\n\
 \n\
-You can reach the Star on\n\
-the floating island by\n\
-using the four cannons.\n\
-Use the Control Stick to\n\
-aim, then press [A] to fire.\n\
+It's in such a sorry state. How sad...\n\
+"))
+
+// BOB AREA 2 held up tree
+DEFINE_DIALOG(DIALOG_101, 8, 4, 30, 270, _("\
+The tree!\n\
 \n\
-If you're handy, you can\n\
-grab on to trees or poles\n\
-to land."))
+It's been so long since I've seen it so healthy...\n\
+"))
 
-DEFINE_DIALOG(DIALOG_106, 1, 2, 95, 200, _("\
-Ready for blastoff! Come\n\
-on, hop into the cannon!"))
+// WF AREA 1 pain room
+DEFINE_DIALOG(DIALOG_102, 8, 3, 30, 270, _("\
+No...\n\
+Not the needles!\n\
+"))
 
-DEFINE_DIALOG(DIALOG_107, 1, 3, 95, 200, _("\
-Ghosts...\n\
-...don't...\n\
-...DIE!\n\
-Heh, heh, heh!\n\
-Can you get out of here...\n\
-...alive?"))
-
-DEFINE_DIALOG(DIALOG_108, 1, 2, 95, 200, _("\
-Boooooo-m! Here comes\n\
-the master of mischief,\n\
-the tower of terror,\n\
-the Big Boo!\n\
-Ka ha ha ha..."))
-
-DEFINE_DIALOG(DIALOG_109, 1, 4, 95, 200, _("\
-Ooooo Nooooo!\n\
-Talk about out-of-body\n\
-experiences--my body\n\
-has melted away!\n\
-Have you run in to any\n\
-headhunters lately??\n\
-I could sure use a new\n\
-body!\n\
-Brrr! My face might\n\
-freeze like this!"))
-
-DEFINE_DIALOG(DIALOG_110, 1, 5, 95, 200, _("\
-I need a good head on my\n\
-shoulders. Do you know of\n\
-anybody in need of a good\n\
-body? Please! I'll follow\n\
-you if you do!"))
-
-DEFINE_DIALOG(DIALOG_111, 1, 4, 95, 200, _("\
-Perfect! What a great\n\
-new body! Here--this is a\n\
-present for you. It's sure\n\
-to warm you up."))
-
-DEFINE_DIALOG(DIALOG_112, 1, 4, 30, 200, _("\
-Collect as many coins as\n\
-possible! They'll refill\n\
-your Power Meter.\n\
+// WF AREA 2 bloodslide
+DEFINE_DIALOG(DIALOG_103, 8, 4, 30, 270, _("\
+What?\n\
 \n\
-You can check to see how\n\
-many coins you've\n\
-collected in each of the\n\
-15 enemy worlds.\n\
-You can also recover\n\
-power by touching the\n\
-Spinning Heart.\n\
+Is this the inside of my body?\n\
+"))
+
+// WF AREA 3 eyes room
+DEFINE_DIALOG(DIALOG_104, 8, 2, 30, 270, _("\
+Something's staring at me...\n\
+"))
+
+// JRB AREA 1 LOST (the ones with the lanterns)
+DEFINE_DIALOG(DIALOG_105, 8, 5, 30, 270, _("\
+...That final night...\n\
+The drive to our new home...\n\
+I wanted to go over the moon bridge\n\
+just one more time...\n\
+"))
+
+// JRB AREA 2 dark apartments
+DEFINE_DIALOG(DIALOG_106, 8, 5, 30, 270, _("\
+The last place I saw him...\n\
+It was so dark... Yet I wasn't worried.\n\
 \n\
-The faster you run\n\
-through the heart, the\n\
-more power you'll recover."))
+I was such a fool.\n\
+"))
 
-DEFINE_DIALOG(DIALOG_113, 1, 6, 30, 200, _("\
-There are special Caps in\n\
-the red, green and blue\n\
-blocks. Step on the\n\
-switches in the hidden\n\
-courses to activate the\n\
-Cap Blocks."))
-
-DEFINE_DIALOG(DIALOG_114, 1, 5, 95, 200, _("\
-It makes me so mad! We\n\
-build your houses, your\n\
-castles. We pave your\n\
-roads, and still you\n\
-walk all over us.\n\
-Do you ever say thank\n\
-you? No! Well, you're not\n\
-going to wipe your feet\n\
-on me! I think I'll crush\n\
-you just for fun!\n\
-Do you have a problem\n\
-with that? Just try to\n\
-pound me, wimp! Ha!"))
-
-DEFINE_DIALOG(DIALOG_115, 1, 5, 95, 200, _("\
-No! Crushed again!\n\
-I'm just a stepping stone,\n\
-after all. I won't gravel,\n\
-er, grovel. Here, you win.\n\
-Take this with you!"))
-
-DEFINE_DIALOG(DIALOG_116, 1, 5, 95, 200, _("\
-Whaaa....Whaaat?\n\
-Can it be that a\n\
-pipsqueak like you has\n\
-defused the Bob-omb\n\
-king????\n\
-You might be fast enough\n\
-to ground me, but you'll\n\
-have to pick up the pace\n\
-if you want to take King\n\
-Bowser by the tail.\n\
-Methinks my troops could\n\
-learn a lesson from you!\n\
-Here is your Star, as I\n\
-promised, Mario.\n\
+// JRB AREA 4 old apartment
+DEFINE_DIALOG(DIALOG_107, 8, 6, 30, 270, _("\
+That dreadfull evening...\n\
 \n\
-If you want to see me\n\
-again, select this Star\n\
-from the menu. For now,\n\
-farewell."))
-
-DEFINE_DIALOG(DIALOG_117, 1, 1, 95, 200, _("\
-Who...walk...here?\n\
-Who...break...seal?\n\
-Wake..ancient..ones?\n\
-We no like light...\n\
-Rrrrummbbble...\n\
-We no like...intruders!\n\
-Now battle...\n\
-...hand...\n\
-...to...\n\
-...hand!"))
-
-DEFINE_DIALOG(DIALOG_118, 1, 6, 95, 200, _("\
-Grrrrumbbble!\n\
-What...happen?\n\
-We...crushed like pebble.\n\
-You so strong!\n\
-You rule ancient pyramid!\n\
-For today...\n\
-Now, take Star of Power.\n\
-We...sleep...darkness."))
-
-DEFINE_DIALOG(DIALOG_119, 1, 6, 30, 200, _("\
-Grrr! I was a bit\n\
-careless. This is not as I\n\
-had planned...but I still\n\
-hold the power of the\n\
-Stars, and I still have\n\
-Peach.\n\
-Bwa ha ha! You'll get no\n\
-more Stars from me! I'm\n\
-not finished with you yet,\n\
-but I'll let you go for\n\
-now. You'll pay for this...\n\
-later!"))
-
-DEFINE_DIALOG(DIALOG_120, 1, 4, 30, 200, _("\
-Ooowaah! Can it be that\n\
-I've lost??? The power of\n\
-the Stars has failed me...\n\
-this time.\n\
-Consider this a draw.\n\
-Next time, I'll be in\n\
-perfect condition.\n\
+I shouldn't have looked...\n\
 \n\
-Now, if you want to see\n\
-your precious Princess,\n\
-come to the top of the\n\
-tower.\n\
-I'll be waiting!\n\
-Gwa ha ha ha!"))
+I just shouldn't have looked.\n\
+"))
 
-DEFINE_DIALOG(DIALOG_121, 1, 5, 30, 200, _("\
-Nooo! It can't be!\n\
-You've really beaten me,\n\
-Mario?!! I gave those\n\
-troops power, but now\n\
-it's fading away!\n\
-Arrgghh! I can see peace\n\
-returning to the world! I\n\
-can't stand it! Hmmm...\n\
-It's not over yet...\n\
+// CCM AREA 1 HOME
+DEFINE_DIALOG(DIALOG_108, 8, 5, 30, 270, _("\
+How nostalgic...\n\
 \n\
-C'mon troops! Let's watch\n\
-the ending together!\n\
-Bwa ha ha!"))
+Home sweet home!\n\
+I guess.\n\
+"))
 
-DEFINE_DIALOG(DIALOG_122, 1, 4, 30, 200, _("\
-The Black Hole\n\
-Right: Work Elevator\n\
-/// Cloudy Maze\n\
-Left: Underground Lake"))
+// CCM AREA 3 poopslide
+DEFINE_DIALOG(DIALOG_109, 8, 4, 30, 270, _("\
+Eeeeeeeeeewwwwwwww--!!!\n\
+\n\
+Why did I jump in there!?\n\
+"))
+
+// CCM AREA 5 swamp
+DEFINE_DIALOG(DIALOG_110, 8, 6, 30, 270, _("\
+Oh my, it's the lillypad swamplands!\n\
+Dad and I used to go here all the time to fish.\n\
+\n\
+Not the most charming place for a lady, of course,\n\
+but I've always loved it here.\n\
+"))
+
+// CCM AREA 6 dino room
+DEFINE_DIALOG(DIALOG_111, 8, 9, 30, 270, _("\
+Well, well, well.\n\
+Look at what showed its big, bulky face:\n\
+The swamp reptile itself!\n\
+\n\
+No longer shall you escape our grasp, the chase\n\
+ends here!\n\
+\n\
+Haha!\n\
+How silly.\n\
+"))
+
+// BBH AREA 1 bloom level
+DEFINE_DIALOG(DIALOG_112, 8, 7, 30, 270, _("\
+Oh, no.\n\
+I remember this.\n\
+It was shortly before the anesthesia completely wore off...\n\
+\n\
+Heeheehee...!\n\
+\n\
+Just being here makes me feel all woozie.\n\
+"))
+
+// HMC AREA 1 flow slide (the colourful one)
+DEFINE_DIALOG(DIALOG_113, 8, 4, 30, 270, _("\
+Well this looks a lot more fun!\n\
+\n\
+I think I see something glistening at the end of the path?\n\
+"))
+
+// LLL AREA 2 (the snow one)
+DEFINE_DIALOG(DIALOG_114, 8, 6, 30, 270, _("\
+The snow...\n\
+\n\
+It's so peaceful to me...\n\
+\n\
+...I wonder why?\n\
+"))
+
+// SSL AREA 1 infinite neighbourhood
+DEFINE_DIALOG(DIALOG_115, 8, 6, 30, 270, _("\
+Everything just...\n\
+\n\
+...Looks the damn same here.\n\
+\n\
+I hate it.\n\
+"))
+
+// DDD AREA 1 chimes house
+DEFINE_DIALOG(DIALOG_116, 8, 7, 30, 270, _("\
+It's the house before we renovated it...\n\
+\n\
+It makde me feel very uneasy.\n\
+It still does.\n\
+\n\
+But there is nothing here, right?\n\
+"))
+
+// SL AREA 1 chess
+DEFINE_DIALOG(DIALOG_117, 8, 7, 30, 270, _("\
+Chess, cards, and dice.\n\
+\n\
+I really just make due with these to amuse myself to\n\
+the point that I have even started to bend the rules!\n\
+\n\
+What's a bischop anyways? And there are way too many pawns!\n\
+"))
+
+// WDW AREA 1 juice (fish and bubbles)
+DEFINE_DIALOG(DIALOG_118, 8, 5, 30, 270, _("\
+It smells like my medicine in here, and it's gross.\n\
+But the fish are very cute.\n\
+\n\
+Is this the effect the medicine has on my body?\n\
+"))
+
+// WDW AREA 2 brain in a jar
+DEFINE_DIALOG(DIALOG_119, 8, 4, 30, 270, _("\
+This metalic taste--!\n\
+\n\
+What is even in here?\n\
+"))
+
+// TTM AREA 1 the moon (space)
+DEFINE_DIALOG(DIALOG_120, 8, 7, 30, 270, _("\
+Oh, woooowww--...\n\
+\n\
+Mom always told me if I wished hard enough I could\n\
+maybe one day walk on the moon and meet aliens.\n\
+\n\
+Haha, how silly that would be...\n\
+"))
+
+// TTM AREA 2 inside the UFO
+DEFINE_DIALOG(DIALOG_121, 8, 8, 30, 270, _("\
+Ah, this is-!\n\
+\n\
+I thought I stowed away my teenage crushes on alien\n\
+boys?\n\
+How absolutely embarrassing...\n\
+\n\
+Thank heavens nobody but me gets to see this place.\n\
+"))
+
+// TTM AREA 3 Cornersoft room
+DEFINE_DIALOG(DIALOG_122, 8, 8, 30, 270, _("\
+What in the world is this then?\n\
+Oh! Could this be an easter egg room?\n\
+\n\
+Well I have been playing a lot of SM64 romhacks lately.\n\
+People put so much work into these things, it's insane!\n\
+\n\
+Maybe one day I'll attempt to make one too!\n\
+"))
+
+/* 
+
+    Vanilla Dialogue
+
+*/
 
 DEFINE_DIALOG(DIALOG_123, 1, 4, 30, 200, _("\
 Metal Cavern\n\
