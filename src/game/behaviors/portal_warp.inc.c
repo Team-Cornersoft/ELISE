@@ -44,6 +44,9 @@ void bhv_portal_warp_loop(void) {
 }
 
 void bhv_boss_portal_warp_init(void) {
+    if (gMarioState->numStars < 12)
+        mark_obj_for_deletion(o);
+
     if (GET_BPARAM4(o->oBehParams) != 0) {
         obj_scale(o, (f32) GET_BPARAM4(o->oBehParams) / 64.0f);
     }
