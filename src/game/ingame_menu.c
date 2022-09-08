@@ -39,22 +39,25 @@
 
 
 struct EliseDialogOptions eliseDialogPrompts[] = {
-  /*0x00*/  { DIALOG_174, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER), NO_SOUND, SEC_TO_FRAMES(0.5f), 0xFFFF, SEC_TO_FRAMES(3.0f) },
+  /*0x00*/  { DIALOG_174, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.5f), 0xFFFE, SEC_TO_FRAMES(3.0f), (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER) },
   /*0x01 Despair dialogue 1*/
-            { DIALOG_170, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_DESPAIR_TEXT), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(0.75f) },
-            { DIALOG_175, FALSE, 0, (ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_ELISE_TEXT), NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(0.75f) },
-            { DIALOG_176, FALSE, 0, (ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_DESPAIR_TEXT), NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.75f) },
+            { DIALOG_170, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(0.75f), (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_DESPAIR_TEXT) },
+            { DIALOG_175, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(0.75f), (ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_ELISE_TEXT) },
+            { DIALOG_176, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.75f), (ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_DESPAIR_TEXT) },
   /*0x04 Noseman dialogue*/  
-            { DIALOG_002, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_MULTI_USE | ELISE_SPECIAL_FLAG_QUIET_MUSIC), NO_SOUND, SEC_TO_FRAMES(0.5f), 0xFFFE, SEC_TO_FRAMES(0.5f) },
+            { DIALOG_002, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.5f), 0xFFFE, SEC_TO_FRAMES(0.5f), (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_MULTI_USE | ELISE_SPECIAL_FLAG_QUIET_MUSIC | ELISE_SPECIAL_FLAG_NOSEMAN_TEXT) },
   /*0x05 Despair dialogue 2*/  
-            { DIALOG_178, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_DESPAIR_TEXT), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(0.75f) },
-            { DIALOG_179, FALSE, 0, (ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_ELISE_TEXT), NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(0.75f) },
-            { DIALOG_180, FALSE, 0, (ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_DESPAIR_TEXT), NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.75f) },
+            { DIALOG_178, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(0.75f), (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_DESPAIR_TEXT) },
+            { DIALOG_179, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(0.75f), (ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_ELISE_TEXT) },
+            { DIALOG_180, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.75f), (ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_DESPAIR_TEXT) },
   /*0x08 Noseman dialogue with ELISE header*/  
-            { DIALOG_017, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_ELISE_TEXT | ELISE_SPECIAL_FLAG_MULTI_USE), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(1.0f), SEC_TO_FRAMES(0.0f) },
+            { DIALOG_017, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.5f), 0xFFFE, SEC_TO_FRAMES(0.5f), (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_ELISE_TEXT | ELISE_SPECIAL_FLAG_MULTI_USE | ELISE_SPECIAL_FLAG_QUIET_MUSIC) },
   /*0x09 Nosedad dialogue exchange*/  
-            { DIALOG_022, FALSE, 0, (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_MULTI_USE), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(1.0f), SEC_TO_FRAMES(0.0f) },
-            { DIALOG_023, FALSE, 0, (ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_ELISE_TEXT | ELISE_SPECIAL_FLAG_MULTI_USE), NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(1.0f), SEC_TO_FRAMES(0.0f) },
+            { DIALOG_022, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.5f), 0xFFFE, SEC_TO_FRAMES(0.5f), (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_NOSEDAD_TEXT | ELISE_SPECIAL_FLAG_MULTI_USE | ELISE_SPECIAL_FLAG_QUIET_MUSIC) },
+            { DIALOG_023, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.0f), 0xFFFF, SEC_TO_FRAMES(0.5f), (ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_ELISE_TEXT | ELISE_SPECIAL_FLAG_MULTI_USE | ELISE_SPECIAL_FLAG_QUIET_MUSIC) },
+  /*0x09 Nosemom dialogue exchange*/
+            { DIALOG_015, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.5f), 0xFFFE, SEC_TO_FRAMES(0.5f), (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_NOSEMOM_TEXT | ELISE_SPECIAL_FLAG_MULTI_USE | ELISE_SPECIAL_FLAG_QUIET_MUSIC) },
+            { DIALOG_016, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.0f), 0xFFFF, SEC_TO_FRAMES(0.5f), (ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_ELISE_TEXT | ELISE_SPECIAL_FLAG_MULTI_USE | ELISE_SPECIAL_FLAG_QUIET_MUSIC) },
 };
 
 u16 gDialogColorFadeTimer;
@@ -1289,9 +1292,8 @@ void render_elise_dialog_entry(void) {
     struct DialogEntry *dialog = segmented_to_virtual(dialogTable[elisePrompt->dialogId]);
 
     s8 numLines = dialog->linesPerBox;
-    if (elisePrompt->specialFlags & (ELISE_SPECIAL_FLAG_ELISE_TEXT | ELISE_SPECIAL_FLAG_DESPAIR_TEXT)) {
+    if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ALL_CHARACTERS)
         numLines++;
-    }
 
     s32 x1 = SCREEN_CENTER_X - (dialog->width / 2);
     s32 x2 = x1 + dialog->width;
@@ -1354,7 +1356,7 @@ void render_elise_dialog_entry(void) {
             finish_blank_box();
 
             if (x2 - x1 > 68 && y2 - y1 >= 36) { // Very important that the x coordinates remain > over >=
-                f32 alphatmp = 255.0f * ((f32) (x2 - x1 - 68) / (f32) (dialog->width - 68)); // Should theoretically never divide by 0
+                f32 alphatmp = 191.0f * ((f32) (x2 - x1 - 68) / (f32) (dialog->width - 68)); // Should theoretically never divide by 0
                 alpha = sqr(alphatmp) / 255.0f; // Add emphasis to fade
 
                 render_elise_text_art(x2-64-2, y1+2, x1+2, y2-32-2, alpha);
@@ -1389,7 +1391,7 @@ void render_elise_dialog_entry(void) {
             finish_blank_box();
 
             if (x2 - x1 > 68 && y2 - y1 >= 36) { // Very important that the x coordinates remain > over >=
-                f32 alphatmp = 255.0f * ((f32) (x2 - x1 - 68) / (f32) (dialog->width - 68)); // Should theoretically never divide by 0
+                f32 alphatmp = 191.0f * ((f32) (x2 - x1 - 68) / (f32) (dialog->width - 68)); // Should theoretically never divide by 0
                 alpha = sqr(alphatmp) / 255.0f; // Add emphasis to fade
 
                 render_elise_text_art(x2-64-2, y1+2, x1+2, y2-32-2, alpha);
@@ -1410,12 +1412,12 @@ void render_elise_dialog_entry(void) {
     finish_blank_box();
 
     if (x2 - x1 > 68 && y2 - y1 >= 36) { // Very important that the x coordinates remain > over >=
-        render_elise_text_art(x2-64-2, y1+2, x1+2, y2-32-2, 0xFF);
+        render_elise_text_art(x2-64-2, y1+2, x1+2, y2-32-2, 0xBF);
     }
     
     if (eliseDialogState == ELISE_DIALOG_OPENING_BLANK_FRAMES) {
         s32 framesToWait = ELISE_DIALOG_WAIT_FRAMES;
-        if (elisePrompt->specialFlags & (ELISE_SPECIAL_FLAG_DESPAIR_TEXT | ELISE_SPECIAL_FLAG_ELISE_TEXT)) {
+        if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ALL_CHARACTERS) {
             framesToWait += ELISE_DIALOG_FADE_FRAMES;
             if (eliseDialogTimer > ELISE_DIALOG_WAIT_FRAMES) { // Should never divide by 0 here unless configured stupidly
                 u8 alpha = (eliseDialogTimer - ELISE_DIALOG_WAIT_FRAMES) * 255 / ELISE_DIALOG_FADE_FRAMES;
@@ -1423,11 +1425,25 @@ void render_elise_dialog_entry(void) {
                 if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ELISE_TEXT) {
                     print_set_envcolour(255, 159, 255, alpha);
                     print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "ELISE:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
-                    y1 += ELISE_LINE_HEIGHT;
                 } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_DESPAIR_TEXT) {
                     print_set_envcolour(127, 95, 191, alpha);
                     print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "DESPAIR:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
-                    y1 += ELISE_LINE_HEIGHT;
+                } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NOSEMAN_TEXT) {
+                    print_set_envcolour(159, 159, 159, alpha);
+                    print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "NOSEMAN:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+                } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NOSEMOM_TEXT) {
+                    print_set_envcolour(255, 159, 191, alpha);
+                    print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "NOSEMOM:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+                } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NOSEDAD_TEXT) {
+                    print_set_envcolour(159, 159, 255, alpha);
+                    print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "NOSEDAD:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+                }
+
+                y1 += ELISE_LINE_HEIGHT;
+
+                if (elisePrompt->soundDuration == 0) {
+                    print_set_envcolour(255, 255, 255, alpha);
+                    print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, (char*) segmented_to_virtual(dialog->str), PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, TRUE);
                 }
             }
         }
@@ -1449,13 +1465,24 @@ void render_elise_dialog_entry(void) {
         if (eliseDialogTimer < ELISE_DIALOG_FADE_FRAMES) { // Should never divide by 0 here unless configured stupidly
             u8 alpha = 255 - (eliseDialogTimer * 255) / ELISE_DIALOG_FADE_FRAMES;
 
-            if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ELISE_TEXT) {
-                print_set_envcolour(255, 159, 255, alpha);
-                print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "ELISE:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
-                y1 += ELISE_LINE_HEIGHT;
-            } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_DESPAIR_TEXT) {
-                print_set_envcolour(127, 95, 191, alpha);
-                print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "DESPAIR:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ALL_CHARACTERS) {
+                if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ELISE_TEXT) {
+                    print_set_envcolour(255, 159, 255, alpha);
+                    print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "ELISE:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+                } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_DESPAIR_TEXT) {
+                    print_set_envcolour(127, 95, 191, alpha);
+                    print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "DESPAIR:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+                } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NOSEMAN_TEXT) {
+                    print_set_envcolour(159, 159, 159, alpha);
+                    print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "NOSEMAN:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+                } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NOSEMOM_TEXT) {
+                    print_set_envcolour(255, 159, 191, alpha);
+                    print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "NOSEMOM:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+                } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NOSEDAD_TEXT) {
+                    print_set_envcolour(159, 159, 255, alpha);
+                    print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "NOSEDAD:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+                }
+
                 y1 += ELISE_LINE_HEIGHT;
             }
 
@@ -1478,13 +1505,24 @@ void render_elise_dialog_entry(void) {
     }
 
     if (eliseDialogState == ELISE_DIALOG_DONE_READING) {
-        if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ELISE_TEXT) {
-            print_set_envcolour(255, 159, 255, 255);
-            print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "ELISE:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
-            y1 += ELISE_LINE_HEIGHT;
-        } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_DESPAIR_TEXT) {
-            print_set_envcolour(150, 120, 182, 255);
-            print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "DESPAIR:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+        if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ALL_CHARACTERS) {
+            if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ELISE_TEXT) {
+                print_set_envcolour(255, 159, 255, 255);
+                print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "ELISE:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_DESPAIR_TEXT) {
+                print_set_envcolour(127, 95, 191, 255);
+                print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "DESPAIR:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NOSEMAN_TEXT) {
+                print_set_envcolour(159, 159, 159, 255);
+                print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "NOSEMAN:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NOSEMOM_TEXT) {
+                print_set_envcolour(255, 159, 191, 255);
+                print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "NOSEMOM:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NOSEDAD_TEXT) {
+                print_set_envcolour(159, 159, 255, 255);
+                print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "NOSEDAD:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            }
+
             y1 += ELISE_LINE_HEIGHT;
         }
 
@@ -1519,13 +1557,24 @@ void render_elise_dialog_entry(void) {
     if (eliseDialogState == ELISE_DIALOG_READING) {
         u8 strLen = get_glyph_str_length(segmented_to_virtual(dialog->str));
 
-        if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ELISE_TEXT) {
-            print_set_envcolour(255, 159, 255, 255);
-            print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "ELISE:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
-            y1 += ELISE_LINE_HEIGHT;
-        } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_DESPAIR_TEXT) {
-            print_set_envcolour(150, 120, 182, 255);
-            print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "DESPAIR:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+        if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ALL_CHARACTERS) {
+            if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_ELISE_TEXT) {
+                print_set_envcolour(255, 159, 255, 255);
+                print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "ELISE:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_DESPAIR_TEXT) {
+                print_set_envcolour(127, 95, 191, 255);
+                print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "DESPAIR:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NOSEMAN_TEXT) {
+                print_set_envcolour(159, 159, 159, 255);
+                print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "NOSEMAN:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NOSEMOM_TEXT) {
+                print_set_envcolour(255, 159, 191, 255);
+                print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "NOSEMOM:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            } else if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NOSEDAD_TEXT) {
+                print_set_envcolour(159, 159, 255, 255);
+                print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, "NOSEDAD:", PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, FALSE);
+            }
+
             y1 += ELISE_LINE_HEIGHT;
         }
 
@@ -1533,7 +1582,7 @@ void render_elise_dialog_entry(void) {
 
         s32 printAmount = strLen;
 
-        if (elisePrompt->soundDuration == 0xFFFF) {
+        if (elisePrompt->soundDuration == 0xFFFF || (gCurrLevelNum == LEVEL_BOB && gCurrAreaIndex == 1 && elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NOSEMAN_TEXT)) {
             printAmount = eliseDialogTimer;
         } else if (elisePrompt->soundDuration == 0xFFFE) {
             printAmount = eliseDialogTimer * 3 / 2;

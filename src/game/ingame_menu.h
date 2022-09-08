@@ -102,15 +102,21 @@ enum EliseDialogStates {
 #define ELISE_SPECIAL_FLAG_PAUSE_CHARACTER (1 << 6) // This can cause a softlock if not broken with ELISE_SPECIAL_FLAG_CLOSE_PROMPT in a future/current prompt.
 #define ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS (1 << 7) // Require an A press to proceed dialog. Only recommended to be used alongside ELISE_SPECIAL_FLAG_PAUSE_CHARACTER;
 
+#define ELISE_SPECIAL_FLAG_NOSEMAN_TEXT (1 << 8) // Give Noseman a text header
+#define ELISE_SPECIAL_FLAG_NOSEMOM_TEXT (1 << 9) // Give Nosemom a text header
+#define ELISE_SPECIAL_FLAG_NOSEDAD_TEXT (1 << 10) // Give Nosedad a text header
+
+#define ELISE_SPECIAL_FLAG_ALL_CHARACTERS (ELISE_SPECIAL_FLAG_ELISE_TEXT | ELISE_SPECIAL_FLAG_DESPAIR_TEXT | ELISE_SPECIAL_FLAG_NOSEMAN_TEXT | ELISE_SPECIAL_FLAG_NOSEMOM_TEXT | ELISE_SPECIAL_FLAG_NOSEDAD_TEXT)
+
 struct EliseDialogOptions {
     u8 dialogId;
     u8 hasBeenRead;
     u8 saveFlagIndex; // Treated as: (1 << (saveFlagIndex - 1))
-    u8 specialFlags;
     s32 soundId;
     u16 dialogDelay; // How long to wait before initializing the dialog? (Number of frames) (Use only recommended with ELISE_SPECIAL_FLAG_OPEN_PROMPT)
     u16 soundDuration; // How long is the sound effect? (Number of frames) (Set to 0xFFFF to scroll character per frame.)
     u16 dialogFreeze; // Once everything has been printed on screen, how long should it stay on screen? (Number of frames)
+    u16 specialFlags;
 };
 
 // definitions for some of the special characters defined in charmap.txt
