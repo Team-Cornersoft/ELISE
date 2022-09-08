@@ -170,7 +170,7 @@ void take_damage(void) {
 }
 
 void choose_attack(void) {
-    if (o->oDespairCurrentAttacks >= 0) {
+    if (o->oDespairCurrentAttacks >= 3) {
         change_attack(SPINNING_ATTACK, NO_COOLDOWN, SPINNING_ATTACK_TIME);
         o->oDespairSpinAngle = 270.0f;
         o->oDespairCurrentAttacks = 0;
