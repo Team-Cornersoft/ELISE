@@ -153,7 +153,7 @@ Still, I'll never forget your loyalty.\n\
 Let's play together again someday, okay?\n\
 "))
 
-DEFINE_DIALOG(DIALOG_019, 8, 5, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_019, 8, 6, 30, 270, _("\
 Dad used to have it out for this bird>\n\
 Saying it's some kind of reptile from the depths\n\
 of the dankest swamps.\n\
