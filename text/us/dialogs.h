@@ -77,9 +77,11 @@ DEFINE_DIALOG(DIALOG_005, 8, 3, 30, 270, _("\
 Why did noone help...?\n\
 "))
 
-DEFINE_DIALOG(DIALOG_006, 8, 3, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_006, 8, 5, 30, 270, _("\
 \n\
-The noseman doesn't speak, it only weeps.\n\
+\n\
+This noseman doesn't speak, it only weeps.\n\
+\n\
 "))
 
 DEFINE_DIALOG(DIALOG_007, 8, 3, 30, 270, _("\

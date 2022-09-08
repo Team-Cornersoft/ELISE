@@ -2,6 +2,7 @@
 #include "../ingame_menu.h"
 
 #define NOSEMAN_ELISE_DIALOG_ID 0x04
+#define NARRATOR_ELISE_DIALOG_ID 0x29
 
 void update_noseman_idle(void) {
     // char text[25];
@@ -22,6 +23,10 @@ void update_noseman_idle(void) {
 void update_noseman_talking(void) {
     u8 dialogID = NOSEMAN_ELISE_DIALOG_ID;
     switch (o->oBehParams2ndByte) {
+        case DIALOG_006: // Narrator cases should all go here
+            dialogID = NARRATOR_ELISE_DIALOG_ID;
+            overwrite_elise_dialog_prompt(NARRATOR_ELISE_DIALOG_ID, o->oBehParams2ndByte);
+            break;
         case DIALOG_015:
             dialogID = 0x0B;
             break;

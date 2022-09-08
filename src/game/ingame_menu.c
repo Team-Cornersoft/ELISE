@@ -44,7 +44,7 @@ struct EliseDialogOptions eliseDialogPrompts[] = {
             { DIALOG_170, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(0.75f), (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_DESPAIR_TEXT | ELISE_SPECIAL_FLAG_QUIET_MUSIC) },
             { DIALOG_175, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(0.75f), (ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_ELISE_TEXT | ELISE_SPECIAL_FLAG_QUIET_MUSIC) },
             { DIALOG_176, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.0f), SEC_TO_FRAMES(2.5f), SEC_TO_FRAMES(0.75f), (ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_DESPAIR_TEXT | ELISE_SPECIAL_FLAG_QUIET_MUSIC) },
-  /*0x04 Noseman dialogue*/  
+  /*0x04 Noseman dialogue template*/  
             { DIALOG_002, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.5f), 0xFFFE, SEC_TO_FRAMES(0.5f), (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_MULTI_USE | ELISE_SPECIAL_FLAG_QUIET_MUSIC | ELISE_SPECIAL_FLAG_NOSEMAN_TEXT) },
   /*0x05 Despair dialogue 2*/  
             { DIALOG_178, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.5f), SEC_TO_FRAMES(2.0f), SEC_TO_FRAMES(0.75f), (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_DESPAIR_TEXT | ELISE_SPECIAL_FLAG_QUIET_MUSIC) },
@@ -94,6 +94,9 @@ struct EliseDialogOptions eliseDialogPrompts[] = {
             { DIALOG_122, FALSE, 23, NO_SOUND, SEC_TO_FRAMES(2.25f), 0xFFFE, SEC_TO_FRAMES(4.0f), (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_ELISE_TEXT) },
   /*0x28 Boss Portal Override*/
             { DIALOG_099, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(1.25f), 0xFFFE, SEC_TO_FRAMES(4.0f), (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_ELISE_TEXT) },
+  /*0x29 Narrator dialog template */
+            { DIALOG_002, FALSE, 0, NO_SOUND, SEC_TO_FRAMES(0.5f), 0xFFFE, SEC_TO_FRAMES(0.5f), (ELISE_SPECIAL_FLAG_OPEN_PROMPT | ELISE_SPECIAL_FLAG_CLOSE_PROMPT | ELISE_SPECIAL_FLAG_PAUSE_CHARACTER | ELISE_SPECIAL_FLAG_WAIT_FOR_A_PRESS | ELISE_SPECIAL_FLAG_MULTI_USE | ELISE_SPECIAL_FLAG_QUIET_MUSIC | ELISE_SPECIAL_FLAG_NARRATOR_TEXT) },
+
 };
 
 u16 gDialogColorFadeTimer;
@@ -1480,7 +1483,10 @@ void render_elise_dialog_entry(void) {
                 y1 += ELISE_LINE_HEIGHT;
 
                 if (elisePrompt->soundDuration == 0) {
-                    print_set_envcolour(255, 255, 255, alpha);
+                    if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NARRATOR_TEXT)
+                        print_set_envcolour(159, 159, 159, alpha);
+                    else
+                        print_set_envcolour(255, 255, 255, alpha);
                     print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, (char*) segmented_to_virtual(dialog->str), PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, TRUE);
                 }
             }
@@ -1525,7 +1531,10 @@ void render_elise_dialog_entry(void) {
                 y1 += ELISE_LINE_HEIGHT;
             }
 
-            print_set_envcolour(255, 255, 255, alpha);
+            if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NARRATOR_TEXT)
+                print_set_envcolour(159, 159, 159, alpha);
+            else
+                print_set_envcolour(255, 255, 255, alpha);
             print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, (char*) segmented_to_virtual(dialog->str), PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, TRUE);
         }
         if (eliseDialogTimer >= (ELISE_DIALOG_WAIT_FRAMES + ELISE_DIALOG_FADE_FRAMES - 1)) {
@@ -1565,7 +1574,10 @@ void render_elise_dialog_entry(void) {
             y1 += ELISE_LINE_HEIGHT;
         }
 
-        print_set_envcolour(255, 255, 255, 255);
+        if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NARRATOR_TEXT)
+            print_set_envcolour(159, 159, 159, 255);
+        else
+            print_set_envcolour(255, 255, 255, 255);
         print_small_text_buffered(x1 + dialog->unused, y1 + ELISE_LINE_HEIGHT_MARGINS, (char*) segmented_to_virtual(dialog->str), PRINT_TEXT_ALIGN_LEFT, PRINT_ALL, FONT_ELISE, TRUE);
 
         if (eliseDialogTimer >= ((s32) elisePrompt->dialogFreeze - 1)) {
@@ -1617,7 +1629,10 @@ void render_elise_dialog_entry(void) {
             y1 += ELISE_LINE_HEIGHT;
         }
 
-        print_set_envcolour(255, 255, 255, 255);
+        if (elisePrompt->specialFlags & ELISE_SPECIAL_FLAG_NARRATOR_TEXT)
+            print_set_envcolour(159, 159, 159, 255);
+        else
+            print_set_envcolour(255, 255, 255, 255);
 
         s32 printAmount = strLen;
 
