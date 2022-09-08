@@ -94,6 +94,8 @@ extern s32 loadFrames;
 extern u32 pressAFrames;
 extern u8 renderPressA;
 
+extern u8 overrideBossPortal;
+
 extern s16 sCurrPlayMode;
 extern s16 sTransitionTimer;
 extern void (*sTransitionUpdate)(s16 *);
