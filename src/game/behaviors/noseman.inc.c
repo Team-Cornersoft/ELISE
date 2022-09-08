@@ -1,14 +1,7 @@
 #include "../print.h"
 #include "../ingame_menu.h"
 
-#define NOSEMAN_ELISE_DIALOG_ID 4
-
-enum NosemanState {
-    NOSEMAN_IDLE,
-    NOSEMAN_TALKING_TO_ELISE,
-    NOSEMAN_TALKING_ACTIVE,
-    NOSEMAN_UNABLE_TO_TALK,
-};
+#define NOSEMAN_ELISE_DIALOG_ID 0x04
 
 void update_noseman_idle(void) {
     // char text[25];
@@ -27,7 +20,26 @@ void update_noseman_idle(void) {
 }
 
 void update_noseman_talking(void) {
-    if (set_elise_dialog_prompt(NOSEMAN_ELISE_DIALOG_ID) == 0)
+    u8 dialogID = NOSEMAN_ELISE_DIALOG_ID;
+    switch (o->oBehParams2ndByte) {
+        case DIALOG_015:
+            dialogID = 0x0B;
+            break;
+        case DIALOG_016:
+            dialogID = 0x0C;
+            break;
+        case DIALOG_017:
+            dialogID = 0x08;
+            break;
+        case DIALOG_022:
+            dialogID = 0x09;
+            break;
+        case DIALOG_023:
+            dialogID = 0x0A;
+            break;
+    }
+
+    if (set_elise_dialog_prompt(dialogID) == 0)
         o->oAction = NOSEMAN_TALKING_ACTIVE;
 }
 
@@ -47,7 +59,23 @@ void update_noseman_active_talking(void) {
     }
 
     gMarioState->faceAngle[1] = angle;
-}  
+}
+
+void update_noseman_done_talking(void) {    
+    switch (o->oBehParams2ndByte) {
+        case DIALOG_015:
+            o->oBehParams2ndByte = DIALOG_016;
+            break;
+        case DIALOG_022:
+            o->oBehParams2ndByte = DIALOG_023;
+            break;
+        default:
+            o->oAction = NOSEMAN_DEACTIVATED;
+            return;
+    }
+
+    o->oAction = NOSEMAN_TALKING_TO_ELISE;
+}
 
 void bhv_noseman_init(void) {
     // I'm 99% sure this is always set to 0, but might as well make sure
@@ -62,6 +90,7 @@ void bhv_noseman_loop(void) {
         case NOSEMAN_IDLE:             update_noseman_idle();    break;
         case NOSEMAN_TALKING_TO_ELISE: update_noseman_talking(); break;
         case NOSEMAN_TALKING_ACTIVE:   update_noseman_active_talking();  break;
+        case NOSEMAN_UNABLE_TO_TALK:   update_noseman_done_talking();  break;
     }
     
     if (o->oTimer > 0x10000)

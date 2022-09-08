@@ -12,6 +12,14 @@ struct ChainSegment {
     Vec3s angle;
 };
 
+enum NosemanState {
+    NOSEMAN_IDLE,
+    NOSEMAN_TALKING_TO_ELISE,
+    NOSEMAN_TALKING_ACTIVE,
+    NOSEMAN_UNABLE_TO_TALK,
+    NOSEMAN_DEACTIVATED,
+};
+
 enum WaterDropletFlags {
     WATER_DROPLET_FLAG_RAND_ANGLE               = (1 << 1), // 0x02
     WATER_DROPLET_FLAG_RAND_OFFSET_XZ           = (1 << 2), // 0x04 // Unused

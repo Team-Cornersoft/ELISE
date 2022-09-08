@@ -8804,7 +8804,8 @@ void cutscene_elise_dialog(struct Camera *c) {
     cutscene_event(cutscene_dialog_do_nothing, c, 15, 15);
     sStatusFlags |= CAM_FLAG_SMOOTH_MOVEMENT;
 
-    if (eliseDialogCurrPrompt == -1 || eliseDialogState == ELISE_DIALOG_CLOSING_BLANK_FRAMES || eliseDialogState == ELISE_DIALOG_CLOSING) {
+    if ((eliseDialogCurrPrompt == -1 || eliseDialogState == ELISE_DIALOG_CLOSING_BLANK_FRAMES || eliseDialogState == ELISE_DIALOG_CLOSING)
+      && gCutsceneFocus->oAction != NOSEMAN_TALKING_TO_ELISE) {
         gCutsceneTimer = CUTSCENE_LOOP;
         retrieve_info_star(c);
         transition_next_state(c, 22);
