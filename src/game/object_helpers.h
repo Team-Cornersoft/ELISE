@@ -256,6 +256,7 @@ void disable_time_stop(void);
 void set_time_stop_flags(s32 flags);
 void clear_time_stop_flags(s32 flags);
 s32 cur_obj_can_mario_activate_textbox(f32 radius, f32 height, UNUSED s32 unused);
+s32 cur_obj_can_mario_activate_elise_textbox(f32 radius, f32 height);
 s32 cur_obj_can_mario_activate_textbox_2(f32 radius, f32 height);
 s32 cur_obj_can_activate_textbox(f32 radius, f32 height, s32 dist);
 s32 cur_obj_update_dialog(s32 actionArg, s32 dialogFlags, s32 dialogID, UNUSED s32 unused);

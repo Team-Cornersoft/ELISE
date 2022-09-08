@@ -1108,6 +1108,83 @@ void basic_update(void) {
     }
 }
 
+void update_elise_area_dialog(void) {
+    switch (gCurrLevelNum) {
+        case LEVEL_BOB:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x11);
+            else if (gCurrAreaIndex == 2)
+                set_elise_dialog_prompt(0x12);
+            break;
+        case LEVEL_WF:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x13);
+            else if (gCurrAreaIndex == 2)
+                set_elise_dialog_prompt(0x14);
+            else if (gCurrAreaIndex == 3)
+                set_elise_dialog_prompt(0x15);
+            break;
+        case LEVEL_JRB:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x16);
+            else if (gCurrAreaIndex == 2)
+                set_elise_dialog_prompt(0x17);
+            else if (gCurrAreaIndex == 4)
+                set_elise_dialog_prompt(0x18);
+            break;
+        case LEVEL_CCM:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x19);
+            else if (gCurrAreaIndex == 3)
+                set_elise_dialog_prompt(0x1A);
+            else if (gCurrAreaIndex == 5)
+                set_elise_dialog_prompt(0x1B);
+            else if (gCurrAreaIndex == 6)
+                set_elise_dialog_prompt(0x1C);
+            break;
+        case LEVEL_BBH:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x1D);
+            break;
+        case LEVEL_HMC:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x1E);
+            break;
+        case LEVEL_LLL:
+            if (gCurrAreaIndex == 2)
+                set_elise_dialog_prompt(0x1F);
+            break;
+        case LEVEL_SSL:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x20);
+            break;
+        case LEVEL_DDD:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x21);
+            break;
+        case LEVEL_SL:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x22);
+            break;
+        case LEVEL_WDW:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x23);
+            else if (gCurrAreaIndex == 2)
+                set_elise_dialog_prompt(0x24);
+            break;
+        case LEVEL_TTM:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x25);
+            else if (gCurrAreaIndex == 2)
+                set_elise_dialog_prompt(0x26);
+            else if (gCurrAreaIndex == 3)
+                set_elise_dialog_prompt(0x27);
+            break;
+        default:
+            break;
+    }
+}
+
 s32 play_mode_normal(void) {
 #ifndef DISABLE_DEMO
     if (gCurrDemoInput != NULL) {
@@ -1123,6 +1200,7 @@ s32 play_mode_normal(void) {
 
     warp_area();
     check_instant_warp();
+    update_elise_area_dialog();
 
     if (sTimerRunning && gHudDisplay.timer < 17999) {
         gHudDisplay.timer++;

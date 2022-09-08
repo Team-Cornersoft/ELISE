@@ -12,7 +12,7 @@ void update_noseman_idle(void) {
 
     s16 angle = o->oAngleToMario - o->oFaceAngleYaw;
 
-    if (ABS((s32) angle) < talkAngle && cur_obj_can_mario_activate_textbox_2(1000.0f, 1400.0f)) {
+    if (ABS((s32) angle) < talkAngle && cur_obj_can_mario_activate_elise_textbox(1000.0f, 1400.0f)) {
         o->oAction = NOSEMAN_TALKING_TO_ELISE;
         u8 dialogId = GET_BPARAM2(o->oBehParams);
         overwrite_elise_dialog_prompt(NOSEMAN_ELISE_DIALOG_ID, dialogId);
@@ -51,13 +51,24 @@ void update_noseman_talking(void) {
             break;
     }
 
-    if (set_elise_dialog_prompt(dialogID) == 0)
+    if (set_elise_dialog_prompt(dialogID) == 0) {
         o->oAction = NOSEMAN_TALKING_ACTIVE;
+        return;
+    }
+
+    s32 talkAngle = ((u32) o->oBehParams >> 24) * 0x10000 / 360;
+
+    s16 angle = o->oAngleToMario - o->oFaceAngleYaw;
+
+    if (!(ABS((s32) angle) < talkAngle && cur_obj_can_mario_activate_elise_textbox(1000.0f, 1400.0f)))
+        o->oAction = NOSEMAN_IDLE;
 }
 
 void update_noseman_active_talking(void) {
-    if (o->oTimer == 0)
+    if (o->oTimer == 0 && !o->oNosemanStartedCutscene) {
         start_object_cutscene(CUTSCENE_ELISE_DIALOG, o);
+        o->oNosemanStartedCutscene = TRUE;
+    }
 
     if (!(gMarioState->action & ACT_FLAG_INTANGIBLE)) {
         o->oAction = NOSEMAN_UNABLE_TO_TALK;
@@ -92,6 +103,7 @@ void update_noseman_done_talking(void) {
 void bhv_noseman_init(void) {
     // I'm 99% sure this is always set to 0, but might as well make sure
     o->oAction = NOSEMAN_IDLE;
+    o->oNosemanStartedCutscene = FALSE;
 }
 
 void bhv_noseman_loop(void) {

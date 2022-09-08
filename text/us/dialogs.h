@@ -1199,7 +1199,7 @@ I was such a fool.\n\
 
 // JRB AREA 4 old apartment
 DEFINE_DIALOG(DIALOG_107, 8, 6, 30, 270, _("\
-That dreadfull evening...\n\
+That dreadful evening...\n\
 \n\
 I shouldn't have looked...\n\
 \n\
@@ -1283,7 +1283,7 @@ I hate it.\n\
 DEFINE_DIALOG(DIALOG_116, 8, 7, 30, 270, _("\
 It's the house before we renovated it...\n\
 \n\
-It makde me feel very uneasy.\n\
+It made me feel very uneasy.\n\
 It still does.\n\
 \n\
 But there is nothing here, right?\n\
@@ -1296,7 +1296,7 @@ Chess, cards, and dice.\n\
 I really just make due with these to amuse myself to\n\
 the point that I have even started to bend the rules!\n\
 \n\
-What's a bischop anyways? And there are way too many pawns!\n\
+What's a bishop anyways? And there are way too many pawns!\n\
 "))
 
 // WDW AREA 1 juice (fish and bubbles)
@@ -1325,14 +1325,15 @@ Haha, how silly that would be...\n\
 "))
 
 // TTM AREA 2 inside the UFO
-DEFINE_DIALOG(DIALOG_121, 8, 8, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_121, 8, 9, 30, 270, _("\
 Ah, this is-!\n\
 \n\
-I thought I stowed away my teenage crushes on alien\n\
-boys?\n\
+I thought I stowed away my teenage crushes\n\
+on alien boys?\n\
 How absolutely embarrassing...\n\
 \n\
-Thank heavens nobody but me gets to see this place.\n\
+Thank heavens nobody but me gets to\n\
+see this place.\n\
 "))
 
 // TTM AREA 3 Cornersoft room

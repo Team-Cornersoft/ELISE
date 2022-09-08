@@ -375,6 +375,9 @@
 /* Bullet Bill */
 #define /*0x0F8*/ oBulletBillInitialMoveYaw OBJECT_FIELD_S32(0x1C)
 
+/* Noseman */
+#define /*0x0F8*/ oNosemanStartedCutscene OBJECT_FIELD_S32(0x1C)
+
 /* Bully (all variants) */
 #define /*0x0F4*/ oBullySubtype                   OBJECT_FIELD_S32(0x1B)
 #define /*0x0F8*/ O_BULLY_PREV_INDEX              0x1C
