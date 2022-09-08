@@ -31,6 +31,18 @@ void update_noseman_talking(void) {
         case DIALOG_017:
             dialogID = 0x08;
             break;
+        case DIALOG_018:
+            dialogID = 0x0D;
+            break;
+        case DIALOG_019:
+            dialogID = 0x0E;
+            break;
+        case DIALOG_020:
+            dialogID = 0x0F;
+            break;
+        case DIALOG_021:
+            dialogID = 0x10;
+            break;
         case DIALOG_022:
             dialogID = 0x09;
             break;
