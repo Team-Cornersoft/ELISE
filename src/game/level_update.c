@@ -366,7 +366,7 @@ void init_mario_after_warp(void) {
             init_door_warp(&gPlayerSpawnInfos[0], sWarpDest.arg);
         }
 
-        if (sWarpDest.levelNum == LEVEL_BITDW && sWarpDest.type == WARP_TYPE_CHANGE_LEVEL)
+        if (sWarpDest.levelNum == LEVEL_BITDW && (sWarpDest.type == WARP_TYPE_NOT_WARPING || sWarpDest.type == WARP_TYPE_CHANGE_LEVEL))
             shouldPlayMusic = FALSE;
 
         if (sWarpDest.type == WARP_TYPE_CHANGE_LEVEL || sWarpDest.type == WARP_TYPE_CHANGE_AREA) {
@@ -1316,7 +1316,7 @@ s32 init_level(void) {
         gHudDisplay.flags = HUD_DISPLAY_NONE;
     }
 
-    if (sWarpDest.levelNum == LEVEL_BITDW && sWarpDest.type == WARP_TYPE_CHANGE_LEVEL)
+    if (sWarpDest.levelNum == LEVEL_BITDW && (sWarpDest.type == WARP_TYPE_NOT_WARPING || sWarpDest.type == WARP_TYPE_CHANGE_LEVEL))
         shouldPlayMusic = FALSE;
 
     sTimerRunning = FALSE;
