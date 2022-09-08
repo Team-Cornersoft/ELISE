@@ -59,22 +59,20 @@ the Power Star!"))
 
 */
 
-DEFINE_DIALOG(DIALOG_002, 8, 4, 30, 270, _("\
-NOSEMAN:\n\
+DEFINE_DIALOG(DIALOG_002, 8, 3, 30, 270, _("\
 \n\
 So... Alone...\n\
 "))
 
-DEFINE_DIALOG(DIALOG_003, 8, 4, 30, 270, _("\
-NOSEMAN:\n\
+DEFINE_DIALOG(DIALOG_003, 8, 3, 30, 270, _("\
 \n\
 We saw it all...\n\
 "))
 
-DEFINE_DIALOG(DIALOG_004, 0, 0, 0, 0, _(""))
+DEFINE_DIALOG(DIALOG_004, 1, 1, 1, 1, _("\
+"))
 
-DEFINE_DIALOG(DIALOG_005, 8, 4, 30, 270, _("\
-NOSEMAN:\n\
+DEFINE_DIALOG(DIALOG_005, 8, 3, 30, 270, _("\
 \n\
 Why did noone help...?\n\
 "))
@@ -84,50 +82,42 @@ DEFINE_DIALOG(DIALOG_006, 8, 3, 30, 270, _("\
 The noseman doesn't speak, it only weeps.\n\
 "))
 
-DEFINE_DIALOG(DIALOG_007, 8, 4, 30, 270, _("\
-NOSEMAN:\n\
+DEFINE_DIALOG(DIALOG_007, 8, 3, 30, 270, _("\
 \n\
 Did he suffer...?\n\
 "))
 
-DEFINE_DIALOG(DIALOG_008, 8, 4, 30, 270, _("\
-NOSEMAN:\n\
+DEFINE_DIALOG(DIALOG_008, 8, 3, 30, 270, _("\
 \n\
 Are we next...?\n\
 "))
 
-DEFINE_DIALOG(DIALOG_009, 8, 4, 30, 270, _("\
-NOSEMAN:\n\
+DEFINE_DIALOG(DIALOG_009, 8, 3, 30, 270, _("\
 \n\
 He was never able to catch it...\n\
 "))
 
-DEFINE_DIALOG(DIALOG_010, 8, 4, 30, 270, _("\
-NOSEMAN:\n\
+DEFINE_DIALOG(DIALOG_010, 8, 3, 30, 270, _("\
 \n\
 The tree... is wilting...?\n\
 "))
 
-DEFINE_DIALOG(DIALOG_011, 8, 4, 30, 270, _("\
-NOSEMAN:\n\
+DEFINE_DIALOG(DIALOG_011, 8, 3, 30, 270, _("\
 \n\
 It's a curse...\n\
 "))
 
-DEFINE_DIALOG(DIALOG_012, 8, 4, 30, 270, _("\
-NOSEMAN:\n\
+DEFINE_DIALOG(DIALOG_012, 8, 3, 30, 270, _("\
 \n\
 Why us...?\n\
 "))
 
-DEFINE_DIALOG(DIALOG_013, 8, 4, 30, 270, _("\
-NOSEMAN:\n\
+DEFINE_DIALOG(DIALOG_013, 8, 3, 30, 270, _("\
 \n\
 We were... too late...\n\
 "))
 
-DEFINE_DIALOG(DIALOG_014, 8, 4, 30, 270, _("\
-NOSEMAN:\n\
+DEFINE_DIALOG(DIALOG_014, 8, 3, 30, 270, _("\
 \n\
 Eternal heartache...\n\
 "))
@@ -135,13 +125,12 @@ Eternal heartache...\n\
 // MISC. nosemen dialogues --- Keep for later: <COL_FF9FFFFF>ELISE:<COL_-------->
 
 DEFINE_DIALOG(DIALOG_015, 8, 4, 30, 270, _("\
-NOSEMOM:\n\
 Sweetie, don't forget to wash your hands after\n\
 you went to the toilet.\n\
+\n\
 "))
 
-DEFINE_DIALOG(DIALOG_016, 8, 7, 30, 270, _("\
-ELISE:\n\
+DEFINE_DIALOG(DIALOG_016, 8, 4, 30, 270, _("\
 Ehm...\n\
 \n\
 Sure, mom, will do.\n\
@@ -149,15 +138,13 @@ Sure, mom, will do.\n\
 
 // Elise nosemen dialogues
 
-DEFINE_DIALOG(DIALOG_017, 8, 5, 30, 270, _("\
-ELISE:\n\
+DEFINE_DIALOG(DIALOG_017, 8, 4, 30, 270, _("\
 Oh, poor Sammy...\n\
 You were a noisy but good neighbourhood cat.\n\
 Rest in piece, buddy.\n\
 "))
 
-DEFINE_DIALOG(DIALOG_018, 8, 8, 30, 270, _("\
-ELISE:\n\
+DEFINE_DIALOG(DIALOG_018, 8, 7, 30, 270, _("\
 Man, how many nights this dog's barking didn't\n\
 wake everyone up.\n\
 I can count them on my hands.\n\
@@ -166,8 +153,7 @@ Still, I'll never forget your loyalty.\n\
 Let's play together again someday, okay?\n\
 "))
 
-DEFINE_DIALOG(DIALOG_019, 8, 7, 30, 270, _("\
-ELISE:\n\
+DEFINE_DIALOG(DIALOG_019, 8, 5, 30, 270, _("\
 Dad used to have it out for this bird>\n\
 Saying it's some kind of reptile from the depths\n\
 of the dankest swamps.\n\
@@ -176,8 +162,7 @@ I wonder if it's still alive and kicking?\n\
 "))
 
 
-DEFINE_DIALOG(DIALOG_020, 8, 9, 30, 270, _("\
-ELISE:\n\
+DEFINE_DIALOG(DIALOG_020, 8, 8, 30, 270, _("\
 I always found it odd that card decks came\n\
 with a joker card. It's so uncreative!\n\
 Behold, the next best thing: The cat card!\n\
@@ -188,8 +173,7 @@ It's just as sneaky as a real cat.\n\
 "))
 
 
-DEFINE_DIALOG(DIALOG_021, 8, 8, 30, 270, _("\
-ELISE:\n\
+DEFINE_DIALOG(DIALOG_021, 8, 7, 30, 270, _("\
 Mom...\n\
 \n\
 She must've been so devistated.\n\
@@ -201,14 +185,13 @@ Was I wrong for making that wish...?\n\
 
 /* Nosedad dialogue */
 
-DEFINE_DIALOG(DIALOG_022, 8, 4, 30, 270, _("\
-NOSEDAD:\n\
+DEFINE_DIALOG(DIALOG_022, 8, 3, 30, 270, _("\
 ...Don't be afraid, Elise...\n\
 I will always watch over you...\n\
 "))
 
 DEFINE_DIALOG(DIALOG_023, 8, 3, 30, 270, _("\
-ELISE:\n\
+\n\
 Dad...\n\
 "))
 
@@ -1991,10 +1974,11 @@ Anyone entering this cave\n\
 without permission will\n\
 meet certain disaster."))
 
-DEFINE_DIALOG(DIALOG_170, 8, 3, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_170, 8, 4, 30, 270, _("\
 Defiance is futile!\n\
 You wanted this to begin with,\n\
-why refuse me now?"))
+why refuse me now?\n\
+"))
 
 DEFINE_DIALOG(DIALOG_171, 1, 4, 30, 200, _("\
 DESPAIR:\n\
@@ -2101,59 +2085,75 @@ NOTE: Number of lines is recommended to be kept the same for progressive dialog 
 Setting Elise or Despair to talk will append a line automatically, so it does not need to be accounted for here.
 Also note that this text is not capable of scrolling, so anything that is sequential needs to have its own dialog.
 */
-DEFINE_DIALOG(DIALOG_174, 8, 3, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_174, 8, 4, 30, 270, _("\
 Hi my name is Elise lol.\n\
 I like to eat cheese!\n\
-It do be kind of delicious!"))
+It do be kind of delicious!\n\
+"))
 
 // DESPAIR fight dialogues
-DEFINE_DIALOG(DIALOG_175, 8, 3, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_175, 8, 4, 30, 270, _("\
 It's time for me to face my problems\n\
 head on and give life a chance\n\
-even despite my circumstances!"))
+even despite my circumstances!\n\
+"))
 
-DEFINE_DIALOG(DIALOG_176, 8, 3, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_176, 8, 4, 30, 270, _("\
 You are but a fool and slave to reality.\n\
 I will pacify you here and now, and keep\n\
-you protected in the bliss of the dreamworld..."))
+you protected in the bliss of the dreamworld...\n\
+"))
 
-DEFINE_DIALOG(DIALOG_177, 8, 3, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_177, 8, 4, 30, 270, _("\
 This is the first text from noseman\n\
 It's a hackjob and hijacks the dialog system\n\
-It do be kind of delicious!"))
+It do be kind of delicious!\n\
+"))
 
-DEFINE_DIALOG(DIALOG_178, 8, 3, 30, 270, _("\
-H-h-how are you this resilient?"))
+DEFINE_DIALOG(DIALOG_178, 8, 4, 30, 270, _("\
+H-h-how are you this resilient?\n\
+\n\
+\n\
+"))
 
-DEFINE_DIALOG(DIALOG_179, 8, 3, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_179, 8, 4, 30, 270, _("\
 Take that you stupid rock!\n\
 Now wake me up or I'll tear you down\n\
-completely!"))
+completely!\n\
+"))
 
-DEFINE_DIALOG(DIALOG_180, 8, 3, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_180, 8, 4, 30, 270, _("\
 Feisty, but even I know when to give up.\n\
 Very well. But remember, I will return\n\
-whenever you wish for eternal escape again."))
+whenever you wish for eternal escape again.\n\
+"))
 
-DEFINE_DIALOG(DIALOG_181, 8, 3, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_181, 8, 4, 30, 270, _("\
 N-n-n-o!\n\
 I can't...\n\
-Has humanity forsaken me...?"))
+Has humanity forsaken me...?\n\
+"))
 
-DEFINE_DIALOG(DIALOG_182, 8, 3, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_182, 8, 4, 30, 270, _("\
 If only you didn't try to trap people\n\
-in a coma maybe we wouldn't have."))
+in a coma maybe we wouldn't have.\n\
+\n\
+"))
 
-DEFINE_DIALOG(DIALOG_183, 8, 3, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_183, 8, 4, 30, 270, _("\
 But...\n\
-I did it for humanity..."))
+I did it for humanity...\n\
+\n\
+"))
 
-DEFINE_DIALOG(DIALOG_184, 8, 3, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_184, 8, 4, 30, 270, _("\
 It's over, man.\n\
 \n\
-Go to bed."))
+Go to bed.\n\
+"))
 
-DEFINE_DIALOG(DIALOG_185, 8, 3, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_185, 8, 4, 30, 270, _("\
 ...CURSE...\n\
 ...YOU...\n\
-...ELISE...!"))
+...ELISE...!\n\
+"))
