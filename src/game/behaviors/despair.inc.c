@@ -170,7 +170,7 @@ void take_damage(void) {
 }
 
 void choose_attack(void) {
-    if (o->oDespairCurrentAttacks >= 0) {
+    if (o->oDespairCurrentAttacks >= 3) {
         change_attack(SPINNING_ATTACK, NO_COOLDOWN, SPINNING_ATTACK_TIME);
         o->oDespairSpinAngle = 270.0f;
         o->oDespairCurrentAttacks = 0;
@@ -544,7 +544,11 @@ void update_death_true(void) {
     if (gMarioState->action == ACT_IDLE) {
         if (gDialogResponse != 0) {
             disable_time_stop_including_mario();
-            obj_mark_for_deletion(o);
+
+            play_sound(SOUND_MENU_CUSTOM_BOSS_WARP, gGlobalSoundSource);
+
+            level_trigger_warp(gMarioState, WARP_OP_BLUE_DROP_ENDING, TRUE);
+            obj_mark_for_deletion(o); // TODO: Despair death animation and stuff
         }
         else {
             enable_time_stop_including_mario();

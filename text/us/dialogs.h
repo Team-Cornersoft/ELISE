@@ -153,7 +153,7 @@ Still, I'll never forget your loyalty.\n\
 Let's play together again someday, okay?\n\
 "))
 
-DEFINE_DIALOG(DIALOG_019, 8, 5, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_019, 8, 6, 30, 270, _("\
 Dad used to have it out for this bird>\n\
 Saying it's some kind of reptile from the depths\n\
 of the dankest swamps.\n\
@@ -1132,17 +1132,30 @@ you around, push back!\n\
 It's one-on-one, with a\n\
 fiery finish for the loser!"))
 
-DEFINE_DIALOG(DIALOG_098, 1, 2, 95, 200, _("\
-Come on in here...\n\
-...heh, heh, heh..."))
+// Vanilla sign description of boss override switch
+DEFINE_DIALOG(DIALOG_098, 1, 8, 95, 200, _("\
+We've realized that this\n\
+hack is a bit on the long\n\
+side, so for the sake of\n\
+the Dream competition,\n\
+we've added an override\n\
+switch to allow for early\n\
+access to the conclusion\n\
+of the game.\n\
+We plan to release an\n\
+update in the future that\n\
+removes this bypass from\n\
+the game, as this is not\n\
+how the hack is intended\n\
+to be experienced."))
 
-// unused
-DEFINE_DIALOG(DIALOG_099, 1, 5, 95, 200, _("\
-Eh he he...\n\
-You're mine, now, hee hee!\n\
-I'll pass right through\n\
-this wall. Can you do\n\
-that? Heh, heh, heh!"))
+// Boss Portal Override
+DEFINE_DIALOG(DIALOG_099, 8, 4, 30, 270, _("\
+Wow, we've got a fake gamer over here.\n\
+\n\
+SMH my head bro...\n\
+"))
+
 
 /* 
 
@@ -1199,7 +1212,7 @@ I was such a fool.\n\
 
 // JRB AREA 4 old apartment
 DEFINE_DIALOG(DIALOG_107, 8, 6, 30, 270, _("\
-That dreadfull evening...\n\
+That dreadful evening...\n\
 \n\
 I shouldn't have looked...\n\
 \n\
@@ -1283,7 +1296,7 @@ I hate it.\n\
 DEFINE_DIALOG(DIALOG_116, 8, 7, 30, 270, _("\
 It's the house before we renovated it...\n\
 \n\
-It makde me feel very uneasy.\n\
+It made me feel very uneasy.\n\
 It still does.\n\
 \n\
 But there is nothing here, right?\n\
@@ -1296,7 +1309,7 @@ Chess, cards, and dice.\n\
 I really just make due with these to amuse myself to\n\
 the point that I have even started to bend the rules!\n\
 \n\
-What's a bischop anyways? And there are way too many pawns!\n\
+What's a bishop anyways? And there are way too many pawns!\n\
 "))
 
 // WDW AREA 1 juice (fish and bubbles)
@@ -1325,14 +1338,15 @@ Haha, how silly that would be...\n\
 "))
 
 // TTM AREA 2 inside the UFO
-DEFINE_DIALOG(DIALOG_121, 8, 8, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_121, 8, 9, 30, 270, _("\
 Ah, this is-!\n\
 \n\
-I thought I stowed away my teenage crushes on alien\n\
-boys?\n\
+I thought I stowed away my teenage crushes\n\
+on alien boys?\n\
 How absolutely embarrassing...\n\
 \n\
-Thank heavens nobody but me gets to see this place.\n\
+Thank heavens nobody but me gets to\n\
+see this place.\n\
 "))
 
 // TTM AREA 3 Cornersoft room

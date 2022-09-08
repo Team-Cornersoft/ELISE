@@ -7,6 +7,11 @@
  * the environment.
  */
 
+void bhv_purple_switch_init(void) {
+    if ((((u32) o->oBehParams >> 24) & 0xFF) == 0xFF && gMarioState->numStars >= MIN_BLUE_DROPS_NEEDED)
+        obj_mark_for_deletion(o);
+}
+
 void bhv_purple_switch_loop(void) {
     switch (o->oAction) {
         /**
@@ -58,6 +63,11 @@ void bhv_purple_switch_loop(void) {
                     if (o->oTimer > 400) {
                         o->oAction = PURPLE_SWITCH_ACT_WAIT_FOR_MARIO_TO_GET_OFF;
                     }
+                }
+            } else if ((((u32) o->oBehParams >> 24) & 0xFF) == 0xFF) {
+                if (!overrideBossPortal) {
+                    overrideBossPortal = TRUE;
+                    play_sound(SOUND_GENERAL_WATER_LEVEL_TRIG, gGlobalSoundSource);
                 }
             }
             break;

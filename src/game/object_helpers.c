@@ -2014,6 +2014,17 @@ s32 cur_obj_can_mario_activate_textbox(f32 radius, f32 height, UNUSED s32 unused
     );
 }
 
+s32 cur_obj_can_mario_activate_elise_textbox(f32 radius, f32 height) {
+    f32 dist = sqrtf(radius*radius + height*height);
+    return (
+        o->oDistanceToMario < dist
+        // && o->oPosY < gMarioObject->oPosY + 160.0f
+        && gMarioObject->oPosY < o->oPosY + height
+        && !(gMarioStates[0].action & ACT_FLAG_AIR)
+        && lateral_dist_between_objects(o, gMarioObject) < radius
+    );
+}
+
 s32 cur_obj_can_mario_activate_textbox_2(f32 radius, f32 height) {
     // The last argument here is unused. When this function is called directly the argument is always set to 0x7FFF.
     return cur_obj_can_mario_activate_textbox(radius, height, 0x1000);

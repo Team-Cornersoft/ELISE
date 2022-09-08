@@ -563,6 +563,7 @@ enum SoundBank {
 #define SOUND_MENU_CUSTOM_DEATH                  /* 0x50388080 */ SOUND_ARG_LOAD(SOUND_BANK_MENU,     0x40, 0xF0, SOUND_NO_VOLUME_LOSS | SOUND_DISCRETE)
 #define SOUND_MENU_CUSTOM_WARP                   /* 0x50388080 */ SOUND_ARG_LOAD(SOUND_BANK_MENU,     0x41, 0xF0, SOUND_NO_VOLUME_LOSS | SOUND_DISCRETE)
 #define SOUND_MENU_CUSTOM_BOSS_WARP              /* 0x50388080 */ SOUND_ARG_LOAD(SOUND_BANK_MENU,     0x42, 0xF0, SOUND_NO_VOLUME_LOSS | SOUND_DISCRETE)
+#define SOUND_MENU_CUSTOM_TEXT_TYPEWRITE         /* 0x70130080 */ SOUND_ARG_LOAD(SOUND_BANK_MENU,     0x43, 0x00, SOUND_NO_VOLUME_LOSS | SOUND_DISCRETE) // unverified
 
 // Channel 8 loads sounds from the same place as channel 3, making it possible
 // to play two channel 3 sounds at once (since just one sound from each channel

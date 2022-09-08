@@ -12,6 +12,14 @@ struct ChainSegment {
     Vec3s angle;
 };
 
+enum NosemanState {
+    NOSEMAN_IDLE,
+    NOSEMAN_TALKING_TO_ELISE,
+    NOSEMAN_TALKING_ACTIVE,
+    NOSEMAN_UNABLE_TO_TALK,
+    NOSEMAN_DEACTIVATED,
+};
+
 enum WaterDropletFlags {
     WATER_DROPLET_FLAG_RAND_ANGLE               = (1 << 1), // 0x02
     WATER_DROPLET_FLAG_RAND_OFFSET_XZ           = (1 << 2), // 0x04 // Unused
@@ -248,6 +256,7 @@ void disable_time_stop(void);
 void set_time_stop_flags(s32 flags);
 void clear_time_stop_flags(s32 flags);
 s32 cur_obj_can_mario_activate_textbox(f32 radius, f32 height, UNUSED s32 unused);
+s32 cur_obj_can_mario_activate_elise_textbox(f32 radius, f32 height);
 s32 cur_obj_can_mario_activate_textbox_2(f32 radius, f32 height);
 s32 cur_obj_can_activate_textbox(f32 radius, f32 height, s32 dist);
 s32 cur_obj_update_dialog(s32 actionArg, s32 dialogFlags, s32 dialogID, UNUSED s32 unused);

@@ -17,6 +17,8 @@ enum ObjCollisionFlags {
     OBJ_COL_FLAGS_LANDED    = (OBJ_COL_FLAG_GROUNDED | OBJ_COL_FLAG_NO_Y_VEL)
 };
 
+#define MIN_BLUE_DROPS_NEEDED 12
+
 #define TERM_VEL(x) ((shouldFadeMarioWarp > 0) ? x : (x * ((0.67f + gravityMult) / 1.67f)))
 
 #ifndef TERM_VEL

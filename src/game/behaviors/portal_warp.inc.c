@@ -44,8 +44,10 @@ void bhv_portal_warp_loop(void) {
 }
 
 void bhv_boss_portal_warp_init(void) {
-    if (gMarioState->numStars < 12)
-        mark_obj_for_deletion(o);
+    overrideBossPortal = FALSE;
+
+    if (gMarioState->numStars < MIN_BLUE_DROPS_NEEDED)
+        cur_obj_hide();
 
     if (GET_BPARAM4(o->oBehParams) != 0) {
         obj_scale(o, (f32) GET_BPARAM4(o->oBehParams) / 64.0f);
@@ -61,6 +63,13 @@ void bhv_boss_portal_warp_init(void) {
 
 void bhv_boss_portal_warp_loop(void) {
     if (ABS(o->oFaceAnglePitch) > 1 || ABS(o->oFaceAngleRoll) > 1) {
+        o->oInteractStatus = INT_STATUS_NONE;
+        return;
+    }
+
+    if (obj_is_hidden(o)) {
+        if (overrideBossPortal)
+            cur_obj_unhide();
         o->oInteractStatus = INT_STATUS_NONE;
         return;
     }

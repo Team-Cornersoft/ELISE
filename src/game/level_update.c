@@ -155,6 +155,8 @@ s32 loadFrames = 0;
 u32 pressAFrames = 0;
 u8 renderPressA = FALSE;
 
+u8 overrideBossPortal = FALSE;
+
 struct MarioState *gMarioState = &gMarioStates[0];
 s8 sWarpCheckpointActive = FALSE;
 
@@ -366,7 +368,7 @@ void init_mario_after_warp(void) {
             init_door_warp(&gPlayerSpawnInfos[0], sWarpDest.arg);
         }
 
-        if (sWarpDest.levelNum == LEVEL_BITDW && sWarpDest.type == WARP_TYPE_CHANGE_LEVEL)
+        if (sWarpDest.levelNum == LEVEL_BITDW && (sWarpDest.type == WARP_TYPE_NOT_WARPING || sWarpDest.type == WARP_TYPE_CHANGE_LEVEL))
             shouldPlayMusic = FALSE;
 
         if (sWarpDest.type == WARP_TYPE_CHANGE_LEVEL || sWarpDest.type == WARP_TYPE_CHANGE_AREA) {
@@ -851,6 +853,15 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp, u8 fadeMario) {
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
                 break;
 
+            case WARP_OP_BLUE_DROP_ENDING:
+                set_camera_pitch_shake(0x60, 0x1, 0x2500);
+                set_camera_roll_shake(0xC0, 0x1, 0x3300);
+                sDelayedWarpTimer = 120;
+                sSourceWarpNodeId = 0x0A;
+                fadeMusic = TRUE;
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0xFF, 0xFF, 0xFF);
+                break;
+
             case WARP_OP_CREDITS_START:
                 sDelayedWarpTimer = 30;
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
@@ -932,6 +943,17 @@ void initiate_delayed_warp(void) {
 
                         warp_special(WARP_SPECIAL_DESPAIR_PROMPT); // Despair warp
                         gameFreezeFrames = 60;
+                        break;
+
+                    case WARP_OP_BLUE_DROP_ENDING:
+                        warpNode = area_get_warp_node(sSourceWarpNodeId);
+
+                        initiate_warp(warpNode->node.destLevel & 0x7F, warpNode->node.destArea,
+                                    warpNode->node.destNode, sDelayedWarpArg);
+                        sWarpDest.type = WARP_TYPE_NOT_WARPING; // Override normal warp while still preserving the warp node destination
+
+                        warp_special(WARP_SPECIAL_BLUE_DROP_ENDING); // Blue drop ending
+                        gameFreezeFrames = 105;
                         break;
 
                     case WARP_OP_CREDITS_START:
@@ -1088,6 +1110,86 @@ void basic_update(void) {
     }
 }
 
+void update_elise_area_dialog(void) {
+    if (overrideBossPortal)
+        set_elise_dialog_prompt(0x28); // How could you :O
+
+    switch (gCurrLevelNum) {
+        case LEVEL_BOB:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x11);
+            else if (gCurrAreaIndex == 2)
+                set_elise_dialog_prompt(0x12);
+            break;
+        case LEVEL_WF:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x13);
+            else if (gCurrAreaIndex == 2)
+                set_elise_dialog_prompt(0x14);
+            else if (gCurrAreaIndex == 3)
+                set_elise_dialog_prompt(0x15);
+            break;
+        case LEVEL_JRB:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x16);
+            else if (gCurrAreaIndex == 2)
+                set_elise_dialog_prompt(0x17);
+            else if (gCurrAreaIndex == 4)
+                set_elise_dialog_prompt(0x18);
+            break;
+        case LEVEL_CCM:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x19);
+            else if (gCurrAreaIndex == 3)
+                set_elise_dialog_prompt(0x1A);
+            else if (gCurrAreaIndex == 5)
+                set_elise_dialog_prompt(0x1B);
+            else if (gCurrAreaIndex == 6)
+                set_elise_dialog_prompt(0x1C);
+            break;
+        case LEVEL_BBH:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x1D);
+            break;
+        case LEVEL_HMC:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x1E);
+            break;
+        case LEVEL_LLL:
+            if (gCurrAreaIndex == 2)
+                set_elise_dialog_prompt(0x1F);
+            break;
+        case LEVEL_SSL:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x20);
+            break;
+        case LEVEL_DDD:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x21);
+            break;
+        case LEVEL_SL:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x22);
+            break;
+        case LEVEL_WDW:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x23);
+            else if (gCurrAreaIndex == 2)
+                set_elise_dialog_prompt(0x24);
+            break;
+        case LEVEL_TTM:
+            if (gCurrAreaIndex == 1)
+                set_elise_dialog_prompt(0x25);
+            else if (gCurrAreaIndex == 2)
+                set_elise_dialog_prompt(0x26);
+            else if (gCurrAreaIndex == 3)
+                set_elise_dialog_prompt(0x27);
+            break;
+        default:
+            break;
+    }
+}
+
 s32 play_mode_normal(void) {
 #ifndef DISABLE_DEMO
     if (gCurrDemoInput != NULL) {
@@ -1103,6 +1205,7 @@ s32 play_mode_normal(void) {
 
     warp_area();
     check_instant_warp();
+    update_elise_area_dialog();
 
     if (sTimerRunning && gHudDisplay.timer < 17999) {
         gHudDisplay.timer++;
@@ -1316,7 +1419,7 @@ s32 init_level(void) {
         gHudDisplay.flags = HUD_DISPLAY_NONE;
     }
 
-    if (sWarpDest.levelNum == LEVEL_BITDW && sWarpDest.type == WARP_TYPE_CHANGE_LEVEL)
+    if (sWarpDest.levelNum == LEVEL_BITDW && (sWarpDest.type == WARP_TYPE_NOT_WARPING || sWarpDest.type == WARP_TYPE_CHANGE_LEVEL))
         shouldPlayMusic = FALSE;
 
     sTimerRunning = FALSE;

@@ -72,6 +72,11 @@ static s16 obj_get_pitch_from_vel(void) {
     return -atan2s(o->oForwardVel, o->oVelY);
 }
 
+void bhv_early_access_sign_init(void) {
+    if (o->oBehParams2ndByte == DIALOG_098 && gMarioState->numStars >= MIN_BLUE_DROPS_NEEDED)
+        obj_mark_for_deletion(o);
+}
+
 /**
  * Show dialog proposing a race.
  * If the player accepts the race, then leave time stop enabled and Mario in the

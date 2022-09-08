@@ -2351,14 +2351,16 @@ static s8 sCreditOffset = 0;
 void print_credit_strings(void) {
     if (gControllers[0].buttonPressed & D_CBUTTONS) {
         sCreditOffset++;
+        if (sCreditOffset >= CREDIT_COUNT - LINES_ON_PAGE)
+            sCreditOffset = CREDIT_COUNT - LINES_ON_PAGE;
+        else
+            play_sound(SOUND_MENU_MESSAGE_NEXT_PAGE, gGlobalSoundSource);
     } else if (gControllers[0].buttonPressed & U_CBUTTONS) {
         sCreditOffset--;
-    }
-
-    if (sCreditOffset >= CREDIT_COUNT - LINES_ON_PAGE) {
-        sCreditOffset = CREDIT_COUNT - LINES_ON_PAGE;
-    } else if (sCreditOffset < 0) {
-        sCreditOffset = 0;
+        if (sCreditOffset < 0) 
+            sCreditOffset = 0;
+        else
+            play_sound(SOUND_MENU_MESSAGE_NEXT_PAGE, gGlobalSoundSource);
     }
 
     s32 i;

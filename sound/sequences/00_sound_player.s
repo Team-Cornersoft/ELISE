@@ -6963,6 +6963,7 @@ sound_ref .sound_menu_camera_turn
 sound_ref .sound_obj_custom_death
 sound_ref .sound_obj_custom_warp
 sound_ref .sound_obj_custom_boss_warp
+sound_ref .sound_obj_custom_text_typewrite
 
 .sound_obj_custom_death:
 chan_setbank 6
@@ -7016,6 +7017,20 @@ layer_end
 .layer_custom_boss_warp_2:
 layer_setpan 0x67
 layer_note1 40, 0x180, 115
+layer_end
+
+.sound_obj_custom_text_typewrite:
+chan_setbank 6
+chan_setinstr 17
+chan_setpanmix 0
+chan_setval 0x1F
+chan_call .set_reverb
+chan_setlayer 0, .layer_custom_text_typewrite
+chan_end
+
+.layer_custom_text_typewrite:
+layer_setpan 0x40
+layer_note1 39, 5, 100
 layer_end
 
 .sound_menu_change_select:
