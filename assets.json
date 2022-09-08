@@ -1251,6 +1251,8 @@
 "textures/inside/inside_castle_textures.0B800.rgba16.png": [64,32,4096,{"jp":[3555104,47104],"us":[3561856,47104],"eu":[3435456,47104],"sh":[3409824,47104]}],
 "textures/intro_raw/hand_closed.rgba16.png": [32,32,2048,{"jp":[2455304],"us":[2463112],"eu":[2331912],"sh":[2308680]}],
 "textures/intro_raw/hand_open.rgba16.png": [32,32,2048,{"jp":[2453248],"us":[2461056],"eu":[2329856],"sh":[2306624]}],
+"levels/menu/custom.hand_closed.rgba16.png": [32,32,2048,{"jp":[2455304],"us":[2463112],"eu":[2331912],"sh":[2308680]}],
+"levels/menu/custom.hand_open.rgba16.png": [32,32,2048,{"jp":[2453248],"us":[2461056],"eu":[2329856],"sh":[2306624]}],
 "textures/intro_raw/mario_face_shine.ia8.png": [32,32,1024,{"jp":[2503888],"us":[2511696],"eu":[2380496],"sh":[2357264]}],
 "textures/intro_raw/red_star_0.rgba16.png": [32,32,2048,{"jp":[2457352],"us":[2465160],"eu":[2333960],"sh":[2310728]}],
 "textures/intro_raw/red_star_1.rgba16.png": [32,32,2048,{"jp":[2459400],"us":[2467208],"eu":[2336008],"sh":[2312776]}],

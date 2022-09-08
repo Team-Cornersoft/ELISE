@@ -407,12 +407,12 @@ static const Vtx vertex_menu_hand[] = {
 
 // 0x07006328 - 0x07006B28
 ALIGNED8 static const Texture texture_menu_idle_hand[] = {
-#include "levels/menu/main_menu_seg7.06328.rgba16.inc.c"
+#include "levels/menu/custom.hand_open.rgba16.inc.c"
 };
 
 // 0x07006B28 - 0x07007328
 ALIGNED8 static const Texture texture_menu_grabbing_hand[] = {
-#include "levels/menu/main_menu_seg7.06B28.rgba16.inc.c"
+#include "levels/menu/custom.hand_closed.rgba16.inc.c"
 };
 
 // 0x07007328 - 0x070073A0
