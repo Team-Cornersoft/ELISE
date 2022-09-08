@@ -851,6 +851,15 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp, u8 fadeMario) {
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
                 break;
 
+            case WARP_OP_BLUE_DROP_ENDING:
+                set_camera_pitch_shake(0x60, 0x1, 0x2500);
+                set_camera_roll_shake(0xC0, 0x1, 0x3300);
+                sDelayedWarpTimer = 120;
+                sSourceWarpNodeId = 0x0A;
+                fadeMusic = TRUE;
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0xFF, 0xFF, 0xFF);
+                break;
+
             case WARP_OP_CREDITS_START:
                 sDelayedWarpTimer = 30;
                 play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
@@ -932,6 +941,17 @@ void initiate_delayed_warp(void) {
 
                         warp_special(WARP_SPECIAL_DESPAIR_PROMPT); // Despair warp
                         gameFreezeFrames = 60;
+                        break;
+
+                    case WARP_OP_BLUE_DROP_ENDING:
+                        warpNode = area_get_warp_node(sSourceWarpNodeId);
+
+                        initiate_warp(warpNode->node.destLevel & 0x7F, warpNode->node.destArea,
+                                    warpNode->node.destNode, sDelayedWarpArg);
+                        sWarpDest.type = WARP_TYPE_NOT_WARPING; // Override normal warp while still preserving the warp node destination
+
+                        warp_special(WARP_SPECIAL_BLUE_DROP_ENDING); // Blue drop ending
+                        gameFreezeFrames = 105;
                         break;
 
                     case WARP_OP_CREDITS_START:

@@ -18,7 +18,7 @@
 
 #include "make_const_nonconst.h"
 #include "levels/cutscene_7/header.h"
-#include "levels/intro/header.h"
+#include "levels/ending/header.h"
 #include "farcall.h"
 
 #include "config.h"
@@ -136,5 +136,5 @@ const LevelScript level_cutscene_scene_7_3[] = {
     CLEAR_LEVEL(),
     SLEEP(/*frames*/ 20),
     // EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _cutscene_7SegmentRomStart, _cutscene_7SegmentRomEnd, level_intro_mario_head_regular, _cutscene_7SegmentBssStart, _cutscene_7SegmentBssEnd),
-    EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _introSegmentRomStart, _introSegmentRomEnd, level_intro_mario_head_regular, _introSegmentBssStart, _introSegmentBssEnd),
+    EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_LEVEL_SCRIPT, _endingSegmentRomStart, _endingSegmentRomEnd, level_ending_entry, _endingSegmentBssStart, _endingSegmentBssEnd),
 };

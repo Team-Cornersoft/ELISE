@@ -30,6 +30,7 @@
 #include "actors/group17.h"
 
 #include "levels/cutscene_2/header.h"
+#include "levels/cutscene_5/header.h"
 
 #include "levels/menu/header.h"
 #include "levels/intro/header.h"
@@ -52,6 +53,8 @@ static const LevelScript goto_mario_head_regular[6];
 static const LevelScript goto_mario_head_dizzy[6];
 static const LevelScript goto_debug_level_select[6];
 static const LevelScript goto_despair_prompt[11];
+static const LevelScript goto_blue_drop_ending[6];
+
 
 #define STUB_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7, _8)
 #define DEFINE_LEVEL(_0, _1, _2, folder, _4, _5, _6, _7, _8, _9, _10) static const LevelScript script_exec_ ## folder [6 + 1];
@@ -155,6 +158,7 @@ const LevelScript level_main_scripts_entry[] = {
     JUMP_IF(   /*op*/ OP_EQ, /*arg*/ WARP_SPECIAL_INTRO_SPLASH_SCREEN, goto_intro_splash_screen),
     JUMP_IF(   /*op*/ OP_EQ, /*arg*/ WARP_SPECIAL_LEVEL_SELECT,        goto_debug_level_select),
     JUMP_IF(   /*op*/ OP_EQ, /*arg*/ WARP_SPECIAL_DESPAIR_PROMPT,      goto_despair_prompt),
+    JUMP_IF(   /*op*/ OP_EQ, /*arg*/ WARP_SPECIAL_BLUE_DROP_ENDING,    goto_blue_drop_ending),
 };
 
 static const LevelScript goto_intro_splash_screen[] = {
@@ -186,6 +190,10 @@ static const LevelScript goto_despair_prompt[] = {
     CALL(/*arg*/ 1, /*func*/ should_play_elise_cutscene),
     JUMP_IF(/*op*/ OP_EQ, /*arg*/ FALSE,  goto_bitdw),
     EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _cutscene_2SegmentRomStart, _cutscene_2SegmentRomEnd, level_cutscene_scene_2_0, _cutscene_2SegmentBssStart, _cutscene_2SegmentBssEnd),
+};
+
+static const LevelScript goto_blue_drop_ending[] = {
+    EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _cutscene_5SegmentRomStart, _cutscene_5SegmentRomEnd, level_cutscene_scene_5_0, _cutscene_5SegmentBssStart, _cutscene_5SegmentBssEnd),
 };
 
 // Include the level jumptable.

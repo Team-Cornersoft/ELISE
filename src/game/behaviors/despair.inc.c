@@ -544,7 +544,11 @@ void update_death_true(void) {
     if (gMarioState->action == ACT_IDLE) {
         if (gDialogResponse != 0) {
             disable_time_stop_including_mario();
-            obj_mark_for_deletion(o);
+
+            play_sound(SOUND_MENU_CUSTOM_BOSS_WARP, gGlobalSoundSource);
+
+            level_trigger_warp(gMarioState, WARP_OP_BLUE_DROP_ENDING, TRUE);
+            obj_mark_for_deletion(o); // TODO: Despair death animation and stuff
         }
         else {
             enable_time_stop_including_mario();
