@@ -46,10 +46,11 @@ enum SpecialWarpDestinations {
 };
 
 enum WarpDoorFlags {
-    WARP_FLAGS_NONE           = (0 << 0), // 0x00
-    WARP_FLAG_DOOR_PULLED     = (1 << 0), // 0x01
-    WARP_FLAG_DOOR_FLIP_MARIO = (1 << 1), // 0x02
-    WARP_FLAG_DOOR_IS_WARP    = (1 << 2), // 0x04
+    WARP_FLAGS_NONE             = (0 << 0), // 0x00
+    WARP_FLAG_DOOR_PULLED       = (1 << 0), // 0x01
+    WARP_FLAG_DOOR_FLIP_MARIO   = (1 << 1), // 0x02
+    WARP_FLAG_DOOR_IS_WARP      = (1 << 2), // 0x04
+    WARP_FLAG_EXIT_COURSE_SOUND = (1 << 3), // 0x08
 };
 
 enum MarioSpawnType {
@@ -93,6 +94,8 @@ extern struct MarioState *gMarioState;
 extern s32 loadFrames;
 extern u32 pressAFrames;
 extern u8 renderPressA;
+
+extern u8 overrideBossPortal;
 
 extern s16 sCurrPlayMode;
 extern s16 sTransitionTimer;

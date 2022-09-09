@@ -155,6 +155,8 @@ s32 loadFrames = 0;
 u32 pressAFrames = 0;
 u8 renderPressA = FALSE;
 
+u8 overrideBossPortal = FALSE;
+
 struct MarioState *gMarioState = &gMarioStates[0];
 s8 sWarpCheckpointActive = FALSE;
 
@@ -1109,6 +1111,9 @@ void basic_update(void) {
 }
 
 void update_elise_area_dialog(void) {
+    if (overrideBossPortal)
+        set_elise_dialog_prompt(0x28); // How could you :O
+
     switch (gCurrLevelNum) {
         case LEVEL_BOB:
             if (gCurrAreaIndex == 1)
@@ -1260,7 +1265,7 @@ s32 play_mode_paused(void) {
         if (gDebugLevelSelect) {
             fade_into_special_warp(WARP_SPECIAL_LEVEL_SELECT, 1);
         } else {
-            initiate_warp(EXIT_COURSE_LEVEL, EXIT_COURSE_AREA, EXIT_COURSE_NODE, WARP_FLAGS_NONE);
+            initiate_warp(EXIT_COURSE_LEVEL, EXIT_COURSE_AREA, EXIT_COURSE_NODE, WARP_FLAG_EXIT_COURSE_SOUND);
             fade_into_special_warp(WARP_SPECIAL_NONE, 0);
             gSavedCourseNum = COURSE_NONE;
         }

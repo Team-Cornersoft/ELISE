@@ -1797,6 +1797,7 @@ const BehaviorScript bhvFloorSwitchHardcodedModel[] = {
     // Floor switch - common:
     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
     LOAD_COLLISION_DATA(purple_switch_seg8_collision_0800C7A8),
+    CALL_NATIVE(bhv_purple_switch_init),
     BEGIN_LOOP(),
         CALL_NATIVE(bhv_purple_switch_loop),
         CALL_NATIVE(load_object_collision_model),
@@ -3805,6 +3806,7 @@ const BehaviorScript bhvMessagePanel[] = {
     SET_HITBOX(/*Radius*/ 150, /*Height*/ 80),
     SET_INT(oWoodenPostTotalMarioAngle, 0),
     CALL_NATIVE(load_object_static_model),
+    CALL_NATIVE(bhv_early_access_sign_init),
     BEGIN_LOOP(),
         SET_INT(oIntangibleTimer, 0),
         SET_INT(oInteractStatus, INT_STATUS_NONE),

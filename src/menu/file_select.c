@@ -2299,7 +2299,7 @@ void draw_credits_box(void) {
 
 #define LINES_ON_PAGE 12
 // Please keep this equal to the length of the sCreditStrings array, I don't know a good alternative to keep count
-#define CREDIT_COUNT 43
+#define CREDIT_COUNT 44
 static const char* sCreditStrings[] = {
     "",
     "<COL_FFFF7FFF>COMPETITION NOTE<COL_-------->",
@@ -2330,8 +2330,9 @@ static const char* sCreditStrings[] = {
     "<COL_7F7FFFFF>SOUND ENGINEERING/PORTING<COL_-------->",
     "ArcticJaguar725, PablosCorner",
     "",
-    "<COL_FF3FFFFF>ELISE VA<COL_-------->",
-    "Frackhead",
+    "<COL_FF3FFFFF>VOICE ACTORS<COL_-------->",
+    "Frackhead (Elise & Mom),",
+    "hahahyena (Despair)",
     "",
     "<COL_FF7F7FFF>ADDITIONAL HELP<COL_-------->",
     "FluffaLuigi (Mario replacement),",

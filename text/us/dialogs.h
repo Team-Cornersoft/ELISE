@@ -77,9 +77,11 @@ DEFINE_DIALOG(DIALOG_005, 8, 3, 30, 270, _("\
 Why did noone help...?\n\
 "))
 
-DEFINE_DIALOG(DIALOG_006, 8, 3, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_006, 8, 5, 30, 270, _("\
 \n\
-The noseman doesn't speak, it only weeps.\n\
+\n\
+This noseman doesn't speak, it only weeps.\n\
+\n\
 "))
 
 DEFINE_DIALOG(DIALOG_007, 8, 3, 30, 270, _("\
@@ -1132,17 +1134,30 @@ you around, push back!\n\
 It's one-on-one, with a\n\
 fiery finish for the loser!"))
 
-DEFINE_DIALOG(DIALOG_098, 1, 2, 95, 200, _("\
-Come on in here...\n\
-...heh, heh, heh..."))
+// Vanilla sign description of boss override switch
+DEFINE_DIALOG(DIALOG_098, 1, 8, 95, 200, _("\
+We've realized that this\n\
+hack is a bit on the long\n\
+side, so for the sake of\n\
+the Dream competition,\n\
+we've added an override\n\
+switch to allow for early\n\
+access to the conclusion\n\
+of the game.\n\
+We plan to release an\n\
+update in the future that\n\
+removes this bypass from\n\
+the game, as this is not\n\
+how the hack is intended\n\
+to be experienced."))
 
-// unused
-DEFINE_DIALOG(DIALOG_099, 1, 5, 95, 200, _("\
-Eh he he...\n\
-You're mine, now, hee hee!\n\
-I'll pass right through\n\
-this wall. Can you do\n\
-that? Heh, heh, heh!"))
+// Boss Portal Override
+DEFINE_DIALOG(DIALOG_099, 8, 4, 30, 270, _("\
+Wow, we've got a fake gamer over here.\n\
+\n\
+SMH my head bro...\n\
+"))
+
 
 /* 
 

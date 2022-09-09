@@ -124,6 +124,7 @@ void bhv_snow_leaf_particle_spawn_init(void);
 void bhv_tree_snow_or_leaf_loop(void);
 void bhv_piranha_plant_bubble_loop(void);
 void bhv_piranha_plant_waking_bubbles_loop(void);
+void bhv_purple_switch_init(void);
 void bhv_purple_switch_loop(void);
 void bhv_hidden_object_loop(void);
 void bhv_breakable_box_loop(void);
@@ -265,6 +266,8 @@ void bhv_menu_button_manager_loop(void);
 
 void bhv_file_select_manager_init(void);
 void bhv_file_select_manager_loop(void);
+
+void bhv_early_access_sign_init(void);
 
 void bhv_act_selector_star_type_loop(void);
 void bhv_act_selector_init(void);
