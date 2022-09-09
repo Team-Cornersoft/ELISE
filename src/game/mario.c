@@ -59,6 +59,8 @@ s32 is_anim_past_end(struct MarioState *m) {
 /**
  * Sets Mario's animation without any acceleration, running at its default rate.
  */
+
+#ifndef SLOW_ALL_MARIO_ANIMS
 s16 set_mario_animation(struct MarioState *m, s32 targetAnimID) {
     struct Object *marioObj = m->marioObj;
     struct Animation *targetAnim = m->animList->bufTarget;
@@ -87,6 +89,7 @@ s16 set_mario_animation(struct MarioState *m, s32 targetAnimID) {
 
     return marioObj->header.gfx.animInfo.animFrame;
 }
+#endif
 
 /**
  * Sets Mario's animation where the animation is sped up or
@@ -100,6 +103,8 @@ s16 set_mario_anim_with_accel(struct MarioState *m, s32 targetAnimID, s32 accel)
         targetAnim->values = (void *) VIRTUAL_TO_PHYSICAL((u8 *) targetAnim + (uintptr_t) targetAnim->values);
         targetAnim->index = (void *) VIRTUAL_TO_PHYSICAL((u8 *) targetAnim + (uintptr_t) targetAnim->index);
     }
+
+    accel = SCALE_PFs(accel);
 
     if (marioObj->header.gfx.animInfo.animID != targetAnimID) {
         marioObj->header.gfx.animInfo.animID = targetAnimID;
@@ -1621,11 +1626,11 @@ void mario_update_hitbox_and_cap_model(struct MarioState *m) {
             if (isDeathFloorWarp) {
                 m->forwardVel *= 0.95f;
                 m->vel[1] *= 0.95f;
-                animSlowdownRate *= 0.95f;
+                animSlowdownRate *= 0.99f;
             } else {
                 m->forwardVel *= 0.92f;
                 m->vel[1] *= 0.92f;
-                animSlowdownRate *= 0.92f;
+                animSlowdownRate *= 0.98125f;
             }
             animTotalForward += animSlowdownRate;
         } else {
