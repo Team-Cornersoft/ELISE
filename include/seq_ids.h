@@ -62,6 +62,7 @@ enum SeqId {
     SEQ_EVENT_ELISE_THEME,            // 0x31
     SEQ_EVENT_QUIET,                  // 0x32
     SEQ_LEVEL_BLOOD_CLOT,             // 0x33
+    SEQ_LEVEL_WHERE_AM_I,             // 0x34
     SEQ_COUNT
 };
 

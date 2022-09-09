@@ -1,0 +1,80 @@
+{
+    "date": "2022-08-27",
+    "sample_bank": "instruments",
+    "envelopes": {
+        "normal": [
+            [1, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+		"normalFadeOut": [
+            [1, 32700],
+            [500, 0],
+            [1, 0],
+            "hang"
+        ],
+		"hard": [
+            [1, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+		"longerFadeOut": [
+            [1, 32700],
+            [1000, 0],
+            [1, 0],
+            "hang"
+        ],
+        "evenLongerFadeOut": [
+            [1, 32700],
+            [4000, 0],
+            [1, 0],
+            "hang"
+        ],
+        "donk": [
+            [1, 32700],
+            [600, 0],
+            [1, 0],
+            "hang"
+        ],
+        "softNormal": [
+            [20, 32700],
+            [1, 32700],
+            [32700, 29430],
+            "hang"
+        ],
+        "softLongerFadeOut": [
+            [20, 32700],
+            [10000, 0],
+            [1, 0],
+            "hang"
+        ],
+		"vibraphoneStuff": [
+            [1, 32700],
+            [500, 0],
+            [1, 0],
+            "hang"
+        ]
+    },
+    "instruments": {
+        "grandPiano": {
+            "release_rate": 10,
+            "envelope": "donk",
+            "sound": "44_grand_piano"
+        },
+        "pizzicato2": {
+            "release_rate": 10,
+			"normal_range_lo": 28,
+            "normal_range_hi": 33,
+            "envelope": "normal",
+            "sound_lo": {"sample": "custom_pizzicato2_lo", "tuning": 1.378125},
+			"sound": {"sample": "custom_pizzicato2_mid", "tuning": 0.974482},
+			"sound_hi": {"sample": "custom_pizzicato2_hi", "tuning": 0.689063}
+        }
+    },
+    "instrument_list": [
+		"grandPiano",
+		"pizzicato2"
+    ]
+}
