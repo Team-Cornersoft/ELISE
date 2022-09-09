@@ -1259,21 +1259,21 @@ How silly.\n\
 "))
 
 // BBH AREA 1 bloom level
-DEFINE_DIALOG(DIALOG_112, 8, 8, 30, 270, _("\
-Oh, no.\n\
-I remember this.\n\
-It was shortly before the anesthesia completely wore off...\n\
+DEFINE_DIALOG(DIALOG_112, 8, 7, 30, 270, _("\
+Oh, no. I remember this.\n\
+It was shortly before the anesthesia completely\n\
+wore off.\n\
 \n\
 Heeheehee...!\n\
-\n\
 Just being here makes me feel all woozie.\n\
 "))
 
 // HMC AREA 1 flow slide (the colourful one)
-DEFINE_DIALOG(DIALOG_113, 8, 4, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_113, 8, 5, 30, 270, _("\
 Well this looks a lot more fun!\n\
 \n\
-I think I see something glistening at the end of the path?\n\
+I think I see something glistening at the end\n\
+of these paths?\n\
 "))
 
 // LLL AREA 2 (the snow one)
@@ -1305,13 +1305,14 @@ But there is nothing here, right?\n\
 "))
 
 // SL AREA 1 chess
-DEFINE_DIALOG(DIALOG_117, 8, 7, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_117, 8, 8, 30, 270, _("\
 Chess, cards, and dice.\n\
+I really just make due with these to amuse myself\n\
+to the point that I have even started to\n\
+bend the rules!\n\
 \n\
-I really just make due with these to amuse myself to\n\
-the point that I have even started to bend the rules!\n\
-\n\
-What's a bishop anyways? And there are way too many pawns!\n\
+What's a bishop anyways?\n\
+And there are way too many pawns!\n\
 "))
 
 // WDW AREA 1 juice (fish and bubbles)
