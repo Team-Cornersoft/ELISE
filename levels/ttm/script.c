@@ -107,7 +107,7 @@ const LevelScript level_ttm_entry[] = {
 		OBJECT(MODEL_PORTAL_WARP, 0, 500, 3480, 0, 0, 0, 0x00CA0300, bhvPortalWarp),
 		TERRAIN(ttm_area_2_collision),
 		MACRO_OBJECTS(ttm_area_2_macro_objs),
-		SET_BACKGROUND_MUSIC(0x00, SEQ_EVENT_MERRY_GO_ROUND),
+		SET_BACKGROUND_MUSIC(0x00, SEQ_LEVEL_ALIEN_PARTY),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_EVENT_MERRY_GO_ROUND, 0x01, 0x02),
