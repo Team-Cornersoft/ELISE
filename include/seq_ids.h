@@ -63,6 +63,7 @@ enum SeqId {
     SEQ_EVENT_QUIET,                  // 0x32
     SEQ_LEVEL_BLOOD_CLOT,             // 0x33
     SEQ_LEVEL_WHERE_AM_I,             // 0x34
+    SEQ_LEVEL_ALIEN_PARTY,            // 0x35
     SEQ_COUNT
 };
 
