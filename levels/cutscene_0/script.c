@@ -42,11 +42,13 @@ const LevelScript level_cutscene_scene_0_0[] = {
 
     // Start animation
     LOAD_AREA(/*area*/ 1),
-    SET_MENU_MUSIC(/*seq*/ SEQ_LEVEL_WATER),
+    SET_MENU_MUSIC(/*seq*/ SEQ_EVENT_QUIET),
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC0_CD0),
+    SLEEP(/*frames*/ 60),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
@@ -74,7 +76,9 @@ const LevelScript level_cutscene_scene_0_1[] = {
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC0_CD1),
+    SLEEP(/*frames*/ 180),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
@@ -102,14 +106,17 @@ const LevelScript level_cutscene_scene_0_2[] = {
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC0_CD2),
+    SLEEP(/*frames*/ 115),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
+    STOP_MUSIC(/*fadeOutTime*/ 0x0180),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
     CALL_LOOP(/*arg*/ 16, /*func*/ image_screen_cannot_press_button),
     UNLOAD_AREA(/*area*/ 1),
     CLEAR_LEVEL(),
-    SLEEP(/*frames*/ 20),
+    SLEEP(/*frames*/ 45),
     EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _cutscene_0SegmentRomStart, _cutscene_0SegmentRomEnd, level_cutscene_scene_0_3, _cutscene_0SegmentBssStart, _cutscene_0SegmentBssEnd),
 };
 
@@ -127,10 +134,13 @@ const LevelScript level_cutscene_scene_0_3[] = {
 
     // Start animation
     LOAD_AREA(/*area*/ 1),
+    SET_MENU_MUSIC(/*seq*/ SEQ_EVENT_FILE_SELECT),
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC0_CD3),
+    SLEEP(/*frames*/ 140),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),

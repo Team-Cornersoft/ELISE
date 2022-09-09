@@ -12,7 +12,7 @@ seq_setmutescale 0
   seq_setvol 127
 #endif
 seq_settempo 120
-seq_initchannels 0xfff
+seq_initchannels 0x0fff
 seq_startchannel 0, .channel0
 seq_startchannel 1, .channel1
 seq_startchannel 2, .channel2
@@ -8081,32 +8081,692 @@ layer_jump .sound_env_rain_R_loop
 
 
 .channelB_table:
-sound_ref .sound_env_rain_stereo_tmp
+sound_ref .sound_despair_grunt_0
+sound_ref .sound_despair_grunt_1
+sound_ref .sound_despair_grunt_2
+sound_ref .sound_despair_grunt_3
+sound_ref .sound_despair_grunt_4
+sound_ref .sound_despair_grunt_5
+sound_ref .sound_despair_grunt_6
+sound_ref .sound_despair_grunt_7
+sound_ref .sound_despair_grunt_8
+sound_ref .sound_despair_grunt_9
+sound_ref .sound_despair_elise_death
+sound_ref .sound_despair_death_blue
+sound_ref .sound_despair_death_red
+sound_ref .sound_cutscene_sc0_cd0
+sound_ref .sound_cutscene_sc0_cd1
+sound_ref .sound_cutscene_sc0_cd2
+sound_ref .sound_cutscene_sc0_cd3
+sound_ref .sound_cutscene_sc0_cd4
+sound_ref .sound_cutscene_sc0_cd5
+sound_ref .sound_cutscene_sc0_cd6
+sound_ref .sound_cutscene_sc1_cd0
+sound_ref .sound_cutscene_sc1_cd1
+sound_ref .sound_cutscene_sc1_cd2
+sound_ref .sound_cutscene_sc1_cd3
+sound_ref .sound_cutscene_sc1_cd4
+sound_ref .sound_cutscene_sc1_cd5
+sound_ref .sound_cutscene_sc1_cd6
+sound_ref .sound_cutscene_sc1_cd7
+sound_ref .sound_cutscene_sc1_cd8
+sound_ref .sound_cutscene_sc1_cd9
+sound_ref .sound_cutscene_sc1_cda
+sound_ref .sound_cutscene_sc2_cd0
+sound_ref .sound_cutscene_sc2_cd1
+sound_ref .sound_cutscene_sc2_cd2
+sound_ref .sound_cutscene_sc2_cd3
+sound_ref .sound_cutscene_sc2_cd4
+sound_ref .sound_cutscene_sc2_cd5
+sound_ref .sound_cutscene_sc2_cd6
 
 
-
-.sound_env_rain_stereo_tmp:
+.sound_despair_grunt_0:
 chan_setbank 12
-chan_setpanmix 0
-chan_setlayer 0, .sound_env_rain_L_tmp
-chan_setlayer 1, .sound_env_rain_R_tmp
+chan_setinstr 0
+chan_setval 30
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_grunt_0
 chan_end
 
-.sound_env_rain_L_tmp:
-layer_setinstr 0
-layer_setpan 0x0C
-layer_somethingon
-.sound_env_rain_L_loop_tmp:
-layer_note1 39, 0x480, 85
-layer_jump .sound_env_rain_L_loop_tmp
+.layer_despair_grunt_0:
+layer_note1 39, 0x3d, 111
+layer_end
 
-.sound_env_rain_R_tmp:
-layer_setinstr 1
-layer_setpan 0x73
-layer_somethingon
-.sound_env_rain_R_loop_tmp:
-layer_note1 39, 0x480, 85
-layer_jump .sound_env_rain_R_loop_tmp
+
+.sound_despair_grunt_1:
+chan_setbank 12
+chan_setinstr 1
+chan_setval 30
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_grunt_1
+chan_end
+
+.layer_despair_grunt_1:
+layer_note1 39, 0x28, 111
+layer_end
+
+
+.sound_despair_grunt_2:
+chan_setbank 12
+chan_setinstr 2
+chan_setval 30
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_grunt_2
+chan_end
+
+.layer_despair_grunt_2:
+layer_note1 39, 0x34, 111
+layer_end
+
+
+.sound_despair_grunt_3:
+chan_setbank 12
+chan_setinstr 3
+chan_setval 30
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_grunt_3
+chan_end
+
+.layer_despair_grunt_3:
+layer_note1 39, 0x30, 111
+layer_end
+
+
+.sound_despair_grunt_4:
+chan_setbank 12
+chan_setinstr 4
+chan_setval 30
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_grunt_4
+chan_end
+
+.layer_despair_grunt_4:
+layer_note1 39, 0x1a, 111
+layer_end
+
+
+.sound_despair_grunt_5:
+chan_setbank 12
+chan_setinstr 5
+chan_setval 30
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_grunt_5
+chan_end
+
+.layer_despair_grunt_5:
+layer_note1 39, 0x26, 111
+layer_end
+
+
+.sound_despair_grunt_6:
+chan_setbank 12
+chan_setinstr 6
+chan_setval 30
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_grunt_6
+chan_end
+
+.layer_despair_grunt_6:
+layer_note1 39, 0x18, 111
+layer_end
+
+
+.sound_despair_grunt_7:
+chan_setbank 12
+chan_setinstr 7
+chan_setval 30
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_grunt_7
+chan_end
+
+.layer_despair_grunt_7:
+layer_note1 39, 0x3b, 111
+layer_end
+
+
+.sound_despair_grunt_8:
+chan_setbank 12
+chan_setinstr 8
+chan_setval 30
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_grunt_8
+chan_end
+
+.layer_despair_grunt_8:
+layer_note1 39, 0x37, 111
+layer_end
+
+
+.sound_despair_grunt_9:
+chan_setbank 12
+chan_setinstr 9
+chan_setval 30
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_grunt_9
+chan_end
+
+.layer_despair_grunt_9:
+layer_note1 39, 0x3d, 111
+layer_end
+
+
+.sound_despair_elise_death:
+chan_setbank 12
+chan_setinstr 10
+chan_setval 30
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_elise_death
+chan_end
+
+.layer_despair_elise_death:
+layer_note1 39, 0xe8, 111
+layer_end
+
+
+.sound_despair_death_blue:
+chan_setbank 12
+chan_setinstr 11
+chan_setval 55
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_death_blue
+chan_end
+
+.layer_despair_death_blue:
+layer_note1 39, 0x23c, 111
+layer_end
+
+
+.sound_despair_death_red:
+chan_setbank 12
+chan_setinstr 12
+chan_setval 55
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_death_red
+chan_end
+
+.layer_despair_death_red:
+layer_note1 39, 0x245, 111
+layer_end
+
+
+.sound_cutscene_sc0_cd0:
+chan_setbank 12
+chan_setinstr 13
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc0_cd0_echo
+chan_setlayer 1, .layer_cutscene_sc0_cd0
+chan_end
+
+.layer_cutscene_sc0_cd0_echo:
+layer_delay 0x10
+layer_note1 39, 0x6f, 47
+layer_end
+
+.layer_cutscene_sc0_cd0:
+layer_note1 39, 0x6f, 127
+layer_end
+
+
+.sound_cutscene_sc0_cd1:
+chan_setbank 12
+chan_setinstr 14
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc0_cd1_echo
+chan_setlayer 1, .layer_cutscene_sc0_cd1
+chan_end
+
+.layer_cutscene_sc0_cd1_echo:
+layer_delay 0x10
+layer_note1 39, 0x210, 47
+layer_end
+
+.layer_cutscene_sc0_cd1:
+layer_note1 39, 0x210, 127
+layer_end
+
+
+.sound_cutscene_sc0_cd2:
+chan_setbank 12
+chan_setinstr 15
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc0_cd2_echo
+chan_setlayer 1, .layer_cutscene_sc0_cd2
+chan_end
+
+.layer_cutscene_sc0_cd2_echo:
+layer_delay 0x10
+layer_note1 39, 0x143, 47
+layer_end
+
+.layer_cutscene_sc0_cd2:
+layer_note1 39, 0x143, 127
+layer_end
+
+
+.sound_cutscene_sc0_cd3:
+chan_setbank 12
+chan_setinstr 16
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc0_cd3_echo
+chan_setlayer 1, .layer_cutscene_sc0_cd3
+chan_end
+
+.layer_cutscene_sc0_cd3_echo:
+layer_delay 0x10
+layer_note1 39, 0x18e, 47
+layer_end
+
+.layer_cutscene_sc0_cd3:
+layer_note1 39, 0x18e, 127
+layer_end
+
+
+.sound_cutscene_sc0_cd4:
+chan_setbank 12
+chan_setinstr 17
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc0_cd4_echo
+chan_setlayer 1, .layer_cutscene_sc0_cd4
+chan_end
+
+.layer_cutscene_sc0_cd4_echo:
+layer_delay 0x10
+layer_note1 39, 0x162, 47
+layer_end
+
+.layer_cutscene_sc0_cd4:
+layer_note1 39, 0x162, 127
+layer_end
+
+
+.sound_cutscene_sc0_cd5:
+chan_setbank 12
+chan_setinstr 18
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc0_cd5_echo
+chan_setlayer 1, .layer_cutscene_sc0_cd5
+chan_end
+
+.layer_cutscene_sc0_cd5_echo:
+layer_delay 0x10
+layer_note1 39, 0x149, 47
+layer_end
+
+.layer_cutscene_sc0_cd5:
+layer_note1 39, 0x149, 127
+layer_end
+
+
+.sound_cutscene_sc0_cd6:
+chan_setbank 12
+chan_setinstr 19
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc0_cd6_echo
+chan_setlayer 1, .layer_cutscene_sc0_cd6
+chan_end
+
+.layer_cutscene_sc0_cd6_echo:
+layer_delay 0x10
+layer_note1 39, 0x124, 47
+layer_end
+
+.layer_cutscene_sc0_cd6:
+layer_note1 39, 0x124, 127
+layer_end
+
+
+.sound_cutscene_sc1_cd0:
+chan_setbank 12
+chan_setinstr 20
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc1_cd0_echo
+chan_setlayer 1, .layer_cutscene_sc1_cd0
+chan_end
+
+.layer_cutscene_sc1_cd0_echo:
+layer_delay 0x10
+layer_note1 39, 0xfa, 47
+layer_end
+
+.layer_cutscene_sc1_cd0:
+layer_note1 39, 0xfa, 127
+layer_end
+
+
+.sound_cutscene_sc1_cd1:
+chan_setbank 12
+chan_setinstr 21
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc1_cd1_echo
+chan_setlayer 1, .layer_cutscene_sc1_cd1
+chan_end
+
+.layer_cutscene_sc1_cd1_echo:
+layer_delay 0x10
+layer_note1 39, 0x14f, 47
+layer_end
+
+.layer_cutscene_sc1_cd1:
+layer_note1 39, 0x14f, 127
+layer_end
+
+
+.sound_cutscene_sc1_cd2:
+chan_setbank 12
+chan_setinstr 22
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc1_cd2_echo
+chan_setlayer 1, .layer_cutscene_sc1_cd2
+chan_end
+
+.layer_cutscene_sc1_cd2_echo:
+layer_delay 0x10
+layer_note1 39, 0x158, 47
+layer_end
+
+.layer_cutscene_sc1_cd2:
+layer_note1 39, 0x158, 127
+layer_end
+
+
+.sound_cutscene_sc1_cd3:
+chan_setbank 12
+chan_setinstr 23
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc1_cd3_echo
+chan_setlayer 1, .layer_cutscene_sc1_cd3
+chan_end
+
+.layer_cutscene_sc1_cd3_echo:
+layer_delay 0x10
+layer_note1 39, 0x45, 47
+layer_end
+
+.layer_cutscene_sc1_cd3:
+layer_note1 39, 0x45, 127
+layer_end
+
+
+.sound_cutscene_sc1_cd4:
+chan_setbank 12
+chan_setinstr 24
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc1_cd4_echo
+chan_setlayer 1, .layer_cutscene_sc1_cd4
+chan_end
+
+.layer_cutscene_sc1_cd4_echo:
+layer_delay 0x10
+layer_note1 39, 0x138, 47
+layer_end
+
+.layer_cutscene_sc1_cd4:
+layer_note1 39, 0x138, 127
+layer_end
+
+
+.sound_cutscene_sc1_cd5:
+chan_setbank 12
+chan_setinstr 25
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc1_cd5_echo
+chan_setlayer 1, .layer_cutscene_sc1_cd5
+chan_end
+
+.layer_cutscene_sc1_cd5_echo:
+layer_delay 0x10
+layer_note1 39, 0x148, 47
+layer_end
+
+.layer_cutscene_sc1_cd5:
+layer_note1 39, 0x148, 127
+layer_end
+
+
+.sound_cutscene_sc1_cd6:
+chan_setbank 12
+chan_setinstr 26
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc1_cd6_echo
+chan_setlayer 1, .layer_cutscene_sc1_cd6
+chan_end
+
+.layer_cutscene_sc1_cd6_echo:
+layer_delay 0x10
+layer_note1 39, 0x1cf, 47
+layer_end
+
+.layer_cutscene_sc1_cd6:
+layer_note1 39, 0x1cf, 127
+layer_end
+
+
+.sound_cutscene_sc1_cd7:
+chan_setbank 12
+chan_setinstr 27
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc1_cd7_echo
+chan_setlayer 1, .layer_cutscene_sc1_cd7
+chan_end
+
+.layer_cutscene_sc1_cd7_echo:
+layer_delay 0x10
+layer_note1 39, 0x103, 47
+layer_end
+
+.layer_cutscene_sc1_cd7:
+layer_note1 39, 0x103, 127
+layer_end
+
+
+.sound_cutscene_sc1_cd8:
+chan_setbank 12
+chan_setinstr 28
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc1_cd8_echo
+chan_setlayer 1, .layer_cutscene_sc1_cd8
+chan_end
+
+.layer_cutscene_sc1_cd8_echo:
+layer_delay 0x10
+layer_note1 39, 0x63, 47
+layer_end
+
+.layer_cutscene_sc1_cd8:
+layer_note1 39, 0x63, 127
+layer_end
+
+
+.sound_cutscene_sc1_cd9:
+chan_setbank 12
+chan_setinstr 29
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc1_cd9_echo
+chan_setlayer 1, .layer_cutscene_sc1_cd9
+chan_end
+
+.layer_cutscene_sc1_cd9_echo:
+layer_delay 0x10
+layer_note1 39, 0x64, 47
+layer_end
+
+.layer_cutscene_sc1_cd9:
+layer_note1 39, 0x64, 127
+layer_end
+
+
+.sound_cutscene_sc1_cda:
+chan_setbank 12
+chan_setinstr 30
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc1_cda_echo
+chan_setlayer 1, .layer_cutscene_sc1_cda
+chan_end
+
+.layer_cutscene_sc1_cda_echo:
+layer_delay 0x10
+layer_note1 39, 0x1f9, 47
+layer_end
+
+.layer_cutscene_sc1_cda:
+layer_note1 39, 0x1f9, 127
+layer_end
+
+
+.sound_cutscene_sc2_cd0:
+chan_setbank 12
+chan_setinstr 31
+chan_setval 8
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc2_cd0_echo
+chan_setlayer 1, .layer_cutscene_sc2_cd0
+chan_end
+
+.layer_cutscene_sc2_cd0_echo:
+layer_delay 0x10
+layer_note1 39, 0x96, 31
+layer_end
+
+.layer_cutscene_sc2_cd0:
+layer_note1 39, 0x96, 127
+layer_end
+
+
+.sound_cutscene_sc2_cd1:
+chan_setbank 12
+chan_setinstr 32
+chan_setval 8
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc2_cd1_echo
+chan_setlayer 1, .layer_cutscene_sc2_cd1
+chan_end
+
+.layer_cutscene_sc2_cd1_echo:
+layer_delay 0x10
+layer_note1 39, 0x68, 31
+layer_end
+
+.layer_cutscene_sc2_cd1:
+layer_note1 39, 0x68, 127
+layer_end
+
+
+.sound_cutscene_sc2_cd2:
+chan_setbank 12
+chan_setinstr 33
+chan_setval 8
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc2_cd2_echo
+chan_setlayer 1, .layer_cutscene_sc2_cd2
+chan_end
+
+.layer_cutscene_sc2_cd2_echo:
+layer_delay 0x10
+layer_note1 39, 0x4c, 31
+layer_end
+
+.layer_cutscene_sc2_cd2:
+layer_note1 39, 0x4c, 127
+layer_end
+
+
+.sound_cutscene_sc2_cd3:
+chan_setbank 12
+chan_setinstr 34
+chan_setval 8
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc2_cd3_echo
+chan_setlayer 1, .layer_cutscene_sc2_cd3
+chan_end
+
+.layer_cutscene_sc2_cd3_echo:
+layer_delay 0x10
+layer_note1 39, 0xe3, 31
+layer_end
+
+.layer_cutscene_sc2_cd3:
+layer_note1 39, 0xe3, 127
+layer_end
+
+
+.sound_cutscene_sc2_cd4:
+chan_setbank 12
+chan_setinstr 35
+chan_setval 8
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc2_cd4_echo
+chan_setlayer 1, .layer_cutscene_sc2_cd4
+chan_end
+
+.layer_cutscene_sc2_cd4_echo:
+layer_delay 0x10
+layer_note1 39, 0xae, 31
+layer_end
+
+.layer_cutscene_sc2_cd4:
+layer_note1 39, 0xae, 127
+layer_end
+
+
+.sound_cutscene_sc2_cd5:
+chan_setbank 12
+chan_setinstr 36
+chan_setval 8
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc2_cd5_echo
+chan_setlayer 1, .layer_cutscene_sc2_cd5
+chan_end
+
+.layer_cutscene_sc2_cd5_echo:
+layer_delay 0x10
+layer_note1 39, 0x47, 31
+layer_end
+
+.layer_cutscene_sc2_cd5:
+layer_note1 39, 0x47, 127
+layer_end
+
+
+.sound_cutscene_sc2_cd6:
+chan_setbank 12
+chan_setinstr 37
+chan_setval 8
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc2_cd6_echo
+chan_setlayer 1, .layer_cutscene_sc2_cd6
+chan_end
+
+.layer_cutscene_sc2_cd6_echo:
+layer_delay 0x10
+layer_note1 39, 0xf8, 31
+layer_end
+
+.layer_cutscene_sc2_cd6:
+layer_note1 39, 0xf8, 127
+layer_end
+
+
+
+
 
 .align 2, 0
 .envelope_32C4:

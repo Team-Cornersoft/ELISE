@@ -68,6 +68,8 @@ const LevelScript level_ssl_entry[] = {
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
+		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_WHERE_AM_I, 0x00, 0x00),
+		SET_ECHO(0x80, 0x80),
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
 

@@ -42,10 +42,13 @@ const LevelScript level_cutscene_scene_2_0[] = {
 
     // Start animation
     LOAD_AREA(/*area*/ 1),
+    SET_MENU_MUSIC(/*seq*/ SEQ_EVENT_FILE_SELECT),
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC1_CD0),
+    SLEEP(/*frames*/ 95),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
@@ -73,7 +76,9 @@ const LevelScript level_cutscene_scene_2_1[] = {
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC1_CD1),
+    SLEEP(/*frames*/ 120),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
@@ -101,7 +106,9 @@ const LevelScript level_cutscene_scene_2_2[] = {
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC1_CD2),
+    SLEEP(/*frames*/ 120),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
@@ -129,7 +136,9 @@ const LevelScript level_cutscene_scene_2_3[] = {
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC1_CD3),
+    SLEEP(/*frames*/ 50),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),

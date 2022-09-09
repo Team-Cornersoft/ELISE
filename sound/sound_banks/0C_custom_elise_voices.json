@@ -11,18 +11,234 @@
     },
     "instruments": {
         "inst0": {
-            "release_rate": 7,
+            "release_rate": 25,
             "envelope": "envelope0",
-            "sound": "00_custom_rain_L"
+            "sound": "00_despair_grunt_0"
         },
         "inst1": {
-            "release_rate": 7,
+            "release_rate": 25,
             "envelope": "envelope0",
-            "sound": "01_custom_rain_R"
+            "sound": "01_despair_grunt_1"
+        },
+        "inst2": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "02_despair_grunt_2"
+        },
+        "inst3": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "03_despair_grunt_3"
+        },
+        "inst4": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "04_despair_grunt_4"
+        },
+        "inst5": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "05_despair_grunt_5"
+        },
+        "inst6": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "06_despair_grunt_6"
+        },
+        "inst7": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "07_despair_grunt_7"
+        },
+        "inst8": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "08_despair_grunt_8"
+        },
+        "inst9": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "09_despair_grunt_9"
+        },
+        "inst10": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "0A_despair_elise_death"
+        },
+        "inst11": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "0B_despair_death_blue"
+        },
+        "inst12": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "0C_despair_death_red"
+        },
+        "inst13": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "0D_sc0_cd0"
+        },
+        "inst14": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "0E_sc0_cd1"
+        },
+        "inst15": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "0F_sc0_cd2"
+        },
+        "inst16": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "10_sc0_cd3"
+        },
+        "inst17": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "11_sc0_cd4"
+        },
+        "inst18": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "12_sc0_cd5"
+        },
+        "inst19": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "13_sc0_cd6"
+        },
+        "inst20": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "14_sc1_cd0"
+        },
+        "inst21": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "15_sc1_cd1"
+        },
+        "inst22": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "16_sc1_cd2"
+        },
+        "inst23": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "17_sc1_cd3"
+        },
+        "inst24": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "18_sc1_cd4"
+        },
+        "inst25": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "19_sc1_cd5"
+        },
+        "inst26": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "1A_sc1_cd6"
+        },
+        "inst27": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "1B_sc1_cd7"
+        },
+        "inst28": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "1C_sc1_cd8"
+        },
+        "inst29": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "1D_sc1_cd9"
+        },
+        "inst30": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "1E_sc1_cdA"
+        },
+        "inst31": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "1F_sc2_cd0"
+        },
+        "inst32": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "20_sc2_cd1"
+        },
+        "inst33": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "21_sc2_cd2"
+        },
+        "inst34": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "22_sc2_cd3"
+        },
+        "inst35": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "23_sc2_cd4"
+        },
+        "inst36": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "24_sc2_cd5"
+        },
+        "inst37": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "25_sc2_cd6"
         }
     },
     "instrument_list": [
         "inst0",
-        "inst1"
+        "inst1",
+        "inst2",
+        "inst3",
+        "inst4",
+        "inst5",
+        "inst6",
+        "inst7",
+        "inst8",
+        "inst9",
+        "inst10",
+        "inst11",
+        "inst12",
+        "inst13",
+        "inst14",
+        "inst15",
+        "inst16",
+        "inst17",
+        "inst18",
+        "inst19",
+        "inst20",
+        "inst21",
+        "inst22",
+        "inst23",
+        "inst24",
+        "inst25",
+        "inst26",
+        "inst27",
+        "inst28",
+        "inst29",
+        "inst30",
+        "inst31",
+        "inst32",
+        "inst33",
+        "inst34",
+        "inst35",
+        "inst36",
+        "inst37"
     ]
 }

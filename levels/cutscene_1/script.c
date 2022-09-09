@@ -44,7 +44,9 @@ const LevelScript level_cutscene_scene_1_0[] = {
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC0_CD4),
+    SLEEP(/*frames*/ 120),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
@@ -72,7 +74,9 @@ const LevelScript level_cutscene_scene_1_1[] = {
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC0_CD5),
+    SLEEP(/*frames*/ 115),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
@@ -100,7 +104,9 @@ const LevelScript level_cutscene_scene_1_2[] = {
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC0_CD6),
+    SLEEP(/*frames*/ 110),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
     STOP_MUSIC(/*fadeOutTime*/ 0x0200),

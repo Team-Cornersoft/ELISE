@@ -44,7 +44,9 @@ const LevelScript level_cutscene_scene_3_0[] = {
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC1_CD4),
+    SLEEP(/*frames*/ 115),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
@@ -72,7 +74,9 @@ const LevelScript level_cutscene_scene_3_1[] = {
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC1_CD5),
+    SLEEP(/*frames*/ 120),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
@@ -100,7 +104,9 @@ const LevelScript level_cutscene_scene_3_2[] = {
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC1_CD6),
+    SLEEP(/*frames*/ 160),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
@@ -128,6 +134,8 @@ const LevelScript level_cutscene_scene_3_3[] = {
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC1_CD7),
     SLEEP(/*frames*/ 105),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
