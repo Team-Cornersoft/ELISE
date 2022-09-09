@@ -50,5 +50,6 @@
     "2F_custom_heartburn": ["34_custom_heartburn"],
     "30_custom_fileselect": ["35_custom_fileselect"],
     "31_custom_elise_theme": ["36_custom_elise_theme"],
-    "32_custom_quiet": ["37_custom_quiet"]
+    "32_custom_quiet": ["37_custom_quiet"],
+    "33_custom_blood_clot": ["2C_custom_blood_flow"]
 }

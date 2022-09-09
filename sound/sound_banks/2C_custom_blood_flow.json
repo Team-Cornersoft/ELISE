@@ -46,7 +46,7 @@
         ],
         "softLongerFadeOut": [
             [20, 32700],
-            [1000, 0],
+            [10000, 0],
             [1, 0],
             "hang"
         ],
@@ -90,6 +90,16 @@
             "release_rate": 10,
             "envelope": "softNormal",
 			"sound": {"sample": "custom_string_ct", "tuning": 0.172266}
+        },
+        "bongoPerc": {
+            "release_rate": 10,
+            "envelope": "normal",
+			"sound": {"sample": "custom_bongoPerc", "tuning": 0.689063}
+        },
+        "triangleWave": {
+            "release_rate": 90,
+            "envelope": "normal",
+			"sound": {"sample": "custom_triangleWave", "tuning": 0.261625}
         },
         "bowedPad": {
             "release_rate": 10,
@@ -195,11 +205,12 @@
 		"xylophone",
 		"strings",
 		"bowedPad",
+		"triangleWave",
+		null,
+		null,
 		"shake",
-		null,
-		null,
-		null,
 		"hiHats",
-        "crashCymbal"
+        "crashCymbal",
+        "bongoPerc"
     ]
 }

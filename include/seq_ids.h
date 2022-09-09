@@ -61,6 +61,7 @@ enum SeqId {
     SEQ_EVENT_FILE_SELECT,            // 0x30
     SEQ_EVENT_ELISE_THEME,            // 0x31
     SEQ_EVENT_QUIET,                  // 0x32
+    SEQ_LEVEL_BLOOD_CLOT,             // 0x33
     SEQ_COUNT
 };
 
