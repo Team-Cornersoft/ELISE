@@ -567,6 +567,8 @@ void bhv_despair_swipe_loop(void);
 void bhv_crystal_projectile_loop(void);
 void bhv_noseman_init(void);
 void bhv_noseman_loop(void);
+void bhv_dream_key_init(void);
+void bhv_dream_key_loop(void);
 
 Gfx *geo_move_mario_part_from_parent(s32 callContext, UNUSED struct GraphNode *node, Mat4 mtx);
 

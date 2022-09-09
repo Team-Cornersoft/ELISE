@@ -6156,3 +6156,13 @@ const BehaviorScript bhvNoseman[] = {
         CALL_NATIVE(bhv_noseman_loop),
     END_LOOP(),
 };
+
+const BehaviorScript bhvDreamKey[] = {
+    BEGIN(OBJ_LIST_DEFAULT),
+    OR_INT(oFlags, OBJ_FLAG_COMPUTE_DIST_TO_MARIO),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    CALL_NATIVE(bhv_dream_key_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_dream_key_loop),
+    END_LOOP(),
+};

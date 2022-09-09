@@ -2158,3 +2158,39 @@ DEFINE_DIALOG(DIALOG_185, 8, 4, 30, 270, _("\
 ...YOU...\n\
 ...ELISE...!\n\
 "))
+
+
+DEFINE_DIALOG(DIALOG_186, 8, 4, 30, 270, _("\
+H-h-how are you this resilient?!"))
+
+DEFINE_DIALOG(DIALOG_187, 8, 4, 30, 270, _("\
+Take that you stupid rock!"))
+
+DEFINE_DIALOG(DIALOG_188, 8, 4, 30, 270, _("\
+The blasphemy! I gave you a gift of eternal\n\
+happiness and you just want to throw it away?!"))
+
+DEFINE_DIALOG(DIALOG_189, 8, 4, 30, 270, _("\
+Gift?! I have been subjected to nothing but\n\
+my internal struggles and trauma here! What\n\
+you've done is give me a wake up call, and\n\
+that's all there is to it."))
+
+DEFINE_DIALOG(DIALOG_190, 8, 4, 30, 270, _("\
+So this is it then?"))
+
+DEFINE_DIALOG(DIALOG_191, 8, 4, 30, 270, _("\
+You are just going to defile the blessing\n\
+bestowed upon you with violence?"))
+
+DEFINE_DIALOG(DIALOG_192, 8, 4, 30, 270, _("\
+Sorry rainbow eyes,\n\
+but I have a lot of pent up frustration to \n\
+take out on you"))
+
+DEFINE_DIALOG(DIALOG_193, 8, 4, 30, 270, _("\
+This is IT!"))
+
+DEFINE_DIALOG(DIALOG_194, 8, 4, 30, 270, _("\
+YOU WILL BE PUT INTO YOUR PLACE!\n\
+YOU CURSED CHILD!!!"))
