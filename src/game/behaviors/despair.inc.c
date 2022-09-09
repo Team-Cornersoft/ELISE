@@ -489,8 +489,6 @@ void update_resetting(void) {
         vec3f_copy(&o->oPosX, sAnchorPositions[NORTH]);
 
         if (sDespairDialogFlag) {
-            RUN_DIALOG(45);
-            RUN_DIALOG(46);
             RUN_DIALOG(47);
             RUN_DIALOG(48);
             RUN_DIALOG(49);
@@ -498,6 +496,8 @@ void update_resetting(void) {
             RUN_DIALOG(51);
             RUN_DIALOG(52);
             RUN_DIALOG(53);
+            RUN_DIALOG(54);
+            RUN_DIALOG(55);
             change_attack(IDLE, o->oDespairAttackCooldown, o->oDespairAttackTimer);
             sDespairDialogFlag = FALSE;
         } else {
@@ -560,11 +560,11 @@ void update_death_true(void) {
         return;
     }
 
-    RUN_DIALOG(40);
-    RUN_DIALOG(41);
     RUN_DIALOG(42);
     RUN_DIALOG(43);
     RUN_DIALOG(44);
+    RUN_DIALOG(45);
+    RUN_DIALOG(46);
 
     spawn_object_relative(0, 0, 0, 0, o, MODEL_BOWSER_KEY, bhvDreamKey);
 
