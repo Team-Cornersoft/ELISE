@@ -371,7 +371,7 @@ s32 act_reading_npc_dialog(struct MarioState *m) {
         // turn head to npc
         m->actionTimer += headTurnAmount;
         // set animation
-        set_mario_animation(m, m->heldObj == NULL ? MARIO_ANIM_FIRST_PERSON
+        set_mario_animation(m, m->heldObj == NULL ? MARIO_ANIM_IDLE_HEAD_CENTER
                                                   : MARIO_ANIM_IDLE_WITH_LIGHT_OBJ);
     } else if (m->actionState >= 9 && m->actionState < 17) {
         // look back from facing NPC
@@ -396,7 +396,7 @@ s32 act_reading_npc_dialog(struct MarioState *m) {
 
 // puts Mario in a state where he's waiting for (npc) dialog; doesn't do much
 s32 act_waiting_for_dialog(struct MarioState *m) {
-    set_mario_animation(m, m->heldObj == NULL ? MARIO_ANIM_FIRST_PERSON
+    set_mario_animation(m, m->heldObj == NULL ? MARIO_ANIM_IDLE_HEAD_CENTER
                                               : MARIO_ANIM_IDLE_WITH_LIGHT_OBJ);
     vec3f_copy(m->marioObj->header.gfx.pos, m->pos);
     vec3s_set(m->marioObj->header.gfx.angle, 0, m->faceAngle[1], 0);
@@ -426,7 +426,7 @@ s32 act_reading_automatic_dialog(struct MarioState *m) {
     }
     if (m->actionState < 9) {
         set_mario_animation(m, m->prevAction == ACT_STAR_DANCE_WATER ? MARIO_ANIM_WATER_IDLE
-                                                                     : MARIO_ANIM_FIRST_PERSON);
+                                                                     : MARIO_ANIM_IDLE_HEAD_CENTER);
         // always look up for automatic dialogs
         m->actionTimer -= 1024;
     } else {
@@ -1455,7 +1455,7 @@ s32 act_teleport_fade_out(struct MarioState *m) {
 
 s32 act_teleport_fade_in(struct MarioState *m) {
     play_sound_if_no_flag(m, SOUND_ACTION_CUSTOM_TELEPORT, MARIO_ACTION_SOUND_PLAYED);
-    set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
+    set_mario_animation(m, MARIO_ANIM_IDLE_HEAD_CENTER);
 
 #if ENABLE_RUMBLE
     if (m->actionTimer == 0) {

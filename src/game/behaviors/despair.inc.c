@@ -2,7 +2,7 @@
 #include "game/print.h"
 #include "game/sound_init.h"
 
-
+#define RUN_DIALOG(id) if (set_elise_dialog_prompt(id) != -2) return
 
 #define SECONDS_TO_TICKS(_a) _a * 30
 
@@ -97,12 +97,14 @@ enum DespairState {
 };
 
 s8 sDespairDialogFlag = FALSE;
+s8 sHasMarioLanded = FALSE;
 
 void change_attack(s32 action, s32 cooldown, s32 timer) {
     o->oAction = action;
     o->oDespairAttackCooldown = cooldown;
     o->oDespairAttackTimer = timer;
     o->oDespairSwipes = 0;
+    sHasMarioLanded = FALSE;
 }
 
 s32 is_cooldown(void) {
@@ -140,7 +142,6 @@ void take_damage(void) {
     // Phase 3 defeat without 100%
     // Phase 3 with 100%
     // Phase 5 defeat
-
 
     push_elise_back();
 
@@ -451,9 +452,11 @@ void update_stunned(void) {
     // For the first second
     if (ticksSinceStunned <= 30) {
         // Returns 0 - 1 based on how far into the second we are
-        f32 ratio = (f32)ticksSinceStunned / 30.0f;
+        f32 ratio = (f32)ticksSinceStunned / 35.0f;
 
         o->oFaceAngleYaw -= degrees_to_angle(40.0f * (1.0f - ratio));
+    } else {
+        o->oFaceAngleYaw -= degrees_to_angle(5.0f);
     }
 
     s32 b = does_intersect_with_cylinder(&o->oPosX, sDespairSpinHitbox.height, sDespairSpinHitbox.radius, &gMarioObject->oPosX);
@@ -486,12 +489,15 @@ void update_resetting(void) {
         vec3f_copy(&o->oPosX, sAnchorPositions[NORTH]);
 
         if (sDespairDialogFlag) {
-            if (set_elise_dialog_prompt(5) != -2)
-                return;
-            if (set_elise_dialog_prompt(6) != -2)
-                return;
-            if (set_elise_dialog_prompt(7) != -2)
-                return;
+            RUN_DIALOG(47);
+            RUN_DIALOG(48);
+            RUN_DIALOG(49);
+            RUN_DIALOG(50);
+            RUN_DIALOG(51);
+            RUN_DIALOG(52);
+            RUN_DIALOG(53);
+            RUN_DIALOG(54);
+            RUN_DIALOG(55);
             change_attack(IDLE, o->oDespairAttackCooldown, o->oDespairAttackTimer);
             sDespairDialogFlag = FALSE;
         } else {
@@ -515,12 +521,9 @@ void update_hurt(void) {
 void update_intro(void) {
     cur_obj_init_animation(IDLE_ANIM);
 
-    if (set_elise_dialog_prompt(1) != -2)
-        return;
-    if (set_elise_dialog_prompt(2) != -2)
-        return;
-    if (set_elise_dialog_prompt(3) != -2)
-        return;
+    RUN_DIALOG(1);
+    RUN_DIALOG(2);
+    RUN_DIALOG(3);
         
     change_attack(IDLE, SECONDS_TO_TICKS(1), NO_TIME);
     play_music(SEQ_PLAYER_LEVEL, SEQ_EVENT_DESPAIR_BOSS, 0);
@@ -528,33 +531,44 @@ void update_intro(void) {
 }
 
 void update_death_regular(void) {
-    if (gMarioState->action == ACT_IDLE) {
-        if (gDialogResponse != 0) {
-            disable_time_stop_including_mario();
-            obj_mark_for_deletion(o);
-        }
-        else {
-            enable_time_stop_including_mario();
-            create_dialog_box(DIALOG_171);
-        }
+    cur_obj_init_animation(HURT_ANIM);
+
+    if (gMarioState->action & ACT_FLAG_STATIONARY) {
+        sHasMarioLanded = TRUE;
     }
+
+    if (!sHasMarioLanded) {
+        return;
+    }
+
+    RUN_DIALOG(5);
+    RUN_DIALOG(6);
+    RUN_DIALOG(7);
+
+    play_sound(SOUND_MENU_CUSTOM_BOSS_WARP, gGlobalSoundSource);
+
+    level_trigger_warp(gMarioState, WARP_OP_BLUE_DROP_ENDING, TRUE);
+    change_attack(IDLE, SECONDS_TO_TICKS(100), SECONDS_TO_TICKS(100));
 }
 
 void update_death_true(void) {
-    if (gMarioState->action == ACT_IDLE) {
-        if (gDialogResponse != 0) {
-            disable_time_stop_including_mario();
-
-            play_sound(SOUND_MENU_CUSTOM_BOSS_WARP, gGlobalSoundSource);
-
-            level_trigger_warp(gMarioState, WARP_OP_BLUE_DROP_ENDING, TRUE);
-            obj_mark_for_deletion(o); // TODO: Despair death animation and stuff
-        }
-        else {
-            enable_time_stop_including_mario();
-            create_dialog_box(DIALOG_173);
-        }
+    if (gMarioState->action & ACT_FLAG_STATIONARY) {
+        sHasMarioLanded = TRUE;
     }
+
+    if (!sHasMarioLanded) {
+        return;
+    }
+
+    RUN_DIALOG(42);
+    RUN_DIALOG(43);
+    RUN_DIALOG(44);
+    RUN_DIALOG(45);
+    RUN_DIALOG(46);
+
+    spawn_object_relative(0, 0, 0, 0, o, MODEL_BOWSER_KEY, bhvDreamKey);
+
+    obj_mark_for_deletion(o); // TODO: Despair death animation and stuff
 }
 
 void bhv_despair_init(void) {
@@ -570,7 +584,7 @@ void bhv_despair_init(void) {
 
     o->oDespairAttackCooldown = SECONDS_TO_TICKS(3);
 
-    if (save_file_get_total_star_count(gCurrSaveFileNum - 1, COURSE_MIN - 1, COURSE_MAX - 1) > 12 || TRUE) {
+    if (save_file_get_total_star_count(gCurrSaveFileNum - 1, COURSE_MIN - 1, COURSE_MAX - 1) > 12) {
         o->oDespairMaxHits = 5;
     } else {
         o->oDespairMaxHits = 3;

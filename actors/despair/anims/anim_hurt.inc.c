@@ -83,7 +83,7 @@ static const u16 despair_anim_hurt_indices[] = {
 };
 
 static const struct Animation despair_anim_hurt = {
-	0,
+	1,
 	0,
 	0,
 	1,

@@ -547,5 +547,6 @@ extern const BehaviorScript bhvDespair[];
 extern const BehaviorScript bhvDespairSwipe[];
 extern const BehaviorScript bhvCrystalProjectile[];
 extern const BehaviorScript bhvNoseman[];
+extern const BehaviorScript bhvDreamKey[];
 
 #endif // BEHAVIOR_DATA_H
