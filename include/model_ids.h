@@ -564,6 +564,7 @@
 #define MODEL_CUSTOM_DOOR_C               0xFF        // Door for CHESS area
 #define MODEL_CUSTOM_SECRET               0x100       // Secrets model
 #define MODEL_CUSTOM_BOSS_PORTAL          0x101       // Boss portal
+#define MODEL_CUSTOM_BOWSER_KEY           0x102       // Custom key
 #define MODEL_ANIMATED_WALL_ALIEN_A       0xC7
 #define MODEL_ANIMATED_WALL_ALIEN_B       0xC8
 

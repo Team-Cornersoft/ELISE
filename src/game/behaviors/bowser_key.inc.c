@@ -29,7 +29,7 @@ void bhv_bowser_key_loop(void) {
         }
 
         spawn_sparkle_particles(3, 200, 80, -60);
-        spawn_object(o, MODEL_NONE, bhvSparkleSpawn);
+        spawn_object(o, MODEL_CUSTOM_BOWSER_KEY, bhvSparkleSpawn);
         cur_obj_update_floor_and_walls();
         cur_obj_move_standard(78);
 
