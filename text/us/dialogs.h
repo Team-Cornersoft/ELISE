@@ -1357,9 +1357,9 @@ DEFINE_DIALOG(DIALOG_122, 8, 8, 30, 270, _("\
 What in the world is this then?\n\
 Oh! Could this be an easter egg room?\n\
 \n\
-Well I have been playing a lot of SM64 romhacks lately.\n\
-People put so much work into these things, it's insane!\n\
-\n\
+Well I have been playing a lot of SM64 romhacks\n\
+lately. People put so much work into these\n\
+things, it's insane!\n\
 Maybe one day I'll attempt to make one too!\n\
 "))
 
