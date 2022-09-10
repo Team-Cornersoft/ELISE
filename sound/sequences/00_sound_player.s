@@ -7541,7 +7541,7 @@ chan_setnotepriority 14
 chan_setpanmix 0
 chan_setinstr 3
 chan_setenvelope .envelope_340C
-chan_setreverb 30
+chan_setreverb 64
 chan_setlayer 0, .layer_3032
 chan_setlayer 1, .layer_2FB9
 chan_end
@@ -7565,38 +7565,38 @@ layer_transpose 24
 layer_setpan 104
 layer_call .layer_fn_300D
 layer_setpan 24
-layer_note1 56, 0x2, 100
-layer_note1 56, 0x1, 50
+layer_note1 56, 0x2, 80
+layer_note1 56, 0x1, 40
 layer_setpan 104
-layer_note1 60, 0x14, 70
-layer_note1 60, 0xa, 30
+layer_note1 60, 0x14, 56
+layer_note1 60, 0xa, 24
 layer_setpan 24
-layer_note1 56, 0x2, 50
-layer_note1 56, 0x1, 20
+layer_note1 56, 0x2, 40
+layer_note1 56, 0x1, 16
 layer_setpan 104
-layer_note1 60, 0x14, 30
-layer_note1 60, 0xa, 10
+layer_note1 60, 0x14, 24
+layer_note1 60, 0xa, 8
 layer_setpan 24
-layer_note1 56, 0x2, 30
-layer_note1 56, 0x1, 10
+layer_note1 56, 0x2, 24
+layer_note1 56, 0x1, 8
 layer_setpan 104
-layer_note1 60, 0x14, 20
-layer_note1 60, 0xa, 7
+layer_note1 60, 0x14, 16
+layer_note1 60, 0xa, 6
 layer_end
 
 .layer_fn_300D:
-layer_note1 51, 0x2, 50
-layer_note1 39, 0x1, 40
-layer_note1 39, 0x2, 20
-layer_note1 55, 0x2, 50
-layer_note1 43, 0x1, 40
-layer_note1 43, 0x2, 20
-layer_note1 56, 0x2, 50
-layer_note1 44, 0x1, 40
-layer_note1 44, 0x2, 20
-layer_note1 60, 0x2, 50
-layer_note1 48, 0x1, 40
-layer_note1 48, 0x2, 20
+layer_note1 51, 0x2, 40
+layer_note1 39, 0x1, 32
+layer_note1 39, 0x2, 16
+layer_note1 55, 0x2, 40
+layer_note1 43, 0x1, 32
+layer_note1 43, 0x2, 16
+layer_note1 56, 0x2, 40
+layer_note1 44, 0x1, 32
+layer_note1 44, 0x2, 16
+layer_note1 60, 0x2, 40
+layer_note1 48, 0x1, 32
+layer_note1 48, 0x2, 16
 layer_end
 
 .layer_3032:
@@ -7613,37 +7613,37 @@ layer_call .layer_fn_3072
 layer_transpose 24
 layer_call .layer_fn_3072
 layer_setpan 64
-layer_note1 44, 0x1, 100
-layer_note1 56, 0x2, 50
-layer_note1 48, 0xa, 70
-layer_note1 60, 0x14, 30
-layer_note1 44, 0x1, 50
-layer_note1 56, 0x2, 20
-layer_note1 48, 0xa, 30
-layer_note1 60, 0x14, 10
-layer_note1 44, 0x1, 30
-layer_note1 56, 0x2, 10
-layer_note1 48, 0xa, 20
-layer_note1 60, 0x14, 7
+layer_note1 44, 0x1, 80
+layer_note1 56, 0x2, 40
+layer_note1 48, 0xa, 56
+layer_note1 60, 0x14, 24
+layer_note1 44, 0x1, 40
+layer_note1 56, 0x2, 16
+layer_note1 48, 0xa, 24
+layer_note1 60, 0x14, 8
+layer_note1 44, 0x1, 24
+layer_note1 56, 0x2, 8
+layer_note1 48, 0xa, 16
+layer_note1 60, 0x14, 6
 layer_end
 
 .layer_fn_3072:
 layer_setpan 54
-layer_note1 39, 0x3, 100
-layer_note1 51, 0x1, 50
-layer_note1 51, 0x1, 20
+layer_note1 39, 0x3, 80
+layer_note1 51, 0x1, 40
+layer_note1 51, 0x1, 16
 layer_setpan 74
-layer_note1 43, 0x3, 100
-layer_note1 55, 0x1, 50
-layer_note1 55, 0x1, 20
+layer_note1 43, 0x3, 80
+layer_note1 55, 0x1, 40
+layer_note1 55, 0x1, 16
 layer_setpan 54
-layer_note1 44, 0x3, 100
-layer_note1 56, 0x1, 50
-layer_note1 56, 0x1, 20
+layer_note1 44, 0x3, 80
+layer_note1 56, 0x1, 40
+layer_note1 56, 0x1, 16
 layer_setpan 74
-layer_note1 48, 0x3, 100
-layer_note1 60, 0x1, 50
-layer_note1 60, 0x1, 20
+layer_note1 48, 0x3, 80
+layer_note1 60, 0x1, 40
+layer_note1 60, 0x1, 16
 layer_end
 
 .sound_menu_thank_you_playing_my_game:
