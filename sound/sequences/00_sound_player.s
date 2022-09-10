@@ -8052,6 +8052,25 @@ sound_ref .sound_despair_laugh_1
 sound_ref .sound_despair_laugh_2
 sound_ref .sound_despair_laugh_3
 sound_ref .sound_despair_laugh_4
+sound_ref .sound_el_grunt_disgust
+sound_ref .sound_el_grunt_mmm
+sound_ref .sound_el_grunt_huh_conf
+sound_ref .sound_el_grunt_huh_exc
+sound_ref .sound_el_grunt_aww
+sound_ref .sound_el_dia_what_in_here
+sound_ref .sound_el_dia_haha_very_funny
+sound_ref .sound_el_dia_now_this_cool
+sound_ref .sound_el_dia_mom_woulda_loved
+sound_ref .sound_el_dia_oh_a_secret
+sound_ref .sound_el_dia_why_subc_teardrops
+sound_ref .sound_el_dia_leaves_mind_wander
+sound_ref .sound_el_dia_wonder_if_more
+sound_ref .sound_el_dia_room_pretty
+sound_ref .sound_el_dia_lovely
+sound_ref .sound_el_dia_why_this_in_head
+sound_ref .sound_el_dia_head_playing_tricks
+sound_ref .sound_el_dia_where_leads_to
+sound_ref .sound_el_dia_hmm_interesting
 
 
 .sound_despair_grunt_0:
@@ -8760,6 +8779,367 @@ chan_end
 
 .layer_despair_laugh_4:
 layer_note1 39, 0xce, 127
+layer_end
+
+
+.sound_el_grunt_disgust:
+chan_setbank 12
+chan_setinstr 43
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_grunt_disgust_echo
+chan_setlayer 1, .layer_el_grunt_disgust
+chan_end
+
+.layer_el_grunt_disgust_echo:
+layer_delay 0x10
+layer_note1 39, 0x4b, 47
+layer_end
+
+.layer_el_grunt_disgust:
+layer_note1 39, 0x4b, 127
+layer_end
+
+
+.sound_el_grunt_mmm:
+chan_setbank 12
+chan_setinstr 44
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_grunt_mmm_echo
+chan_setlayer 1, .layer_el_grunt_mmm
+chan_end
+
+.layer_el_grunt_mmm_echo:
+layer_delay 0x10
+layer_note1 39, 0x25, 47
+layer_end
+
+.layer_el_grunt_mmm:
+layer_note1 39, 0x25, 127
+layer_end
+
+
+.sound_el_grunt_huh_conf:
+chan_setbank 12
+chan_setinstr 45
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_grunt_huh_conf_echo
+chan_setlayer 1, .layer_el_grunt_huh_conf
+chan_end
+
+.layer_el_grunt_huh_conf_echo:
+layer_delay 0x10
+layer_note1 39, 0x2c, 47
+layer_end
+
+.layer_el_grunt_huh_conf:
+layer_note1 39, 0x2c, 127
+layer_end
+
+
+.sound_el_grunt_huh_exc:
+chan_setbank 12
+chan_setinstr 46
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_grunt_huh_exc_echo
+chan_setlayer 1, .layer_el_grunt_huh_exc
+chan_end
+
+.layer_el_grunt_huh_exc_echo:
+layer_delay 0x10
+layer_note1 39, 0x22, 47
+layer_end
+
+.layer_el_grunt_huh_exc:
+layer_note1 39, 0x22, 127
+layer_end
+
+
+.sound_el_grunt_aww:
+chan_setbank 12
+chan_setinstr 47
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_grunt_aww_echo
+chan_setlayer 1, .layer_el_grunt_aww
+chan_end
+
+.layer_el_grunt_aww_echo:
+layer_delay 0x10
+layer_note1 39, 0x3c, 47
+layer_end
+
+.layer_el_grunt_aww:
+layer_note1 39, 0x3c, 127
+layer_end
+
+
+.sound_el_dia_what_in_here:
+chan_setbank 12
+chan_setinstr 48
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_dia_what_in_here_echo
+chan_setlayer 1, .layer_el_dia_what_in_here
+chan_end
+
+.layer_el_dia_what_in_here_echo:
+layer_delay 0x10
+layer_note1 39, 0x76, 47
+layer_end
+
+.layer_el_dia_what_in_here:
+layer_note1 39, 0x76, 127
+layer_end
+
+
+.sound_el_dia_haha_very_funny:
+chan_setbank 12
+chan_setinstr 49
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_dia_haha_very_funny_echo
+chan_setlayer 1, .layer_el_dia_haha_very_funny
+chan_end
+
+.layer_el_dia_haha_very_funny_echo:
+layer_delay 0x10
+layer_note1 39, 0xad, 47
+layer_end
+
+.layer_el_dia_haha_very_funny:
+layer_note1 39, 0xad, 127
+layer_end
+
+
+.sound_el_dia_now_this_cool:
+chan_setbank 12
+chan_setinstr 50
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_dia_now_this_cool_echo
+chan_setlayer 1, .layer_el_dia_now_this_cool
+chan_end
+
+.layer_el_dia_now_this_cool_echo:
+layer_delay 0x10
+layer_note1 39, 0x6f, 47
+layer_end
+
+.layer_el_dia_now_this_cool:
+layer_note1 39, 0x6f, 127
+layer_end
+
+
+.sound_el_dia_mom_woulda_loved:
+chan_setbank 12
+chan_setinstr 51
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_dia_mom_woulda_loved_echo
+chan_setlayer 1, .layer_el_dia_mom_woulda_loved
+chan_end
+
+.layer_el_dia_mom_woulda_loved_echo:
+layer_delay 0x10
+layer_note1 39, 0x95, 47
+layer_end
+
+.layer_el_dia_mom_woulda_loved:
+layer_note1 39, 0x95, 127
+layer_end
+
+
+.sound_el_dia_oh_a_secret:
+chan_setbank 12
+chan_setinstr 52
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_dia_oh_a_secret_echo
+chan_setlayer 1, .layer_el_dia_oh_a_secret
+chan_end
+
+.layer_el_dia_oh_a_secret_echo:
+layer_delay 0x10
+layer_note1 39, 0x71, 47
+layer_end
+
+.layer_el_dia_oh_a_secret:
+layer_note1 39, 0x71, 127
+layer_end
+
+
+.sound_el_dia_why_subc_teardrops:
+chan_setbank 12
+chan_setinstr 53
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_dia_why_subc_teardrops_echo
+chan_setlayer 1, .layer_el_dia_why_subc_teardrops
+chan_end
+
+.layer_el_dia_why_subc_teardrops_echo:
+layer_delay 0x10
+layer_note1 39, 0x157, 47
+layer_end
+
+.layer_el_dia_why_subc_teardrops:
+layer_note1 39, 0x157, 127
+layer_end
+
+
+.sound_el_dia_leaves_mind_wander:
+chan_setbank 12
+chan_setinstr 54
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_dia_leaves_mind_wander_echo
+chan_setlayer 1, .layer_el_dia_leaves_mind_wander
+chan_end
+
+.layer_el_dia_leaves_mind_wander_echo:
+layer_delay 0x10
+layer_note1 39, 0x9f, 47
+layer_end
+
+.layer_el_dia_leaves_mind_wander:
+layer_note1 39, 0x9f, 127
+layer_end
+
+
+.sound_el_dia_wonder_if_more:
+chan_setbank 12
+chan_setinstr 55
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_dia_wonder_if_more_echo
+chan_setlayer 1, .layer_el_dia_wonder_if_more
+chan_end
+
+.layer_el_dia_wonder_if_more_echo:
+layer_delay 0x10
+layer_note1 39, 0xb4, 47
+layer_end
+
+.layer_el_dia_wonder_if_more:
+layer_note1 39, 0xb4, 127
+layer_end
+
+
+.sound_el_dia_room_pretty:
+chan_setbank 12
+chan_setinstr 56
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_dia_room_pretty_echo
+chan_setlayer 1, .layer_el_dia_room_pretty
+chan_end
+
+.layer_el_dia_room_pretty_echo:
+layer_delay 0x10
+layer_note1 39, 0x10e, 47
+layer_end
+
+.layer_el_dia_room_pretty:
+layer_note1 39, 0x10e, 127
+layer_end
+
+
+.sound_el_dia_lovely:
+chan_setbank 12
+chan_setinstr 57
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_dia_lovely_echo
+chan_setlayer 1, .layer_el_dia_lovely
+chan_end
+
+.layer_el_dia_lovely_echo:
+layer_delay 0x10
+layer_note1 39, 0x39, 47
+layer_end
+
+.layer_el_dia_lovely:
+layer_note1 39, 0x39, 127
+layer_end
+
+
+.sound_el_dia_why_this_in_head:
+chan_setbank 12
+chan_setinstr 58
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_dia_why_this_in_head_echo
+chan_setlayer 1, .layer_el_dia_why_this_in_head
+chan_end
+
+.layer_el_dia_why_this_in_head_echo:
+layer_delay 0x10
+layer_note1 39, 0xac, 47
+layer_end
+
+.layer_el_dia_why_this_in_head:
+layer_note1 39, 0xac, 127
+layer_end
+
+
+.sound_el_dia_head_playing_tricks:
+chan_setbank 12
+chan_setinstr 59
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_dia_head_playing_tricks_echo
+chan_setlayer 1, .layer_el_dia_head_playing_tricks
+chan_end
+
+.layer_el_dia_head_playing_tricks_echo:
+layer_delay 0x10
+layer_note1 39, 0x9a, 47
+layer_end
+
+.layer_el_dia_head_playing_tricks:
+layer_note1 39, 0x9a, 127
+layer_end
+
+
+.sound_el_dia_where_leads_to:
+chan_setbank 12
+chan_setinstr 60
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_dia_where_leads_to_echo
+chan_setlayer 1, .layer_el_dia_where_leads_to
+chan_end
+
+.layer_el_dia_where_leads_to_echo:
+layer_delay 0x10
+layer_note1 39, 0x9c, 47
+layer_end
+
+.layer_el_dia_where_leads_to:
+layer_note1 39, 0x9c, 127
+layer_end
+
+
+.sound_el_dia_hmm_interesting:
+chan_setbank 12
+chan_setinstr 61
+chan_setval 16
+chan_call .set_reverb
+chan_setlayer 0, .layer_el_dia_hmm_interesting_echo
+chan_setlayer 1, .layer_el_dia_hmm_interesting
+chan_end
+
+.layer_el_dia_hmm_interesting_echo:
+layer_delay 0x10
+layer_note1 39, 0xb0, 47
+layer_end
+
+.layer_el_dia_hmm_interesting:
+layer_note1 39, 0xb0, 127
 layer_end
 
 
