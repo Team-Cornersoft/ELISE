@@ -1110,6 +1110,7 @@ void check_main_menu_clicked_buttons(void) {
         case MENU_BUTTON_PLAY_FILE_C:
         case MENU_BUTTON_PLAY_FILE_D:
             play_sound(SAVE_FILE_SOUND, gGlobalSoundSource);
+            play_sound(SOUND_OBJ_CUSTOM_MENU_SOUND, gGlobalSoundSource);
 #if ENABLE_RUMBLE
             queue_rumble_data(60, 70);
             queue_rumble_decay(1);
@@ -1282,6 +1283,7 @@ void check_custom_main_menu_clicked_buttons(void) {
         case MENU_BUTTON_PLAY_FILE_C:
         case MENU_BUTTON_PLAY_FILE_D:
             play_sound(SAVE_FILE_SOUND, gGlobalSoundSource);
+            play_sound(SOUND_OBJ_CUSTOM_MENU_SOUND, gGlobalSoundSource);
             break;
         case MENU_BUTTON_COPY:
         case MENU_BUTTON_ERASE:

@@ -4971,7 +4971,7 @@ sound_ref .sound_obj_enemy_defeat_shrink
 sound_ref .sound_obj_custom_death
 sound_ref .sound_obj_custom_warp
 sound_ref .sound_obj_custom_boss_warp
-sound_ref .sound_obj_klepto2
+sound_ref .sound_obj_custom_menu_sound
 sound_ref .sound_obj_king_bobomb_talk
 sound_ref .sound_obj_baby_penguin_walk
 sound_ref .sound_obj_bowser_walk
@@ -6892,6 +6892,7 @@ sound_ref .sound_obj_custom_death
 sound_ref .sound_obj_custom_warp
 sound_ref .sound_obj_custom_boss_warp
 sound_ref .sound_obj_custom_text_typewrite
+sound_ref .sound_obj_custom_menu_sound
 
 .sound_obj_custom_death:
 chan_setbank 6
@@ -6959,6 +6960,27 @@ chan_end
 .layer_custom_text_typewrite:
 layer_setpan 0x40
 layer_note1 39, 5, 100
+layer_end
+
+.sound_obj_custom_menu_sound:
+chan_setbank 6
+chan_setinstr 18
+chan_setpanmix 0
+chan_setval 0x3F
+chan_call .set_reverb
+chan_setlayer 0, .layer_custom_menu_sound_echo
+chan_setlayer 1, .layer_custom_menu_sound
+chan_end
+
+.layer_custom_menu_sound_echo:
+layer_delay 0x10
+layer_setpan 0x3f
+layer_note1 39, 0x4d, 55
+layer_end
+
+.layer_custom_menu_sound:
+layer_setpan 0x3f
+layer_note1 39, 0x4d, 111
 layer_end
 
 .sound_menu_change_select:

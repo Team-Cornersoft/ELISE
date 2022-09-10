@@ -3013,7 +3013,7 @@ void update_lakitu(struct Camera *c) {
  * Gets controller input, checks for cutscenes, handles mode changes, and moves the camera
  */
 void update_camera(struct Camera *c) {
-    u32 first = profiler_get_delta(PROFILER_DELTA_COLLISION);
+    UNUSED u32 first = profiler_get_delta(PROFILER_DELTA_COLLISION);
     gCamera = c;
     update_camera_hud_status(c);
 
