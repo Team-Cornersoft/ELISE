@@ -199,6 +199,31 @@
             "release_rate": 25,
             "envelope": "envelope0",
             "sound": "25_sc2_cd7"
+        },
+        "inst38": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "26_despair_laugh_0"
+        },
+        "inst39": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "27_despair_laugh_1"
+        },
+        "inst40": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "28_despair_laugh_2"
+        },
+        "inst41": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "29_despair_laugh_3"
+        },
+        "inst42": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "2A_despair_laugh_4"
         }
     },
     "instrument_list": [
@@ -239,6 +264,11 @@
         "inst34",
         "inst35",
         "inst36",
-        "inst37"
+        "inst37",
+        "inst38",
+        "inst39",
+        "inst40",
+        "inst41",
+        "inst42"
     ]
 }

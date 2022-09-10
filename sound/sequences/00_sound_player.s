@@ -8119,6 +8119,11 @@ sound_ref .sound_cutscene_sc2_cd4
 sound_ref .sound_cutscene_sc2_cd5
 sound_ref .sound_cutscene_sc2_cd6
 sound_ref .sound_cutscene_sc2_cd7
+sound_ref .sound_despair_laugh_0
+sound_ref .sound_despair_laugh_1
+sound_ref .sound_despair_laugh_2
+sound_ref .sound_despair_laugh_3
+sound_ref .sound_despair_laugh_4
 
 
 .sound_despair_grunt_0:
@@ -8130,7 +8135,7 @@ chan_setlayer 0, .layer_despair_grunt_0
 chan_end
 
 .layer_despair_grunt_0:
-layer_note1 39, 0x3d, 111
+layer_note1 39, 0x3d, 127
 layer_end
 
 
@@ -8143,7 +8148,7 @@ chan_setlayer 0, .layer_despair_grunt_1
 chan_end
 
 .layer_despair_grunt_1:
-layer_note1 39, 0x28, 111
+layer_note1 39, 0x28, 127
 layer_end
 
 
@@ -8156,7 +8161,7 @@ chan_setlayer 0, .layer_despair_grunt_2
 chan_end
 
 .layer_despair_grunt_2:
-layer_note1 39, 0x34, 111
+layer_note1 39, 0x34, 127
 layer_end
 
 
@@ -8169,7 +8174,7 @@ chan_setlayer 0, .layer_despair_grunt_3
 chan_end
 
 .layer_despair_grunt_3:
-layer_note1 39, 0x30, 111
+layer_note1 39, 0x30, 127
 layer_end
 
 
@@ -8182,7 +8187,7 @@ chan_setlayer 0, .layer_despair_grunt_4
 chan_end
 
 .layer_despair_grunt_4:
-layer_note1 39, 0x1a, 111
+layer_note1 39, 0x1a, 127
 layer_end
 
 
@@ -8195,7 +8200,7 @@ chan_setlayer 0, .layer_despair_grunt_5
 chan_end
 
 .layer_despair_grunt_5:
-layer_note1 39, 0x26, 111
+layer_note1 39, 0x26, 127
 layer_end
 
 
@@ -8208,7 +8213,7 @@ chan_setlayer 0, .layer_despair_grunt_6
 chan_end
 
 .layer_despair_grunt_6:
-layer_note1 39, 0x18, 111
+layer_note1 39, 0x18, 127
 layer_end
 
 
@@ -8221,7 +8226,7 @@ chan_setlayer 0, .layer_despair_grunt_7
 chan_end
 
 .layer_despair_grunt_7:
-layer_note1 39, 0x3b, 111
+layer_note1 39, 0x3b, 127
 layer_end
 
 
@@ -8234,7 +8239,7 @@ chan_setlayer 0, .layer_despair_grunt_8
 chan_end
 
 .layer_despair_grunt_8:
-layer_note1 39, 0x37, 111
+layer_note1 39, 0x37, 127
 layer_end
 
 
@@ -8247,7 +8252,7 @@ chan_setlayer 0, .layer_despair_grunt_9
 chan_end
 
 .layer_despair_grunt_9:
-layer_note1 39, 0x3d, 111
+layer_note1 39, 0x3d, 127
 layer_end
 
 
@@ -8260,7 +8265,7 @@ chan_setlayer 0, .layer_despair_elise_death
 chan_end
 
 .layer_despair_elise_death:
-layer_note1 39, 0xe8, 111
+layer_note1 39, 0xe8, 127
 layer_end
 
 
@@ -8273,7 +8278,7 @@ chan_setlayer 0, .layer_despair_death_blue
 chan_end
 
 .layer_despair_death_blue:
-layer_note1 39, 0x23c, 111
+layer_note1 39, 0x23c, 127
 layer_end
 
 
@@ -8286,7 +8291,7 @@ chan_setlayer 0, .layer_despair_death_red
 chan_end
 
 .layer_despair_death_red:
-layer_note1 39, 0x245, 111
+layer_note1 39, 0x245, 127
 layer_end
 
 
@@ -8765,6 +8770,69 @@ layer_note1 39, 0xf8, 127
 layer_end
 
 
+.sound_despair_laugh_0:
+chan_setbank 12
+chan_setinstr 38
+chan_setval 30
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_laugh_0
+chan_end
+
+.layer_despair_laugh_0:
+layer_note1 39, 0xf4, 127
+layer_end
+
+
+.sound_despair_laugh_1:
+chan_setbank 12
+chan_setinstr 39
+chan_setval 30
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_laugh_1
+chan_end
+
+.layer_despair_laugh_1:
+layer_note1 39, 0xda, 127
+layer_end
+
+
+.sound_despair_laugh_2:
+chan_setbank 12
+chan_setinstr 40
+chan_setval 30
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_laugh_2
+chan_end
+
+.layer_despair_laugh_2:
+layer_note1 39, 0x11a, 127
+layer_end
+
+
+.sound_despair_laugh_3:
+chan_setbank 12
+chan_setinstr 41
+chan_setval 30
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_laugh_3
+chan_end
+
+.layer_despair_laugh_3:
+layer_note1 39, 0x67, 127
+layer_end
+
+
+.sound_despair_laugh_4:
+chan_setbank 12
+chan_setinstr 42
+chan_setval 30
+chan_call .set_reverb
+chan_setlayer 0, .layer_despair_laugh_4
+chan_end
+
+.layer_despair_laugh_4:
+layer_note1 39, 0xce, 127
+layer_end
 
 
 

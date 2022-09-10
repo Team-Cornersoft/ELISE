@@ -199,7 +199,7 @@ void choose_attack(void) {
         action = LAUNCHING_TORPEDOS; // This is a good starting attack
 
         // Evil laugh idk it works here too
-        cur_obj_play_sound_2(SOUND_ELVOICE_DESPAIR_ELISE_DEATH); // NOTE: I believe this should have sound priority so don't worry about adding a different sound to the torpedo attack.
+        cur_obj_play_sound_2(SOUND_ELVOICE_DESPAIR_LAUGH_0); // NOTE: I believe this should have sound priority so don't worry about adding a different sound to the torpedo attack.
     }
 
     switch(action) {
