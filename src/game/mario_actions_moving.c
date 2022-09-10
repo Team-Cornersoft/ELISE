@@ -1505,7 +1505,7 @@ s32 act_slide_kick_slide(struct MarioState *m) {
 
 s32 stomach_slide_action(struct MarioState *m, u32 stopAction, u32 airAction, s32 animation) {
     if (m->actionTimer == 5) {
-        if (!(m->input & INPUT_ABOVE_SLIDE) && (m->input & (INPUT_A_PRESSED | INPUT_B_PRESSED))) {
+        if (/*!(m->input & INPUT_ABOVE_SLIDE) && */(m->input & (INPUT_A_PRESSED | INPUT_B_PRESSED))) {
 #if ENABLE_RUMBLE
             queue_rumble_data(5, 80);
 #endif
@@ -1537,7 +1537,7 @@ s32 act_hold_stomach_slide(struct MarioState *m) {
 }
 
 s32 act_dive_slide(struct MarioState *m) {
-    if (!(m->input & INPUT_ABOVE_SLIDE) && (m->input & (INPUT_A_PRESSED | INPUT_B_PRESSED))) {
+    if (/*!(m->input & INPUT_ABOVE_SLIDE) && */(m->input & (INPUT_A_PRESSED | INPUT_B_PRESSED))) {
 #if ENABLE_RUMBLE
         queue_rumble_data(5, 80);
 #endif
