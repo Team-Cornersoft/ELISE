@@ -48,6 +48,11 @@ extern f32 reverbGainAdd;
 extern s32 reverbAdd;
 extern s32 deathTransitionUpdates;
 
+#define DIA_SOUND_FADE_TIME 60.0f // audio frames
+#define DIA_SOUND_FADE_AUDIO_MIN 80.0f // divide by 255 to get percentage
+extern s32 shouldQuietAll;
+extern s32 quietTimePassed;
+
 struct SPTask *create_next_audio_frame_task(void);
 void play_sound(s32 soundBits, f32 *pos);
 void audio_signal_game_loop_tick(void);

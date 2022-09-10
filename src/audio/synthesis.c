@@ -592,6 +592,16 @@ u64 *synthesis_execute(u64 *cmdBuf, s32 *writtenCmds, s16 *aiBuf, s32 bufLen) {
 
     aSegment(cmdBuf, 0, 0);
 
+    if (shouldQuietAll) {
+        quietTimePassed++;
+        if (quietTimePassed > DIA_SOUND_FADE_TIME)
+            quietTimePassed = DIA_SOUND_FADE_TIME;
+    } else {
+        quietTimePassed--;
+        if (quietTimePassed < 0)
+            quietTimePassed = 0;
+    }
+
 #ifdef BETTER_REVERB
     if (gIsConsole) {
         reverbFilterCount = reverbFilterCountConsole;

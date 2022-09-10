@@ -158,6 +158,8 @@ u8 renderPressA = FALSE;
 
 u8 overrideBossPortal = FALSE;
 
+u8 exitedCourse = FALSE;
+
 struct MarioState *gMarioState = &gMarioStates[0];
 s8 sWarpCheckpointActive = FALSE;
 
@@ -425,6 +427,11 @@ void init_mario_after_warp(void) {
 
         if (gMarioState->flags & (MARIO_VANISH_CAP | MARIO_WING_CAP)) {
             play_cap_music(SEQUENCE_ARGS(4, SEQ_EVENT_POWERUP));
+        }
+
+        if (exitedCourse) {
+            play_sound(SOUND_MENU_MARIO_CASTLE_WARP, gGlobalSoundSource);
+            exitedCourse = FALSE;
         }
 
 #ifdef ENABLE_VANILLA_LEVEL_SPECIFIC_CHECKS
@@ -1289,6 +1296,7 @@ s32 play_mode_paused(void) {
             fade_into_special_warp(WARP_SPECIAL_LEVEL_SELECT, 1);
         } else {
             initiate_warp(EXIT_COURSE_LEVEL, EXIT_COURSE_AREA, EXIT_COURSE_NODE, WARP_FLAG_EXIT_COURSE_SOUND);
+            exitedCourse = TRUE;
             fade_into_special_warp(WARP_SPECIAL_NONE, 0);
             gSavedCourseNum = COURSE_NONE;
         }

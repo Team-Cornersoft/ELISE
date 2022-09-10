@@ -69,6 +69,9 @@ f32 reverbGainAdd = 0.0f;
 s32 reverbAdd = 0;
 s32 deathTransitionUpdates = 0;
 
+s32 shouldQuietAll = FALSE;
+s32 quietTimePassed = 0;
+
 // Dialog sounds
 // The US difference is the sound for DIALOG_037 ("I win! You lose! Ha ha ha ha!
 // You're no slouch, but I'm a better sledder! Better luck next time!"), spoken
@@ -2483,7 +2486,7 @@ void play_course_clear(s32 isKey) {
     if (isKey) {
         seq_player_play_sequence(SEQ_PLAYER_ENV, SEQ_EVENT_CUTSCENE_COLLECT_KEY, 0);
     } else {
-        seq_player_play_sequence(SEQ_PLAYER_ENV, SEQ_EVENT_CUTSCENE_COLLECT_STAR, 0);
+        seq_player_play_sequence(SEQ_PLAYER_ENV, SEQ_LEVEL_BLUE_DROP_COLLECT, 0);
     }
     sBackgroundMusicMaxTargetVolume = TARGET_VOLUME_IS_PRESENT_FLAG | 0;
 #if defined(VERSION_EU) || defined(VERSION_SH)
@@ -2536,7 +2539,7 @@ void play_star_fanfare(void) {
  * Called from threads: thread5_game_loop
  */
 void play_power_star_jingle(void) {
-    seq_player_play_sequence(SEQ_PLAYER_ENV, SEQ_EVENT_CUTSCENE_STAR_SPAWN, 0);
+    seq_player_play_sequence(SEQ_PLAYER_ENV, SEQ_LEVEL_BLUE_DROP_SPAWN, 0);
     sBackgroundMusicMaxTargetVolume = TARGET_VOLUME_IS_PRESENT_FLAG | 20;
 #if defined(VERSION_EU) || defined(VERSION_SH)
     D_EU_80300558 = 2;
@@ -2590,7 +2593,8 @@ void sound_reset(u8 presetId, u8 reverbPreset) {
     if (presetId != 7) {
         preload_sequence(SEQ_EVENT_SOLVE_PUZZLE, PRELOAD_BANKS | PRELOAD_SEQUENCE);
         preload_sequence(SEQ_EVENT_PEACH_MESSAGE, PRELOAD_BANKS | PRELOAD_SEQUENCE);
-        preload_sequence(SEQ_EVENT_CUTSCENE_STAR_SPAWN, PRELOAD_BANKS | PRELOAD_SEQUENCE);
+        preload_sequence(SEQ_LEVEL_BLUE_DROP_SPAWN, PRELOAD_BANKS | PRELOAD_SEQUENCE);
+        preload_sequence(SEQ_LEVEL_BLUE_DROP_COLLECT, PRELOAD_BANKS | PRELOAD_SEQUENCE);
     }
     seq_player_play_sequence(SEQ_PLAYER_SFX, SEQ_SOUND_PLAYER, 0);
     D_80332108 = (D_80332108 & 0xf0) + presetId;

@@ -553,7 +553,8 @@ s32 act_panting(struct MarioState *m) {
     }
 
     if (set_mario_animation(m, MARIO_ANIM_WALK_PANTING) == 1) {
-        play_sound(SOUND_MARIO_PANTING + ((gAudioRandom % 3U) << 0x10),
+        if ((m->actionTimer % 120) == 2)
+            play_sound(SOUND_MARIO_PANTING + ((gAudioRandom % 3U) << 0x10),
                    m->marioObj->header.gfx.cameraToObject);
     }
 

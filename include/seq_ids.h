@@ -64,6 +64,10 @@ enum SeqId {
     SEQ_LEVEL_BLOOD_CLOT,             // 0x33
     SEQ_LEVEL_WHERE_AM_I,             // 0x34
     SEQ_LEVEL_ALIEN_PARTY,            // 0x35
+    SEQ_LEVEL_MEDICINE,               // 0x36
+    SEQ_LEVEL_SNOW_MOUNTAIN,          // 0x37
+    SEQ_LEVEL_BLUE_DROP_SPAWN,        // 0x38
+    SEQ_LEVEL_BLUE_DROP_COLLECT,      // 0x39
     SEQ_COUNT
 };
 

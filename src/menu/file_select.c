@@ -1072,7 +1072,8 @@ void bhv_menu_button_manager_init(void) {
     sTextBaseAlpha = 0;
 }
 
-#define SAVE_FILE_SOUND SOUND_MENU_STAR_SOUND_OKEY_DOKEY
+// #define SAVE_FILE_SOUND SOUND_MENU_STAR_SOUND_OKEY_DOKEY
+#define SAVE_FILE_SOUND SOUND_MENU_STAR_SOUND
 
 /**
  * In the main menu, check if a button was clicked to play it's button growing state.
@@ -2299,7 +2300,7 @@ void draw_credits_box(void) {
 
 #define LINES_ON_PAGE 12
 // Please keep this equal to the length of the sCreditStrings array, I don't know a good alternative to keep count
-#define CREDIT_COUNT 44
+#define CREDIT_COUNT 45
 static const char* sCreditStrings[] = {
     "",
     "<COL_FFFF7FFF>COMPETITION NOTE<COL_-------->",
@@ -2336,11 +2337,12 @@ static const char* sCreditStrings[] = {
     "",
     "<COL_FF7F7FFF>ADDITIONAL HELP<COL_-------->",
     "FluffaLuigi (Mario replacement),",
-    "LuigixHero (custom animations),",
-    "Crissley10 (end card)",
+    "LuigiXHero (custom animations),",
+    "Crissley10 (end card),",
+    "thecozies (playtesting)",
     "",
     "<COL_2FFF2FFF>SPECIAL THANKS<COL_-------->",
-    "Reonu, Blender, Seq64, RHDC",
+    "Reonu, Blender, SEQ64, RHDC",
     "",
     "<COL_4F4F4FFF>SAMPLE SOURCES<COL_-------->",
     "pixabay.com, mixkit.co",

@@ -76,7 +76,7 @@ const LevelScript level_hmc_entry[] = {
 		OBJECT(MODEL_NONE, 30622, 9099, 27735, 0, -168, 0, 0x000A0000, bhvSpinAirborneWarp),
 		OBJECT(MODEL_PORTAL_WARP, 14567, -6350, -28617, 0, 90, 0, 0x00CA0000, bhvPortalWarp),
 		OBJECT(MODEL_PORTAL_WARP, 13451, -6750, -30312, 0, -180, 0, 0x00CB0100, bhvPortalWarp),
-		OBJECT(MODEL_NONE, -31366, 3236, -7620, 0, -180, 0, 0x04CC0000, bhvWarp),
+		OBJECT(MODEL_NONE, -31366, 3036, -7620, 0, -180, 0, 0x04CC0000, bhvWarp),
 		TERRAIN(hmc_area_1_collision),
 		ROOMS(hmc_area_1_collision_rooms),
 		MACRO_OBJECTS(hmc_area_1_macro_objs),

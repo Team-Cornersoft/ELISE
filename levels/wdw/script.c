@@ -76,7 +76,7 @@ const LevelScript level_wdw_entry[] = {
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
-		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_WATER, 0x03, 0x04),
+		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_MEDICINE, 0x03, 0x04),
 		SET_ECHO(0x24, 0x24),
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
@@ -95,7 +95,7 @@ const LevelScript level_wdw_entry[] = {
 		TERRAIN_TYPE(TERRAIN_GRASS),
 		/* Fast64 begin persistent block [area commands] */
 		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_ALONE, 0x01, 0x02),
-		SET_ECHO(0x10, 0x10),
+		SET_ECHO(0x10, 0x12),
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
 

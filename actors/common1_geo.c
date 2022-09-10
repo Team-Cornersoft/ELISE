@@ -28,3 +28,4 @@
 
 #include "custom_dream_drop_red/geo.inc.c"
 #include "custom_dream_drop_blue/geo.inc.c"
+#include "custom_bowser_key/geo.inc.c"

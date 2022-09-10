@@ -199,6 +199,126 @@
             "release_rate": 25,
             "envelope": "envelope0",
             "sound": "25_sc2_cd7"
+        },
+        "inst38": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "26_despair_laugh_0"
+        },
+        "inst39": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "27_despair_laugh_1"
+        },
+        "inst40": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "28_despair_laugh_2"
+        },
+        "inst41": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "29_despair_laugh_3"
+        },
+        "inst42": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "2A_despair_laugh_4"
+        },
+        "inst43": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "2B_elise_grunt_disgust"
+        },
+        "inst44": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "2C_elise_grunt_mmm"
+        },
+        "inst45": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "2D_elise_grunt_huh_confused"
+        },
+        "inst46": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "2E_elise_grunt_huh_excited"
+        },
+        "inst47": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "2F_elise_grunt_aww"
+        },
+        "inst48": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "30_elise_dia_whats-in-here"
+        },
+        "inst49": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "31_elise_dia_oh-haha-very-funny"
+        },
+        "inst50": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "32_elise_dia_oh-now-this-is-cool"
+        },
+        "inst51": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "33_elise_dia_mom-woulda-loved-this"
+        },
+        "inst52": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "34_elise_dia_oh-a-secret"
+        },
+        "inst53": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "35_elise_dia_why-subconscious-teardrops"
+        },
+        "inst54": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "36_elise_dia_leaves-mind-wander"
+        },
+        "inst55": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "37_elise_dia_wonder-if-more"
+        },
+        "inst56": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "38_elise_dia_room-pretty"
+        },
+        "inst57": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "39_elise_dia_lovely"
+        },
+        "inst58": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "3A_elise_dia_why-this-in-head"
+        },
+        "inst59": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "3B_elise_dia_head-playing-tricks"
+        },
+        "inst60": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "3C_elise_dia_where-leads-to"
+        },
+        "inst61": {
+            "release_rate": 25,
+            "envelope": "envelope0",
+            "sound": "3D_elise_dia_hmm-interesting"
         }
     },
     "instrument_list": [
@@ -239,6 +359,30 @@
         "inst34",
         "inst35",
         "inst36",
-        "inst37"
+        "inst37",
+        "inst38",
+        "inst39",
+        "inst40",
+        "inst41",
+        "inst42",
+        "inst43",
+        "inst44",
+        "inst45",
+        "inst46",
+        "inst47",
+        "inst48",
+        "inst49",
+        "inst50",
+        "inst51",
+        "inst52",
+        "inst53",
+        "inst54",
+        "inst55",
+        "inst56",
+        "inst57",
+        "inst58",
+        "inst59",
+        "inst60",
+        "inst61"
     ]
 }

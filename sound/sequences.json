@@ -53,5 +53,9 @@
     "32_custom_quiet": ["37_custom_quiet"],
     "33_custom_blood_clot": ["2C_custom_blood_flow"],
     "34_custom_where_am_i": ["38_custom_where_am_i"],
-    "35_custom_alien_party": ["39_custom_alien_party"]
+    "35_custom_alien_party": ["39_custom_alien_party"],
+    "36_custom_medicine": ["3A_custom_medicine"],
+    "37_custom_snow": ["3B_custom_snow"],
+    "38_custom_dream_drop_spawn": ["3C_custom_dream_drop_spawn"],
+    "39_custom_dream_drop_collect": ["3D_custom_dream_drop_collect"]
 }
