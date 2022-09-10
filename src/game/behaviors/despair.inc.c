@@ -569,6 +569,7 @@ void update_death_regular(void) {
     RUN_DIALOG(7);
 
     play_sound(SOUND_MENU_CUSTOM_BOSS_WARP, gGlobalSoundSource);
+    play_sound(SOUND_ELVOICE_DESPAIR_DEATH_BLUE, gGlobalSoundSource);
 
     level_trigger_warp(gMarioState, WARP_OP_BLUE_DROP_ENDING, TRUE);
     change_attack(IDLE, SECONDS_TO_TICKS(100), SECONDS_TO_TICKS(100));
@@ -590,6 +591,7 @@ void update_death_true(void) {
     RUN_DIALOG(46);
 
     spawn_object_relative(0, 0, 0, 0, o, MODEL_BOWSER_KEY, bhvDreamKey);
+    play_sound(SOUND_ELVOICE_DESPAIR_DEATH_RED, gGlobalSoundSource);
 
     obj_mark_for_deletion(o); // TODO: Despair death animation and stuff
 }
