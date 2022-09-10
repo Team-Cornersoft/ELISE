@@ -144,7 +144,7 @@ const LevelScript level_lll_entry[] = {
 		STOP_MUSIC(0),
 		TERRAIN_TYPE(TERRAIN_SNOW),
 		/* Fast64 begin persistent block [area commands] */
-		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_SOUND_PLAYER, 0x05, 0x06),
+		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_LEVEL_SNOW_MOUNTAIN, 0x05, 0x06),
 		SET_ECHO(0x0E, 0x0E),
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
