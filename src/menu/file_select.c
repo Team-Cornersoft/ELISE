@@ -2336,7 +2336,7 @@ static const char* sCreditStrings[] = {
     "",
     "<COL_FF7F7FFF>ADDITIONAL HELP<COL_-------->",
     "FluffaLuigi (Mario replacement),",
-    "LuigixHero (custom animations),",
+    "LuigiXHero (custom animations),",
     "Crissley10 (end card),",
     "thecozies (playtesting)",
     "",

@@ -471,11 +471,13 @@ void render_hud_stars(void) {
     print_text_fmt_int((showX * 14) + GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_STARS_X - 16),
                        HUD_TOP_Y, "%d", gHudDisplay.stars);
 
-    showX = (gHudDisplay.redDrops < 100);
-    print_text(GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_RED_DROP_X), HUD_TOP_Y, ";"); // 'Red Drop' glyph
-    if (showX) print_text((GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_RED_DROP_X) + 16), HUD_TOP_Y, "*"); // 'X' glyph
-    print_text_fmt_int((showX * 14) + GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_RED_DROP_X - 16),
-                       HUD_TOP_Y, "%d", gHudDisplay.redDrops);
+    if (gHudDisplay.redDrops > 0) {
+        showX = (gHudDisplay.redDrops < 100);
+        print_text(GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_RED_DROP_X), HUD_TOP_Y, ";"); // 'Red Drop' glyph
+        if (showX) print_text((GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_RED_DROP_X) + 16), HUD_TOP_Y, "*"); // 'X' glyph
+        print_text_fmt_int((showX * 14) + GFX_DIMENSIONS_RECT_FROM_RIGHT_EDGE(HUD_RED_DROP_X - 16),
+                        HUD_TOP_Y, "%d", gHudDisplay.redDrops);
+    }
 }
 
 /**
