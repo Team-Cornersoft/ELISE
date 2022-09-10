@@ -42,7 +42,7 @@ const LevelScript level_cutscene_scene_0_0[] = {
 
     // Start animation
     LOAD_AREA(/*area*/ 1),
-    SET_MENU_MUSIC(/*seq*/ SEQ_EVENT_QUIET),
+    SET_MENU_MUSIC_WITH_REVERB(/*seq*/ SEQ_EVENT_QUIET, 0x01, 0x02),
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
@@ -134,7 +134,7 @@ const LevelScript level_cutscene_scene_0_3[] = {
 
     // Start animation
     LOAD_AREA(/*area*/ 1),
-    SET_MENU_MUSIC(/*seq*/ SEQ_EVENT_FILE_SELECT),
+    SET_MENU_MUSIC_WITH_REVERB(/*seq*/ SEQ_EVENT_FILE_SELECT, 0x01, 0x02),
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),

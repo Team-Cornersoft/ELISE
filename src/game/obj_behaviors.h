@@ -18,6 +18,7 @@ enum ObjCollisionFlags {
 };
 
 #define MIN_BLUE_DROPS_NEEDED 12
+#define MIN_RED_DROPS_NEEDED 8
 
 #define TERM_VEL(x) ((shouldFadeMarioWarp > 0) ? x : (x * ((0.67f + gravityMult) / 1.67f)))
 

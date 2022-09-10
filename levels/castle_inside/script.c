@@ -52,7 +52,7 @@ const LevelScript level_castle_inside_entry[] = {
 		OBJECT(MODEL_NONE, 1850, 400, 1260, 0, -120, 0, 0x00BB0000, bhvFadingWarp),
 		OBJECT(MODEL_NONE, -1850, 400, 1260, 0, 120, 0, 0x00BC0000, bhvFadingWarp),
 		MARIO_POS(0x01, -180, 0, 0, 1900),
-		OBJECT(MODEL_NONE, 0, 0, 1900, 0, -180, 0, 0x000A0000, bhvSpinAirborneWarp),
+		OBJECT(MODEL_NONE, 0, 2000, 1900, 0, -180, 0, 0x000A0000, bhvFadingWarp),
 		OBJECT(MODEL_PORTAL_WARP, 0, 0, -3205, 0, -180, 0, 0x00CA0000, bhvPortalWarp),
 		OBJECT(MODEL_PORTAL_WARP, 2800, 0, 1800, 0, -120, 0, 0x00CB0000, bhvPortalWarp),
 		OBJECT(MODEL_PORTAL_WARP, -2804, 0, 1802, 0, 120, 0, 0x00CC0000, bhvPortalWarp),

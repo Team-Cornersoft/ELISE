@@ -32,6 +32,7 @@
 #include "puppyprint.h"
 #include "puppylights.h"
 #include "level_commands.h"
+#include "behavior_data.h"
 
 #include "config.h"
 
@@ -390,25 +391,25 @@ void init_mario_after_warp(void) {
 
     switch (marioSpawnType) {
         case MARIO_SPAWN_PIPE:
-            play_transition(WARP_TRANSITION_FADE_FROM_STAR, 0x10, 0x00, 0x00, 0x00);
+            play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x16, 0x00, 0x00, 0x00);
             break;
         case MARIO_SPAWN_DOOR_WARP:
-            play_transition(WARP_TRANSITION_FADE_FROM_CIRCLE, 0x10, 0x00, 0x00, 0x00);
+            play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x16, 0x00, 0x00, 0x00);
             break;
         case MARIO_SPAWN_TELEPORT:
-            play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x14, 0xFF, 0xFF, 0xFF);
+            play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x16, 0xFF, 0xFF, 0xFF);
             break;
         case MARIO_SPAWN_SPIN_AIRBORNE:
-            play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x1A, 0xFF, 0xFF, 0xFF);
+            play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x16, 0xFF, 0xFF, 0xFF);
             break;
         case MARIO_SPAWN_SPIN_AIRBORNE_CIRCLE:
-            play_transition(WARP_TRANSITION_FADE_FROM_CIRCLE, 0x10, 0x00, 0x00, 0x00);
+            play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x16, 0x00, 0x00, 0x00);
             break;
         case MARIO_SPAWN_FADE_FROM_BLACK:
-            play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x10, 0x00, 0x00, 0x00);
+            play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x16, 0x00, 0x00, 0x00);
             break;
         default:
-            play_transition(WARP_TRANSITION_FADE_FROM_STAR, 0x10, 0x00, 0x00, 0x00);
+            play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x16, 0x00, 0x00, 0x00);
             break;
     }
 
@@ -517,7 +518,7 @@ void warp_credits(void) {
     sWarpDest.type = WARP_TYPE_NOT_WARPING;
     sDelayedWarpOp = WARP_OP_NONE;
 
-    play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x14, 0x00, 0x00, 0x00);
+    play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x16, 0x00, 0x00, 0x00);
 
     if (gCurrCreditsEntry == NULL || gCurrCreditsEntry == sCreditsSequence) {
         set_background_music(gCurrentArea->musicParam, gCurrentArea->musicParam2, 0, gCurrentArea->reverbPreset);
@@ -739,7 +740,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp, u8 fadeMario) {
                 sSourceWarpNodeId = WARP_NODE_DEFAULT;
                 gSavedCourseNum = COURSE_NONE;
                 fadeMusic = FALSE;
-                play_transition(WARP_TRANSITION_FADE_INTO_STAR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
                 break;
 
             case WARP_OP_CREDITS_END:
@@ -754,7 +755,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp, u8 fadeMario) {
                 sDelayedWarpTimer = 32;
                 sSourceWarpNodeId = WARP_NODE_DEFAULT;
                 gSavedCourseNum = COURSE_NONE;
-                play_transition(WARP_TRANSITION_FADE_INTO_MARIO, sDelayedWarpTimer, 0x00, 0x00, 0x00);
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
                 break;
 
             case WARP_OP_WARP_FLOOR:
@@ -775,7 +776,7 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp, u8 fadeMario) {
 #endif
                 } else { // intentional warp floors still warp floors, otherwise standard death warp
                     sDelayedWarpTimer = 20;
-                    play_transition(WARP_TRANSITION_FADE_INTO_CIRCLE, sDelayedWarpTimer, 0x00, 0x00, 0x00);
+                    play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
                     break;
                 }
                 FALL_THROUGH;
@@ -827,14 +828,14 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp, u8 fadeMario) {
                 sDelayedWarpArg = m->actionArg;
                 sSourceWarpNodeId = GET_BPARAM2(m->usedObj->oBehParams);
                 fadeMusic = !music_unchanged_through_warp(sSourceWarpNodeId);
-                play_transition(WARP_TRANSITION_FADE_INTO_CIRCLE, sDelayedWarpTimer, 0x00, 0x00, 0x00);
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
                 break;
 
             case WARP_OP_WARP_OBJECT:
                 sDelayedWarpTimer = 20;
                 sSourceWarpNodeId = GET_BPARAM2(m->usedObj->oBehParams);
                 fadeMusic = !music_unchanged_through_warp(sSourceWarpNodeId);
-                play_transition(WARP_TRANSITION_FADE_INTO_STAR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
                 break;
 
             case WARP_OP_PORTAL_WARP:
@@ -854,6 +855,15 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp, u8 fadeMario) {
                 break;
 
             case WARP_OP_BLUE_DROP_ENDING:
+                set_camera_pitch_shake(0x60, 0x1, 0x2500);
+                set_camera_roll_shake(0xC0, 0x1, 0x3300);
+                sDelayedWarpTimer = 120;
+                sSourceWarpNodeId = 0x0A;
+                fadeMusic = TRUE;
+                play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0xFF, 0xFF, 0xFF);
+                break;
+
+            case WARP_OP_RED_DROP_ENDING:
                 set_camera_pitch_shake(0x60, 0x1, 0x2500);
                 set_camera_roll_shake(0xC0, 0x1, 0x3300);
                 sDelayedWarpTimer = 120;
@@ -953,7 +963,18 @@ void initiate_delayed_warp(void) {
                         sWarpDest.type = WARP_TYPE_NOT_WARPING; // Override normal warp while still preserving the warp node destination
 
                         warp_special(WARP_SPECIAL_BLUE_DROP_ENDING); // Blue drop ending
-                        gameFreezeFrames = 105;
+                        gameFreezeFrames = 135;
+                        break;
+
+                    case WARP_OP_RED_DROP_ENDING:
+                        warpNode = area_get_warp_node(sSourceWarpNodeId);
+
+                        initiate_warp(warpNode->node.destLevel & 0x7F, warpNode->node.destArea,
+                                    warpNode->node.destNode, sDelayedWarpArg);
+                        sWarpDest.type = WARP_TYPE_NOT_WARPING; // Override normal warp while still preserving the warp node destination
+
+                        warp_special(WARP_SPECIAL_RED_DROP_ENDING); // Blue drop ending
+                        gameFreezeFrames = 135;
                         break;
 
                     case WARP_OP_CREDITS_START:
@@ -1020,6 +1041,8 @@ void initiate_delayed_warp(void) {
                 else if (sDelayedWarpTimer == 28) {
                     play_sound(SOUND_MENU_CUSTOM_DEATH, gGlobalSoundSource);
                     play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
+                    if (count_objects_with_behavior(bhvDespair) > 0)
+                        play_sound(SOUND_ELVOICE_DESPAIR_ELISE_DEATH, gGlobalSoundSource);
                 }
             }
         }
@@ -1466,7 +1489,7 @@ s32 init_level(void) {
         if (fadeFromColor) {
             play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x5A, 0xFF, 0xFF, 0xFF);
         } else {
-            play_transition(WARP_TRANSITION_FADE_FROM_STAR, 0x10, 0xFF, 0xFF, 0xFF);
+            play_transition(WARP_TRANSITION_FADE_FROM_COLOR, 0x16, 0xFF, 0xFF, 0xFF);
         }
 
         if (gCurrDemoInput == NULL) {
@@ -1602,7 +1625,7 @@ s32 lvl_set_current_level(UNUSED s16 initOrUpdate, s32 levelNum) {
  * Play the "thank you so much for to playing my game" sound.
  */
 s32 lvl_play_the_end_screen_sound(UNUSED s16 initOrUpdate, UNUSED s32 levelNum) {
-    play_sound(SOUND_MENU_THANK_YOU_PLAYING_MY_GAME, gGlobalSoundSource);
+    // play_sound(SOUND_MENU_THANK_YOU_PLAYING_MY_GAME, gGlobalSoundSource);
     return TRUE;
 }
 
@@ -1670,4 +1693,12 @@ s32 should_play_elise_cutscene(s16 cutsceneSequenceIndex, UNUSED s32 arg1) {
     }
 
     return FALSE;
+}
+
+// Should we show the true ending or no?
+s32 should_warp_to_true_ending(UNUSED s16 arg0, UNUSED s32 arg1) {
+    if (gMarioState->numRedDrops < MIN_RED_DROPS_NEEDED || gMarioState->numStars < MIN_BLUE_DROPS_NEEDED)
+        return FALSE;
+
+    return TRUE;
 }

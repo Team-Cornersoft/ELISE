@@ -2152,7 +2152,7 @@ Has humanity forsaken me...?\n\
 
 DEFINE_DIALOG(DIALOG_182, 8, 4, 30, 270, _("\
 If only you didn't try to trap people\n\
-in a coma maybe we wouldn't have.\n\
+in a coma, maybe we wouldn't have.\n\
 \n\
 "))
 
@@ -2200,8 +2200,8 @@ bestowed upon you with violence?"))
 
 DEFINE_DIALOG(DIALOG_192, 8, 4, 30, 270, _("\
 Sorry rainbow eyes,\n\
-but I have a lot of pent up frustration to \n\
-take out on you"))
+but I have a lot of pent up frustration to\n\
+take out on you!"))
 
 DEFINE_DIALOG(DIALOG_193, 8, 4, 30, 270, _("\
 This is IT!"))

@@ -8112,13 +8112,13 @@ sound_ref .sound_cutscene_sc1_cd7
 sound_ref .sound_cutscene_sc1_cd8
 sound_ref .sound_cutscene_sc1_cd9
 sound_ref .sound_cutscene_sc1_cda
-sound_ref .sound_cutscene_sc2_cd0
 sound_ref .sound_cutscene_sc2_cd1
 sound_ref .sound_cutscene_sc2_cd2
 sound_ref .sound_cutscene_sc2_cd3
 sound_ref .sound_cutscene_sc2_cd4
 sound_ref .sound_cutscene_sc2_cd5
 sound_ref .sound_cutscene_sc2_cd6
+sound_ref .sound_cutscene_sc2_cd7
 
 
 .sound_despair_grunt_0:
@@ -8632,135 +8632,135 @@ layer_note1 39, 0x1f9, 127
 layer_end
 
 
-.sound_cutscene_sc2_cd0:
-chan_setbank 12
-chan_setinstr 31
-chan_setval 8
-chan_call .set_reverb
-chan_setlayer 0, .layer_cutscene_sc2_cd0_echo
-chan_setlayer 1, .layer_cutscene_sc2_cd0
-chan_end
-
-.layer_cutscene_sc2_cd0_echo:
-layer_delay 0x10
-layer_note1 39, 0x96, 31
-layer_end
-
-.layer_cutscene_sc2_cd0:
-layer_note1 39, 0x96, 127
-layer_end
-
-
 .sound_cutscene_sc2_cd1:
 chan_setbank 12
-chan_setinstr 32
-chan_setval 8
+chan_setinstr 31
+chan_setval 0
 chan_call .set_reverb
 chan_setlayer 0, .layer_cutscene_sc2_cd1_echo
 chan_setlayer 1, .layer_cutscene_sc2_cd1
 chan_end
 
 .layer_cutscene_sc2_cd1_echo:
-layer_delay 0x10
-layer_note1 39, 0x68, 31
+layer_delay 0x0A
+layer_note1 39, 0x96, 23
 layer_end
 
 .layer_cutscene_sc2_cd1:
-layer_note1 39, 0x68, 127
+layer_note1 39, 0x96, 127
 layer_end
 
 
 .sound_cutscene_sc2_cd2:
 chan_setbank 12
-chan_setinstr 33
-chan_setval 8
+chan_setinstr 32
+chan_setval 0
 chan_call .set_reverb
 chan_setlayer 0, .layer_cutscene_sc2_cd2_echo
 chan_setlayer 1, .layer_cutscene_sc2_cd2
 chan_end
 
 .layer_cutscene_sc2_cd2_echo:
-layer_delay 0x10
-layer_note1 39, 0x4c, 31
+layer_delay 0x0A
+layer_note1 39, 0x68, 23
 layer_end
 
 .layer_cutscene_sc2_cd2:
-layer_note1 39, 0x4c, 127
+layer_note1 39, 0x68, 127
 layer_end
 
 
 .sound_cutscene_sc2_cd3:
 chan_setbank 12
-chan_setinstr 34
-chan_setval 8
+chan_setinstr 33
+chan_setval 0
 chan_call .set_reverb
 chan_setlayer 0, .layer_cutscene_sc2_cd3_echo
 chan_setlayer 1, .layer_cutscene_sc2_cd3
 chan_end
 
 .layer_cutscene_sc2_cd3_echo:
-layer_delay 0x10
-layer_note1 39, 0xe3, 31
+layer_delay 0x0A
+layer_note1 39, 0x4c, 23
 layer_end
 
 .layer_cutscene_sc2_cd3:
-layer_note1 39, 0xe3, 127
+layer_note1 39, 0x4c, 127
 layer_end
 
 
 .sound_cutscene_sc2_cd4:
 chan_setbank 12
-chan_setinstr 35
-chan_setval 8
+chan_setinstr 34
+chan_setval 0
 chan_call .set_reverb
 chan_setlayer 0, .layer_cutscene_sc2_cd4_echo
 chan_setlayer 1, .layer_cutscene_sc2_cd4
 chan_end
 
 .layer_cutscene_sc2_cd4_echo:
-layer_delay 0x10
-layer_note1 39, 0xae, 31
+layer_delay 0x0A
+layer_note1 39, 0xe3, 23
 layer_end
 
 .layer_cutscene_sc2_cd4:
-layer_note1 39, 0xae, 127
+layer_note1 39, 0xe3, 127
 layer_end
 
 
 .sound_cutscene_sc2_cd5:
 chan_setbank 12
-chan_setinstr 36
-chan_setval 8
+chan_setinstr 35
+chan_setval 0
 chan_call .set_reverb
 chan_setlayer 0, .layer_cutscene_sc2_cd5_echo
 chan_setlayer 1, .layer_cutscene_sc2_cd5
 chan_end
 
 .layer_cutscene_sc2_cd5_echo:
-layer_delay 0x10
-layer_note1 39, 0x47, 31
+layer_delay 0x0A
+layer_note1 39, 0xae, 23
 layer_end
 
 .layer_cutscene_sc2_cd5:
-layer_note1 39, 0x47, 127
+layer_note1 39, 0xae, 127
 layer_end
 
 
 .sound_cutscene_sc2_cd6:
 chan_setbank 12
-chan_setinstr 37
-chan_setval 8
+chan_setinstr 36
+chan_setval 0
 chan_call .set_reverb
 chan_setlayer 0, .layer_cutscene_sc2_cd6_echo
 chan_setlayer 1, .layer_cutscene_sc2_cd6
 chan_end
 
 .layer_cutscene_sc2_cd6_echo:
-layer_delay 0x10
-layer_note1 39, 0xf8, 31
+layer_delay 0x0A
+layer_note1 39, 0x47, 23
 layer_end
 
 .layer_cutscene_sc2_cd6:
+layer_note1 39, 0x47, 127
+layer_end
+
+
+.sound_cutscene_sc2_cd7:
+chan_setbank 12
+chan_setinstr 37
+chan_setval 0
+chan_call .set_reverb
+chan_setlayer 0, .layer_cutscene_sc2_cd7_echo
+chan_setlayer 1, .layer_cutscene_sc2_cd7
+chan_end
+
+.layer_cutscene_sc2_cd7_echo:
+layer_delay 0x0A
+layer_note1 39, 0xf8, 23
+layer_end
+
+.layer_cutscene_sc2_cd7:
 layer_note1 39, 0xf8, 127
 layer_end
 

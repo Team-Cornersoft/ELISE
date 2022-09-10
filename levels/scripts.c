@@ -54,6 +54,7 @@ static const LevelScript goto_mario_head_dizzy[6];
 static const LevelScript goto_debug_level_select[6];
 static const LevelScript goto_despair_prompt[11];
 static const LevelScript goto_blue_drop_ending[6];
+static const LevelScript goto_red_drop_ending[6];
 
 
 #define STUB_LEVEL(_0, _1, _2, _3, _4, _5, _6, _7, _8)
@@ -159,6 +160,7 @@ const LevelScript level_main_scripts_entry[] = {
     JUMP_IF(   /*op*/ OP_EQ, /*arg*/ WARP_SPECIAL_LEVEL_SELECT,        goto_debug_level_select),
     JUMP_IF(   /*op*/ OP_EQ, /*arg*/ WARP_SPECIAL_DESPAIR_PROMPT,      goto_despair_prompt),
     JUMP_IF(   /*op*/ OP_EQ, /*arg*/ WARP_SPECIAL_BLUE_DROP_ENDING,    goto_blue_drop_ending),
+    JUMP_IF(   /*op*/ OP_EQ, /*arg*/ WARP_SPECIAL_RED_DROP_ENDING,     goto_red_drop_ending),
 };
 
 static const LevelScript goto_intro_splash_screen[] = {
@@ -193,6 +195,10 @@ static const LevelScript goto_despair_prompt[] = {
 };
 
 static const LevelScript goto_blue_drop_ending[] = {
+    EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _cutscene_5SegmentRomStart, _cutscene_5SegmentRomEnd, level_cutscene_scene_5_0, _cutscene_5SegmentBssStart, _cutscene_5SegmentBssEnd),
+};
+
+static const LevelScript goto_red_drop_ending[] = {
     EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _cutscene_5SegmentRomStart, _cutscene_5SegmentRomEnd, level_cutscene_scene_5_0, _cutscene_5SegmentBssStart, _cutscene_5SegmentBssEnd),
 };
 

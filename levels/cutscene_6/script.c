@@ -20,12 +20,23 @@
 #include "levels/cutscene_6/header.h"
 #include "levels/cutscene_7/header.h"
 #include "levels/intro/header.h"
+#include "levels/ending/header.h"
 #include "farcall.h"
 
 #include "config.h"
 #include "game/print.h"
 
 #include "game/object_list_processor.h"
+
+const LevelScript level_cutscene_scene_6_bluedrop_endscreen_warp[] = {
+    TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 24, /*color*/ 0x00, 0x00, 0x00),
+    CALL_LOOP(/*arg*/ 24, /*func*/ image_screen_cannot_press_button),
+    UNLOAD_AREA(/*area*/ 1),
+    CLEAR_LEVEL(),
+    SLEEP(/*frames*/ 20),
+
+    EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_LEVEL_SCRIPT, _endingSegmentRomStart, _endingSegmentRomEnd, level_ending_entry, _endingSegmentBssStart, _endingSegmentBssEnd),
+};
 
 const LevelScript level_cutscene_scene_6_0[] = {
     INIT_LEVEL(),
@@ -44,7 +55,9 @@ const LevelScript level_cutscene_scene_6_0[] = {
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC2_CD4),
+    SLEEP(/*frames*/ 90),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
@@ -72,14 +85,15 @@ const LevelScript level_cutscene_scene_6_1[] = {
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC2_CD5),
+    SLEEP(/*frames*/ 75),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
-    TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    CALL_LOOP(/*arg*/ 16, /*func*/ image_screen_cannot_press_button),
-    UNLOAD_AREA(/*area*/ 1),
-    CLEAR_LEVEL(),
-    SLEEP(/*frames*/ 20),
+
+    CALL(/*arg*/ 0, /*func*/ should_warp_to_true_ending),
+    JUMP_IF(/*op*/ OP_EQ, /*arg*/ FALSE,  level_cutscene_scene_6_bluedrop_endscreen_warp),
+    
     EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _cutscene_6SegmentRomStart, _cutscene_6SegmentRomEnd, level_cutscene_scene_6_2, _cutscene_6SegmentBssStart, _cutscene_6SegmentBssEnd),
 };
 
@@ -100,7 +114,9 @@ const LevelScript level_cutscene_scene_6_2[] = {
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    SLEEP(/*frames*/ 105),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC2_CD6),
+    SLEEP(/*frames*/ 55),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
@@ -128,13 +144,15 @@ const LevelScript level_cutscene_scene_6_3[] = {
 
     CALL(/*arg*/ 0, /*func*/ init_image_screen_press_button),
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
+    SLEEP(/*frames*/ 15),
+    PLAY_SOUND_EFFECT(SOUND_ELVOICE_CUTSCENE_SC2_CD7),
     SLEEP(/*frames*/ 105),
     CALL_LOOP(/*arg*/ -1, /*func*/ image_screen_press_button),
     PLAY_SOUND_EFFECT(SOUND_MENU_MESSAGE_NEXT_PAGE),
-    TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 16, /*color*/ 0x00, 0x00, 0x00),
-    CALL_LOOP(/*arg*/ 16, /*func*/ image_screen_cannot_press_button),
+    TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 24, /*color*/ 0x00, 0x00, 0x00),
+    CALL_LOOP(/*arg*/ 24, /*func*/ image_screen_cannot_press_button),
     UNLOAD_AREA(/*area*/ 1),
     CLEAR_LEVEL(),
     SLEEP(/*frames*/ 20),
-    EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _cutscene_7SegmentRomStart, _cutscene_7SegmentRomEnd, level_cutscene_scene_7_0, _cutscene_7SegmentBssStart, _cutscene_7SegmentBssEnd),
+    EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_LEVEL_SCRIPT, _endingSegmentRomStart, _endingSegmentRomEnd, level_ending_entry, _endingSegmentBssStart, _endingSegmentBssEnd),
 };

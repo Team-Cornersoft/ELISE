@@ -156,12 +156,14 @@ void take_damage(void) {
         } else if (o->oDespairHits == 5) {
             // Play ending 2 death sequence
             o->oAction = DEATH_TRUE;
+            seq_player_fade_out(SEQ_PLAYER_LEVEL, 240);
             return;
         }
     } else {
         if (o->oDespairHits == 3) {
             // Play ending 1 death sequence
             o->oAction = DEATH_REGULAR;
+            seq_player_fade_out(SEQ_PLAYER_LEVEL, 240);
             set_mario_action(gMarioState, ACT_SPAWN_NO_SPIN_AIRBORNE, 0);
             return;
         }
@@ -171,6 +173,8 @@ void take_damage(void) {
 }
 
 void choose_attack(void) {
+    s8 action;
+
     if (o->oDespairCurrentAttacks >= 3) {
         change_attack(SPINNING_ATTACK, NO_COOLDOWN, SPINNING_ATTACK_TIME);
         o->oDespairSpinAngle = 270.0f;
@@ -178,7 +182,25 @@ void choose_attack(void) {
         return;
     }
 
-    s8 action = MIN_ATTACK + (s8) (random_float() * (MAX_ATTACK - MIN_ATTACK));
+    if (o->oDespairLastAttack == 0) {
+        action = MIN_ATTACK + (s8) (random_float() * (MAX_ATTACK - MIN_ATTACK));
+    } else {
+        action = MIN_ATTACK + (s8) (random_float() * (MAX_ATTACK - MIN_ATTACK - 1));
+        if (action >= o->oDespairLastAttack)
+            action++; // Don't do the same attack twice in a row
+    }
+
+    // This because it complements the music in the intro
+    if (o->oDespairFirstEncounter) {
+        if (o->oTimer < 105)
+            return;
+
+        o->oDespairFirstEncounter = FALSE;
+        action = LAUNCHING_TORPEDOS; // This is a good starting attack
+
+        // Evil laugh idk it works here too
+        cur_obj_play_sound_2(SOUND_ELVOICE_DESPAIR_ELISE_DEATH); // NOTE: I believe this should have sound priority so don't worry about adding a different sound to the torpedo attack.
+    }
 
     switch(action) {
         case HOMING: change_attack(action, NO_COOLDOWN, HOMING_ATTACK_TIME); break;
@@ -188,6 +210,7 @@ void choose_attack(void) {
         default: return;
     }
 
+    o->oDespairLastAttack = action;
     o->oDespairCurrentAttacks++;
 }
 
@@ -572,7 +595,11 @@ void update_death_true(void) {
 }
 
 void bhv_despair_init(void) {
-    gMarioState->pos[1] = 1000.0f;
+    o->oDespairLastAttack = 0;
+    o->oDespairFirstEncounter = FALSE;
+    if (gMarioState->pos[1] >= 500.0f) // Mario now only spawns up that high when entering the stage so is this a satisfactory check for this condition.
+        o->oDespairFirstEncounter = TRUE;
+
     set_mario_action(gMarioState, ACT_SPAWN_NO_SPIN_AIRBORNE, 0);
 
     change_attack(INTRO, NO_COOLDOWN, NO_TIME);
@@ -584,7 +611,7 @@ void bhv_despair_init(void) {
 
     o->oDespairAttackCooldown = SECONDS_TO_TICKS(3);
 
-    if (save_file_get_total_star_count(gCurrSaveFileNum - 1, COURSE_MIN - 1, COURSE_MAX - 1) > 12) {
+    if (gMarioState->numRedDrops >= MIN_RED_DROPS_NEEDED && gMarioState->numStars >= MIN_BLUE_DROPS_NEEDED) {
         o->oDespairMaxHits = 5;
     } else {
         o->oDespairMaxHits = 3;

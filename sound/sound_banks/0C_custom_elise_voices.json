@@ -168,37 +168,37 @@
         "inst31": {
             "release_rate": 25,
             "envelope": "envelope0",
-            "sound": "1F_sc2_cd0"
+            "sound": "1F_sc2_cd1"
         },
         "inst32": {
             "release_rate": 25,
             "envelope": "envelope0",
-            "sound": "20_sc2_cd1"
+            "sound": "20_sc2_cd2"
         },
         "inst33": {
             "release_rate": 25,
             "envelope": "envelope0",
-            "sound": "21_sc2_cd2"
+            "sound": "21_sc2_cd3"
         },
         "inst34": {
             "release_rate": 25,
             "envelope": "envelope0",
-            "sound": "22_sc2_cd3"
+            "sound": "22_sc2_cd4"
         },
         "inst35": {
             "release_rate": 25,
             "envelope": "envelope0",
-            "sound": "23_sc2_cd4"
+            "sound": "23_sc2_cd5"
         },
         "inst36": {
             "release_rate": 25,
             "envelope": "envelope0",
-            "sound": "24_sc2_cd5"
+            "sound": "24_sc2_cd6"
         },
         "inst37": {
             "release_rate": 25,
             "envelope": "envelope0",
-            "sound": "25_sc2_cd6"
+            "sound": "25_sc2_cd7"
         }
     },
     "instrument_list": [

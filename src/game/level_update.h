@@ -22,6 +22,7 @@ enum WarpOperation {
     WARP_OP_PORTAL_WARP,
     WARP_OP_BOSS_PORTAL_WARP,
     WARP_OP_BLUE_DROP_ENDING,
+    WARP_OP_RED_DROP_ENDING,
     WARP_OP_TRIGGERS_LEVEL_SELECT = 0x10,
     WARP_OP_STAR_EXIT,
     WARP_OP_DEATH,
@@ -35,6 +36,7 @@ enum WarpOperation {
 };
 
 enum SpecialWarpDestinations {
+    WARP_SPECIAL_RED_DROP_ENDING     = -12,
     WARP_SPECIAL_BLUE_DROP_ENDING    = -11,
     WARP_SPECIAL_DESPAIR_PROMPT      = -10,
     WARP_SPECIAL_LEVEL_SELECT        = -9,
@@ -200,5 +202,6 @@ s32 image_screen_press_button(s16 frames, UNUSED s32 arg1);
 s32 image_screen_cannot_press_button(s16 frames, UNUSED s32 arg1);
 s32 pause_if_emulator(s16 frames, UNUSED s32 arg1);
 s32 should_play_elise_cutscene(s16 cutsceneSequenceIndex, UNUSED s32 arg1);
+s32 should_warp_to_true_ending(UNUSED s16 arg0, UNUSED s32 arg1);
 
 #endif // LEVEL_UPDATE_H
