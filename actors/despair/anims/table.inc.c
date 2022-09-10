@@ -24,5 +24,7 @@ const struct Animation *const despair_anims[] = {
 
 	&despair_anim_tremble,
 
+	&despair_anim_deathloop,
+
 	NULL,
 };

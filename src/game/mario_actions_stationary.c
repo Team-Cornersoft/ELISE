@@ -1053,7 +1053,7 @@ s32 act_first_person(struct MarioState *m) {
     }
 
     stationary_ground_step(m);
-    set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
+    set_mario_animation(m, MARIO_ANIM_IDLE_HEAD_CENTER);
     return FALSE;
 }
 

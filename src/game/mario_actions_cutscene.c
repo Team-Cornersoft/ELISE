@@ -485,7 +485,7 @@ s32 act_reading_sign(struct MarioState *m) {
             trigger_cutscene_dialog(1);
             enable_time_stop();
             // reading sign
-            set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
+            set_mario_animation(m, MARIO_ANIM_IDLE_HEAD_CENTER);
             m->actionState = ACT_STATE_READING_SIGN_TURN_TOWARD_SIGN;
             // intentional fallthrough
         case ACT_STATE_READING_SIGN_TURN_TOWARD_SIGN:
@@ -651,7 +651,7 @@ void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
 
 s32 act_star_dance(struct MarioState *m) {
     m->faceAngle[1] = m->area->camera->yaw;
-    set_mario_animation(m, m->actionState == ACT_STATE_STAR_DANCE_RETURN ? MARIO_ANIM_RETURN_FROM_STAR_DANCE
+    set_mario_animation(m, m->actionState == ACT_STATE_STAR_DANCE_RETURN ? MARIO_ANIM_IDLE_HEAD_CENTER
                                                                          : MARIO_ANIM_STAR_DANCE);
     general_star_dance_handler(m, FALSE);
     if (m->actionState != ACT_STATE_STAR_DANCE_RETURN && m->actionTimer >= 40) {
@@ -902,7 +902,7 @@ s32 act_entering_star_door(struct MarioState *m) {
 
     // set Mario's animation
     if (m->actionTimer < 15) {
-        set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
+        set_mario_animation(m, MARIO_ANIM_IDLE_HEAD_CENTER);
     }
 
     // go through door? for 20 frames
@@ -986,7 +986,7 @@ s32 act_warp_door_spawn(struct MarioState *m) {
         set_mario_action(m, ACT_IDLE, 0);
 #endif
     }
-    set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
+    set_mario_animation(m, MARIO_ANIM_IDLE_HEAD_CENTER);
     stop_and_set_height_to_floor(m);
     return FALSE;
 }
@@ -1429,7 +1429,7 @@ s32 act_bbh_enter_jump(struct MarioState *m) {
 s32 act_teleport_fade_out(struct MarioState *m) {
     play_sound_if_no_flag(m, SOUND_ACTION_CUSTOM_TELEPORT, MARIO_ACTION_SOUND_PLAYED);
     set_mario_animation(m, m->prevAction == ACT_CROUCHING ? MARIO_ANIM_CROUCHING
-                                                          : MARIO_ANIM_FIRST_PERSON);
+                                                          : MARIO_ANIM_IDLE_HEAD_CENTER);
 
 #if ENABLE_RUMBLE
     if (m->actionTimer == 0) {
@@ -1762,7 +1762,7 @@ static void intro_cutscene_land_outside_pipe(struct MarioState *m) {
 static void intro_cutscene_lower_pipe(struct MarioState *m) {
     if (m->actionTimer++ == 0) {
         play_sound(SOUND_MENU_ENTER_PIPE, sIntroWarpPipeObj->header.gfx.cameraToObject);
-        set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
+        set_mario_animation(m, MARIO_ANIM_IDLE_HEAD_CENTER);
     }
 
     sIntroWarpPipeObj->oPosY -= 5.0f;
@@ -2410,7 +2410,7 @@ static void end_peach_cutscene_star_dance(struct MarioState *m) {
 // "let's bake a delicious cake..."
 // "...for Mario..."
 static void end_peach_cutscene_dialog_3(struct MarioState *m) {
-    set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
+    set_mario_animation(m, MARIO_ANIM_IDLE_HEAD_CENTER);
 
     sEndPeachObj->oPosY = end_obj_set_visual_pos(sEndPeachObj);
     sEndRightToadObj->oPosY = end_obj_set_visual_pos(sEndRightToadObj);
@@ -2562,7 +2562,7 @@ static s32 act_credits_cutscene(struct MarioState *m) {
         vec3s_copy(m->marioObj->header.gfx.angle, m->faceAngle);
         m->particleFlags |= PARTICLE_BUBBLE;
     } else {
-        set_mario_animation(m, MARIO_ANIM_FIRST_PERSON);
+        set_mario_animation(m, MARIO_ANIM_IDLE_HEAD_CENTER);
         if (m->actionTimer > 0) {
             stop_and_set_height_to_floor(m);
         }

@@ -107,7 +107,7 @@ static const struct Animation despair_anim_release = {
 	0,
 	0,
 	0,
-	19,
+	1,
 	20,
 	ANIMINDEX_NUMPARTS(despair_anim_release_indices),
 	despair_anim_release_values,

@@ -10,3 +10,4 @@
 #include "anim_swipe2.inc.c"
 #include "anim_swipe3.inc.c"
 #include "anim_tremble.inc.c"
+#include "anim_deathloop.inc.c"

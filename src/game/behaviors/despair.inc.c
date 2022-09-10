@@ -70,6 +70,7 @@ enum DespairAnimations {
     SWIPE_2_ANIM,
     SWIPE_3_ANIM,
     TREMBLE_ANIM,
+    DYING_ANIM,
 };
 
 enum DespairDirection {
@@ -575,6 +576,8 @@ void update_death_regular(void) {
 }
 
 void update_death_true(void) {
+    cur_obj_init_animation(DYING_ANIM);
+    o->oPosY = sAnchorPositions[0][1] - 100;
     if (gMarioState->action & ACT_FLAG_STATIONARY) {
         sHasMarioLanded = TRUE;
     }
@@ -587,11 +590,15 @@ void update_death_true(void) {
     RUN_DIALOG(43);
     RUN_DIALOG(44);
     RUN_DIALOG(45);
-    RUN_DIALOG(46);
+    if (set_elise_dialog_prompt(46) != -2) {
+        o->oDespairAttackTimer = 0;
+        return;
+    }
 
-    spawn_object_relative(0, 0, 0, 0, o, MODEL_BOWSER_KEY, bhvDreamKey);
-
-    obj_mark_for_deletion(o); // TODO: Despair death animation and stuff
+    if (o->oDespairAttackTimer++ > 30) {
+        spawn_object_relative(0, 0, 0, 0, o, MODEL_BOWSER_KEY, bhvDreamKey);
+        obj_mark_for_deletion(o); // TODO: Despair death animation and stuff
+    }
 }
 
 void bhv_despair_init(void) {
