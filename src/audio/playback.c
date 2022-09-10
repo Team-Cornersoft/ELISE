@@ -622,7 +622,7 @@ void process_notes(void) {
             else if (reverbVol < 0)
                 reverbVol = 0;
 
-            if (note->bankId != 0x0C) { // Dialogues bank
+            if (note->bankId != 0x0C && note->bankId != 0x06) { // Dialogues bank
                 velocity *= (DIA_SOUND_FADE_AUDIO_MIN / 255.0f) + ((1.0f - (DIA_SOUND_FADE_AUDIO_MIN / 255.0f)) * (((DIA_SOUND_FADE_TIME - (f32) quietTimePassed) / DIA_SOUND_FADE_TIME)));
             }
 
