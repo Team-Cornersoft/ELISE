@@ -137,6 +137,11 @@ void push_elise_back(void) {
 void take_damage(void) {
     o->oDespairHits++;
 
+    if ((random_u16() % 2) == 0)
+        play_sound(SOUND_ELVOICE_DESPAIR_GRUNT_7, gGlobalSoundSource);
+    else
+        play_sound(SOUND_ELVOICE_DESPAIR_GRUNT_9, gGlobalSoundSource);
+
     cur_obj_play_sound_2(SOUND_OBJ_THWOMP);
 
     // Phase 3 defeat without 100%
@@ -199,7 +204,7 @@ void choose_attack(void) {
         action = LAUNCHING_TORPEDOS; // This is a good starting attack
 
         // Evil laugh idk it works here too
-        cur_obj_play_sound_2(SOUND_ELVOICE_DESPAIR_LAUGH_0); // NOTE: I believe this should have sound priority so don't worry about adding a different sound to the torpedo attack.
+        play_sound(SOUND_ELVOICE_DESPAIR_LAUGH_0, gGlobalSoundSource);; // NOTE: I believe this should have sound priority so don't worry about adding a different sound to the torpedo attack.
     }
 
     switch(action) {
@@ -280,6 +285,22 @@ void update_homing(void) {
 // Spawn a swipe object, this will delete itself after a time, but acts as a hitbox to give the illusion that I know how damage works
 void swipe_attack(void) {
     o->oDespairAttackCooldown = CHARGING_SWIPE_COOLDOWN;
+
+    switch (o->oDespairSwipes) {
+        case 0:
+            play_sound(SOUND_ELVOICE_DESPAIR_GRUNT_6, gGlobalSoundSource);
+            break;
+        case 1:
+            play_sound(SOUND_ELVOICE_DESPAIR_GRUNT_2, gGlobalSoundSource);
+            break;
+        case 2:
+        default:
+            play_sound(SOUND_ELVOICE_DESPAIR_GRUNT_5, gGlobalSoundSource);
+            break;
+    }
+
+    cur_obj_play_sound_2(SOUND_ACTION_SPIN);
+
     o->oDespairSwipes++;
 
     Vec3f dir;
@@ -356,6 +377,8 @@ void spawn_crystal_attack(void) {
 
 // Spawn rain of torpedos
 void update_torpedo(void) {
+    if (o->oTimer == 0)
+        play_sound(SOUND_ELVOICE_DESPAIR_LAUGH_2, gGlobalSoundSource);
 
     if (!is_cooldown()) {
         cur_obj_init_animation(TORPEDO_CHARGE_ANIM);
@@ -409,8 +432,12 @@ void update_throwing(void) {
     o->oFaceAngleYaw = atan2s(dir[2], dir[0]);
 
     if (isCooldown) {
+        if (o->oDespairSwipes == 0)
+            play_sound(SOUND_ELVOICE_DESPAIR_GRUNT_0, gGlobalSoundSource);
+
         cur_obj_init_animation(SWIPE_1_ANIM);
         throw_crystal(dir);
+        cur_obj_play_sound_2(SOUND_OBJ_MRI_SHOOT);
     } else {
         if (cur_obj_check_if_at_animation_end()) {
             cur_obj_init_animation(TORPEDO_CHARGE_ANIM);
@@ -418,7 +445,6 @@ void update_throwing(void) {
     }
 
     s32 attackCount = 3 + (o->oDespairHits * o->oDespairHits);
-
 
     if (o->oDespairSwipes == attackCount) {
         change_attack(RESETTING, SECONDS_TO_TICKS(2), NO_TIME);
@@ -437,6 +463,27 @@ void update_spin(void) {
     ratio = slerp(0.0, 0.95f, 1.0f, ratio);
 
     radius *= ratio;
+
+    // Lol this is stupid but I don't care
+    switch(SPINNING_ATTACK_TIME - o->oDespairAttackTimer) {
+        case 10:
+        case 30:
+        case 45:
+        case 57:
+        case 65:
+        case 75:
+        case 84:
+        case 93:
+        case 101:
+        case 109:
+        case 117:
+        case 125:
+        case 133:
+        case 141:
+        case 149:
+            cur_obj_play_sound_2(SOUND_OBJ_BOWSER_SPINNING);
+            break;
+    }
 
     o->oDespairSpinAngle += 2.0f + (8.0f * (1 - ratio));
 
@@ -471,6 +518,9 @@ void update_stunned(void) {
     cur_obj_init_animation(STUN_ANIM);
 
     s32 ticksSinceStunned = STUN_TIMER - o->oDespairAttackTimer;
+    
+    if (ticksSinceStunned == 15)
+        cur_obj_play_sound_2(SOUND_OBJ_BOWSER_SPINNING);
 
     // For the first second
     if (ticksSinceStunned <= 30) {
