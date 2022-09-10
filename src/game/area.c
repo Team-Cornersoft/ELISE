@@ -402,7 +402,7 @@ void render_game(void) {
         
         if (sCurrPlayMode == PLAY_MODE_NORMAL)
             render_elise_dialog_entry();
-#ifdef PUPPYPRINT_DEBUG
+#ifdef PUPPYPRINT
         puppyprint_print_deferred();
 #endif
         do_cutscene_handler();
@@ -441,7 +441,7 @@ void render_game(void) {
         
         if (sCurrPlayMode == PLAY_MODE_NORMAL)
             render_elise_dialog_entry();
-#ifdef PUPPYPRINT_DEBUG
+#ifdef PUPPYPRINT
         puppyprint_print_deferred();
 #endif
         if (gViewportClip != NULL) {
