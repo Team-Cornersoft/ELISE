@@ -2,7 +2,7 @@
 
 void bhv_dream_key_init(void) {
     o->oHomeY = o->oPosY;
-    o->oFaceAngleRoll = -0x4000;
+    // o->oFaceAngleRoll = -0x4000;
 }
 
 void bhv_dream_key_loop(void) {

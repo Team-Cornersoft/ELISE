@@ -647,7 +647,7 @@ void update_death_true(void) {
     }
 
     if (o->oDespairAttackTimer++ > 30) {
-        spawn_object_relative(0, 0, 0, 0, o, MODEL_BOWSER_KEY, bhvDreamKey);
+        spawn_object_relative(0, 0, 0, 0, o, MODEL_CUSTOM_BOWSER_KEY, bhvDreamKey);
         play_sound(SOUND_ELVOICE_DESPAIR_DEATH_RED, gGlobalSoundSource);
         obj_mark_for_deletion(o); // TODO: Despair death animation and stuff
     }
