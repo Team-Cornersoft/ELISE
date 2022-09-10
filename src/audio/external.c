@@ -69,6 +69,9 @@ f32 reverbGainAdd = 0.0f;
 s32 reverbAdd = 0;
 s32 deathTransitionUpdates = 0;
 
+s32 shouldQuietAll = FALSE;
+s32 quietTimePassed = 0;
+
 // Dialog sounds
 // The US difference is the sound for DIALOG_037 ("I win! You lose! Ha ha ha ha!
 // You're no slouch, but I'm a better sledder! Better luck next time!"), spoken

@@ -622,6 +622,10 @@ void process_notes(void) {
             else if (reverbVol < 0)
                 reverbVol = 0;
 
+            if (note->bankId != 0x0C) { // Dialogues bank
+                velocity *= (DIA_SOUND_FADE_AUDIO_MIN / 255.0f) + ((1.0f - (DIA_SOUND_FADE_AUDIO_MIN / 255.0f)) * (((DIA_SOUND_FADE_TIME - (f32) quietTimePassed) / DIA_SOUND_FADE_TIME)));
+            }
+
             if (note->bankId > SOUND_BANK_COUNT) { // This is technically incorrect but whatever, at least I'll probably make an extra bank for both types if I do
                 note_set_frequency(note, frequency * freqTempMult);
                 note_set_vel_pan_reverb(note, velocity * volumeMult, pan, (u8) reverbVol);

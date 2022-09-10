@@ -6,6 +6,7 @@
 #include "synthesis.h"
 #include "seqplayer.h"
 #include "effects.h"
+#include "external.h"
 #include "game/game_init.h"
 #include "game/puppyprint.h"
 #include "game/vc_check.h"
@@ -1183,6 +1184,9 @@ void audio_reset_session(struct AudioSessionSettings *preset, s32 presetId, u8 r
         temporary_pool_clear( &gSeqLoadedPool.temporary);
         temporary_pool_clear( &gBankLoadedPool.temporary);
         reset_bank_and_seq_load_status();
+
+        shouldQuietAll = FALSE;
+        quietTimePassed = 0;
 
         init_reverb_us(presetId, reverbPreset);
         bzero(&gAiBuffers[0][0], (AIBUFFER_LEN * NUMAIBUFFERS));
