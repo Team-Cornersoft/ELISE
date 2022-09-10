@@ -2335,7 +2335,7 @@ static const char* sCreditStrings[] = {
     "",
     "<COL_FF3FFFFF>VOICE ACTORS<COL_-------->",
     "Frackhead (Elise & Mom),",
-    "hahahyena (Despair)",
+    "HaHaHyena (Despair)",
     "",
     "<COL_FF7F7FFF>ADDITIONAL HELP<COL_-------->",
     "FluffaLuigi (Mario replacement),",
