@@ -93,6 +93,11 @@ const LevelScript level_cutscene_scene_6_1[] = {
 
     CALL(/*arg*/ 0, /*func*/ should_warp_to_true_ending),
     JUMP_IF(/*op*/ OP_EQ, /*arg*/ FALSE,  level_cutscene_scene_6_bluedrop_endscreen_warp),
+
+    CALL_LOOP(/*arg*/ 24, /*func*/ image_screen_cannot_press_button),
+    UNLOAD_AREA(/*area*/ 1),
+    CLEAR_LEVEL(),
+    SLEEP(/*frames*/ 20),
     
     EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _cutscene_6SegmentRomStart, _cutscene_6SegmentRomEnd, level_cutscene_scene_6_2, _cutscene_6SegmentBssStart, _cutscene_6SegmentBssEnd),
 };
