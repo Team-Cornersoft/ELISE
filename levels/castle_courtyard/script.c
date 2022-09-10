@@ -56,6 +56,8 @@ const LevelScript level_ccy_title_screen[] = {
     	CALL(/*arg*/ -1, /*func*/ image_screen_press_button),
     LOOP_UNTIL(/*op*/ OP_EQ, /*arg*/ TRUE),
 
+	PLAY_SOUND_EFFECT(SOUND_MENU_CUSTOM_MENU_SOUND),
+
 	// To compensate for that early sleep above
     CALL(/*arg*/ -1, /*func*/ image_screen_cannot_press_button),
     SLEEP(/*frames*/ 1),
