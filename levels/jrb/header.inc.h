@@ -232,7 +232,7 @@ extern Gfx jrb_dl_door_001_mesh_layer_1_tri_0[];
 extern Vtx jrb_dl_door_001_mesh_layer_1_vtx_1[397];
 extern Gfx jrb_dl_door_001_mesh_layer_1_tri_1[];
 extern Vtx jrb_dl_HAND_mesh_layer_1_vtx_cull[8];
-extern Vtx jrb_dl_HAND_mesh_layer_1_vtx_0[242];
+extern Vtx jrb_dl_HAND_mesh_layer_1_vtx_0[249];
 extern Gfx jrb_dl_HAND_mesh_layer_1_tri_0[];
 extern Vtx jrb_dl_HAND_mesh_layer_1_vtx_1[55];
 extern Gfx jrb_dl_HAND_mesh_layer_1_tri_1[];
