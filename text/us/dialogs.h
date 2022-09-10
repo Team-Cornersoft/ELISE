@@ -143,7 +143,7 @@ Sure, mom, will do.\n\
 DEFINE_DIALOG(DIALOG_017, 8, 4, 30, 270, _("\
 Oh, poor Sammy...\n\
 You were a noisy but good neighbourhood cat.\n\
-Rest in piece, buddy.\n\
+Rest in peace, buddy.\n\
 "))
 
 DEFINE_DIALOG(DIALOG_018, 8, 7, 30, 270, _("\
