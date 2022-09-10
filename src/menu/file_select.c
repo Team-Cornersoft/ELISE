@@ -2302,7 +2302,7 @@ void draw_credits_box(void) {
 
 #define LINES_ON_PAGE 12
 // Please keep this equal to the length of the sCreditStrings array, I don't know a good alternative to keep count
-#define CREDIT_COUNT 45
+#define CREDIT_COUNT 46
 static const char* sCreditStrings[] = {
     "",
     "<COL_FFFF7FFF>COMPETITION NOTE<COL_-------->",
@@ -2344,7 +2344,8 @@ static const char* sCreditStrings[] = {
     "thecozies (playtesting)",
     "",
     "<COL_2FFF2FFF>SPECIAL THANKS<COL_-------->",
-    "Reonu, Blender, SEQ64, RHDC",
+    "Reonu, HackerSM64, Blender,",
+    "SEQ64, RHDC",
     "",
     "<COL_4F4F4FFF>SAMPLE SOURCES<COL_-------->",
     "pixabay.com, mixkit.co",
