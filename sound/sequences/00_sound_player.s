@@ -2046,8 +2046,8 @@ sound_ref .sound_mario_dying
 sound_ref .sound_mario_panting_cold
 sound_ref .sound_mario_coughing3
 sound_ref .sound_mario_panting1
-sound_ref .sound_mario_panting2
-sound_ref .sound_mario_panting3
+sound_ref .sound_mario_panting1
+sound_ref .sound_mario_panting1
 sound_ref .sound_mario_coughing1
 sound_ref .sound_mario_coughing2
 sound_ref .sound_mario_coughing3
@@ -2346,32 +2346,7 @@ chan_setlayer 0, .layer_D8E
 chan_end
 
 .layer_D8E:
-layer_transpose -2
 layer_note1 39, 0x3c, 100
-layer_end
-
-.sound_mario_panting2:
-chan_setbank 10
-chan_setinstr 2
-chan_setlayer 0, .layer_D9C
-chan_end
-
-.layer_D9C:
-layer_transpose -2
-layer_delay 0x4
-layer_note1 38, 0x3c, 100
-layer_end
-
-.sound_mario_panting3:
-chan_setbank 10
-chan_setinstr 2
-chan_setlayer 0, .layer_DAC
-chan_end
-
-.layer_DAC:
-layer_transpose -2
-layer_delay 0x8
-layer_note1 40, 0x3c, 100
 layer_end
 
 .sound_mario_coughing1:
