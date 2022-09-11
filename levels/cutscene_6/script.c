@@ -94,6 +94,7 @@ const LevelScript level_cutscene_scene_6_1[] = {
     CALL(/*arg*/ 0, /*func*/ should_warp_to_true_ending),
     JUMP_IF(/*op*/ OP_EQ, /*arg*/ FALSE,  level_cutscene_scene_6_bluedrop_endscreen_warp),
 
+    TRANSITION(/*transType*/ WARP_TRANSITION_FADE_INTO_COLOR, /*time*/ 24, /*color*/ 0x00, 0x00, 0x00),
     CALL_LOOP(/*arg*/ 24, /*func*/ image_screen_cannot_press_button),
     UNLOAD_AREA(/*area*/ 1),
     CLEAR_LEVEL(),
