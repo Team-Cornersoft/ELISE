@@ -1325,7 +1325,7 @@ Is this the effect the medicine has on my body?\n\
 
 // WDW AREA 2 brain in a jar
 DEFINE_DIALOG(DIALOG_119, 8, 4, 30, 270, _("\
-This metalic taste--!\n\
+This metallic taste--!\n\
 \n\
 What is even in here?\n\
 "))
@@ -2127,20 +2127,23 @@ It's a hackjob and hijacks the dialog system\n\
 It do be kind of delicious!\n\
 "))
 
-DEFINE_DIALOG(DIALOG_178, 8, 4, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_178, 8, 5, 30, 270, _("\
 H-h-how are you this resilient?\n\
+\n\
 \n\
 \n\
 "))
 
-DEFINE_DIALOG(DIALOG_179, 8, 4, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_179, 8, 5, 30, 270, _("\
 Take that you stupid rock!\n\
+\n\
 Now wake me up or I'll tear you down\n\
 completely!\n\
 "))
 
-DEFINE_DIALOG(DIALOG_180, 8, 4, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_180, 8, 5, 30, 270, _("\
 Feisty, but even I know when to give up.\n\
+\n\
 Very well. But remember, I will return\n\
 whenever you wish for eternal escape again.\n\
 "))
@@ -2159,8 +2162,8 @@ in a coma, maybe we wouldn't have.\n\
 
 DEFINE_DIALOG(DIALOG_183, 8, 4, 30, 270, _("\
 But...\n\
-I did it for humanity...\n\
-\n\
+I did it...\n\
+for humanity...\n\
 "))
 
 DEFINE_DIALOG(DIALOG_184, 8, 4, 30, 270, _("\
@@ -2176,37 +2179,43 @@ DEFINE_DIALOG(DIALOG_185, 8, 4, 30, 270, _("\
 "))
 
 
-DEFINE_DIALOG(DIALOG_186, 8, 4, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_186, 8, 6, 30, 270, _("\
 H-h-how are you this resilient?!"))
 
-DEFINE_DIALOG(DIALOG_187, 8, 4, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_187, 8, 6, 30, 270, _("\
 Take that you stupid rock!"))
 
-DEFINE_DIALOG(DIALOG_188, 8, 4, 30, 270, _("\
-The blasphemy! I gave you a gift of eternal\n\
-happiness and you just want to throw it away?!"))
+DEFINE_DIALOG(DIALOG_188, 8, 6, 30, 270, _("\
+THE BLASPHEMY!\n\
+\n\
+I gave you a gift of eternal happiness\n\
+and you intend to discard it?!"))
 
-DEFINE_DIALOG(DIALOG_189, 8, 4, 30, 270, _("\
-Gift?! I have been subjected to nothing but\n\
-my internal struggles and trauma here! What\n\
-you've done is give me a wake up call, and\n\
-that's all there is to it."))
+DEFINE_DIALOG(DIALOG_189, 8, 6, 30, 270, _("\
+Gift?!\n\
+I have been subjected to nothing but\n\
+my internal struggles and trauma here!\n\
+\n\
+What you've done is give me a wake up call,\n\
+and that's all there is to it!"))
 
-DEFINE_DIALOG(DIALOG_190, 8, 4, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_190, 8, 6, 30, 270, _("\
 So this is it then?"))
 
-DEFINE_DIALOG(DIALOG_191, 8, 4, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_191, 8, 6, 30, 270, _("\
 You are just going to defile the blessing\n\
 bestowed upon you with violence?"))
 
-DEFINE_DIALOG(DIALOG_192, 8, 4, 30, 270, _("\
+DEFINE_DIALOG(DIALOG_192, 8, 6, 30, 270, _("\
 Sorry rainbow eyes,\n\
 but I have a lot of pent up frustration to\n\
 take out on you!"))
 
-DEFINE_DIALOG(DIALOG_193, 8, 4, 30, 270, _("\
-This is IT!"))
+DEFINE_DIALOG(DIALOG_193, 8, 6, 30, 270, _("\
+You little...\n\
+\n\
+THAT'S IT!"))
 
-DEFINE_DIALOG(DIALOG_194, 8, 4, 30, 270, _("\
-YOU WILL BE PUT INTO YOUR PLACE!\n\
+DEFINE_DIALOG(DIALOG_194, 8, 6, 30, 270, _("\
+YOU WILL BE PUT INTO YOUR PLACE,\n\
 YOU CURSED CHILD!!!"))
