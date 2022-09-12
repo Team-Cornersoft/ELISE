@@ -168,7 +168,7 @@ DEFINE_DIALOG(DIALOG_020, 8, 8, 30, 270, _("\
 I always found it odd that card decks came\n\
 with a joker card. It's so uncreative!\n\
 Behold, the next best thing: The cat card!\n\
-though this card should have been placed\n\
+Though this card should have been placed\n\
 before the jack, not after it...\n\
 \n\
 It's just as sneaky as a real cat.\n\
