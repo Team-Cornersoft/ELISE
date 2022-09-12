@@ -565,8 +565,8 @@
 #define MODEL_CUSTOM_SECRET               0x100       // Secrets model
 #define MODEL_CUSTOM_BOSS_PORTAL          0x101       // Boss portal
 #define MODEL_CUSTOM_BOWSER_KEY           0x102       // Custom key
-#define MODEL_ANIMATED_WALL_ALIEN_A       0xC7
-#define MODEL_ANIMATED_WALL_ALIEN_B       0xC8
+#define MODEL_ANIMATED_WALL_ALIEN_A       0x103
+#define MODEL_ANIMATED_WALL_ALIEN_B       0x104
 
 #ifdef IA8_30FPS_COINS
 #define MODEL_SILVER_COIN                 0xE2        // silver_coin_geo

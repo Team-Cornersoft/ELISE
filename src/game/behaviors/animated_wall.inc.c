@@ -11,7 +11,7 @@
 
 #define ANIMAL_MODEL(a) MODEL_ANIMATED_WALL_ ##a##_A, MODEL_ANIMATED_WALL_ ##a##_B
 
-u8 models[] = {
+u16 models[] = {
     ANIMAL_MODEL(CAT),
     ANIMAL_MODEL(DOG),
     ANIMAL_MODEL(DINO),
