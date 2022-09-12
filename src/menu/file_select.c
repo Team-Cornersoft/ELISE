@@ -2302,19 +2302,8 @@ void draw_credits_box(void) {
 
 #define LINES_ON_PAGE 12
 // Please keep this equal to the length of the sCreditStrings array, I don't know a good alternative to keep count
-#define CREDIT_COUNT 46
+#define CREDIT_COUNT 35
 static const char* sCreditStrings[] = {
-    "",
-    "<COL_FFFF7FFF>COMPETITION NOTE<COL_-------->",
-    "This romhack was made for the",
-    "RHDC Dream competition 2022.",
-    "The goal is to gather all 12 blue",
-    "Dream Drops and fight the boss",
-    "in the hub area.",
-    "",
-    "Special thanks to SimpleFlips for",
-    "playing and streaming this hack!",
-    "Scroll further down for credits. ",
     "",
     "<RAINBOW>CREDITS<RAINBOW>",
     "",
@@ -2345,7 +2334,7 @@ static const char* sCreditStrings[] = {
     "",
     "<COL_2FFF2FFF>SPECIAL THANKS<COL_-------->",
     "Reonu, HackerSM64, Blender,",
-    "SEQ64, RHDC",
+    "SEQ64, RHDC, SimpleFlips",
     "",
     "<COL_4F4F4FFF>SAMPLE SOURCES<COL_-------->",
     "pixabay.com, mixkit.co",
