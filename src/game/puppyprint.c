@@ -1427,10 +1427,11 @@ u8 print_small_text_buffered(s32 x, s32 y, const char *str, u8 align, s32 amount
 
 
     } else {
-        strLen = MIN((signed)strlen(str), 0xFF);
+        strLen = MIN((signed)strlen(str), 0xFE) + 1;
         bcopy(str, &sPuppyprintTextBuffer[sPuppyprintTextBufferPos + HEADERSIZE], strLen);
         sPuppyprintTextBuffer[sPuppyprintTextBufferPos + 8] = strLen;
         sPuppyprintTextBufferPos += strLen + HEADERSIZE;
+        sPuppyprintTextBuffer[sPuppyprintTextBufferPos - 1] = 0;
     }
 
     return strLen;
