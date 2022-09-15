@@ -53,7 +53,7 @@ extern Vtx lll_dl_B_Mountain__start_mesh_layer_1_vtx_cull[8];
 extern Vtx lll_dl_B_Mountain__start_mesh_layer_1_vtx_0[492];
 extern Gfx lll_dl_B_Mountain__start_mesh_layer_1_tri_0[];
 extern Vtx lll_dl_B_Mountain_end_mesh_layer_1_vtx_cull[8];
-extern Vtx lll_dl_B_Mountain_end_mesh_layer_1_vtx_0[594];
+extern Vtx lll_dl_B_Mountain_end_mesh_layer_1_vtx_0[595];
 extern Gfx lll_dl_B_Mountain_end_mesh_layer_1_tri_0[];
 extern Vtx lll_dl_C_Mountain_grave_mesh_layer_5_vtx_cull[8];
 extern Vtx lll_dl_C_Mountain_grave_mesh_layer_5_vtx_0[14];
