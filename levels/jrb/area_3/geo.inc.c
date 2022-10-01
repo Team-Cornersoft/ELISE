@@ -8,7 +8,7 @@ const GeoLayout jrb_area_3_geo[] = {
 			GEO_BRANCH(1, jrb_dl_01_ROOM_3A_geo),
 			GEO_BRANCH(1, jrb_dl_02_ROOM_3B_geo),
 		GEO_CLOSE_NODE(),
-		GEO_TRANSLATE_NODE_WITH_DL(LAYER_OPAQUE, 41, 3135, -18978, jrb_dl_HAND_mesh_layer_1),
+		GEO_TRANSLATE_ROTATE_WITH_DL(LAYER_OPAQUE, 41, 3135, -18978, 0, -90, 0, jrb_dl_HAND_mesh_layer_1),
 	GEO_CLOSE_NODE(),
 	GEO_RETURN(),
 };
