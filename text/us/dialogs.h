@@ -178,7 +178,7 @@ It's just as sneaky as a real cat.\n\
 DEFINE_DIALOG(DIALOG_021, 8, 7, 30, 270, _("\
 Mom...\n\
 \n\
-She must've been so devistated.\n\
+She must've been so devastated.\n\
 Of course she doesn't want to see me like this.\n\
 \n\
 Was I wrong for making that wish...?\n\
