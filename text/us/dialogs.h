@@ -74,7 +74,7 @@ DEFINE_DIALOG(DIALOG_004, 1, 1, 1, 1, _("\
 
 DEFINE_DIALOG(DIALOG_005, 8, 3, 30, 270, _("\
 \n\
-Why did noone help...?\n\
+Why did no one help...?\n\
 "))
 
 DEFINE_DIALOG(DIALOG_006, 8, 5, 30, 270, _("\
