@@ -29,6 +29,13 @@
 #define BORDER_HEIGHT_CONSOLE  0
 #define BORDER_HEIGHT_EMULATOR 0
 
-// RCVI hack. Increases performance on emulator, and does nothing on console
-// Might break on some emulators. Use at your own risk, and don't use it unless you actually need the extra performance.
+/**
+ * RCVI hack. Increases performance on emulator, and does nothing on console
+ * Might break on some emulators. Use at your own risk, and don't use it unless you actually need the extra performance.
+ */
 #define RCVI_HACK
+
+/**
+ * Informs supported emulators to default to gamecube controller inputs.
+ */
+// #define USE_GAMECUBE_CONTROLLER
