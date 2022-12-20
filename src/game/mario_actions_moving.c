@@ -720,7 +720,7 @@ void tilt_body_walking(struct MarioState *m, s16 startYaw) {
         s16 nextBodyPitch = (s16)(m->forwardVel * 170.0f);
 
         nextBodyRoll  = CLAMP(nextBodyRoll, -DEGREES(30), DEGREES(30));
-        nextBodyPitch = CLAMP(nextBodyPitch,         0x0, DEGREES(20));
+        nextBodyPitch = CLAMP(nextBodyPitch,         0x0, DEGREES(30));
 
         marioBodyState->torsoAngle[2] = approach_s32(marioBodyState->torsoAngle[2], nextBodyRoll, 0x400, 0x400);
         marioBodyState->torsoAngle[0] = approach_s32(marioBodyState->torsoAngle[0], nextBodyPitch, 0x400, 0x400);
