@@ -116,6 +116,7 @@ struct EliseDialogOptions eliseDialogPrompts[] = {
 
 };
 
+u8 bossDefeatedTrue = FALSE;
 u16 gDialogColorFadeTimer;
 s8 gLastDialogLineNum;
 s32 gDialogVariable;

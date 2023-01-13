@@ -70,7 +70,7 @@ s32 reverbMultsArr[][NUM_ALLPASS / 3] = {
 };
 
 /**
- * downsampleRate, isMono, filterCount, windowSize, gain, gainIndex, reverbIndex
+ * downsampleRate, isMono, filterCount, windowSize, gain, reverbIndex, gainIndex
  * delaysBaselineL, delaysBaselineR, reverbMultsL, reverbMultsR
  */ 
 struct BetterReverbSettings gBetterReverbSettings[] = {

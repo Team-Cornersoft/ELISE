@@ -2,6 +2,8 @@
 #include "game/print.h"
 #include "game/sound_init.h"
 
+#define TRUE_ENDING (gMarioState->numRedDrops >= MIN_RED_DROPS_NEEDED && gMarioState->numStars >= MIN_BLUE_DROPS_NEEDED)
+
 #define RUN_DIALOG(id) if (set_elise_dialog_prompt(id) != -2) return
 
 #define SECONDS_TO_TICKS(_a) _a * 30
@@ -94,6 +96,7 @@ enum DespairState {
     RESETTING, // Done
     DEATH_REGULAR, // Used for non-100% death sequence
     DEATH_TRUE, // Used for 100% death sequence
+    DEAD, // Despair is gone, but not truly deleted in case Elise jumps off a ledge later on for some reason
     HURT,
 };
 
@@ -152,21 +155,21 @@ void take_damage(void) {
     push_elise_back();
 
     // Check if we're 100%
-    if (o->oDespairMaxHits == 5) {
-        if (o->oDespairHits == 3) {
+    if (TRUE_ENDING) {
+        if (o->oDespairHits >= o->oDespairMaxHits) {
+            // Play ending 2 death sequence
+            o->oAction = DEATH_TRUE;
+            seq_player_fade_out(SEQ_PLAYER_LEVEL, 240);
+            return;
+        } else if (o->oDespairHits == 3) {
             // Play intermediate dialog
             sDespairDialogFlag = TRUE;
             change_attack(HURT, SECONDS_TO_TICKS(1), NO_TIME);
             set_mario_action(gMarioState, ACT_SPAWN_NO_SPIN_AIRBORNE, 0);
             return;
-        } else if (o->oDespairHits == 5) {
-            // Play ending 2 death sequence
-            o->oAction = DEATH_TRUE;
-            seq_player_fade_out(SEQ_PLAYER_LEVEL, 240);
-            return;
         }
     } else {
-        if (o->oDespairHits == 3) {
+        if (o->oDespairHits >= o->oDespairMaxHits) {
             // Play ending 1 death sequence
             o->oAction = DEATH_REGULAR;
             seq_player_fade_out(SEQ_PLAYER_LEVEL, 240);
@@ -647,17 +650,21 @@ void update_death_true(void) {
     }
 
     if (o->oDespairAttackTimer++ > 30) {
+        bossDefeatedTrue = TRUE;
         spawn_object_relative(0, 0, 0, 0, o, MODEL_CUSTOM_BOWSER_KEY, bhvDreamKey);
         play_sound(SOUND_ELVOICE_DESPAIR_DEATH_RED, gGlobalSoundSource);
-        obj_mark_for_deletion(o); // TODO: Despair death animation and stuff
+        cur_obj_hide(); // TODO: Despair death animation and stuff
+        change_attack(DEAD, NO_COOLDOWN, NO_TIME);
     }
 }
 
 void bhv_despair_init(void) {
     o->oDespairLastAttack = 0;
     o->oDespairFirstEncounter = FALSE;
-    if (gMarioState->pos[1] >= 500.0f) // Mario now only spawns up that high when entering the stage so is this a satisfactory check for this condition.
+    if (gMarioState->pos[1] >= 500.0f) { // Mario now only spawns up that high when entering the stage so is this a satisfactory check for this condition.
         o->oDespairFirstEncounter = TRUE;
+        bossDefeatedTrue = FALSE;
+    }
 
     set_mario_action(gMarioState, ACT_SPAWN_NO_SPIN_AIRBORNE, 0);
 
@@ -670,10 +677,19 @@ void bhv_despair_init(void) {
 
     o->oDespairAttackCooldown = SECONDS_TO_TICKS(3);
 
-    if (gMarioState->numRedDrops >= MIN_RED_DROPS_NEEDED && gMarioState->numStars >= MIN_BLUE_DROPS_NEEDED) {
+    if (TRUE_ENDING) {
         o->oDespairMaxHits = 5;
     } else {
         o->oDespairMaxHits = 3;
+    }
+
+    if (bossDefeatedTrue == TRUE) {
+        spawn_object_relative(0, 0, 0, 0, gMarioObject, MODEL_CUSTOM_BOWSER_KEY, bhvDreamKey);
+        gMarioState->pos[2] += 400;
+        cur_obj_hide();
+        change_attack(DEAD, NO_COOLDOWN, NO_TIME);
+    } else {
+        cur_obj_unhide();
     }
 }
 

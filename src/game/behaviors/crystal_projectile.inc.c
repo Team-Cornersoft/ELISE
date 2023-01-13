@@ -4,10 +4,10 @@
 static struct ObjectHitbox sCrystalProjectileHitbox = {
     /* interactType:      */ INTERACT_DAMAGE,
     /* downOffset:        */ 200,
-    /* damageOrCoinValue: */ 1,
+    /* damageOrCoinValue: */ 2,
     /* health:            */ 0,
     /* numLootCoins:      */ 0,
-    /* radius:            */ 115,
+    /* radius:            */ 150,
     /* height:            */ 400,
     /* hurtboxRadius:     */ 105,
     /* hurtboxHeight:     */ 225,

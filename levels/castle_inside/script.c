@@ -63,8 +63,8 @@ const LevelScript level_castle_inside_entry[] = {
 		/* Fast64 begin persistent block [area commands] */
 		SET_BACKGROUND_MUSIC_WITH_REVERB(0x00, SEQ_EVENT_QUIET, 0x01, 0x02),
 		SET_ECHO(0x0A, 0x0A),
-		OBJECT(MODEL_WOODEN_SIGNPOST, 0, 0, 3000, 0, -180, 0, (DIALOG_098 << 16), bhvMessagePanel),
-		OBJECT(MODEL_PURPLE_SWITCH, 0, 0, 3400, 0, -180, 0, 0xFF000000, bhvFloorSwitchHardcodedModel),
+		// OBJECT(MODEL_WOODEN_SIGNPOST, 0, 0, 3000, 0, -180, 0, (DIALOG_098 << 16), bhvMessagePanel),
+		// OBJECT(MODEL_PURPLE_SWITCH, 0, 0, 3400, 0, -180, 0, 0xFF000000, bhvFloorSwitchHardcodedModel),
 		/* Fast64 end persistent block [area commands] */
 	END_AREA(),
 

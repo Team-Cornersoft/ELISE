@@ -189,6 +189,7 @@ extern s16 gCutsceneMsgXOffset;
 extern s16 gCutsceneMsgYOffset;
 extern s8  gRedCoinsCollected;
 
+extern u8 bossDefeatedTrue;
 extern s8 eliseDialogState;
 extern s32 eliseDialogTimer;
 extern s32 eliseDialogCurrPrompt;

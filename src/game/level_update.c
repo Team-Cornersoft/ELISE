@@ -1048,7 +1048,7 @@ void initiate_delayed_warp(void) {
                 else if (sDelayedWarpTimer == 28) {
                     play_sound(SOUND_MENU_CUSTOM_DEATH, gGlobalSoundSource);
                     play_transition(WARP_TRANSITION_FADE_INTO_COLOR, sDelayedWarpTimer, 0x00, 0x00, 0x00);
-                    if (count_objects_with_behavior(bhvDespair) > 0)
+                    if (count_objects_with_behavior(bhvDespair) > 0 && !bossDefeatedTrue)
                         play_sound(SOUND_ELVOICE_DESPAIR_ELISE_DEATH, gGlobalSoundSource);
                 }
             }
