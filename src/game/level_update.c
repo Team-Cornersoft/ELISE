@@ -740,6 +740,15 @@ s16 level_trigger_warp(struct MarioState *m, s32 warpOp, u8 fadeMario) {
         sDelayedWarpOp = warpOp;
         isDeathFloorWarp = FALSE;
 
+        if (eliseDialogCurrPrompt >= 0 && eliseDialogState == ELISE_DIALOG_CLOSED) {
+            struct EliseDialogOptions *prompt = &eliseDialogPrompts[eliseDialogCurrPrompt];
+            if (prompt) {
+                prompt->hasBeenRead = FALSE;
+            }
+            eliseDialogTimer = -1;
+            eliseDialogCurrPrompt = -1;
+        }
+
         switch (warpOp) {
             case WARP_OP_DEMO_NEXT:
             case WARP_OP_DEMO_END:

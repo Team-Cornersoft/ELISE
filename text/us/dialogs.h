@@ -135,14 +135,14 @@ you went to the toilet.\n\
 DEFINE_DIALOG(DIALOG_016, 8, 4, 30, 270, _("\
 Ehm...\n\
 \n\
-Sure, mom, will do.\n\
+Sure, Mom, will do.\n\
 "))
 
 // Elise nosemen dialogues
 
 DEFINE_DIALOG(DIALOG_017, 8, 4, 30, 270, _("\
 Oh, poor Sammy...\n\
-You were a noisy but good neighbourhood cat.\n\
+You were a noisy but good neighborhood cat.\n\
 Rest in peace, buddy.\n\
 "))
 
@@ -156,8 +156,8 @@ Let's play together again someday, okay?\n\
 "))
 
 DEFINE_DIALOG(DIALOG_019, 8, 6, 30, 270, _("\
-Dad used to have it out for this bird>\n\
-Saying it's some kind of reptile from the depths\n\
+Dad used to have it out for this bird,\n\
+saying it's some kind of reptile from the depths\n\
 of the dankest swamps.\n\
 \n\
 I wonder if it's still alive and kicking?\n\
@@ -2163,7 +2163,7 @@ in a coma, maybe we wouldn't have.\n\
 DEFINE_DIALOG(DIALOG_183, 8, 4, 30, 270, _("\
 But...\n\
 I did it...\n\
-for humanity...\n\
+For humanity...\n\
 "))
 
 DEFINE_DIALOG(DIALOG_184, 8, 4, 30, 270, _("\
