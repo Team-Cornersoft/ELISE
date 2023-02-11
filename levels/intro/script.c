@@ -56,10 +56,10 @@ const LevelScript level_scam_warning_screen[] = {
 };
 
 const LevelScript level_intro_splash_screen[] = {
-    INIT_LEVEL(),
 #ifdef SKIP_TITLE_SCREEN
     EXIT_AND_EXECUTE_WITH_CODE(/*seg*/ SEGMENT_MENU_INTRO, _introSegmentRomStart, _introSegmentRomEnd, level_intro_mario_head_regular, _introSegmentBssStart, _introSegmentBssEnd),
 #endif
+    INIT_LEVEL(),
     LOAD_GODDARD(),
     LOAD_BEHAVIOR_DATA(),
     LOAD_LEVEL_DATA(intro),
@@ -133,6 +133,7 @@ const LevelScript level_intro_mario_head_regular[] = {
     TRANSITION(/*transType*/ WARP_TRANSITION_FADE_FROM_STAR, /*time*/ 20, /*color*/ 0x00, 0x00, 0x00),
     SLEEP(/*frames*/ 20),
 #else
+    PUSH_POOL(),
     BLACKOUT(/*active*/ FALSE),
 #endif
     CALL_LOOP(/*arg*/ LVL_INTRO_REGULAR, /*func*/ lvl_intro_update),
