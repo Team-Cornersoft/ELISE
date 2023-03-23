@@ -311,16 +311,17 @@ void calc_new_obj_vel_and_pos_y_underwater(struct Surface *objFloor, f32 floorY,
     f32 floor_nX = objFloor->normal.x;
     f32 floor_nY = objFloor->normal.y;
     f32 floor_nZ = objFloor->normal.z;
+    f32 gravityMult = get_gravity_mult(FALSE);
 
     f32 netYAccel = (1.0f - o->oBuoyancy) * (-1.0f * o->oGravity);
     o->oVelY -= netYAccel;
 
     // Caps vertical speed with a "terminal velocity".
-    if (o->oVelY > 75.0f) {
-        o->oVelY = 75.0f;
+    if (o->oVelY > TERM_VEL(75.0f)) {
+        o->oVelY = TERM_VEL(75.0f);
     }
-    if (o->oVelY < -75.0f) {
-        o->oVelY = -75.0f;
+    if (o->oVelY < TERM_VEL(-75.0f)) {
+        o->oVelY = TERM_VEL(-75.0f);
     }
 
     o->oPosY += o->oVelY;
