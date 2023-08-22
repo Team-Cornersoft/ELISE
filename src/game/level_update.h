@@ -123,6 +123,8 @@ extern s32 shouldFadeMarioWarp;
 extern u8 isDeathFloorWarp;
 extern s8 sTimerRunning;
 
+extern u8 shouldDisplayCharacterAndHud;
+
 struct HudDisplay {
     /*0x00*/ s16 lives;
     /*0x02*/ s16 coins;

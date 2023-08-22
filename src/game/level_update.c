@@ -36,9 +36,13 @@
 
 #include "config.h"
 
+u8 shouldDisplayCharacterAndHud = TRUE;
+
 static s32 gameFreezeFrames = 0;
 
+#ifndef COMPLETE_SAVE_FILE
 static u8 hasWatchedDespairIntroduction = FALSE;
+#endif
 
 // TODO: Make these ifdefs better
 const char *credits01[] = { "1GAME DIRECTOR", "SHIGERU MIYAMOTO" };
@@ -192,6 +196,9 @@ u16 level_control_timer(s32 timerOp) {
 u32 pressed_pause(void) {
     u32 dialogActive = get_dialog_id() >= 0;
     u32 intangible = (gMarioState->action & ACT_FLAG_INTANGIBLE) != 0;
+#ifdef HIDE_CHARACTER_AND_HUD
+    intangible = FALSE;
+#endif
 
     if (!intangible && !dialogActive && !gWarpTransition.isActive && sDelayedWarpOp == WARP_OP_NONE
         && (gPlayer1Controller->buttonPressed & START_BUTTON)) {
@@ -1242,6 +1249,12 @@ s32 play_mode_normal(void) {
     }
 #endif
 
+#ifdef HIDE_CHARACTER_AND_HUD
+    if (gPlayer1Controller->buttonPressed & L_JPAD) {
+        shouldDisplayCharacterAndHud ^= TRUE;
+    }
+#endif
+
     warp_area();
     check_instant_warp();
     update_elise_area_dialog();
@@ -1700,6 +1713,7 @@ s32 pause_if_emulator(s16 frames, UNUSED s32 arg1) {
 }
 
 // Should we transition into a cutscene here or no?
+#ifndef COMPLETE_SAVE_FILE
 s32 should_play_elise_cutscene(s16 cutsceneSequenceIndex, UNUSED s32 arg1) {
     if (cutsceneSequenceIndex == 0 && !save_file_exists(gCurrSaveFileNum - 1))
         return TRUE;
@@ -1708,6 +1722,9 @@ s32 should_play_elise_cutscene(s16 cutsceneSequenceIndex, UNUSED s32 arg1) {
         hasWatchedDespairIntroduction = TRUE;
         return TRUE;
     }
+#else
+s32 should_play_elise_cutscene(UNUSED s16 cutsceneSequenceIndex, UNUSED s32 arg1) {
+#endif
 
     return FALSE;
 }

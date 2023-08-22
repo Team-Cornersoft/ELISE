@@ -3525,6 +3525,9 @@ void init_camera(struct Camera *c) {
 void zoom_out_if_paused_and_outside(struct GraphNodeCamera *camera) {
     s16 yaw;
     s32 areaMaskIndex = gCurrLevelArea / 32;
+#ifdef HIDE_CHARACTER_AND_HUD
+    UNUSED
+#endif
     s32 areaBit = 1 << (((gCurrLevelArea & 0x10) / 4) + (((gCurrLevelArea & 0xF) - 1) & 3));
 
     if (areaMaskIndex >= LEVEL_MAX / 2) {
@@ -3533,7 +3536,10 @@ void zoom_out_if_paused_and_outside(struct GraphNodeCamera *camera) {
     }
     if (gCameraMovementFlags & CAM_MOVE_PAUSE_SCREEN) {
         if (sFramesPaused >= 2) {
-            if (sZoomOutAreaMasks[areaMaskIndex] & areaBit) {
+#ifndef HIDE_CHARACTER_AND_HUD
+            if (sZoomOutAreaMasks[areaMaskIndex] & areaBit)
+#endif
+            {
 
                 camera->focus[0] = gCamera->areaCenX;
                 camera->focus[1] = (sMarioCamState->pos[1] + gCamera->areaCenY) / 2;

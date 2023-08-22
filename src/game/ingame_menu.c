@@ -2501,26 +2501,28 @@ s32 render_pause_courses_and_castle(void) {
             break;
 
         case DIALOG_STATE_VERTICAL:
-            shade_screen();
-            // render_pause_my_score_coins();
-            render_pause_red_coins();
+            if (shouldDisplayCharacterAndHud) {
+                shade_screen();
+                // render_pause_my_score_coins();
+                render_pause_red_coins();
 
-            gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
-            gDPSetEnvColor(gDisplayListHead++, 255, 255, 63, gDialogTextAlpha);
+                gSPDisplayList(gDisplayListHead++, dl_rgba16_text_begin);
+                gDPSetEnvColor(gDisplayListHead++, 255, 255, 63, gDialogTextAlpha);
 
-            print_hud_lut_string(HUD_LUT_GLOBAL, 120, 90, textPause);
+                print_hud_lut_string(HUD_LUT_GLOBAL, 120, 90, textPause);
 
-            gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
+                gSPDisplayList(gDisplayListHead++, dl_rgba16_text_end);
 
 #ifndef DISABLE_EXIT_COURSE
 #ifndef EXIT_COURSE_WHILE_MOVING
-            if (gMarioStates[0].action & ACT_FLAG_PAUSE_EXIT) {
+                if (gMarioStates[0].action & ACT_FLAG_PAUSE_EXIT) {
 #endif
-                render_pause_course_options(99, 93, &gDialogLineNum, 15);
+                    render_pause_course_options(99, 93, &gDialogLineNum, 15);
 #ifndef EXIT_COURSE_WHILE_MOVING
+                }
+#endif
+#endif
             }
-#endif
-#endif
 
             if (gPlayer3Controller->buttonPressed & (A_BUTTON | START_BUTTON)) {
                 level_set_transition(0, NULL);
@@ -2539,10 +2541,12 @@ s32 render_pause_courses_and_castle(void) {
             break;
 
         case DIALOG_STATE_HORIZONTAL:
-            shade_screen();
-            print_hud_pause_colorful_str();
-            render_pause_castle_menu_box(160, 143);
-            render_pause_castle_main_strings(104, 60);
+            if (shouldDisplayCharacterAndHud) {
+                shade_screen();
+                print_hud_pause_colorful_str();
+                render_pause_castle_menu_box(160, 143);
+                render_pause_castle_main_strings(104, 60);
+            }
 
             if (gPlayer3Controller->buttonPressed & (A_BUTTON | START_BUTTON | Z_TRIG)) {
                 level_set_transition(0, NULL);
@@ -2555,7 +2559,9 @@ s32 render_pause_courses_and_castle(void) {
             break;
     }
 #if defined(WIDE) && !defined(PUPPYCAM)
-        render_widescreen_setting();
+        if (shouldDisplayCharacterAndHud) {
+            render_widescreen_setting();
+        }
 #endif
     if (gDialogTextAlpha < 250) {
         gDialogTextAlpha += 25;

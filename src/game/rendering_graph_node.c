@@ -17,6 +17,7 @@
 #include "behavior_data.h"
 #include "string.h"
 #include "color_presets.h"
+#include "object_list_processor.h"
 
 #include "config.h"
 #include "config/config_world.h"
@@ -1258,7 +1259,7 @@ void geo_process_node_and_siblings(struct GraphNode *firstNode) {
     }
 
     do {
-        if (curGraphNode->flags & GRAPH_RENDER_ACTIVE) {
+        if (curGraphNode->flags & GRAPH_RENDER_ACTIVE && (shouldDisplayCharacterAndHud || curGraphNode != &gMarioObject->header.gfx.node)) {
             if (curGraphNode->flags & GRAPH_RENDER_CHILDREN_FIRST) {
                 geo_try_process_children(curGraphNode);
             } else {

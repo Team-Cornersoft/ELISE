@@ -577,7 +577,7 @@ void render_hud_camera_status(void) {
 void render_hud(void) {
     s16 hudDisplayFlags = gHudDisplay.flags;
 
-    if (hudDisplayFlags == HUD_DISPLAY_NONE) {
+    if (hudDisplayFlags == HUD_DISPLAY_NONE || !shouldDisplayCharacterAndHud) {
         sPowerMeterHUD.animation = POWER_METER_HIDDEN;
         sPowerMeterStoredHealth = 8;
         sPowerMeterVisibleTimer = 0;

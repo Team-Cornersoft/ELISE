@@ -12,7 +12,7 @@
 /**
  * Disables all debug options (except PUPPYPRINT).
  */
-#define DISABLE_ALL
+// #define DISABLE_ALL
 
 /**
  * Enables a comprehensive standalone profiler. Automatically enabled by PUPPYPRINT_DEBUG.
@@ -26,7 +26,7 @@
  * This allows you to quickly test the level you're working on.
  * If you want the game to boot normally, just comment out the define again.
  */
-// #define TEST_LEVEL LEVEL_CASTLE
+#define TEST_LEVEL LEVEL_CASTLE
 
 /**
  * Enables debug level select. Hold L while the game boots to turn it on.
@@ -69,7 +69,7 @@
  * Same as above, but also reads all save file flags as complete.
  * This will not overwrite existing save file data unless you save over it.
  */
-// #define COMPLETE_SAVE_FILE
+#define COMPLETE_SAVE_FILE
 
 /**
  * Removes the limit on FPS.
@@ -80,6 +80,11 @@
  * Includes vanilla debug functionality.
  */
 // #define VANILLA_DEBUG
+
+/**
+ * Press D-Pad Left to hide character and HUD
+ */
+#define HIDE_CHARACTER_AND_HUD
 
 /**
  * Forces a crash when the game starts. Useful for debugging the crash screen.
